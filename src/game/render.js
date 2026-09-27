@@ -1,5 +1,7 @@
 // render.js – aus der Einzeldatei extrahiert
-import { gfxOn, sprite, drawPlayerSprite, playerUsesSprite } from './gfx.js';
+import { gfxOn, sprite, drawPersonSprite, drawCarSprite } from './gfx.js';
+// Markisenfarben der Spezial-Stände in der Reihenfolge der Blender-Renderings stand0–stand4
+const STAND_COLS = ['#d8342b', '#2f5f93', '#3f7fbf', '#8a2f5a', '#c0392f'];
 
 import {
   BIN,
@@ -296,7 +298,10 @@ export function render() {
     }
   });
   if (G.special.on) {
-    S.push({ d: SP.x + SP.y + 1, f: () => drawSpecStand(t) });
+    S.push({
+      d: SP.x + SP.y + 1,
+      f: () => drawSpecStand(t, sp => gfxOn() && sprite('stand' + Math.max(0, STAND_COLS.indexOf(sp.awn)), SP.x, SP.y)),
+    });
     S.push({
       d: 2.8 + 4.25 + 0.02,
       f: () => {
@@ -306,7 +311,7 @@ export function render() {
     });
   }
   if (G.fryer.on) {
-    S.push({ d: FRY.x + 1, f: () => drawFryer(t) });
+    S.push({ d: FRY.x + 1, f: () => drawFryer(t, () => gfxOn() && sprite('fryer', FRY.x, 0)) });
     S.push({ d: FRY.x + 0.5 + 1.27, f: drawFryTray });
   }
   if (G.fryer.on)
@@ -367,7 +372,7 @@ export function render() {
     S.push({
       d: 11.65 + 2.0,
       f: () => {
-        box(11.3, 1.2, 0.7, 1.6, 34, '#ece6dc', '#c0392f', '#962a22');
+        if (!(gfxOn() && sprite('drivewin', 11.3, 1.2))) box(11.3, 1.2, 0.7, 1.6, 34, '#ece6dc', '#c0392f', '#962a22');
       },
     });
     S.push({
@@ -378,10 +383,13 @@ export function render() {
         chip(q.x, q.y, 'DRIVE-IN', '#d8342b', '#fff6e8', '10px Bungee, Impact, sans-serif');
       },
     });
-    for (const c of G.cars) S.push({ d: ROAD_CAR + c.y, f: () => drawCar(c) });
+    for (const c of G.cars) S.push({ d: ROAD_CAR + c.y, f: () => drawCarSprite(c, ROAD_CAR) || drawCar(c) });
   }
   if (G.unlocked.has('delivery')) {
-    S.push({ d: 10.9 + 5.6, f: () => box(10.4, 5.3, 1, 0.6, 30, '#e8e1d6', '#3f7fbf', '#2f5f93') });
+    S.push({
+      d: 10.9 + 5.6,
+      f: () => (gfxOn() && sprite('delivshelf', 10.4, 5.3)) || box(10.4, 5.3, 1, 0.6, 30, '#e8e1d6', '#3f7fbf', '#2f5f93'),
+    });
     S.push({
       d: 10.9 + 5.6 + 0.01,
       f: () => {
@@ -415,20 +423,24 @@ export function render() {
     S.push({
       d: BIN.x + BIN.y,
       f: () => {
-        box(BIN.x - 0.25, BIN.y - 0.25, 0.5, 0.5, 26, '#5a6368', '#3b4247', '#4a5257');
-        const q = P(BIN.x, BIN.y, 26);
-        ell(q.x, q.y, 15, 7.5, '#2e3438');
+        if (!(gfxOn() && sprite('bin', BIN.x, BIN.y))) {
+          box(BIN.x - 0.25, BIN.y - 0.25, 0.5, 0.5, 26, '#5a6368', '#3b4247', '#4a5257');
+          const q = P(BIN.x, BIN.y, 26);
+          ell(q.x, q.y, 15, 7.5, '#2e3438');
+        }
         const c = P(BIN.x, BIN.y, 52);
         chip(c.x, c.y, 'MÜLL', '#3b4247', '#fff6e8', '9px Bungee, Impact, sans-serif');
       },
     });
   if (evtActive()) PUMPKINS.forEach(pp => S.push({ d: pp[0] + pp[1], f: () => drawPumpkin(pp[0], pp[1]) }));
   if (G.unlocked.has('deco'))
-    PLANTS.forEach(pp => S.push({ d: pp[0] + pp[1], f: () => drawPlant(pp[0], pp[1]) }));
+    PLANTS.forEach(pp =>
+      S.push({ d: pp[0] + pp[1], f: () => (gfxOn() && sprite('plant', pp[0], pp[1])) || drawPlant(pp[0], pp[1]) }),
+    );
   if (G.crate) S.push({ d: G.crate.x + G.crate.y, f: () => drawCrate(G.crate, t) });
   G.seats.forEach(s => {
     if (s.lv > G.tablesLv) return;
-    if (!s.occ || s.occ.state !== 'sit')
+    if (!s.occ || s.occ.state !== 'sit' || gfxOn())
       S.push({
         d: s.x + s.y - 0.01,
         f: () => {
@@ -441,10 +453,10 @@ export function render() {
         },
       });
   });
-  S.push({ d: pl.x + pl.y, f: () => (playerUsesSprite(pl) ? drawPlayerSprite(pl) : drawPerson(pl)) });
+  S.push({ d: pl.x + pl.y, f: () => drawPersonSprite(pl) || drawPerson(pl) });
   if (M.pet) S.push({ d: pet.x + pet.y, f: () => drawPet(t) });
-  for (const w of G.workers) S.push({ d: w.x + w.y, f: () => drawPerson(w) });
-  for (const c of G.customers) S.push({ d: c.x + c.y, f: () => drawPerson(c) });
+  for (const w of G.workers) S.push({ d: w.x + w.y, f: () => drawPersonSprite(w) || drawPerson(w) });
+  for (const c of G.customers) S.push({ d: c.x + c.y, f: () => drawPersonSprite(c) || drawPerson(c) });
   if (G.inspector) {
     const I = G.inspector;
     S.push({ d: I.x + I.y, f: () => drawPerson(I) });

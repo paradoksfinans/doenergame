@@ -1,3 +1,10 @@
+// Schriften lokal einbinden (funktioniert offline und in der App)
+import '@fontsource/bungee/latin-400.css';
+import '@fontsource/bungee/latin-ext-400.css';
+import '@fontsource/figtree/latin-600.css';
+import '@fontsource/figtree/latin-ext-600.css';
+import '@fontsource/figtree/latin-800.css';
+import '@fontsource/figtree/latin-ext-800.css';
 import './styles.css';
 import { initConfig } from './game/config.js';
 import { initState } from './game/state.js';

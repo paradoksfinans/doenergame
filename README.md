@@ -60,12 +60,21 @@ Die Test-Grafiken (Dönerspieß, Theke, Tisch, Hocker, Spielerfigur mit Laufanim
 
 ```bash
 pip install bpy==5.0.1 pillow   # Blender als Python-Paket (Python 3.11)
-python3 art/render.py           # rendert alles nach art/out/  (oder: python3 art/render.py counter spit)
+python3 art/render.py           # Theke, Spieß, Tisch, Hocker (oder: python3 art/render.py counter spit)
+python3 art/render2.py          # alle Figuren + Fritteuse, Stände, Drive-In, Lieferregal, Müll, Pflanze, Auto (~8 Min.)
 node art/pack.mjs               # packt die Bilder nach src/game/spritedata.js
 npm run build
 ```
 
-Die Kamera in `render.py` entspricht exakt dem Isometrie-Winkel des Spiels (1 Feld = 32 × 16 px), gerendert wird in doppelter Auflösung. Im Spiel lässt sich unter Upgrades → „Grafik: Neu (Test) / Klassisch“ umschalten.
+Die Kamera in `render.py` entspricht exakt dem Isometrie-Winkel des Spiels (1 Feld = 32 × 16 px), gerendert wird in doppelter Auflösung. Im Spiel lässt sich unter Upgrades → „Grafik: Neu / Klassisch“ umschalten.
+
+Figuren und Autos sind **einfärbbar**: `render2.py` rendert sie einmal in Hellgrau plus einen flachen ID-Durchgang und zerlegt das Bild in Ebenen (`fixed`, `skin`, `shirt`, `hair`, `pants`, `cap`). `src/game/gfx.js` färbt die Ebenen zur Laufzeit (Multiplizieren) und speichert jede Farbkombination zwischen. Varianten: `pl` (Mütze), `sts`/`stl` (Personal kurz/lang), `cus`/`cul` (Gäste, mit Sitzpose) – je Stehen, 8 Laufbilder, Tragen. Hüte und Accessoires (Krone, Kochmütze, Kürbis, Helm …) werden darübergezeichnet.
+
+## Android-App
+
+Die App ist ein [Capacitor](https://capacitorjs.com)-Projekt (`android/`, `capacitor.config.json`). Bei jedem Push auf `main` baut GitHub Actions (`.github/workflows/android-apk.yml`) eine Test-APK und stellt sie unter **Releases → „Test-APK (neueste)“** bereit. Signiert wird mit dem Test-Schlüssel `android/app/test.keystore`, damit neue Versionen ohne Neuinstallation (Spielstand bleibt) darüber installiert werden können. Für den Play Store kommt später ein geheimer Release-Schlüssel dazu.
+
+Lokal (mit Android Studio): `npm run build && npx cap sync android && npx cap open android`.
 
 ## Stadt-Level
 
@@ -75,6 +84,5 @@ Jede Stadt hat 10 Level (`src/game/levels.js`). Pro Level erscheinen bestimmte A
 
 - Module schrittweise auf TypeScript umstellen (`tsconfig.json` ist vorbereitet, `npm run typecheck`)
 - Eigene Mechanik pro Stadt, frühere Städte wieder besuchen
-- Bei gutem Ergebnis: weitere Objekte und alle Figuren mit Blender rendern
 - Sprachen Deutsch, Englisch, Türkisch; Einstellungen
-- Schriften lokal einbinden (für den Offline-Betrieb in der App)
+- iOS-Version (braucht einen Mac oder einen Mac-Build-Dienst)

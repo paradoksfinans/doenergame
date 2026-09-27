@@ -1,7 +1,7 @@
 {
   "name": "doener-palast",
   "private": true,
-  "version": "0.15.0",
+  "version": "0.16.0",
   "type": "module",
   "description": "Döner Palast – isometrisches Hybrid-Casual-Spiel (Web, später Android/iOS)",
   "scripts": {
@@ -12,9 +12,16 @@
     "format": "prettier --write \"src/**/*.{js,css}\" index.html"
   },
   "devDependencies": {
+    "@capacitor/cli": "^8.5.2",
     "prettier": "^3.9.9",
     "typescript": "^7.0.2",
     "vite": "^8.3.1",
     "vite-plugin-singlefile": "^2.3.3"
+  },
+  "dependencies": {
+    "@capacitor/android": "^8.5.2",
+    "@capacitor/core": "^8.5.2",
+    "@fontsource/bungee": "^5.3.0",
+    "@fontsource/figtree": "^5.3.0"
   }
 }

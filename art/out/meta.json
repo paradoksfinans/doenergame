@@ -42,111 +42,1035 @@
   "ay": 169.0
  },
  "pl_idle": {
-  "w": 111,
-  "h": 134,
-  "ax": 26.0,
-  "ay": 105.0
+  "w": 100,
+  "h": 131,
+  "ax": 19.0,
+  "ay": 104.0,
+  "layers": [
+   "fixed",
+   "skin",
+   "shirt",
+   "pants",
+   "cap"
+  ]
  },
  "pl_walk0": {
-  "w": 111,
-  "h": 134,
-  "ax": 26.0,
-  "ay": 105.0
+  "w": 100,
+  "h": 131,
+  "ax": 19.0,
+  "ay": 104.0,
+  "layers": [
+   "fixed",
+   "skin",
+   "shirt",
+   "pants",
+   "cap"
+  ]
  },
  "pl_walk1": {
-  "w": 116,
-  "h": 135,
-  "ax": 30.0,
-  "ay": 106.0
+  "w": 107,
+  "h": 133,
+  "ax": 25.0,
+  "ay": 106.0,
+  "layers": [
+   "fixed",
+   "skin",
+   "shirt",
+   "pants",
+   "cap"
+  ]
  },
  "pl_walk2": {
-  "w": 118,
-  "h": 136,
-  "ax": 32.0,
-  "ay": 107.0
+  "w": 110,
+  "h": 135,
+  "ax": 28.0,
+  "ay": 107.0,
+  "layers": [
+   "fixed",
+   "skin",
+   "shirt",
+   "pants",
+   "cap"
+  ]
  },
  "pl_walk3": {
-  "w": 116,
-  "h": 135,
-  "ax": 30.0,
-  "ay": 106.0
+  "w": 107,
+  "h": 133,
+  "ax": 25.0,
+  "ay": 106.0,
+  "layers": [
+   "fixed",
+   "skin",
+   "shirt",
+   "pants",
+   "cap"
+  ]
  },
  "pl_walk4": {
-  "w": 111,
-  "h": 134,
-  "ax": 26.0,
-  "ay": 105.0
+  "w": 100,
+  "h": 131,
+  "ax": 19.0,
+  "ay": 104.0,
+  "layers": [
+   "fixed",
+   "skin",
+   "shirt",
+   "pants",
+   "cap"
+  ]
  },
  "pl_walk5": {
-  "w": 115,
-  "h": 135,
-  "ax": 29.0,
-  "ay": 106.0
+  "w": 100,
+  "h": 133,
+  "ax": 18.0,
+  "ay": 106.0,
+  "layers": [
+   "fixed",
+   "skin",
+   "shirt",
+   "pants",
+   "cap"
+  ]
  },
  "pl_walk6": {
-  "w": 118,
-  "h": 136,
-  "ax": 31.0,
-  "ay": 107.0
+  "w": 100,
+  "h": 134,
+  "ax": 18.0,
+  "ay": 107.0,
+  "layers": [
+   "fixed",
+   "skin",
+   "shirt",
+   "pants",
+   "cap"
+  ]
  },
  "pl_walk7": {
-  "w": 115,
-  "h": 135,
-  "ax": 29.0,
-  "ay": 106.0
+  "w": 100,
+  "h": 133,
+  "ax": 18.0,
+  "ay": 106.0,
+  "layers": [
+   "fixed",
+   "skin",
+   "shirt",
+   "pants",
+   "cap"
+  ]
  },
  "pl_cidle": {
-  "w": 112,
-  "h": 135,
-  "ax": 27.0,
-  "ay": 105.0
+  "w": 99,
+  "h": 132,
+  "ax": 18.0,
+  "ay": 104.0,
+  "layers": [
+   "fixed",
+   "skin",
+   "shirt",
+   "pants",
+   "cap"
+  ]
  },
  "pl_cwalk0": {
-  "w": 112,
-  "h": 135,
-  "ax": 27.0,
-  "ay": 105.0
+  "w": 99,
+  "h": 132,
+  "ax": 18.0,
+  "ay": 104.0,
+  "layers": [
+   "fixed",
+   "skin",
+   "shirt",
+   "pants",
+   "cap"
+  ]
  },
  "pl_cwalk1": {
-  "w": 114,
-  "h": 136,
-  "ax": 28.0,
-  "ay": 106.0
+  "w": 101,
+  "h": 135,
+  "ax": 19.0,
+  "ay": 106.0,
+  "layers": [
+   "fixed",
+   "skin",
+   "shirt",
+   "pants",
+   "cap"
+  ]
  },
  "pl_cwalk2": {
-  "w": 118,
-  "h": 137,
-  "ax": 31.0,
-  "ay": 107.0
+  "w": 104,
+  "h": 136,
+  "ax": 21.0,
+  "ay": 107.0,
+  "layers": [
+   "fixed",
+   "skin",
+   "shirt",
+   "pants",
+   "cap"
+  ]
  },
  "pl_cwalk3": {
-  "w": 114,
-  "h": 136,
-  "ax": 28.0,
-  "ay": 106.0
+  "w": 101,
+  "h": 135,
+  "ax": 19.0,
+  "ay": 106.0,
+  "layers": [
+   "fixed",
+   "skin",
+   "shirt",
+   "pants",
+   "cap"
+  ]
  },
  "pl_cwalk4": {
-  "w": 112,
-  "h": 135,
-  "ax": 27.0,
-  "ay": 105.0
+  "w": 99,
+  "h": 132,
+  "ax": 18.0,
+  "ay": 104.0,
+  "layers": [
+   "fixed",
+   "skin",
+   "shirt",
+   "pants",
+   "cap"
+  ]
  },
  "pl_cwalk5": {
-  "w": 116,
-  "h": 136,
-  "ax": 30.0,
-  "ay": 106.0
+  "w": 100,
+  "h": 135,
+  "ax": 18.0,
+  "ay": 106.0,
+  "layers": [
+   "fixed",
+   "skin",
+   "shirt",
+   "pants",
+   "cap"
+  ]
  },
  "pl_cwalk6": {
-  "w": 117,
-  "h": 137,
-  "ax": 30.0,
-  "ay": 107.0
+  "w": 101,
+  "h": 136,
+  "ax": 18.0,
+  "ay": 107.0,
+  "layers": [
+   "fixed",
+   "skin",
+   "shirt",
+   "pants",
+   "cap"
+  ]
  },
  "pl_cwalk7": {
-  "w": 116,
-  "h": 136,
-  "ax": 30.0,
-  "ay": 106.0
+  "w": 100,
+  "h": 135,
+  "ax": 18.0,
+  "ay": 106.0,
+  "layers": [
+   "fixed",
+   "skin",
+   "shirt",
+   "pants",
+   "cap"
+  ]
+ },
+ "fryer": {
+  "w": 212,
+  "h": 223,
+  "ax": 64.0,
+  "ay": 141.0
+ },
+ "stand0": {
+  "w": 234,
+  "h": 244,
+  "ax": 72.0,
+  "ay": 152.0
+ },
+ "stand1": {
+  "w": 234,
+  "h": 244,
+  "ax": 72.0,
+  "ay": 152.0
+ },
+ "stand2": {
+  "w": 234,
+  "h": 244,
+  "ax": 72.0,
+  "ay": 152.0
+ },
+ "stand3": {
+  "w": 234,
+  "h": 244,
+  "ax": 72.0,
+  "ay": 152.0
+ },
+ "stand4": {
+  "w": 234,
+  "h": 244,
+  "ax": 72.0,
+  "ay": 152.0
+ },
+ "drivewin": {
+  "w": 215,
+  "h": 202,
+  "ax": 122.0,
+  "ay": 101.0
+ },
+ "delivshelf": {
+  "w": 171,
+  "h": 144,
+  "ax": 66.0,
+  "ay": 64.0
+ },
+ "bin": {
+  "w": 161,
+  "h": 154,
+  "ax": 100.0,
+  "ay": 109.0
+ },
+ "plant": {
+  "w": 88,
+  "h": 102,
+  "ax": 32.0,
+  "ay": 73.0
+ },
+ "car": {
+  "w": 171,
+  "h": 124,
+  "ax": 76.0,
+  "ay": 81.0,
+  "layers": [
+   "fixed",
+   "shirt"
+  ]
+ },
+ "cus_idle": {
+  "w": 91,
+  "h": 123,
+  "ax": 19.0,
+  "ay": 101.0,
+  "layers": [
+   "fixed",
+   "skin",
+   "shirt",
+   "hair",
+   "pants"
+  ]
+ },
+ "cus_walk0": {
+  "w": 91,
+  "h": 123,
+  "ax": 19.0,
+  "ay": 101.0,
+  "layers": [
+   "fixed",
+   "skin",
+   "shirt",
+   "hair",
+   "pants"
+  ]
+ },
+ "cus_walk1": {
+  "w": 98,
+  "h": 125,
+  "ax": 25.0,
+  "ay": 103.0,
+  "layers": [
+   "fixed",
+   "skin",
+   "shirt",
+   "hair",
+   "pants"
+  ]
+ },
+ "cus_walk2": {
+  "w": 101,
+  "h": 125,
+  "ax": 28.0,
+  "ay": 103.0,
+  "layers": [
+   "fixed",
+   "skin",
+   "shirt",
+   "hair",
+   "pants"
+  ]
+ },
+ "cus_walk3": {
+  "w": 98,
+  "h": 125,
+  "ax": 25.0,
+  "ay": 103.0,
+  "layers": [
+   "fixed",
+   "skin",
+   "shirt",
+   "hair",
+   "pants"
+  ]
+ },
+ "cus_walk4": {
+  "w": 91,
+  "h": 123,
+  "ax": 19.0,
+  "ay": 101.0,
+  "layers": [
+   "fixed",
+   "skin",
+   "shirt",
+   "hair",
+   "pants"
+  ]
+ },
+ "cus_walk5": {
+  "w": 91,
+  "h": 125,
+  "ax": 18.0,
+  "ay": 103.0,
+  "layers": [
+   "fixed",
+   "skin",
+   "shirt",
+   "hair",
+   "pants"
+  ]
+ },
+ "cus_walk6": {
+  "w": 91,
+  "h": 125,
+  "ax": 18.0,
+  "ay": 103.0,
+  "layers": [
+   "fixed",
+   "skin",
+   "shirt",
+   "hair",
+   "pants"
+  ]
+ },
+ "cus_walk7": {
+  "w": 91,
+  "h": 125,
+  "ax": 18.0,
+  "ay": 103.0,
+  "layers": [
+   "fixed",
+   "skin",
+   "shirt",
+   "hair",
+   "pants"
+  ]
+ },
+ "cus_sit": {
+  "w": 90,
+  "h": 123,
+  "ax": 18.0,
+  "ay": 101.0,
+  "layers": [
+   "fixed",
+   "skin",
+   "shirt",
+   "hair",
+   "pants"
+  ]
+ },
+ "sts_idle": {
+  "w": 91,
+  "h": 123,
+  "ax": 19.0,
+  "ay": 101.0,
+  "layers": [
+   "fixed",
+   "skin",
+   "shirt",
+   "hair",
+   "pants"
+  ]
+ },
+ "sts_walk0": {
+  "w": 91,
+  "h": 123,
+  "ax": 19.0,
+  "ay": 101.0,
+  "layers": [
+   "fixed",
+   "skin",
+   "shirt",
+   "hair",
+   "pants"
+  ]
+ },
+ "sts_walk1": {
+  "w": 98,
+  "h": 125,
+  "ax": 25.0,
+  "ay": 103.0,
+  "layers": [
+   "fixed",
+   "skin",
+   "shirt",
+   "hair",
+   "pants"
+  ]
+ },
+ "sts_walk2": {
+  "w": 101,
+  "h": 125,
+  "ax": 28.0,
+  "ay": 103.0,
+  "layers": [
+   "fixed",
+   "skin",
+   "shirt",
+   "hair",
+   "pants"
+  ]
+ },
+ "sts_walk3": {
+  "w": 98,
+  "h": 125,
+  "ax": 25.0,
+  "ay": 103.0,
+  "layers": [
+   "fixed",
+   "skin",
+   "shirt",
+   "hair",
+   "pants"
+  ]
+ },
+ "sts_walk4": {
+  "w": 91,
+  "h": 123,
+  "ax": 19.0,
+  "ay": 101.0,
+  "layers": [
+   "fixed",
+   "skin",
+   "shirt",
+   "hair",
+   "pants"
+  ]
+ },
+ "sts_walk5": {
+  "w": 91,
+  "h": 125,
+  "ax": 18.0,
+  "ay": 103.0,
+  "layers": [
+   "fixed",
+   "skin",
+   "shirt",
+   "hair",
+   "pants"
+  ]
+ },
+ "sts_walk6": {
+  "w": 91,
+  "h": 125,
+  "ax": 18.0,
+  "ay": 103.0,
+  "layers": [
+   "fixed",
+   "skin",
+   "shirt",
+   "hair",
+   "pants"
+  ]
+ },
+ "sts_walk7": {
+  "w": 91,
+  "h": 125,
+  "ax": 18.0,
+  "ay": 103.0,
+  "layers": [
+   "fixed",
+   "skin",
+   "shirt",
+   "hair",
+   "pants"
+  ]
+ },
+ "sts_cidle": {
+  "w": 91,
+  "h": 130,
+  "ax": 18.0,
+  "ay": 101.0,
+  "layers": [
+   "fixed",
+   "skin",
+   "shirt",
+   "hair",
+   "pants"
+  ]
+ },
+ "sts_cwalk0": {
+  "w": 91,
+  "h": 130,
+  "ax": 18.0,
+  "ay": 101.0,
+  "layers": [
+   "fixed",
+   "skin",
+   "shirt",
+   "hair",
+   "pants"
+  ]
+ },
+ "sts_cwalk1": {
+  "w": 94,
+  "h": 132,
+  "ax": 19.0,
+  "ay": 103.0,
+  "layers": [
+   "fixed",
+   "skin",
+   "shirt",
+   "hair",
+   "pants"
+  ]
+ },
+ "sts_cwalk2": {
+  "w": 96,
+  "h": 132,
+  "ax": 21.0,
+  "ay": 103.0,
+  "layers": [
+   "fixed",
+   "skin",
+   "shirt",
+   "hair",
+   "pants"
+  ]
+ },
+ "sts_cwalk3": {
+  "w": 94,
+  "h": 132,
+  "ax": 19.0,
+  "ay": 103.0,
+  "layers": [
+   "fixed",
+   "skin",
+   "shirt",
+   "hair",
+   "pants"
+  ]
+ },
+ "sts_cwalk4": {
+  "w": 91,
+  "h": 130,
+  "ax": 18.0,
+  "ay": 101.0,
+  "layers": [
+   "fixed",
+   "skin",
+   "shirt",
+   "hair",
+   "pants"
+  ]
+ },
+ "sts_cwalk5": {
+  "w": 93,
+  "h": 132,
+  "ax": 18.0,
+  "ay": 103.0,
+  "layers": [
+   "fixed",
+   "skin",
+   "shirt",
+   "hair",
+   "pants"
+  ]
+ },
+ "sts_cwalk6": {
+  "w": 93,
+  "h": 132,
+  "ax": 18.0,
+  "ay": 103.0,
+  "layers": [
+   "fixed",
+   "skin",
+   "shirt",
+   "hair",
+   "pants"
+  ]
+ },
+ "sts_cwalk7": {
+  "w": 93,
+  "h": 132,
+  "ax": 18.0,
+  "ay": 103.0,
+  "layers": [
+   "fixed",
+   "skin",
+   "shirt",
+   "hair",
+   "pants"
+  ]
+ },
+ "stl_idle": {
+  "w": 95,
+  "h": 123,
+  "ax": 23.0,
+  "ay": 101.0,
+  "layers": [
+   "fixed",
+   "skin",
+   "shirt",
+   "hair",
+   "pants"
+  ]
+ },
+ "stl_walk0": {
+  "w": 95,
+  "h": 123,
+  "ax": 23.0,
+  "ay": 101.0,
+  "layers": [
+   "fixed",
+   "skin",
+   "shirt",
+   "hair",
+   "pants"
+  ]
+ },
+ "stl_walk1": {
+  "w": 98,
+  "h": 125,
+  "ax": 25.0,
+  "ay": 103.0,
+  "layers": [
+   "fixed",
+   "skin",
+   "shirt",
+   "hair",
+   "pants"
+  ]
+ },
+ "stl_walk2": {
+  "w": 101,
+  "h": 125,
+  "ax": 28.0,
+  "ay": 103.0,
+  "layers": [
+   "fixed",
+   "skin",
+   "shirt",
+   "hair",
+   "pants"
+  ]
+ },
+ "stl_walk3": {
+  "w": 98,
+  "h": 125,
+  "ax": 25.0,
+  "ay": 103.0,
+  "layers": [
+   "fixed",
+   "skin",
+   "shirt",
+   "hair",
+   "pants"
+  ]
+ },
+ "stl_walk4": {
+  "w": 95,
+  "h": 123,
+  "ax": 23.0,
+  "ay": 101.0,
+  "layers": [
+   "fixed",
+   "skin",
+   "shirt",
+   "hair",
+   "pants"
+  ]
+ },
+ "stl_walk5": {
+  "w": 96,
+  "h": 125,
+  "ax": 23.0,
+  "ay": 103.0,
+  "layers": [
+   "fixed",
+   "skin",
+   "shirt",
+   "hair",
+   "pants"
+  ]
+ },
+ "stl_walk6": {
+  "w": 96,
+  "h": 125,
+  "ax": 23.0,
+  "ay": 103.0,
+  "layers": [
+   "fixed",
+   "skin",
+   "shirt",
+   "hair",
+   "pants"
+  ]
+ },
+ "stl_walk7": {
+  "w": 96,
+  "h": 125,
+  "ax": 23.0,
+  "ay": 103.0,
+  "layers": [
+   "fixed",
+   "skin",
+   "shirt",
+   "hair",
+   "pants"
+  ]
+ },
+ "stl_cidle": {
+  "w": 96,
+  "h": 130,
+  "ax": 23.0,
+  "ay": 101.0,
+  "layers": [
+   "fixed",
+   "skin",
+   "shirt",
+   "hair",
+   "pants"
+  ]
+ },
+ "stl_cwalk0": {
+  "w": 96,
+  "h": 130,
+  "ax": 23.0,
+  "ay": 101.0,
+  "layers": [
+   "fixed",
+   "skin",
+   "shirt",
+   "hair",
+   "pants"
+  ]
+ },
+ "stl_cwalk1": {
+  "w": 98,
+  "h": 132,
+  "ax": 23.0,
+  "ay": 103.0,
+  "layers": [
+   "fixed",
+   "skin",
+   "shirt",
+   "hair",
+   "pants"
+  ]
+ },
+ "stl_cwalk2": {
+  "w": 98,
+  "h": 132,
+  "ax": 23.0,
+  "ay": 103.0,
+  "layers": [
+   "fixed",
+   "skin",
+   "shirt",
+   "hair",
+   "pants"
+  ]
+ },
+ "stl_cwalk3": {
+  "w": 98,
+  "h": 132,
+  "ax": 23.0,
+  "ay": 103.0,
+  "layers": [
+   "fixed",
+   "skin",
+   "shirt",
+   "hair",
+   "pants"
+  ]
+ },
+ "stl_cwalk4": {
+  "w": 96,
+  "h": 130,
+  "ax": 23.0,
+  "ay": 101.0,
+  "layers": [
+   "fixed",
+   "skin",
+   "shirt",
+   "hair",
+   "pants"
+  ]
+ },
+ "stl_cwalk5": {
+  "w": 98,
+  "h": 132,
+  "ax": 23.0,
+  "ay": 103.0,
+  "layers": [
+   "fixed",
+   "skin",
+   "shirt",
+   "hair",
+   "pants"
+  ]
+ },
+ "stl_cwalk6": {
+  "w": 98,
+  "h": 132,
+  "ax": 23.0,
+  "ay": 103.0,
+  "layers": [
+   "fixed",
+   "skin",
+   "shirt",
+   "hair",
+   "pants"
+  ]
+ },
+ "stl_cwalk7": {
+  "w": 98,
+  "h": 132,
+  "ax": 23.0,
+  "ay": 103.0,
+  "layers": [
+   "fixed",
+   "skin",
+   "shirt",
+   "hair",
+   "pants"
+  ]
+ },
+ "cul_idle": {
+  "w": 95,
+  "h": 123,
+  "ax": 23.0,
+  "ay": 101.0,
+  "layers": [
+   "fixed",
+   "skin",
+   "shirt",
+   "hair",
+   "pants"
+  ]
+ },
+ "cul_walk0": {
+  "w": 95,
+  "h": 123,
+  "ax": 23.0,
+  "ay": 101.0,
+  "layers": [
+   "fixed",
+   "skin",
+   "shirt",
+   "hair",
+   "pants"
+  ]
+ },
+ "cul_walk1": {
+  "w": 98,
+  "h": 125,
+  "ax": 25.0,
+  "ay": 103.0,
+  "layers": [
+   "fixed",
+   "skin",
+   "shirt",
+   "hair",
+   "pants"
+  ]
+ },
+ "cul_walk2": {
+  "w": 101,
+  "h": 125,
+  "ax": 28.0,
+  "ay": 103.0,
+  "layers": [
+   "fixed",
+   "skin",
+   "shirt",
+   "hair",
+   "pants"
+  ]
+ },
+ "cul_walk3": {
+  "w": 98,
+  "h": 125,
+  "ax": 25.0,
+  "ay": 103.0,
+  "layers": [
+   "fixed",
+   "skin",
+   "shirt",
+   "hair",
+   "pants"
+  ]
+ },
+ "cul_walk4": {
+  "w": 95,
+  "h": 123,
+  "ax": 23.0,
+  "ay": 101.0,
+  "layers": [
+   "fixed",
+   "skin",
+   "shirt",
+   "hair",
+   "pants"
+  ]
+ },
+ "cul_walk5": {
+  "w": 96,
+  "h": 125,
+  "ax": 23.0,
+  "ay": 103.0,
+  "layers": [
+   "fixed",
+   "skin",
+   "shirt",
+   "hair",
+   "pants"
+  ]
+ },
+ "cul_walk6": {
+  "w": 96,
+  "h": 125,
+  "ax": 23.0,
+  "ay": 103.0,
+  "layers": [
+   "fixed",
+   "skin",
+   "shirt",
+   "hair",
+   "pants"
+  ]
+ },
+ "cul_walk7": {
+  "w": 96,
+  "h": 125,
+  "ax": 23.0,
+  "ay": 103.0,
+  "layers": [
+   "fixed",
+   "skin",
+   "shirt",
+   "hair",
+   "pants"
+  ]
+ },
+ "cul_sit": {
+  "w": 95,
+  "h": 123,
+  "ax": 23.0,
+  "ay": 101.0,
+  "layers": [
+   "fixed",
+   "skin",
+   "shirt",
+   "hair",
+   "pants"
+  ]
  }
 }

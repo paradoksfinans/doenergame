@@ -1,10 +1,14 @@
-// gfx.js – vorgerenderte Blender-Grafiken (Test). Fällt automatisch auf die gezeichnete Grafik zurück,
+// gfx.js – vorgerenderte Blender-Grafiken. Fällt automatisch auf die gezeichnete Grafik zurück,
 // solange Bilder fehlen oder im Upgrades-Menü „Grafik: Klassisch“ gewählt ist.
+//
+// Figuren und Autos sind „einfärbbar“: sie liegen als mehrere Ebenen vor (fixed + Graustufen-Ebenen
+// skin/shirt/hair/pants/cap). Zur Laufzeit wird jede Ebene mit der gewünschten Farbe multipliziert
+// und das Ergebnis pro Farbkombination zwischengespeichert.
 import { SPRITES } from './spritedata.js';
 import { ctx } from './config.js';
 import { P, chip } from './iso.js';
 import { M, saveMeta } from './meta.js';
-import { drawItem } from './sprites.js';
+import { drawItem, drawHats } from './sprites.js';
 import { $ } from './hud.js';
 
 const imgs = {};
@@ -13,11 +17,49 @@ let ready = 0,
 
 export const gfxOn = () => M.gfx !== 'classic' && total > 0 && ready === total;
 
+// ---------------------------------------------------------------- Einfärben mit Cache
+const cache = new Map();
+let tmp = null;
+function tinted(name, cols) {
+  const s = SPRITES[name];
+  const key = name + '|' + s.layerNames.map(l => cols[l] || '').join('|');
+  let cv = cache.get(key);
+  if (cv) return cv;
+  if (cache.size > 900) cache.clear();
+  cv = document.createElement('canvas');
+  cv.width = s.w;
+  cv.height = s.h;
+  const g = cv.getContext('2d');
+  if (!tmp) tmp = document.createElement('canvas');
+  for (const l of s.layerNames) {
+    const im = imgs[name + '|' + l];
+    const col = cols[l];
+    if (l === 'fixed' || !col) {
+      g.drawImage(im, 0, 0);
+      continue;
+    }
+    tmp.width = s.w;
+    tmp.height = s.h;
+    const t = tmp.getContext('2d');
+    t.drawImage(im, 0, 0);
+    t.globalCompositeOperation = 'multiply';
+    t.fillStyle = col;
+    t.fillRect(0, 0, s.w, s.h);
+    t.globalCompositeOperation = 'destination-in';
+    t.drawImage(im, 0, 0);
+    t.globalCompositeOperation = 'source-over';
+    g.drawImage(tmp, 0, 0);
+  }
+  cache.set(key, cv);
+  return cv;
+}
+
 /** Zeichnet ein Sprite so, dass sein Ankerpunkt auf der Spielkoordinate (wx, wy, wz) liegt. */
-export function sprite(name, wx, wy, wz = 0, flip = false) {
-  const s = SPRITES[name],
-    im = imgs[name];
-  if (!s || !im) return false;
+export function sprite(name, wx, wy, wz = 0, flip = false, cols = null) {
+  const s = SPRITES[name];
+  if (!s) return false;
+  const im = s.layerNames ? tinted(name, cols || {}) : imgs[name];
+  if (!im) return false;
   const p = P(wx, wy, wz),
     w = s.w / 2,
     h = s.h / 2;
@@ -31,16 +73,41 @@ export function sprite(name, wx, wy, wz = 0, flip = false) {
   return true;
 }
 
-/** Spielerfigur als Sprite (nur Standard-Outfit), inkl. getragenem Stapel. */
-export function drawPlayerSprite(c) {
-  const TAU = Math.PI * 2;
-  const f = c.moving ? Math.floor(((((c.phase % TAU) + TAU) % TAU) / TAU) * 8) % 8 : -1;
+// ---------------------------------------------------------------- Figuren
+const TAU = Math.PI * 2;
+function variant(c) {
+  if (c.staff) {
+    if (c.cap && SPRITES.pl_idle) return 'pl';
+    return c.long ? 'stl' : 'sts';
+  }
+  return c.long ? 'cul' : 'cus';
+}
+
+/** Blender-Figur für Spieler, Personal und Gäste. Gibt false zurück, wenn kein Sprite passt. */
+export function drawPersonSprite(c) {
+  if (!gfxOn()) return false;
+  const v = variant(c);
   const carry = c.carry > 0;
-  const name = 'pl_' + (carry ? 'c' : '') + (f < 0 ? 'idle' : 'walk' + f);
-  sprite(name, c.x, c.y, 0, c.fx < 0);
+  let frame;
+  if (c.sitting) frame = 'sit';
+  else {
+    const f = c.moving ? Math.floor(((((c.phase % TAU) + TAU) % TAU) / TAU) * 8) % 8 : -1;
+    frame = (carry ? 'c' : '') + (f < 0 ? 'idle' : 'walk' + f);
+  }
+  const name = v + '_' + frame;
+  if (!SPRITES[name]) return false;
+  const cols = {
+    skin: c.skin || '#e0ac80',
+    shirt: c.shirt || '#3f7fbf',
+    hair: c.hair || '#2b1d16',
+    pants: c.pants || '#3b3440',
+    cap: c.capCol || '#d8342b',
+  };
+  sprite(name, c.x, c.y, c.z || 0, c.fx < 0, cols);
+  const p = P(c.x, c.y, c.z || 0),
+    b = c.moving ? Math.abs(Math.sin(c.phase)) * 1.5 : 0;
+  if (!(c.cap && v === 'pl')) drawHats(c, p, b - 1, c.sitting ? 3 : 0);
   if (carry) {
-    const p = P(c.x, c.y),
-      b = c.moving ? Math.abs(Math.sin(c.phase)) * 1.5 : 0;
     for (let i = 0; i < c.carry; i++) drawItem(c.items[i], p.x + c.fx * 13, p.y - 21 - b - i * 5);
     if (c.max && c.carry >= c.max)
       chip(
@@ -52,22 +119,33 @@ export function drawPlayerSprite(c) {
         '10px Bungee, Impact, sans-serif',
       );
   }
+  return true;
 }
 
-export const playerUsesSprite = pl => gfxOn() && !!SPRITES.pl_idle && (M.outfit || 'klassik') === 'klassik';
+/** Auto am Drive-In, in Wagenfarbe eingefärbt. */
+export function drawCarSprite(c, roadX) {
+  return gfxOn() && sprite('car', roadX, c.y, 0, false, { shirt: c.col });
+}
 
 function label() {
   const b = $('gfxBtn');
-  if (b) b.textContent = 'Grafik: ' + (M.gfx === 'classic' ? 'Klassisch' : 'Neu (Test)');
+  if (b) b.textContent = 'Grafik: ' + (M.gfx === 'classic' ? 'Klassisch' : 'Neu');
+}
+function load(key, src) {
+  total++;
+  const im = new Image();
+  im.onload = () => ready++;
+  im.src = src;
+  imgs[key] = im;
 }
 export function initGfx() {
   if (!M.gfx) M.gfx = 'new';
   for (const k in SPRITES) {
-    total++;
-    const im = new Image();
-    im.onload = () => ready++;
-    im.src = SPRITES[k].src;
-    imgs[k] = im;
+    const s = SPRITES[k];
+    if (s.layers) {
+      s.layerNames = Object.keys(s.layers);
+      for (const l of s.layerNames) load(k + '|' + l, s.layers[l]);
+    } else load(k, s.src);
   }
   const b = $('gfxBtn');
   if (b)

@@ -1,3 +1,6 @@
 node_modules
 dist
 .DS_Store
+__pycache__
+# Blender-Zwischenbilder (stecken gepackt in src/game/spritedata.js)
+art/out/*.png

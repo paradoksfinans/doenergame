@@ -37,4 +37,11 @@ export function __set_muted(v) {
   muted = v;
 }
 
-export function initAudio() {}
+export function initAudio() {
+  // App im Hintergrund (Handy gesperrt, anderes App geöffnet): Ton anhalten, danach fortsetzen
+  addEventListener('visibilitychange', () => {
+    if (!actx) return;
+    if (document.hidden) actx.suspend().catch(() => {});
+    else actx.resume().catch(() => {});
+  });
+}

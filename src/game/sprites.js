@@ -104,16 +104,19 @@ export function drawSpecial(x, y) {
   }
 }
 
-export function drawSpecStand(t) {
+export function drawSpecStand(t, body = null) {
   const sp = specOf(),
     x = SP.x,
     y = SP.y;
-  box(x, y, 1, 1, 32, '#e8e1d6', sp.awn, shade(sp.awn, -30));
-  const q = P(x + 0.5, y + 0.5, 32);
-  ell(q.x, q.y, 16, 8, '#3a3438');
-  ell(q.x, q.y - 1, 13, 6.5, 'rgba(255,140,60,' + (0.35 + 0.12 * Math.sin(t * 5)) + ')');
-  box(x - 0.05, y - 0.05, 1.1, 0.25, 8, sp.awn, shade(sp.awn, -40), shade(sp.awn, -20), 70);
-  for (let i = 0; i < 5; i++) {
+  const pre = body && body(sp);
+  if (!pre) {
+    box(x, y, 1, 1, 32, '#e8e1d6', sp.awn, shade(sp.awn, -30));
+    const q = P(x + 0.5, y + 0.5, 32);
+    ell(q.x, q.y, 16, 8, '#3a3438');
+    ell(q.x, q.y - 1, 13, 6.5, 'rgba(255,140,60,' + (0.35 + 0.12 * Math.sin(t * 5)) + ')');
+    box(x - 0.05, y - 0.05, 1.1, 0.25, 8, sp.awn, shade(sp.awn, -40), shade(sp.awn, -20), 70);
+  }
+  for (let i = 0; i < 5 && !pre; i++) {
     const a = P(x - 0.05 + i * 0.22, y + 0.2, 70),
       b = P(x + 0.17 + i * 0.22, y + 0.2, 70);
     ctx.fillStyle = i % 2 ? '#fff6e8' : sp.awn;
@@ -193,15 +196,18 @@ export function drawPlant(x, y) {
   ell(q.x, q.y - 17, 5, 5, '#6fb35a');
 }
 
-export function drawFryer(t) {
+export function drawFryer(t, body = null) {
   const x = FRY.x;
-  box(x + 0.05, 0.05, 0.9, 0.12, 72, '#7b8489', '#50585d', '#626b70', 0);
-  box(x, 0.15, 1, 0.85, 30, '#b9c1c5', '#6d767c', '#8d969b');
-  const a = P(x + 0.15, 0.3, 30),
-    b = P(x + 0.85, 0.3, 30),
-    c = P(x + 0.85, 0.85, 30),
-    e = P(x + 0.15, 0.85, 30);
-  poly([a, b, c, e], '#d9a22a');
+  const pre = body && body();
+  if (!pre) {
+    box(x + 0.05, 0.05, 0.9, 0.12, 72, '#7b8489', '#50585d', '#626b70', 0);
+    box(x, 0.15, 1, 0.85, 30, '#b9c1c5', '#6d767c', '#8d969b');
+    const a = P(x + 0.15, 0.3, 30),
+      b = P(x + 0.85, 0.3, 30),
+      c = P(x + 0.85, 0.85, 30),
+      e = P(x + 0.15, 0.85, 30);
+    poly([a, b, c, e], '#d9a22a');
+  }
   for (let i = 0; i < 4; i++) {
     const q = P(x + 0.3 + ((i * 0.19 + t * 0.13) % 0.5), 0.4 + ((i * 0.23) % 0.4), 30);
     ell(q.x, q.y, 2.2, 1.1, 'rgba(255,240,180,.8)');
@@ -209,12 +215,14 @@ export function drawFryer(t) {
   const h = P(x + 0.5, 0.55, 44);
   ctx.strokeStyle = '#50585d';
   ctx.lineWidth = 2;
-  ctx.beginPath();
-  ctx.moveTo(h.x - 8, h.y + 10);
-  ctx.lineTo(h.x - 8, h.y);
-  ctx.lineTo(h.x + 8, h.y);
-  ctx.lineTo(h.x + 8, h.y + 10);
-  ctx.stroke();
+  if (!pre) {
+    ctx.beginPath();
+    ctx.moveTo(h.x - 8, h.y + 10);
+    ctx.lineTo(h.x - 8, h.y);
+    ctx.lineTo(h.x + 8, h.y);
+    ctx.lineTo(h.x + 8, h.y + 10);
+    ctx.stroke();
+  }
   const s = P(x + 0.5, 0.1, 62);
   chip(s.x, s.y, 'POMMES', '#231a24', '#f2c94c', '9px Bungee, Impact, sans-serif');
 }
@@ -287,6 +295,34 @@ export function drawPerson(c) {
     rr(p.x - 8.5, p.y - 50 - b + sy, 17, 6, 3, c.capCol || '#d8342b');
     rr(p.x + (c.fx > 0 ? 2 : -12), p.y - 46 - b + sy, 10, 3, 1.5, shade(c.capCol || '#d8342b', -40));
   }
+  drawHats(c, p, b, sy);
+  ctx.fillStyle = '#231a24';
+  ctx.fillRect(p.x + c.fx * 2 - 3.5, p.y - 40 - b + sy, 2, 2.4);
+  ctx.fillRect(p.x + c.fx * 2 + 1.5, p.y - 40 - b + sy, 2, 2.4);
+  if (c.happy > 0) {
+    ctx.strokeStyle = '#231a24';
+    ctx.lineWidth = 1.2;
+    ctx.beginPath();
+    ctx.arc(p.x + c.fx * 2, p.y - 36.5 - b + sy, 2.6, 0.15 * Math.PI, 0.85 * Math.PI);
+    ctx.stroke();
+  }
+  if (c.carry > 0) {
+    ell(p.x + c.fx * 9, p.y - 22 - b, 3, 3, c.skin);
+    for (let i = 0; i < c.carry; i++) drawItem(c.items[i], p.x + c.fx * 5, p.y - 22 - b - i * 5);
+    if (c.max && c.carry >= c.max)
+      chip(
+        p.x + c.fx * 5,
+        p.y - 38 - b - c.carry * 5,
+        'MAX',
+        '#d8342b',
+        '#fff6e8',
+        '10px Bungee, Impact, sans-serif',
+      );
+  }
+}
+
+/** Hüte, Accessoires und Effekte – auch über den Blender-Figuren genutzt. */
+export function drawHats(c, p, b, sy) {
   if (c.crown) {
     ctx.beginPath();
     const cy = p.y - 47 - b + sy;
@@ -372,29 +408,6 @@ export function drawPerson(c) {
     ctx.arc(p.x, p.y - 41 - b + sy, 9.5, Math.PI, 0);
     ctx.fillStyle = c.helmet;
     ctx.fill();
-  }
-  ctx.fillStyle = '#231a24';
-  ctx.fillRect(p.x + c.fx * 2 - 3.5, p.y - 40 - b + sy, 2, 2.4);
-  ctx.fillRect(p.x + c.fx * 2 + 1.5, p.y - 40 - b + sy, 2, 2.4);
-  if (c.happy > 0) {
-    ctx.strokeStyle = '#231a24';
-    ctx.lineWidth = 1.2;
-    ctx.beginPath();
-    ctx.arc(p.x + c.fx * 2, p.y - 36.5 - b + sy, 2.6, 0.15 * Math.PI, 0.85 * Math.PI);
-    ctx.stroke();
-  }
-  if (c.carry > 0) {
-    ell(p.x + c.fx * 9, p.y - 22 - b, 3, 3, c.skin);
-    for (let i = 0; i < c.carry; i++) drawItem(c.items[i], p.x + c.fx * 5, p.y - 22 - b - i * 5);
-    if (c.max && c.carry >= c.max)
-      chip(
-        p.x + c.fx * 5,
-        p.y - 38 - b - c.carry * 5,
-        'MAX',
-        '#d8342b',
-        '#fff6e8',
-        '10px Bungee, Impact, sans-serif',
-      );
   }
 }
 

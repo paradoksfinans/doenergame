@@ -1,0 +1,8 @@
+{
+  "appId": "com.paradoksfinans.doenerpalast",
+  "appName": "Döner Palast",
+  "webDir": "dist",
+  "android": {
+    "backgroundColor": "#2a1f2d"
+  }
+}
