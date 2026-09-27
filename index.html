@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+    <title>Döner Palast</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bungee&family=Figtree:wght@600;800&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <canvas id="game" aria-label="Spielfeld Döner Palast"></canvas>
+    <div class="hud">
+      <div class="toprow">
+        <div class="money" id="moneyBox">
+          <span class="bill" aria-hidden="true"></span
+          ><span class="mcol"
+            ><span class="mv"><span id="money">0</span><small>€</small></span
+            ><span class="rt" id="rateChip"><b id="rate">0</b> €/Min</span></span
+          >
+        </div>
+        <div class="prog">
+          <span id="progLabel">Berlin · 0/23</span>
+          <div class="bar"><i id="progBar"></i></div>
+        </div>
+      </div>
+      <div class="rate">
+        <span class="chip gem" title="Goldmünzen"
+          ><i class="coin" aria-hidden="true"></i><b id="gems">0</b></span
+        >
+        <span class="chip" id="stars">★ 4,0</span>
+        <span class="chip clock" id="clockChip">09:00</span>
+        <button class="chip relaxchip" id="relaxChip" type="button">Tempo: Normal</button>
+        <span class="chip wet" id="weatherChip" hidden>Regen</span>
+        <span class="chip rush evt" id="eventChip" hidden></span>
+        <span class="chip rush" id="rushChip" hidden>Rush</span>
+        <span class="chip boost" id="boostChip" hidden></span>
+        <button class="chip branch" id="branchBtn" type="button" hidden>Filialen</button>
+        <button class="chip evbtn" id="evtBtn" type="button" hidden>Herbstfest</button>
+      </div>
+      <button class="chip mission" id="mission" type="button" aria-expanded="true">
+        <span class="mt" id="mHead">Aufgabe</span><span class="mtx" id="mText">…</span
+        ><span class="mb"><i id="mBar"></i></span>
+      </button>
+      <div hidden><b id="price">5</b><span id="friesChip"></span><b id="fprice">3</b></div>
+    </div>
+    <nav class="tabbar" aria-label="Menü">
+      <button id="upBtn" type="button">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7" /></svg
+        ><span>Upgrades</span>
+      </button>
+      <button id="shopBtn" type="button">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M5 8h14l-1 12H6L5 8z" />
+          <path d="M9 8a3 3 0 0 1 6 0" /></svg
+        ><span>Shop</span>
+      </button>
+      <button id="wheelBtn" type="button">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <circle cx="12" cy="12" r="8" />
+          <path d="M12 4v16M4 12h16M6.5 6.5l11 11M17.5 6.5l-11 11" /></svg
+        ><span id="wheelLbl">Rad</span>
+      </button>
+      <button id="achBtn" type="button">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M8 4h8v5a4 4 0 0 1-8 0V4z" />
+          <path d="M8 6H5a3 3 0 0 0 3 4M16 6h3a3 3 0 0 1-3 4M12 13v4M9 20h6" /></svg
+        ><span id="achLbl">Erfolge</span>
+      </button>
+      <button id="mapBtn" type="button">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M3 6l6-2 6 2 6-2v14l-6 2-6-2-6 2z" />
+          <path d="M9 4v14M15 6v14" /></svg
+        ><span>Karte</span>
+      </button>
+    </nav>
+    <div class="sheet" id="mapSheet" hidden role="dialog" aria-labelledby="mapTitle">
+      <div class="sheet-head">
+        <h2 id="mapTitle">Deine Filialen</h2>
+        <button type="button" data-close>Schließen</button>
+      </div>
+      <div class="mapwrap">
+        <svg id="mapSvg" viewBox="0 0 380 210" role="img" aria-label="Route der Döner-Palast-Filialen"></svg>
+      </div>
+      <p class="sub" id="mapInfo"></p>
+      <button class="bigbtn" id="mapCollect" type="button">Abholen</button>
+    </div>
+    <div id="rushFx" hidden></div>
+    <div class="sheet" id="sheet" hidden role="dialog" aria-labelledby="sheetTitle">
+      <div class="sheet-head">
+        <h2 id="sheetTitle">Upgrades</h2>
+        <button id="closeSheet" type="button" data-close>Schließen</button>
+      </div>
+      <div id="upList"></div>
+      <div class="tempo">
+        <div>
+          <b>Spieltempo</b
+          ><span id="tempoDesc">Normal: Rush Hour, Kritiker, Kontrollen und ungeduldige Gäste</span>
+        </div>
+        <button id="tempoBtn" type="button">Gemütlich</button>
+      </div>
+      <div class="settings">
+        <button id="snd" type="button">Ton: an</button><button id="musicBtn" type="button">Musik: aus</button
+        ><button id="rst" type="button">Laden neu starten</button>
+      </div>
+    </div>
+    <div class="sheet" id="shopSheet" hidden role="dialog" aria-labelledby="shopTitle">
+      <div class="sheet-head">
+        <h2 id="shopTitle">Shop</h2>
+        <button type="button" data-close>Schließen</button>
+      </div>
+      <p class="sub">
+        Bezahlt wird mit Goldmünzen aus Aufgaben, Tagesbonus, Glücksrad, Erfolgen und Bonus-Kisten.
+      </p>
+      <div class="shopscroll">
+        <h3 class="sh">Begleiter</h3>
+        <div id="petList"></div>
+        <h3 class="sh">Outfits</h3>
+        <div id="shopList"></div>
+        <h3 class="sh">Laden-Deko</h3>
+        <div id="decoList"></div>
+      </div>
+    </div>
+    <div class="sheet" id="dailySheet" hidden role="dialog" aria-labelledby="dailyTitle">
+      <div class="sheet-head">
+        <h2 id="dailyTitle">Tagesbonus</h2>
+        <button type="button" data-close>Später</button>
+      </div>
+      <p class="sub" id="streakInfo">Login-Serie</p>
+      <div class="days" id="dailyGrid"></div>
+      <button class="bigbtn" id="claimDaily" type="button">Abholen</button>
+    </div>
+    <div class="sheet" id="cutSheet" hidden role="dialog" aria-labelledby="cutTitle">
+      <div class="sheet-head">
+        <h2 id="cutTitle">Döner schneiden</h2>
+        <button type="button" data-close>Abbrechen</button>
+      </div>
+      <p class="sub" id="cutResult">Tippe, wenn der Zeiger im grünen Feld ist!</p>
+      <div class="cutbar" id="cutBar">
+        <span class="zone good"></span><span class="zone perfect"></span
+        ><span class="marker" id="cutMarker"></span>
+      </div>
+      <button class="bigbtn" id="cutGo" type="button">Schneiden!</button>
+    </div>
+    <div class="sheet" id="eventSheet" hidden role="dialog" aria-labelledby="evtTitle">
+      <div class="sheet-head">
+        <h2 id="evtTitle">Herbstfest</h2>
+        <button type="button" data-close>Schließen</button>
+      </div>
+      <p class="sub">
+        Bis Ende November: Jede Bestellung bringt 1 Kürbis, jede Bonus-Kiste 10. Sammle Kürbisse für
+        Belohnungen – auch das exklusive Outfit „Kürbis-Chef“.
+      </p>
+      <div class="evthead">
+        <span class="pumpkin" aria-hidden="true"></span><b id="evtPts">0</b> Kürbisse<span class="abar"
+          ><i id="evtBar"></i
+        ></span>
+      </div>
+      <div id="evtList"></div>
+    </div>
+    <div class="sheet" id="achSheet" hidden role="dialog" aria-labelledby="achTitle">
+      <div class="sheet-head">
+        <h2 id="achTitle">Erfolge</h2>
+        <button type="button" data-close>Schließen</button>
+      </div>
+      <p class="sub" id="lifeStats">Statistik</p>
+      <div id="achList"></div>
+    </div>
+    <div class="sheet" id="wheelSheet" hidden role="dialog" aria-labelledby="wheelTitle">
+      <div class="sheet-head">
+        <h2 id="wheelTitle">Glücksrad</h2>
+        <button type="button" data-close>Schließen</button>
+      </div>
+      <div class="wheelwrap">
+        <canvas id="wheelCanvas" width="520" height="520" aria-label="Glücksrad"></canvas>
+        <div class="pointer"></div>
+      </div>
+      <p class="result" id="wheelResult"></p>
+      <button class="bigbtn" id="spinBtn" type="button">Drehen!</button>
+    </div>
+    <div class="banner" id="banner" hidden></div>
+    <button class="cutbtn" id="cutBtn" type="button" hidden>Döner schneiden!</button>
+    <div class="hint" id="hint">Ziehen zum Laufen</div>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
