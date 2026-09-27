@@ -1,4 +1,5 @@
 // goals.js – aus der Einzeldatei extrahiert
+import { levelHint } from './levels.js';
 
 import {
   BIN,
@@ -94,6 +95,8 @@ export function goal() {
   const s = bestSpit(pl);
   if (s && s.stock > 0 && pl.carry < G.cap)
     return { t: 'Döner am <b>Spieß</b> abholen', x: s.x + 0.5, y: PICK_Y };
+  const lh = levelHint();
+  if (lh) return { t: lh, x: null };
   if (G.unlocked.size === PADS.length)
     return { t: '<b>Döner Palast komplett!</b> Sammle weiter ein.', x: null };
   return { t: 'Der Spieß brutzelt … gleich gibt es Nachschub', x: null };

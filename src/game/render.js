@@ -1,4 +1,5 @@
 // render.js – aus der Einzeldatei extrahiert
+import { gfxOn, sprite, drawPlayerSprite, playerUsesSprite } from './gfx.js';
 
 import {
   BIN,
@@ -287,7 +288,10 @@ export function render() {
   const S = [];
   G.spits.forEach(s => {
     if (s.on) {
-      S.push({ d: s.x + 1, f: () => drawSpit(s, t) });
+      S.push({
+        d: s.x + 1,
+        f: () => (gfxOn() && sprite('spit' + (Math.floor(t * 5) % 4), s.x, 0)) || drawSpit(s, t),
+      });
       S.push({ d: s.x + 0.5 + 1.27, f: () => drawTray(s) });
     }
   });
@@ -315,7 +319,11 @@ export function render() {
     });
   for (let i = 0; i < 5; i++) {
     const x = 2.4 + i;
-    S.push({ d: x + 0.5 + 4.25, f: () => box(x, 3.9, 1, 0.7, 34, '#ece6dc', '#c0392f', '#962a22') });
+    S.push({
+      d: x + 0.5 + 4.25,
+      f: () =>
+        (gfxOn() && sprite('counter', x, 3.9)) || box(x, 3.9, 1, 0.7, 34, '#ece6dc', '#c0392f', '#962a22'),
+    });
   }
   S.push({ d: 3.9 + 4.25 + 0.01, f: () => drawStock('counter') });
   S.push({
@@ -390,11 +398,13 @@ export function render() {
       d: tb.x + tb.y,
       f: () => {
         const p = P(tb.x, tb.y);
-        ell(p.x, p.y, 16, 8, 'rgba(20,10,20,.18)');
-        ctx.fillStyle = '#5b3a28';
-        ctx.fillRect(p.x - 2, p.y - 24, 4, 24);
-        ell(p.x, p.y - 24, 19, 9.5, '#6e4430');
-        ell(p.x, p.y - 26, 19, 9.5, '#9a6444');
+        if (!(gfxOn() && sprite('table', tb.x, tb.y))) {
+          ell(p.x, p.y, 16, 8, 'rgba(20,10,20,.18)');
+          ctx.fillStyle = '#5b3a28';
+          ctx.fillRect(p.x - 2, p.y - 24, 4, 24);
+          ell(p.x, p.y - 24, 19, 9.5, '#6e4430');
+          ell(p.x, p.y - 26, 19, 9.5, '#9a6444');
+        }
         const n = G.tableTrash[TABLES.indexOf(tb)];
         if (!n) rr(p.x - 3, p.y - 36, 6, 9, 1.5, '#f7f3ea');
         for (let i = 0; i < n; i++) drawTrash(p.x + (i % 2 ? 6 : -6), p.y - 28 - Math.floor(i / 2) * 4);
@@ -422,6 +432,7 @@ export function render() {
       S.push({
         d: s.x + s.y - 0.01,
         f: () => {
+          if (gfxOn() && sprite('stool', s.x, s.y)) return;
           const p = P(s.x, s.y);
           ell(p.x, p.y, 8, 4, 'rgba(20,10,20,.18)');
           ctx.fillStyle = '#6b3a30';
@@ -430,7 +441,7 @@ export function render() {
         },
       });
   });
-  S.push({ d: pl.x + pl.y, f: () => drawPerson(pl) });
+  S.push({ d: pl.x + pl.y, f: () => (playerUsesSprite(pl) ? drawPlayerSprite(pl) : drawPerson(pl)) });
   if (M.pet) S.push({ d: pet.x + pet.y, f: () => drawPet(t) });
   for (const w of G.workers) S.push({ d: w.x + w.y, f: () => drawPerson(w) });
   for (const c of G.customers) S.push({ d: c.x + c.y, f: () => drawPerson(c) });

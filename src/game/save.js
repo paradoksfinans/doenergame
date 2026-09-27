@@ -1,4 +1,5 @@
 // save.js – aus der Einzeldatei extrahiert
+import { migrateLevel } from './levels.js';
 
 import { PADS } from './config.js';
 import { G, __set_G, fresh } from './state.js';
@@ -32,6 +33,7 @@ export function save() {
         mission: G.mission,
         stats: G.stats,
         rushNext: G.rushNext,
+        cityLv: G.cityLv,
         rating: G.rating,
         tableTrash: G.tableTrash,
         boost: G.boost,
@@ -95,6 +97,8 @@ export function load() {
   const it = Array.isArray(s.carry) ? s.carry : Array(Math.min(s.carry || 0, G.cap)).fill('d');
   G.player.items = it.slice(0, G.cap);
   G.player.carry = G.player.items.length;
+  if (s.cityLv) G.cityLv = s.cityLv;
+  else migrateLevel();
   if (s.fryer && G.fryer.on) {
     G.fryer.stock = s.fryer.stock || 0;
   }

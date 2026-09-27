@@ -1,4 +1,5 @@
 // hud.js – aus der Einzeldatei extrahiert
+import { levelProgress, levelsTick, MAX_LEVEL } from './levels.js';
 
 import { PADS, UPS, UP_MAX, cityOf } from './config.js';
 import { G, MTEXT, __set_G, fresh, friesPrice, price, upCost } from './state.js';
@@ -116,8 +117,10 @@ export function hud(g, dt) {
     lastH = h;
   }
   const n = G.unlocked.size;
-  $pl.textContent = `${cityOf(G.city).name} · ${n}/${PADS.length}`;
-  $pb.style.width = (n / PADS.length) * 100 + '%';
+  const lp = levelProgress();
+  $pl.textContent = `${cityOf(G.city).name} · Level ${G.cityLv}/${MAX_LEVEL}`;
+  $pb.style.width = (G.cityLv >= MAX_LEVEL ? 100 : lp.frac * 100) + '%';
+  levelsTick(dt);
   if (G.rush > 0) {
     $rush.hidden = false;
     $rush.textContent = 'Rush ' + Math.ceil(G.rush) + ' s';

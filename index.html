@@ -22,8 +22,8 @@
             ><span class="rt" id="rateChip"><b id="rate">0</b> €/Min</span></span
           >
         </div>
-        <div class="prog">
-          <span id="progLabel">Berlin · 0/23</span>
+        <div class="prog" id="progBox" role="button" tabindex="0" aria-label="Stadt-Level anzeigen">
+          <span id="progLabel">Berlin · Level 1/10</span>
           <div class="bar"><i id="progBar"></i></div>
         </div>
       </div>
@@ -104,6 +104,7 @@
       </div>
       <div class="settings">
         <button id="snd" type="button">Ton: an</button><button id="musicBtn" type="button">Musik: aus</button
+        ><button id="gfxBtn" type="button">Grafik: Neu (Test)</button
         ><button id="rst" type="button">Laden neu starten</button>
       </div>
     </div>
@@ -160,6 +161,15 @@
         ></span>
       </div>
       <div id="evtList"></div>
+    </div>
+    <div class="sheet" id="levelSheet" hidden role="dialog" aria-labelledby="levelTitle">
+      <div class="sheet-head">
+        <h2 id="levelTitle">Level</h2>
+        <button type="button" data-close>Schließen</button>
+      </div>
+      <p class="sub" id="levelIntro"></p>
+      <div id="levelList"></div>
+      <p class="sub lvnext" id="levelNext"></p>
     </div>
     <div class="sheet" id="achSheet" hidden role="dialog" aria-labelledby="achTitle">
       <div class="sheet-head">

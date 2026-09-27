@@ -21,6 +21,7 @@ export function fresh(city = 0) {
     crate: null,
     crateT: 35,
     tutFlags: {},
+    cityLv: 1,
     rush: 0,
     rushNext: 70,
     boost: { cash: 0, speed: 0 },

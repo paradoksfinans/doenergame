@@ -26,6 +26,8 @@ import { initMission } from './game/mission.js';
 import { initDecor } from './game/decor.js';
 import { initFestival } from './game/festival.js';
 import { initTempo } from './game/tempo.js';
+import { initLevels } from './game/levels.js';
+import { initGfx } from './game/gfx.js';
 import { initLoop } from './game/loop.js';
 
 // Reihenfolge entspricht dem Original – bitte nicht umsortieren.
@@ -56,6 +58,8 @@ initMission();
 initDecor();
 initFestival();
 initTempo();
+initLevels();
+initGfx();
 initLoop();
 
 // Test-Hilfe: nur mit ?debug in der Adresse aktiv

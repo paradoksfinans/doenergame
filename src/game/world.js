@@ -1,4 +1,5 @@
 // world.js – aus der Einzeldatei extrahiert
+import { MAX_LEVEL, padLevel } from './levels.js';
 
 import {
   BIN,
@@ -120,7 +121,8 @@ export function activePads() {
   const out = [];
   for (const p of PADS) {
     if (G.unlocked.has(p.id)) continue;
-    if (p.id === 'city' && !G.unlocked.has('golden')) continue;
+    if (p.id === 'city' && (!G.unlocked.has('golden') || G.cityLv < MAX_LEVEL)) continue;
+    if (padLevel(p.id) > G.cityLv) continue;
     if (out.some(o => o.x === p.x && o.y === p.y)) continue;
     out.push(p);
     if (out.length === 3) break;
