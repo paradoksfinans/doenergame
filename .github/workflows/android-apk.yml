@@ -1,0 +1,70 @@
+# Baut bei jedem Push auf main eine Android-Test-APK und stellt sie unter
+# „Releases → Test-APK (neueste)“ zum Herunterladen bereit.
+name: Android Test-APK
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: android-apk
+  cancel-in-progress: true
+
+jobs:
+  apk:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          cache: npm
+
+      - uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: 21
+          cache: gradle
+
+      - name: Web-Spiel bauen
+        run: |
+          npm ci
+          npm run build
+          npx cap sync android
+
+      - name: APK bauen
+        working-directory: android
+        run: |
+          # Das Android-SDK ist auf den GitHub-Rechnern vorinstalliert
+          echo "sdk.dir=$ANDROID_HOME" > local.properties
+          yes | "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" --licenses > /dev/null || true
+          chmod +x gradlew
+          ./gradlew assembleDebug --no-daemon
+
+      - name: APK umbenennen
+        run: |
+          VER=$(node -p "require('./package.json').version")
+          mkdir -p out
+          cp android/app/build/outputs/apk/debug/app-debug.apk "out/DoenerPalast-${VER}-build${GITHUB_RUN_NUMBER}.apk"
+          echo "VER=$VER" >> "$GITHUB_ENV"
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: DoenerPalast-apk
+          path: out/*.apk
+
+      - name: Als „Test-APK (neueste)“ veröffentlichen
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release delete apk-latest --yes --cleanup-tag || true
+          gh release create apk-latest out/*.apk \
+            --title "Test-APK (neueste) – v${VER} Build ${GITHUB_RUN_NUMBER}" \
+            --notes "Automatisch gebaut aus ${GITHUB_SHA::7}. Auf dem Handy herunterladen und installieren (Installation aus unbekannten Quellen erlauben)." \
+            --prerelease \
+            --target "${GITHUB_SHA}"
