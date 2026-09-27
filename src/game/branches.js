@@ -4,6 +4,7 @@ import { G } from './state.js';
 import { audioInit, ching } from './audio.js';
 import { $, bumpMoney, showBanner } from './hud.js';
 import { burst } from './confetti.js';
+import { t, fmt } from './i18n.js';
 
 export const branchPerSec = () => ((G.branches || []).reduce((a, b) => a + b.rate, 0) * 0.25) / 60;
 
@@ -16,8 +17,8 @@ export function collectBranches() {
   ching();
   burst(30);
   showBanner(
-    'Filial-Einnahmen',
-    '+' + a.toLocaleString('de-DE') + ' € aus ' + G.branches.map(b => b.name).join(', '),
+    t('Filial-Einnahmen'),
+    t('+{a} € aus {names}', { a: fmt(a), names: G.branches.map(b => b.name).join(', ') }),
   );
 }
 

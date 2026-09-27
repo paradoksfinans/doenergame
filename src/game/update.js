@@ -74,6 +74,8 @@ import { life, lifeMax } from './achievements.js';
 import { criticServed, newDayWeather, rainy, updateEvents } from './events.js';
 import { v9Update } from './cutting.js';
 import { evtPoints } from './festival.js';
+import { mechDecorate, mechSale, mechSpawnMul, mechTick } from './citymech.js';
+import { t as T, fmt } from './i18n.js';
 
 export function update(dt) {
   G.time += dt;
@@ -90,7 +92,7 @@ export function update(dt) {
       G.phaseId = ph.id;
       if (ph.id === 'morgen') newDayWeather();
       const m = PHASE_MSG[ph.id];
-      if (m && G.rush <= 0) showBanner(m[0], m[1]);
+      if (m && G.rush <= 0) showBanner(T(m[0]), T(m[1]));
     }
   }
   if (G.rating >= 4.99) lifeMax('stars5', 1);
@@ -106,7 +108,7 @@ export function update(dt) {
       G.rushNext -= dt;
       if (G.rushNext <= 0) {
         G.rush = 20;
-        showBanner('RUSH HOUR!', '20 Sekunden: doppelt so viele Gäste, Preise ×1,5');
+        showBanner(T('RUSH HOUR!'), T('20 Sekunden: doppelt so viele Gäste, Preise ×1,5'));
         beep(880, 0.2, 'sawtooth', 0.03);
       }
     }
@@ -150,26 +152,26 @@ export function update(dt) {
   for (const s of G.spits) {
     if (!s.on) continue;
     if (s.stock < TRAY_MAX) {
-      s.t += dt * G.prodMul;
-      if (s.t >= G.spitTime) {
-        s.t = 0;
+      s.T += dt * G.prodMul;
+      if (s.T >= G.spitTime) {
+        s.T = 0;
         s.stock++;
       }
     }
   }
   const fr = G.fryer;
   if (fr.on && fr.stock < FRY_MAX) {
-    fr.t += dt * G.prodMul;
-    if (fr.t >= G.fryTime) {
-      fr.t = 0;
+    fr.T += dt * G.prodMul;
+    if (fr.T >= G.fryTime) {
+      fr.T = 0;
       fr.stock++;
     }
   }
   const spc = G.special;
   if (spc.on && spc.stock < SP_MAX) {
-    spc.t += dt * G.prodMul;
-    if (spc.t >= G.specTime) {
-      spc.t = 0;
+    spc.T += dt * G.prodMul;
+    if (spc.T >= G.specTime) {
+      spc.T = 0;
       spc.stock++;
     }
   }
@@ -265,11 +267,11 @@ export function update(dt) {
       w.max = 6 + G.lv.cap;
       if (w.state === 'toBin') {
         if (moveToward(w, BIN.x + 0.45, BIN.y - 0.35, sp, dt)) {
-          w.t -= dt;
-          if (w.t <= 0 && w.carry > 0) {
+          w.T -= dt;
+          if (w.T <= 0 && w.carry > 0) {
             w.items.pop();
             w.carry = w.items.length;
-            w.t = 0.08;
+            w.T = 0.08;
             fly('t', P(w.x, w.y, 26 + w.carry * 5), BIN, 26);
             rate(0.03);
             stat('clean', 1);
@@ -285,11 +287,11 @@ export function update(dt) {
       if (w.ti != null && w.carry < w.max) {
         const tb = TABLES[w.ti];
         if (moveToward(w, tb.x + 0.4, tb.y + 0.45, sp, dt)) {
-          w.t -= dt;
-          if (w.t <= 0 && G.tableTrash[w.ti] > 0) {
+          w.T -= dt;
+          if (w.T <= 0 && G.tableTrash[w.ti] > 0) {
             G.tableTrash[w.ti]--;
             give(w, 't');
-            w.t = 0.12;
+            w.T = 0.12;
             fly('t', P(tb.x, tb.y, 28), w, 24 + w.carry * 5);
           }
           if (G.tableTrash[w.ti] === 0) w.ti = null;
@@ -304,9 +306,9 @@ export function update(dt) {
       if (!w.src || (w.src.kind === 'd' && !w.src.spit.on)) w.src = pickSource(w);
       if (w.src.kind === 'wait') {
         moveToward(w, ST.counter.zone.x + off * 2, ST.counter.zone.y - 0.5, 2.4 * staffMul(), dt);
-        w.t -= dt;
-        if (w.t <= 0) {
-          w.t = 0.8;
+        w.T -= dt;
+        if (w.T <= 0) {
+          w.T = 0.8;
           w.src = pickSource(w);
         }
         return;
@@ -317,11 +319,11 @@ export function update(dt) {
       const px = src.kind === 's' ? SP_PICK.x - 0.1 + off * 0.5 : sx + 0.5 + off,
         py = src.kind === 's' ? SP_PICK.y + off : PICK_Y + 0.15;
       if (moveToward(w, px, py, 3.2 * staffMul(), dt)) {
-        w.t -= dt;
-        if (w.t <= 0 && store.stock > 0 && w.carry < w.max) {
+        w.T -= dt;
+        if (w.T <= 0 && store.stock > 0 && w.carry < w.max) {
           store.stock--;
           give(w, src.kind);
-          w.t = 0.14;
+          w.T = 0.14;
           fly(
             src.kind,
             src.kind === 's'
@@ -342,8 +344,8 @@ export function update(dt) {
         zx = s.zone.x + (w.target === 'counter' ? off : 0),
         zy = s.zone.y + (w.target === 'counter' ? -0.1 : off * 0.6);
       if (moveToward(w, zx, zy, 3.2 * staffMul(), dt)) {
-        w.t -= dt;
-        if (w.t <= 0 && w.carry > 0 && dropInto(w, w.target)) w.t = 0.1;
+        w.T -= dt;
+        if (w.T <= 0 && w.carry > 0 && dropInto(w, w.target)) w.T = 0.1;
         if (w.carry === 0) {
           w.state = 'toSpit';
           w.src = null;
@@ -366,6 +368,7 @@ export function update(dt) {
         (G.rating / 4) /
         phaseNow().mul /
         (rainy() ? 0.7 : 1)) *
+      mechSpawnMul() *
       (0.7 + Math.random() * 0.6);
     if (G.queue.length < QSLOTS.length) {
       const vip = G.unlocked.has('tables2') && Math.random() < 0.12;
@@ -410,6 +413,7 @@ export function update(dt) {
         pat: patMax(),
         patMax: patMax(),
       };
+      mechDecorate(c);
       G.customers.push(c);
       G.queue.push(c);
     }
@@ -425,10 +429,10 @@ export function update(dt) {
         c.state = 'out';
         c.angry = true;
         rate(-0.25);
-        floatText(c.x, c.y, 70, 'Zu lange gewartet!', '#ff8a7f');
+        floatText(c.x, c.y, 70, T('Zu lange gewartet!'), '#ff8a7f');
         if (c.critic) {
           rate(-0.35);
-          showBanner('Schlechte Kritik!', 'Der Kritiker ist gegangen – Bewertung sinkt');
+          showBanner(T('Schlechte Kritik!'), T('Der Kritiker ist gegangen – Bewertung sinkt'));
         }
         beep(160, 0.25, 'sawtooth', 0.03);
         continue;
@@ -437,13 +441,13 @@ export function update(dt) {
       if (moveToward(c, c.seat.x, c.seat.y, 2.6, dt)) {
         c.state = 'sit';
         c.sitting = true;
-        c.t = 5 + Math.random() * 4;
+        c.T = 5 + Math.random() * 4;
         c.fx = c.seat.x < c.seat.tx ? 1 : -1;
       }
     } else if (c.state === 'sit') {
       c.moving = false;
-      c.t -= dt;
-      if (c.t <= 0) {
+      c.T -= dt;
+      if (c.T <= 0) {
         c.seat.occ = null;
         c.sitting = false;
         c.state = 'out';
@@ -487,12 +491,15 @@ export function update(dt) {
         label = '';
       if (front.wd > 0 && front.wf > 0 && G.unlocked.has('combo')) {
         amt += Math.round(3 * priceMul());
-        label = 'Menü';
+        label = T('Menü');
       }
       if (front.vip) {
         amt = Math.round(amt * 1.5);
-        label = 'VIP';
+        label = T('VIP');
       }
+      const mm = mechSale(front);
+      if (mm.mul !== 1) amt = Math.round(amt * mm.mul);
+      if (mm.label) label = mm.label;
       sale('reg', amt, REG.x + 0.6, REG.y + 0.9, label);
       if (front.wd) stat('sell', front.wd);
       if (front.wf) stat('fries', front.wf);
@@ -510,7 +517,7 @@ export function update(dt) {
         if (free.length) seat = rnd(free);
         else if (open.length) {
           rate(-0.06);
-          floatText(front.x, front.y, 70, 'Tische schmutzig!', '#ff8a7f');
+          floatText(front.x, front.y, 70, T('Tische schmutzig!'), '#ff8a7f');
         }
       }
       if (seat) {
@@ -520,6 +527,8 @@ export function update(dt) {
       } else front.state = 'out';
     }
   }
+
+  mechTick(dt);
 
   // rating drift
   const tgt = 4 + (G.unlocked.has('deco') ? 0.6 : 0) - (relax() ? 0 : 0.25 * dirtyCount());
@@ -542,14 +551,16 @@ export function update(dt) {
         bumpMoney();
         ching();
         chord();
-        floatText(G.crate.x, G.crate.y, 60, '+' + amt.toLocaleString('de-DE') + ' €', '#f2b134');
+        floatText(G.crate.x, G.crate.y, 60, T('+{amt} €', { amt: fmt(amt) }), '#f2b134');
         life('crates', 1);
         evtPoints(10);
         const gem = Math.random() < 0.3;
         if (gem) addGems(1);
         showBanner(
-          'Bonus-Kiste!',
-          `+${amt.toLocaleString('de-DE')} € gefunden` + (gem ? ' und 1 Goldmünze' : ''),
+          T('Bonus-Kiste!'),
+          gem
+            ? T('+{amt} € gefunden und 1 Goldmünze', { amt: fmt(amt) })
+            : T('+{amt} € gefunden', { amt: fmt(amt) }),
         );
         G.crate = null;
         G.crateT = 50 + Math.random() * 30;
@@ -600,7 +611,7 @@ export function update(dt) {
       fly('doner', P(tp.x, tp.y, tp.z), { x: ROAD_CAR, y: fc.y }, 24);
       beep(760, 0.05);
       if (fc.got >= fc.want) {
-        sale('drive', fc.want * (PR + Math.round(priceMul())), ROAD_CAR, fc.y, 'Drive-In');
+        sale('drive', fc.want * (PR + Math.round(priceMul())), ROAD_CAR, fc.y, T('Drive-In'));
         fc.state = 'out';
         stat('cars', 1);
       }
@@ -613,8 +624,8 @@ export function update(dt) {
     if (m.state === 'park') {
       m.y = 5.6;
       if (G.stock.deliv >= 3) {
-        m.t -= dt;
-        if (m.t <= 0) {
+        m.T -= dt;
+        if (m.T <= 0) {
           G.stock.deliv -= 3;
           m.state = 'out';
           sale(
@@ -622,12 +633,12 @@ export function update(dt) {
             Math.round(3 * (PR + Math.round(2 * priceMul())) * (rainy() ? 1.5 : 1)),
             ROAD_MOPED,
             5.6,
-            rainy() ? 'Regen-Lieferung' : 'Lieferung',
+            rainy() ? T('Regen-Lieferung') : T('Lieferung'),
           );
           stat('deliv', 1);
           beep(620, 0.12, 'sawtooth', 0.02);
         }
-      } else m.t = 0.5;
+      } else m.T = 0.5;
     } else if (m.state === 'out') {
       m.y -= 5 * dt;
       if (m.y < -5) {
@@ -638,7 +649,7 @@ export function update(dt) {
       m.y -= 5 * dt;
       if (m.y <= 5.6) {
         m.state = 'park';
-        m.t = 0.5;
+        m.T = 0.5;
       }
     }
   }
@@ -691,9 +702,9 @@ export function update(dt) {
     }
   }
 
-  while (G.sales.length && G.sales[0].t < G.time - 30) G.sales.shift();
-  for (const f of flyers) f.t += dt / f.dur;
-  for (let i = flyers.length - 1; i >= 0; i--) if (flyers[i].t >= 1) flyers.splice(i, 1);
+  while (G.sales.length && G.sales[0].T < G.time - 30) G.sales.shift();
+  for (const f of flyers) f.T += dt / f.dur;
+  for (let i = flyers.length - 1; i >= 0; i--) if (flyers[i].T >= 1) flyers.splice(i, 1);
   for (const t of texts) {
     t.life -= dt;
     t.y -= dt * 28;

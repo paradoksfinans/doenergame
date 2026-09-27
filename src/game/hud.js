@@ -11,6 +11,7 @@ import { KEY, save } from './save.js';
 import { applyOutfit, closeSheets, metaHud, openSheet } from './meta.js';
 import { v7Hud } from './confetti.js';
 import { tutTick } from './tutorial.js';
+import { t, fmt } from './i18n.js';
 
 export let $m,
   $mb,
@@ -52,7 +53,7 @@ export function renderSheet() {
     row.className = 'up';
     const n = document.createElement('div');
     n.className = 'n';
-    n.textContent = u.name;
+    n.textContent = t(u.name);
     const dots = document.createElement('span');
     dots.className = 'dots';
     for (let i = 0; i < UP_MAX; i++) {
@@ -63,11 +64,11 @@ export function renderSheet() {
     n.append(dots);
     const d = document.createElement('div');
     d.className = 'd';
-    d.textContent = u.desc;
+    d.textContent = t(u.desc);
     const b = document.createElement('button');
     b.type = 'button';
     b.id = 'buy-' + u.id;
-    b.textContent = max ? 'Maximum' : cost.toLocaleString('de-DE') + ' €';
+    b.textContent = max ? t('Maximum') : fmt(cost) + ' €';
     b.disabled = max || G.money < cost;
     b.onclick = () => {
       if (G.lv[u.id] >= UP_MAX || G.money < upCost(u)) return;
@@ -107,23 +108,23 @@ export function showBanner(a, b) {
 export function hud(g, dt) {
   const m = Math.floor(G.money);
   if (m !== lastM) {
-    $m.textContent = m.toLocaleString('de-DE');
+    $m.textContent = fmt(m);
     lastM = m;
   }
   const tt = tutTick();
-  const h = tt || (G.hasMoved ? '' : 'Ziehen zum Laufen · ') + g.t;
+  const h = tt || (G.hasMoved ? '' : t('Ziehen zum Laufen · ')) + g.t;
   if (h !== lastH) {
     $h.innerHTML = h;
     lastH = h;
   }
   const n = G.unlocked.size;
   const lp = levelProgress();
-  $pl.textContent = `${cityOf(G.city).name} · Level ${G.cityLv}/${MAX_LEVEL}`;
+  $pl.textContent = t('{c} · Level {l}/{m}', { c: t(cityOf(G.city).name), l: G.cityLv, m: MAX_LEVEL });
   $pb.style.width = (G.cityLv >= MAX_LEVEL ? 100 : lp.frac * 100) + '%';
   levelsTick(dt);
   if (G.rush > 0) {
     $rush.hidden = false;
-    $rush.textContent = 'Rush ' + Math.ceil(G.rush) + ' s';
+    $rush.textContent = t('Rush {n} s', { n: Math.ceil(G.rush) });
     $rfx.hidden = false;
   } else if (!$rush.hidden) {
     $rush.hidden = true;
@@ -132,10 +133,10 @@ export function hud(g, dt) {
   const mi = G.mission;
   if (mi) {
     const pr = Math.min(mi.goal, G.stats[mi.type] - mi.start),
-      tx = `${MTEXT[mi.type](mi.goal)} · ${pr.toLocaleString('de-DE')}/${mi.goal.toLocaleString('de-DE')}`;
+      tx = `${MTEXT[mi.type](mi.goal)} · ${fmt(pr)}/${fmt(mi.goal)}`;
     if (tx !== lastMT) {
       $mt.textContent = tx;
-      $('mHead').textContent = `Aufgabe · Belohnung ${mi.reward.toLocaleString('de-DE')} €`;
+      $('mHead').textContent = t('Aufgabe · Belohnung {r} €', { r: fmt(mi.reward) });
       $mbar.style.width = (pr / mi.goal) * 100 + '%';
       lastMT = tx;
     }
@@ -155,7 +156,7 @@ export function hud(g, dt) {
   if (rateT <= 0) {
     rateT = 0.5;
     const r = ratePerMin();
-    $rate.textContent = r.toLocaleString('de-DE');
+    $rate.textContent = fmt(r);
     $rc.classList.toggle('up', r > bestRate && r > 0);
     if (r > bestRate) bestRate = r;
     lastRate = r;
@@ -163,7 +164,7 @@ export function hud(g, dt) {
     {
       const st = $('stars'),
         r = G.rating;
-      st.textContent = '★ ' + r.toFixed(1).replace('.', ',') + (r >= 4.5 ? ' · +10 %' : '');
+      st.textContent = '★ ' + fmt(r, 1) + (r >= 4.5 ? t(' · +10 %') : '');
       st.style.color = r >= 4.5 ? '#7fd48f' : r < 3 ? '#ff8a7f' : '#f2b134';
     }
     $('friesChip').hidden = !G.fryer.on;
@@ -208,7 +209,7 @@ export function initHud() {
   $snd.onclick = () => {
     audioInit();
     __set_muted(!muted);
-    $snd.textContent = 'Ton: ' + (muted ? 'aus' : 'an');
+    $snd.textContent = muted ? t('Ton: aus') : t('Ton: an');
   };
   $rst.onclick = () => {
     if (Date.now() - rstArm < 2500) {
@@ -220,20 +221,20 @@ export function initHud() {
       flyers.length = 0;
       texts.length = 0;
       bestRate = 0;
-      $rst.textContent = 'Laden neu starten';
+      $rst.textContent = t('Laden neu starten');
       $rst.classList.remove('warn');
       rstArm = 0;
       applyOutfit();
       closeSheets();
-      showBanner('Neuer Laden, neues Glück!');
+      showBanner(t('Neuer Laden, neues Glück!'));
       return;
     }
     rstArm = Date.now();
-    $rst.textContent = 'Wirklich? Nochmal tippen';
+    $rst.textContent = t('Wirklich? Nochmal tippen');
     $rst.classList.add('warn');
     setTimeout(() => {
       if (Date.now() - rstArm >= 2400) {
-        $rst.textContent = 'Laden neu starten';
+        $rst.textContent = t('Laden neu starten');
         $rst.classList.remove('warn');
       }
     }, 2500);

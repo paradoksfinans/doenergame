@@ -3,15 +3,16 @@
 import { G, relax } from './state.js';
 import { $, showBanner } from './hud.js';
 import { M, applyOutfit, saveMeta } from './meta.js';
+import { t } from './i18n.js';
 
 export function tempoView() {
   const r = relax();
-  $('relaxChip').textContent = r ? 'Tempo: Gemütlich' : 'Tempo: Normal';
+  $('relaxChip').textContent = r ? t('Tempo: Gemütlich') : t('Tempo: Normal');
   $('relaxChip').classList.toggle('on', r);
-  $('tempoBtn').textContent = r ? 'Zurück zu Normal' : 'Gemütlich spielen';
+  $('tempoBtn').textContent = r ? t('Zurück zu Normal') : t('Gemütlich spielen');
   $('tempoDesc').textContent = r
-    ? 'Gemütlich: weniger Gäste, niemand geht wütend, keine Rush Hour, Kritiker oder Kontrollen'
-    : 'Normal: Rush Hour, Kritiker, Kontrollen und ungeduldige Gäste';
+    ? t('Gemütlich: weniger Gäste, niemand geht wütend, keine Rush Hour, Kritiker oder Kontrollen')
+    : t('Normal: Rush Hour, Kritiker, Kontrollen und ungeduldige Gäste');
 }
 
 export function toggleTempo() {
@@ -29,10 +30,10 @@ export function toggleTempo() {
       }
   }
   showBanner(
-    M.relax ? 'Gemütlich-Modus' : 'Normales Tempo',
+    M.relax ? t('Gemütlich-Modus') : t('Normales Tempo'),
     M.relax
-      ? 'Weniger Gäste, keine Hektik – nimm dir Zeit'
-      : 'Volle Action: mehr Gäste, Events und Zeitdruck',
+      ? t('Weniger Gäste, keine Hektik – nimm dir Zeit')
+      : t('Volle Action: mehr Gäste, Events und Zeitdruck'),
   );
 }
 

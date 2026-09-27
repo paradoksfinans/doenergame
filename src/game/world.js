@@ -28,7 +28,8 @@ import { chord } from './audio.js';
 import { ratePerMin } from './update.js';
 import { cam } from './render.js';
 import { __set_bestRate, bestRate, lastRate, showBanner } from './hud.js';
-import { save } from './save.js';
+import { applyCity, citySnap, fullCity, save } from './save.js';
+import { t, fmt } from './i18n.js';
 import { M, addGems, applyOutfit } from './meta.js';
 import { lifeMax } from './achievements.js';
 import { burst } from './confetti.js';
@@ -121,7 +122,8 @@ export function activePads() {
   const out = [];
   for (const p of PADS) {
     if (G.unlocked.has(p.id)) continue;
-    if (p.id === 'city' && (!G.unlocked.has('golden') || G.cityLv < MAX_LEVEL)) continue;
+    if (p.id === 'city' && (!G.unlocked.has('golden') || G.cityLv < MAX_LEVEL || G.city < (G.top ?? G.city)))
+      continue;
     if (padLevel(p.id) > G.cityLv) continue;
     if (out.some(o => o.x === p.x && o.y === p.y)) continue;
     out.push(p);
@@ -289,15 +291,14 @@ export function unlock(id, silent) {
     const mm =
       id === 'special'
         ? [
-            specOf().stand + ' eröffnet!',
-            specOf().name +
-              ' – die Spezialität von ' +
-              cityOf(G.city).name +
-              '. Gäste zahlen ' +
-              specPrice() +
-              ' € pro Stück',
+            t('{n} eröffnet!', { n: t(specOf().stand) }),
+            t('{n} – die Spezialität von {c}. Gäste zahlen {p} € pro Stück', {
+              n: t(specOf().name),
+              c: t(cityOf(G.city).name),
+              p: specPrice(),
+            }),
           ]
-        : MSG[id];
+        : [t(MSG[id][0]), t(MSG[id][1])];
     showBanner(mm[0], mm[1]);
     unstick();
     chord();
@@ -306,34 +307,74 @@ export function unlock(id, silent) {
   }
 }
 
-export function nextCity() {
+/** Gemeinsamer Teil von „neue Stadt“ und „Filiale besuchen“: Spielerfortschritt behalten, Stadt wechseln. */
+function switchCity(to, citySnapOrNull, branches) {
   const keep = {
-    city: G.city + 1,
+    top: Math.max(G.top ?? G.city, to),
     missionsDone: G.missionsDone,
+    mission: G.mission,
     lv: G.lv,
-    branches: (G.branches || []).concat([
-      { name: cityOf(G.city).name, rate: Math.max(ratePerMin(), lastRate, 300) },
-    ]),
+    branches,
     bc: G.branchCash || 0,
+    clock: G.clock,
+    weather: G.weather,
+    boost: G.boost,
   };
-  __set_G(fresh(keep.city));
+  __set_G(fresh(to));
+  G.top = keep.top;
   G.missionsDone = keep.missionsDone;
   G.lv = keep.lv;
   G.branches = keep.branches;
   G.branchCash = keep.bc;
-  G.mission = newMission();
+  G.clock = keep.clock;
+  G.phaseId = null;
+  G.weather = keep.weather;
+  Object.assign(G.boost, keep.boost);
+  if (citySnapOrNull) applyCity(citySnapOrNull);
+  G.mission = citySnapOrNull ? keep.mission : newMission();
   cam.init = false;
   flyers.length = 0;
   texts.length = 0;
   __set_bestRate(0);
-  const c = cityOf(G.city);
   applyOutfit();
+}
+
+function leaveEntry() {
+  return {
+    i: G.city,
+    name: cityOf(G.city).name,
+    rate: Math.max(ratePerMin(), lastRate, 300),
+    snap: citySnap(),
+  };
+}
+
+export function nextCity() {
+  const branches = (G.branches || []).concat([leaveEntry()]);
+  switchCity(G.city + 1, null, branches);
+  const c = cityOf(G.city);
   addGems(5);
   lifeMax('cities', G.city + 1);
   burst(140);
   showBanner(
-    `Willkommen in ${c.name}!`,
-    `Jeder Döner bringt ×${priceMul().toFixed(1).replace('.', ',')} · +5 Goldmünzen`,
+    t('Willkommen in {c}!', { c: c.name }),
+    t('Jeder Döner bringt ×{m} · +5 Goldmünzen', { m: fmt(priceMul(), 1) }),
+  );
+  chord();
+  save();
+}
+
+/** Zu einer anderen eigenen Filiale reisen. Die aktuelle Stadt wird zur Filiale und verdient weiter. */
+export function travelTo(i) {
+  if (i === G.city) return;
+  const target = (G.branches || []).find(b => b.i === i);
+  if (!target) return;
+  const branches = G.branches.filter(b => b !== target).concat([leaveEntry()]);
+  branches.sort((a, b) => a.i - b.i);
+  switchCity(i, target.snap || fullCity(i), branches);
+  burst(80);
+  showBanner(
+    t('Zurück in {c}!', { c: cityOf(i).name }),
+    t('Deine anderen Filialen verdienen weiter'),
   );
   chord();
   save();
@@ -360,7 +401,7 @@ export function sale(pileKey, amt, wx, wy, label) {
     wx,
     wy,
     70,
-    (label ? label + ' ' : '') + '+' + amt.toLocaleString('de-DE') + ' €',
+    (label ? label + ' ' : '') + t('+{amt} €', { amt: fmt(amt) }),
     G.rush > 0 ? '#ff8a7f' : '#f2b134',
   );
   stat('earn', amt);

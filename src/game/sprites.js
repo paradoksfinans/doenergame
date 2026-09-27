@@ -17,6 +17,7 @@ import {
 } from './config.js';
 import { G, padPrice } from './state.js';
 import { P, box, chip, ell, poly, rr } from './iso.js';
+import { t as T, fmt } from './i18n.js';
 
 export function drawDoner(x, y) {
   rr(x - 8, y - 3, 16, 7, 3, '#f4ead6');
@@ -143,7 +144,7 @@ export function drawSpecStand(t, body = null) {
     ctx.fill();
   }
   const c = P(x + 0.5, y + 0.5, 96);
-  chip(c.x, c.y, sp.name.toUpperCase(), sp.awn, '#fff6e8', '9px Bungee, Impact, sans-serif');
+  chip(c.x, c.y, T(sp.name).toUpperCase(), sp.awn, '#fff6e8', '9px Bungee, Impact, sans-serif');
 }
 
 export function drawItem(t, x, y) {
@@ -224,7 +225,7 @@ export function drawFryer(t, body = null) {
     ctx.stroke();
   }
   const s = P(x + 0.5, 0.1, 62);
-  chip(s.x, s.y, 'POMMES', '#231a24', '#f2c94c', '9px Bungee, Impact, sans-serif');
+  chip(s.x, s.y, T('POMMES'), '#231a24', '#f2c94c', '9px Bungee, Impact, sans-serif');
 }
 
 export function drawFryTray() {
@@ -232,7 +233,7 @@ export function drawFryTray() {
   box(FRY.x + 0.05, 1.0, 0.9, 0.55, 22, '#d9dee0', '#8d969b', '#a8b0b4');
   const p = P(FRY.x + 0.5, 1.27, 22);
   for (let i = 0; i < fr.stock; i++) drawFries(p.x, p.y - i * 5);
-  const f = Math.min(1, fr.t / G.fryTime),
+  const f = Math.min(1, fr.T / G.fryTime),
     q = P(FRY.x + 0.95, 1.3, 42);
   ctx.beginPath();
   ctx.arc(q.x, q.y, 6, 0, Math.PI * 2);
@@ -313,7 +314,7 @@ export function drawPerson(c) {
       chip(
         p.x + c.fx * 5,
         p.y - 38 - b - c.carry * 5,
-        'MAX',
+        T('MAX'),
         '#d8342b',
         '#fff6e8',
         '10px Bungee, Impact, sans-serif',
@@ -323,6 +324,40 @@ export function drawPerson(c) {
 
 /** Hüte, Accessoires und Effekte – auch über den Blender-Figuren genutzt. */
 export function drawHats(c, p, b, sy) {
+  const hy = p.y - 46 - b + sy;
+  if (c.partyHat) {
+    // Partyhütchen (Berlin, Köln)
+    ctx.beginPath();
+    ctx.moveTo(p.x - 6, hy + 1);
+    ctx.lineTo(p.x + 6, hy + 1);
+    ctx.lineTo(p.x + 1, hy - 12);
+    ctx.closePath();
+    ctx.fillStyle = c.partyHat;
+    ctx.fill();
+    ctx.fillStyle = '#fff6e8';
+    ctx.fillRect(p.x - 3.5, hy - 4, 8, 1.6);
+    ell(p.x + 1, hy - 12, 2.2, 2.2, '#fff6e8');
+  }
+  if (c.tyrol) {
+    // Trachtenhut mit Feder (München)
+    ell(p.x, hy + 1, 10, 3.2, '#3f5a2e');
+    rr(p.x - 6, hy - 6, 12, 7, 3, '#4f6b3a');
+    ctx.fillStyle = '#8a5a2e';
+    ctx.fillRect(p.x - 6, hy - 1.5, 12, 2);
+    ctx.strokeStyle = '#e8e1d6';
+    ctx.lineWidth = 1.5;
+    ctx.beginPath();
+    ctx.moveTo(p.x + 5, hy - 3);
+    ctx.lineTo(p.x + 9, hy - 12);
+    ctx.stroke();
+  }
+  if (c.sunhat) {
+    // Sonnenhut (Istanbul-Touristen)
+    ell(p.x, hy + 1, 12, 4, '#e8cf8a');
+    rr(p.x - 6, hy - 5, 12, 6, 3, '#f2dc9a');
+    ctx.fillStyle = '#d8342b';
+    ctx.fillRect(p.x - 6, hy - 1.5, 12, 1.8);
+  }
   if (c.crown) {
     ctx.beginPath();
     const cy = p.y - 47 - b + sy;
@@ -511,7 +546,7 @@ export function drawTray(s) {
   box(s.x + 0.05, 1.0, 0.9, 0.55, 22, '#d9dee0', '#8d969b', '#a8b0b4');
   const p = P(s.x + 0.5, 1.27, 22);
   for (let i = 0; i < s.stock; i++) drawDoner(p.x, p.y - i * 5);
-  const f = Math.min(1, s.t / G.spitTime),
+  const f = Math.min(1, s.T / G.spitTime),
     q = P(s.x + 0.95, 1.3, 42);
   ctx.beginPath();
   ctx.arc(q.x, q.y, 6, 0, Math.PI * 2);
@@ -603,22 +638,22 @@ export function drawPadFloor(pad, t) {
 }
 
 export function padDesc(p) {
-  if (p.id !== 'city') return p.desc;
+  if (p.id !== 'city') return T(p.desc);
   const G2 = { city: G.city + 1 };
-  return 'Preise ×' + (1 + 0.6 * G2.city).toFixed(1).replace('.', ',') + ' · alte Filiale verdient weiter';
+  return T('Preise ×{m} · alte Filiale verdient weiter', { m: fmt(1 + 0.6 * G2.city, 1) });
 }
 
 export function drawPadLabel(pad) {
   const paid = G.paid[pad.id] || 0,
     c = P(pad.x, pad.y),
-    rest = Math.ceil(padPrice(pad) - paid).toLocaleString('de-DE') + ' €',
+    rest = fmt(Math.ceil(padPrice(pad) - paid)) + ' €',
     desc = padDesc(pad),
     name =
       pad.id === 'city'
-        ? 'Filiale ' + cityOf(G.city + 1).name
+        ? T('Filiale {c}', { c: T(cityOf(G.city + 1).name) })
         : pad.id === 'special'
-          ? specOf().stand
-          : pad.name;
+          ? T(specOf().stand)
+          : T(pad.name);
   ctx.textAlign = 'center';
   ctx.textBaseline = 'middle';
   ctx.font = '13px Bungee, Impact, sans-serif';

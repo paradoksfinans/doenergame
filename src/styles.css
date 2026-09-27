@@ -980,3 +980,7 @@ body {
     animation: none;
   }
 }
+
+.chip.mech{background:#2f5f93;border-color:#7fb4f0;color:#fff}
+.bigbtn.travel{background:#2f5f93;color:#fff;border-color:#7fb4f0;margin-bottom:8px}
+#mapSvg .city{cursor:pointer}

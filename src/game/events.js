@@ -9,6 +9,7 @@ import { $, bumpMoney, showBanner } from './hud.js';
 import { M, addGems, cashFor, saveMeta } from './meta.js';
 import { life } from './achievements.js';
 import { burst, reduceMotion } from './confetti.js';
+import { t, fmt } from './i18n.js';
 
 export let $music;
 
@@ -39,7 +40,7 @@ export function spawnCritic() {
   };
   G.customers.push(c);
   G.queue.splice(Math.min(1, G.queue.length), 0, c);
-  showBanner('Restaurantkritiker!', 'Bedien ihn in 35 Sekunden – er drängelt nach vorn');
+  showBanner(t('Restaurantkritiker!'), t('Bedien ihn in 35 Sekunden – er drängelt nach vorn'));
   beep(520, 0.15, 'square', 0.03);
   return true;
 }
@@ -59,7 +60,7 @@ export function startInspector() {
     state: 'in',
     book: true,
   };
-  showBanner('Hygiene-Kontrolle!', 'Gleich wird geprüft – alle Tische müssen sauber sein');
+  showBanner(t('Hygiene-Kontrolle!'), t('Gleich wird geprüft – alle Tische müssen sauber sein'));
   beep(300, 0.2, 'square', 0.03);
 }
 
@@ -85,7 +86,7 @@ export function updateEvents(dt) {
           addGems(2);
           rate(0.3);
           life('hygiene', 1);
-          showBanner('Hygiene-Siegel!', 'Alles sauber: +2 Goldmünzen, bessere Bewertung');
+          showBanner(t('Hygiene-Siegel!'), t('Alles sauber: +2 Goldmünzen, bessere Bewertung'));
           burst(80);
           chord();
         } else {
@@ -93,8 +94,10 @@ export function updateEvents(dt) {
           G.money -= fine;
           rate(-0.3);
           showBanner(
-            'Bußgeld!',
-            `${d} schmutzige${d > 1 ? ' Tische' : 'r Tisch'}: −${fine.toLocaleString('de-DE')} €`,
+            t('Bußgeld!'),
+            d > 1
+              ? t('{d} schmutzige Tische: −{fine} €', { d, fine: fmt(fine) })
+              : t('{d} schmutziger Tisch: −{fine} €', { d, fine: fmt(fine) }),
           );
           beep(140, 0.4, 'sawtooth', 0.04);
         }
@@ -113,7 +116,7 @@ export function criticServed() {
   addGems(2);
   rate(0.5);
   life('critics', 1);
-  showBanner('Top-Kritik! ★★★★★', `+${a.toLocaleString('de-DE')} € und 2 Goldmünzen`);
+  showBanner(t('Top-Kritik! ★★★★★'), t('+{a} € und 2 Goldmünzen', { a: fmt(a) }));
   burst(90);
   chord();
 }
@@ -160,7 +163,7 @@ export function newDayWeather() {
   G.weather = Math.random() < 0.35 ? 'regen' : 'sonne';
   if (rainy())
     setTimeout(
-      () => showBanner('Regentag', 'Weniger Laufkundschaft – Lieferungen bringen 50 % mehr, mehr Autos'),
+      () => showBanner(t('Regentag'), t('Weniger Laufkundschaft – Lieferungen bringen 50 % mehr, mehr Autos')),
       2900,
     );
 }
@@ -267,7 +270,7 @@ export function stopMusic() {
 }
 
 export function musicLabel() {
-  $music.textContent = 'Musik: ' + (M.music ? 'an' : 'aus');
+  $music.textContent = M.music ? t('Musik: an') : t('Musik: aus');
 }
 
 export function v8Hud() {
@@ -278,10 +281,10 @@ export function v8Hud() {
     cr = G.customers.find(c => c.critic && c.state === 'queue');
   if (I && I.state === 'check') {
     e.hidden = false;
-    e.textContent = 'Kontrolle ' + Math.ceil(I.t) + ' s';
+    e.textContent = t('Kontrolle {s} s', { s: Math.ceil(I.t) });
   } else if (cr) {
     e.hidden = false;
-    e.textContent = 'Kritiker ' + Math.ceil(cr.pat) + ' s';
+    e.textContent = t('Kritiker {s} s', { s: Math.ceil(cr.pat) });
   } else e.hidden = true;
 }
 

@@ -24,6 +24,7 @@ import {
 } from './config.js';
 import { G, friesPrice, price, relax, specPrice } from './state.js';
 import { P, box, chip, ell, poly, rr } from './iso.js';
+import { t as T, fmt } from './i18n.js';
 import {
   diamond,
   drawBill,
@@ -59,6 +60,7 @@ import { drawPet, pet } from './pets.js';
 import { decoFloor, decoNeon } from './decor.js';
 import { PUMPKINS, drawLeaves, drawPumpkin, evtActive } from './festival.js';
 import { lastDt } from './loop.js';
+import { mechDrawables } from './citymech.js';
 
 export let vw = 0,
   vh = 0,
@@ -154,10 +156,10 @@ export function drawWalls() {
   ctx.font = '12px Bungee, Impact, sans-serif';
   ctx.textAlign = 'left';
   ctx.textBaseline = 'middle';
-  ctx.fillText('DÖNER PALAST', 10, 14);
+  ctx.fillText(T('DÖNER PALAST'), 10, 14);
   ctx.fillStyle = '#cdbfae';
   ctx.font = '800 9px Figtree, system-ui, sans-serif';
-  ctx.fillText(CT.name.toUpperCase(), 10, 30);
+  ctx.fillText(T(CT.name).toUpperCase(), 10, 30);
   ctx.restore();
   ctx.save();
   o = P(0, 6.4, WALL - 8);
@@ -168,34 +170,34 @@ export function drawWalls() {
   ctx.textAlign = 'left';
   ctx.fillStyle = '#f2b134';
   ctx.font = '11px Bungee, Impact, sans-serif';
-  ctx.fillText('MENÜ', 9, 12);
+  ctx.fillText(T('MENÜ'), 9, 12);
   ctx.fillStyle = '#fff6e8';
   ctx.font = '700 9.5px Figtree, system-ui, sans-serif';
-  ctx.fillText('Döner Kebap', 9, 28);
+  ctx.fillText(T('Döner Kebap'), 9, 28);
   ctx.textAlign = 'right';
-  ctx.fillText(price().toFixed(2).replace('.', ',') + ' €', 123, 28);
+  ctx.fillText(fmt(price(), 2) + ' €', 123, 28);
   ctx.textAlign = 'left';
   ctx.fillStyle = '#cdbfae';
   if (G.fryer.on) {
     ctx.fillStyle = '#fff6e8';
-    ctx.fillText(G.unlocked.has('chili') ? 'Chili-Cheese-Pommes' : 'Pommes', 9, 40);
+    ctx.fillText(G.unlocked.has('chili') ? T('Chili-Cheese-Pommes') : T('Pommes'), 9, 40);
     ctx.textAlign = 'right';
-    ctx.fillText(friesPrice().toFixed(2).replace('.', ',') + ' €', 123, 40);
+    ctx.fillText(fmt(friesPrice(), 2) + ' €', 123, 40);
     ctx.textAlign = 'left';
   }
   ctx.fillStyle = '#cdbfae';
-  const ex = [G.unlocked.has('sauce') && 'Soße', G.unlocked.has('ayran') && 'Ayran'].filter(Boolean);
+  const ex = [G.unlocked.has('sauce') && T('Soße'), G.unlocked.has('ayran') && T('Ayran')].filter(Boolean);
   if (G.special.on) {
     ctx.fillStyle = '#fff6e8';
-    ctx.fillText(specOf().name, 9, 52);
+    ctx.fillText(T(specOf().name), 9, 52);
     ctx.textAlign = 'right';
-    ctx.fillText(specPrice().toFixed(2).replace('.', ',') + ' €', 123, 52);
+    ctx.fillText(fmt(specPrice(), 2) + ' €', 123, 52);
     ctx.textAlign = 'left';
     ctx.fillStyle = '#cdbfae';
-  } else ctx.fillText(ex.length ? '+ ' + ex.join(' · ') : 'mit alles, scharf?', 9, 52);
+  } else ctx.fillText(ex.length ? '+ ' + ex.join(' · ') : T('mit alles, scharf?'), 9, 52);
   if (G.unlocked.has('combo')) {
     ctx.fillStyle = '#f2b134';
-    ctx.fillText('Menü-Deal: +3 € Bonus', 9, 63);
+    ctx.fillText(T('Menü-Deal: +3 € Bonus'), 9, 63);
   }
   ctx.restore();
 }
@@ -225,11 +227,11 @@ export function drawFloor() {
         [P(s.x + 0.1, 1.7), P(s.x + 0.9, 1.7), P(s.x + 0.9, 2.5), P(s.x + 0.1, 2.5)],
         'rgba(35,26,36,.08)',
       );
-  floorLabel(ST.counter.zone.x, ST.counter.zone.y, 'THEKE', '#6b5a6d');
-  if (!G.unlocked.has('cashier')) floorLabel(REG.x, REG.y, 'KASSE', '#6b5a6d');
+  floorLabel(ST.counter.zone.x, ST.counter.zone.y, T('THEKE'), '#6b5a6d');
+  if (!G.unlocked.has('cashier')) floorLabel(REG.x, REG.y, T('KASSE'), '#6b5a6d');
   if (G.unlocked.has('drivein') && !G.unlocked.has('driveStaff'))
-    floorLabel(ST.drive.zone.x, ST.drive.zone.y, 'FENSTER', '#6b5a6d');
-  if (G.unlocked.has('delivery')) floorLabel(ST.deliv.zone.x, ST.deliv.zone.y, 'REGAL', '#6b5a6d');
+    floorLabel(ST.drive.zone.x, ST.drive.zone.y, T('FENSTER'), '#6b5a6d');
+  if (G.unlocked.has('delivery')) floorLabel(ST.deliv.zone.x, ST.deliv.zone.y, T('REGAL'), '#6b5a6d');
 }
 
 export function drawPile(k) {
@@ -380,7 +382,7 @@ export function render() {
       f: () => {
         drawStock('drive');
         const q = P(11.65, 2.0, 108);
-        chip(q.x, q.y, 'DRIVE-IN', '#d8342b', '#fff6e8', '10px Bungee, Impact, sans-serif');
+        chip(q.x, q.y, T('DRIVE-IN'), '#d8342b', '#fff6e8', '10px Bungee, Impact, sans-serif');
       },
     });
     for (const c of G.cars) S.push({ d: ROAD_CAR + c.y, f: () => drawCarSprite(c, ROAD_CAR) || drawCar(c) });
@@ -395,7 +397,7 @@ export function render() {
       f: () => {
         drawStock('deliv');
         const q = P(10.9, 5.6, 62);
-        chip(q.x, q.y, 'LIEFERDIENST', '#3f7fbf', '#fff6e8', '10px Bungee, Impact, sans-serif');
+        chip(q.x, q.y, T('LIEFERDIENST'), '#3f7fbf', '#fff6e8', '10px Bungee, Impact, sans-serif');
       },
     });
     S.push({ d: ROAD_MOPED + G.moped.y, f: () => drawMoped(G.moped) });
@@ -429,7 +431,7 @@ export function render() {
           ell(q.x, q.y, 15, 7.5, '#2e3438');
         }
         const c = P(BIN.x, BIN.y, 52);
-        chip(c.x, c.y, 'MÜLL', '#3b4247', '#fff6e8', '9px Bungee, Impact, sans-serif');
+        chip(c.x, c.y, T('MÜLL'), '#3b4247', '#fff6e8', '9px Bungee, Impact, sans-serif');
       },
     });
   if (evtActive()) PUMPKINS.forEach(pp => S.push({ d: pp[0] + pp[1], f: () => drawPumpkin(pp[0], pp[1]) }));
@@ -438,6 +440,7 @@ export function render() {
       S.push({ d: pp[0] + pp[1], f: () => (gfxOn() && sprite('plant', pp[0], pp[1])) || drawPlant(pp[0], pp[1]) }),
     );
   if (G.crate) S.push({ d: G.crate.x + G.crate.y, f: () => drawCrate(G.crate, t) });
+  mechDrawables(S, t);
   G.seats.forEach(s => {
     if (s.lv > G.tablesLv) return;
     if (!s.occ || s.occ.state !== 'sit' || gfxOn())
@@ -470,7 +473,7 @@ export function render() {
     chip(
       q.x,
       q.y - 60,
-      'Kontrolle ' + Math.ceil(G.inspector.t) + ' s',
+      T('Kontrolle {n} s', { n: Math.ceil(G.inspector.t) }),
       '#5a3bb0',
       '#fff6e8',
       '800 10px Figtree, system-ui, sans-serif',
@@ -482,7 +485,7 @@ export function render() {
       chip(
         q.x,
         q.y - (c === G.queue[0] && c.arr ? 86 : 60),
-        'KRITIKER',
+        T('KRITIKER'),
         '#5a3bb0',
         '#fff6e8',
         '9px Bungee, Impact, sans-serif',
@@ -524,7 +527,7 @@ export function render() {
   TABLES.forEach((tb, i) => {
     if (tb.lv <= G.tablesLv && G.tableTrash[i] >= 2 && !G.unlocked.has('cleaner')) {
       const p = P(tb.x, tb.y, 58 + Math.sin(G.time * 5) * 3);
-      chip(p.x, p.y, 'Abräumen', '#d8342b', '#fff6e8', '800 10px Figtree, system-ui, sans-serif');
+      chip(p.x, p.y, T('Abräumen'), '#d8342b', '#fff6e8', '800 10px Figtree, system-ui, sans-serif');
     }
   });
   const fc = G.cars.find(c => c.state === 'wait' && c.arr);

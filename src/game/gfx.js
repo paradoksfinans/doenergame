@@ -10,6 +10,7 @@ import { P, chip } from './iso.js';
 import { M, saveMeta } from './meta.js';
 import { drawItem, drawHats } from './sprites.js';
 import { $ } from './hud.js';
+import { t } from './i18n.js';
 
 const imgs = {};
 let ready = 0,
@@ -113,7 +114,7 @@ export function drawPersonSprite(c) {
       chip(
         p.x + c.fx * 13,
         p.y - 37 - b - c.carry * 5,
-        'MAX',
+        t('MAX'),
         '#d8342b',
         '#fff6e8',
         '10px Bungee, Impact, sans-serif',
@@ -129,7 +130,7 @@ export function drawCarSprite(c, roadX) {
 
 function label() {
   const b = $('gfxBtn');
-  if (b) b.textContent = 'Grafik: ' + (M.gfx === 'classic' ? 'Klassisch' : 'Neu');
+  if (b) b.textContent = M.gfx === 'classic' ? t('Grafik: Klassisch') : t('Grafik: Neu');
 }
 function load(key, src) {
   total++;

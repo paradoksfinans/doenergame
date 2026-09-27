@@ -4,6 +4,7 @@ import { beep, chord } from './audio.js';
 import { $, showBanner } from './hud.js';
 import { M, saveMeta } from './meta.js';
 import { burst } from './confetti.js';
+import { t } from './i18n.js';
 
 export const FLOORS = [
   { id: 'city', name: 'Stadt-Fliesen', price: 0, desc: 'Passend zur jeweiligen Stadt' },
@@ -85,20 +86,25 @@ export function renderDeco() {
           ? `linear-gradient(135deg,${it.a} 50%,${it.b} 50%)`
           : 'linear-gradient(135deg,#e8c9a0 50%,#dcb88b 50%)'
         : it.s1 || '#d8342b';
-    n.append(sw, document.createTextNode((kind === 'floor' ? 'Boden: ' : 'Neon: ') + it.name));
+    n.append(
+      sw,
+      document.createTextNode(
+        kind === 'floor' ? t('Boden: {n}', { n: t(it.name) }) : t('Neon: {n}', { n: t(it.name) }),
+      ),
+    );
     const d = document.createElement('div');
     d.className = 'd';
-    d.textContent = it.desc;
+    d.textContent = t(it.desc);
     const b = document.createElement('button');
     b.type = 'button';
     b.id = 'deco-' + kind + '-' + it.id;
     const own = M.decoOwned.includes(key),
       active = M.deco[kind] === it.id;
     if (active) {
-      b.textContent = 'Aktiv';
+      b.textContent = t('Aktiv');
       b.disabled = true;
     } else if (own) {
-      b.textContent = 'Benutzen';
+      b.textContent = t('Benutzen');
       b.onclick = () => {
         M.deco[kind] = it.id;
         saveMeta();
@@ -106,7 +112,7 @@ export function renderDeco() {
         beep(880, 0.08);
       };
     } else {
-      b.textContent = it.price + ' Münzen';
+      b.textContent = t('{p} Münzen', { p: it.price });
       b.disabled = M.gems < it.price;
       b.onclick = () => {
         if (M.gems < it.price) return;
@@ -118,7 +124,7 @@ export function renderDeco() {
         chord();
         burst(40);
         renderDeco();
-        showBanner(it.name + ' eingebaut!', 'Dein Laden sieht jetzt anders aus');
+        showBanner(t('{n} eingebaut!', { n: t(it.name) }), t('Dein Laden sieht jetzt anders aus'));
       };
     }
     row.append(n, b, d);

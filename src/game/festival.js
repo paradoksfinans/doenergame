@@ -8,6 +8,7 @@ import { $, showBanner } from './hud.js';
 import { M, addGems, applyOutfit, closeSheets, giveBoost, openSheet, saveMeta } from './meta.js';
 import { __set_lifeDirty, lifeDirty } from './achievements.js';
 import { burst, reduceMotion } from './confetti.js';
+import { t, fmt } from './i18n.js';
 
 export let EVT_ID, $evt;
 
@@ -43,39 +44,39 @@ export const evtClaimable = () =>
   EVT_TIERS.filter((t, i) => M.ev.pts >= t.pts && !M.ev.claimed.includes(i)).length;
 
 export function renderEvent() {
-  $('evtPts').textContent = M.ev.pts.toLocaleString('de-DE');
-  const next = EVT_TIERS.find(t => M.ev.pts < t.pts);
+  $('evtPts').textContent = fmt(M.ev.pts);
+  const next = EVT_TIERS.find(tier => M.ev.pts < tier.pts);
   $('evtBar').style.width = (next ? Math.min(100, (M.ev.pts / next.pts) * 100) : 100) + '%';
   const list = $('evtList');
   list.innerHTML = '';
-  EVT_TIERS.forEach((t, i) => {
+  EVT_TIERS.forEach((tier, i) => {
     const row = document.createElement('div');
     row.className = 'up' + (M.ev.claimed.includes(i) ? ' claimed' : '');
     const n = document.createElement('div');
     n.className = 'n';
-    n.textContent = t.pts.toLocaleString('de-DE') + ' Kürbisse';
+    n.textContent = t('{pts} Kürbisse', { pts: fmt(tier.pts) });
     const d = document.createElement('div');
     d.className = 'd';
-    d.textContent = t.txt;
+    d.textContent = t(tier.txt);
     const b = document.createElement('button');
     b.type = 'button';
     b.id = 'evt-' + i;
     if (M.ev.claimed.includes(i)) {
-      b.textContent = 'Erhalten';
+      b.textContent = t('Erhalten');
       b.disabled = true;
-    } else if (M.ev.pts >= t.pts) {
-      b.textContent = 'Abholen';
+    } else if (M.ev.pts >= tier.pts) {
+      b.textContent = t('Abholen');
       b.onclick = () => {
         M.ev.claimed.push(i);
         saveMeta();
-        t.give();
+        tier.give();
         chord();
         burst(80);
-        showBanner('Herbstfest-Belohnung', t.txt);
+        showBanner(t('Herbstfest-Belohnung'), t(tier.txt));
         renderEvent();
       };
     } else {
-      b.textContent = 'Noch ' + (t.pts - M.ev.pts).toLocaleString('de-DE');
+      b.textContent = t('Noch {n}', { n: fmt(tier.pts - M.ev.pts) });
       b.disabled = true;
     }
     row.append(n, b, d);
@@ -147,7 +148,9 @@ export function v12Hud() {
   if (evtActive()) {
     eb.hidden = false;
     const c = evtClaimable();
-    eb.textContent = 'Herbstfest · ' + M.ev.pts.toLocaleString('de-DE') + (c ? ' · Belohnung!' : '');
+    eb.textContent = c
+      ? t('Herbstfest · {pts} · Belohnung!', { pts: fmt(M.ev.pts) })
+      : t('Herbstfest · {pts}', { pts: fmt(M.ev.pts) });
     eb.classList.toggle('ready', c > 0);
   } else eb.hidden = true;
 }

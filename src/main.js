@@ -6,6 +6,7 @@ import '@fontsource/figtree/latin-ext-600.css';
 import '@fontsource/figtree/latin-800.css';
 import '@fontsource/figtree/latin-ext-800.css';
 import './styles.css';
+import { initI18n } from './game/i18n.js';
 import { initConfig } from './game/config.js';
 import { initState } from './game/state.js';
 import { initIso } from './game/iso.js';
@@ -38,6 +39,7 @@ import { initGfx } from './game/gfx.js';
 import { initLoop } from './game/loop.js';
 
 // Reihenfolge entspricht dem Original – bitte nicht umsortieren.
+initI18n();
 initConfig();
 initState();
 initIso();

@@ -8,6 +8,8 @@ import { burst } from './confetti.js';
 import { chord } from './audio.js';
 import { ratePerMin } from './update.js';
 import { save } from './save.js';
+import { mechIntro, mechOf } from './citymech.js';
+import { t, fmt } from './i18n.js';
 
 export const MAX_LEVEL = 10;
 
@@ -44,20 +46,24 @@ export const padLevel = id => PAD_LEVEL[id] || 1;
 
 // Ziel, um von Level n auf n+1 zu kommen (Zählung ab Ankunft in der Stadt)
 const GOALS = {
-  1: { stat: 'sell', n: 30, text: n => `${n} Döner verkaufen` },
-  2: { stat: 'fries', n: 25, text: n => `${n} Pommes verkaufen` },
-  3: { stat: 'clean', n: 20, text: n => `${n} Teller abräumen` },
-  4: { stat: 'cars', n: 10, text: n => `${n} Autos am Drive-In bedienen` },
-  5: { rating: 4.5, text: () => 'Bewertung von 4,5 Sternen erreichen' },
-  6: { stat: 'spec', n: 40, text: n => `${n}× ${specOf().name} verkaufen` },
+  1: { stat: 'sell', n: 30, text: n => t('{n} Döner verkaufen', { n: fmt(n) }) },
+  2: { stat: 'fries', n: 25, text: n => t('{n} Pommes verkaufen', { n: fmt(n) }) },
+  3: { stat: 'clean', n: 20, text: n => t('{n} Teller abräumen', { n: fmt(n) }) },
+  4: { stat: 'cars', n: 10, text: n => t('{n} Autos am Drive-In bedienen', { n: fmt(n) }) },
+  5: { rating: 4.5, text: () => t('Bewertung von {r} Sternen erreichen', { r: fmt(4.5, 1) }) },
+  6: {
+    stat: 'spec',
+    n: 40,
+    text: n => t('{n}× {s} verkaufen', { n: fmt(n), s: t(specOf().name) }),
+  },
   7: {
     stat: 'earn',
     n: 4000,
     scale: true,
-    text: n => `${n.toLocaleString('de-DE')} € in dieser Stadt verdienen`,
+    text: n => t('{n} € in dieser Stadt verdienen', { n: fmt(n) }),
   },
-  8: { stat: 'deliv', n: 15, text: n => `${n} Lieferungen rausschicken` },
-  9: { rate: 700, text: n => `${n.toLocaleString('de-DE')} €/Min Umsatz erreichen` },
+  8: { stat: 'deliv', n: 15, text: n => t('{n} Lieferungen rausschicken', { n: fmt(n) }) },
+  9: { rate: 700, text: n => t('{n} €/Min Umsatz erreichen', { n: fmt(n) }) },
 };
 
 export function levelPads(lv) {
@@ -73,7 +79,7 @@ export function goalOf(lv) {
       cur,
       goal: g.rating,
       done: G.rating >= g.rating,
-      fmt: v => v.toFixed(1).replace('.', ','),
+      fmt: v => fmt(v, 1),
     };
   }
   if (g.rate) {
@@ -84,7 +90,7 @@ export function goalOf(lv) {
       cur,
       goal,
       done: cur >= goal,
-      fmt: v => Math.round(v).toLocaleString('de-DE'),
+      fmt: v => fmt(Math.round(v)),
     };
   }
   const goal = g.scale ? Math.round((g.n * priceMul()) / 100) * 100 : g.n;
@@ -94,7 +100,7 @@ export function goalOf(lv) {
     cur,
     goal,
     done: cur >= goal,
-    fmt: v => Math.round(v).toLocaleString('de-DE'),
+    fmt: v => fmt(Math.round(v)),
   };
 }
 export function levelProgress() {
@@ -125,27 +131,35 @@ export function levelsTick(dt) {
   const gems = 1 + Math.floor(G.cityLv / 3);
   addGems(gems);
   const next = levelPads(G.cityLv).map(p => padName(p));
-  if (G.cityLv >= MAX_LEVEL) next.push('Filiale ' + cityOf(G.city + 1).name);
-  showBanner(`${cityOf(G.city).name} – Level ${G.cityLv}!`, `+${gems} Goldmünzen · Neu: ${next.join(', ')}`);
+  if (G.cityLv >= MAX_LEVEL) next.push(t('Filiale {c}', { c: t(cityOf(G.city + 1).name) }));
+  showBanner(
+    t('{c} – Level {lv}!', { c: t(cityOf(G.city).name), lv: G.cityLv }),
+    t('+{g} Goldmünzen · Neu: {list}', { g: gems, list: next.join(', ') }),
+  );
   burst(110);
   chord();
   bumpMoney();
   save();
+  if (G.cityLv === 2) setTimeout(mechIntro, 3200);
   if (!$level.hidden) renderLevel();
 }
 
 export function padName(p) {
   return p.id === 'special'
-    ? specOf().stand
+    ? t(specOf().stand)
     : p.id === 'city'
-      ? 'Filiale ' + cityOf(G.city + 1).name
-      : p.name;
+      ? t('Filiale {c}', { c: t(cityOf(G.city + 1).name) })
+      : t(p.name);
 }
 
 export function levelHint() {
   const pr = levelProgress();
   if (pr.lv >= MAX_LEVEL || pr.bought < pr.pads.length || !pr.g || pr.g.done) return null;
-  return `Level-Ziel: <b>${pr.g.text}</b> · ${pr.g.fmt(pr.g.cur)}/${pr.g.fmt(pr.g.goal)}`;
+  return t('Level-Ziel: <b>{text}</b> · {cur}/{goal}', {
+    text: pr.g.text,
+    cur: pr.g.fmt(pr.g.cur),
+    goal: pr.g.fmt(pr.g.goal),
+  });
 }
 
 // ---- Level-Fenster
@@ -176,33 +190,57 @@ function row(label, right, done, frac) {
 export function renderLevel() {
   const pr = levelProgress(),
     c = cityOf(G.city);
-  $('levelTitle').textContent = `${c.name} · Level ${pr.lv} von ${MAX_LEVEL}`;
+  $('levelTitle').textContent = t('{c} · Level {lv} von {max}', { c: t(c.name), lv: pr.lv, max: MAX_LEVEL });
   const list = $('levelList');
   list.innerHTML = '';
   const intro = $('levelIntro');
   if (pr.lv >= MAX_LEVEL) {
-    intro.textContent = `Höchstes Level erreicht. Der Goldene Spieß und die Filiale in ${cityOf(G.city + 1).name} sind freigeschaltet – ob und wann du umziehst, entscheidest du. Dieser Laden verdient danach weiter.`;
+    intro.textContent = t(
+      'Höchstes Level erreicht. Der Goldene Spieß und die Filiale in {c} sind freigeschaltet – ob und wann du umziehst, entscheidest du. Dieser Laden verdient danach weiter.',
+      { c: t(cityOf(G.city + 1).name) },
+    );
   } else {
-    intro.textContent = `Für Level ${pr.lv + 1}: alle Ausbauten dieses Levels kaufen und das Level-Ziel erreichen.`;
+    intro.textContent = t('Für Level {lv}: alle Ausbauten dieses Levels kaufen und das Level-Ziel erreichen.', {
+      lv: pr.lv + 1,
+    });
   }
   for (const p of pr.pads) {
     const done = G.unlocked.has(p.id);
-    list.append(row(padName(p), done ? 'gekauft' : padPrice(p).toLocaleString('de-DE') + ' €', done));
+    list.append(
+      row(padName(p), done ? t('gekauft') : t('{p} €', { p: fmt(padPrice(p)) }), done),
+    );
   }
   if (pr.g)
     list.append(
       row(
-        'Ziel: ' + pr.g.text,
-        `${pr.g.fmt(pr.g.cur)} / ${pr.g.fmt(pr.g.goal)}`,
+        t('Ziel: {text}', { text: pr.g.text }),
+        t('{cur} / {goal}', { cur: pr.g.fmt(pr.g.cur), goal: pr.g.fmt(pr.g.goal) }),
         pr.g.done,
         pr.g.cur / pr.g.goal,
       ),
     );
+  {
+    const me = mechOf(),
+      r = row(
+        (pr.lv >= 2 ? '★ ' : '🔒 ') + me.name(),
+        pr.lv >= 2 ? t('aktiv') : t('ab Level 2'),
+        false,
+      );
+    const d = document.createElement('div');
+    d.className = 'd';
+    d.textContent = me.desc();
+    r.append(d);
+    list.prepend(r);
+  }
   const nx = $('levelNext');
   if (pr.lv < MAX_LEVEL) {
     const next = levelPads(pr.lv + 1).map(padName);
-    if (pr.lv + 1 >= MAX_LEVEL) next.push('Filiale ' + cityOf(G.city + 1).name);
-    nx.textContent = `Level ${pr.lv + 1} bringt: ${next.join(', ')} und ${1 + Math.floor((pr.lv + 1) / 3)} Goldmünzen.`;
+    if (pr.lv + 1 >= MAX_LEVEL) next.push(t('Filiale {c}', { c: t(cityOf(G.city + 1).name) }));
+    nx.textContent = t('Level {lv} bringt: {list} und {g} Goldmünzen.', {
+      lv: pr.lv + 1,
+      list: next.join(', '),
+      g: 1 + Math.floor((pr.lv + 1) / 3),
+    });
   } else nx.textContent = '';
 }
 export function initLevels() {

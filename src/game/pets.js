@@ -6,6 +6,7 @@ import { P, ell } from './iso.js';
 import { moveToward } from './world.js';
 import { floatText } from './fx.js';
 import { M } from './meta.js';
+import { t } from './i18n.js';
 
 export const PETS = [
   { id: 'cat', name: 'Katze Minka', price: 6, desc: 'Gäste warten 10 % geduldiger' },
@@ -36,7 +37,7 @@ export function updatePet(dt) {
     pet.talk -= dt;
     if (pet.talk <= 0) {
       pet.talk = 14 + Math.random() * 10;
-      floatText(pet.x, pet.y, 62, rnd(['Döner!', 'Mit alles!', 'Ayran?', 'Lecker!']), '#7fd48f');
+      floatText(pet.x, pet.y, 62, t(rnd(['Döner!', 'Mit alles!', 'Ayran?', 'Lecker!'])), '#7fd48f');
     }
   }
 }

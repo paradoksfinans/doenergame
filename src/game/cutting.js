@@ -12,6 +12,7 @@ import { PETS, pet, updatePet } from './pets.js';
 import { branchPerSec } from './branches.js';
 import { tutActive } from './tutorial.js';
 import { renderDeco } from './decor.js';
+import { t, fmt } from './i18n.js';
 
 export let $cut, $cutBtn, $mk;
 
@@ -42,17 +43,17 @@ export function doCut() {
   let n, txt;
   if (d < 0.07) {
     n = 5;
-    txt = 'Meisterschnitt! +5 Döner';
+    txt = t('Meisterschnitt! +5 Döner');
     life('perfect', 1);
     burst(60);
     chord();
   } else if (d < 0.18) {
     n = 3;
-    txt = 'Guter Schnitt! +3 Döner';
+    txt = t('Guter Schnitt! +3 Döner');
     beep(880, 0.1);
   } else {
     n = 1;
-    txt = 'Daneben … +1 Döner';
+    txt = t('Daneben … +1 Döner');
     beep(200, 0.15, 'sawtooth', 0.03);
   }
   s.stock = Math.min(TRAY_MAX + 6, s.stock + n);
@@ -78,12 +79,13 @@ export function v9Hud() {
     $cutBtn.hidden = false;
     const cd = s.cut || 0;
     $cutBtn.disabled = cd > 0;
-    $cutBtn.textContent = cd > 0 ? 'Schneiden in ' + Math.ceil(cd) + ' s' : 'Döner schneiden!';
+    $cutBtn.textContent =
+      cd > 0 ? t('Schneiden in {s} s', { s: Math.ceil(cd) }) : t('Döner schneiden!');
   } else $cutBtn.hidden = true;
   const bb = $('branchBtn');
   if (G.branches && G.branches.length) {
     bb.hidden = false;
-    bb.textContent = 'Filialen: ' + Math.floor(G.branchCash || 0).toLocaleString('de-DE') + ' € abholen';
+    bb.textContent = t('Filialen: {amt} € abholen', { amt: fmt(Math.floor(G.branchCash || 0)) });
   } else bb.hidden = true;
 }
 
@@ -100,23 +102,23 @@ export function renderPets() {
     row.className = 'up';
     const n = document.createElement('div');
     n.className = 'n';
-    n.textContent = pt.name;
+    n.textContent = t(pt.name);
     const d = document.createElement('div');
     d.className = 'd';
-    d.textContent = pt.desc;
+    d.textContent = t(pt.desc);
     const b = document.createElement('button');
     b.type = 'button';
     b.id = 'pet-' + pt.id;
     const own = M.pets.includes(pt.id);
     if (M.pet === pt.id) {
-      b.textContent = 'Nach Hause';
+      b.textContent = t('Nach Hause');
       b.onclick = () => {
         M.pet = null;
         saveMeta();
         renderPets();
       };
     } else if (own) {
-      b.textContent = 'Mitnehmen';
+      b.textContent = t('Mitnehmen');
       b.onclick = () => {
         M.pet = pt.id;
         pet.init = false;
@@ -125,7 +127,7 @@ export function renderPets() {
         beep(880, 0.08);
       };
     } else {
-      b.textContent = pt.price + ' Münzen';
+      b.textContent = t('{price} Münzen', { price: pt.price });
       b.disabled = M.gems < pt.price;
       b.onclick = () => {
         if (M.gems < pt.price) return;
@@ -138,7 +140,7 @@ export function renderPets() {
         chord();
         burst(50);
         renderPets();
-        showBanner(pt.name + ' ist dabei!', pt.desc);
+        showBanner(t('{n} ist dabei!', { n: t(pt.name) }), t(pt.desc));
       };
     }
     row.append(n, b, d);
@@ -155,7 +157,7 @@ export function initCutting() {
     if (!s || (s.cut || 0) > 0) return;
     audioInit();
     cutRun = { spit: s, t0: performance.now(), done: false };
-    $('cutResult').textContent = 'Tippe, wenn der Zeiger im grünen Feld ist!';
+    $('cutResult').textContent = t('Tippe, wenn der Zeiger im grünen Feld ist!');
     openSheet($cut);
     animCut();
   };

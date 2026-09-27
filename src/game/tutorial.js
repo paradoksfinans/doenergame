@@ -5,6 +5,7 @@ import { beep, chord } from './audio.js';
 import { showBanner } from './hud.js';
 import { M, addGems, saveMeta } from './meta.js';
 import { burst } from './confetti.js';
+import { t } from './i18n.js';
 
 export const TUT = [
   { t: 'Zieh irgendwo über den Bildschirm, um zu laufen.', ok: () => G.hasMoved },
@@ -30,13 +31,13 @@ export function tutTick() {
     beep(990, 0.1);
     if (M.tut >= TUT.length) {
       addGems(2);
-      showBanner('Tutorial geschafft!', '+2 Goldmünzen – ab jetzt zeigt dir der Pfeil den Weg');
+      showBanner(t('Tutorial geschafft!'), t('+2 Goldmünzen – ab jetzt zeigt dir der Pfeil den Weg'));
       burst(90);
       chord();
       return null;
     }
   }
-  return `<b>Schritt ${M.tut + 1}/${TUT.length}</b> · ` + TUT[M.tut].t;
+  return t('<b>Schritt {n}/{total}</b> · ', { n: M.tut + 1, total: TUT.length }) + t(TUT[M.tut].t);
 }
 
 export function initTutorial() {}

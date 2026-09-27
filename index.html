@@ -6,7 +6,7 @@
     <title>Döner Palast</title>
   </head>
   <body>
-    <canvas id="game" aria-label="Spielfeld Döner Palast"></canvas>
+    <canvas id="game" aria-label="Spielfeld Döner Palast" data-i18n-aria></canvas>
     <div class="hud">
       <div class="toprow">
         <div class="money" id="moneyBox">
@@ -16,7 +16,7 @@
             ><span class="rt" id="rateChip"><b id="rate">0</b> €/Min</span></span
           >
         </div>
-        <div class="prog" id="progBox" role="button" tabindex="0" aria-label="Stadt-Level anzeigen">
+        <div class="prog" id="progBox" role="button" tabindex="0" aria-label="Stadt-Level anzeigen" data-i18n-aria>
           <span id="progLabel">Berlin · Level 1/10</span>
           <div class="bar"><i id="progBar"></i></div>
         </div>
@@ -31,6 +31,7 @@
         <span class="chip wet" id="weatherChip" hidden>Regen</span>
         <span class="chip rush evt" id="eventChip" hidden></span>
         <span class="chip rush" id="rushChip" hidden>Rush</span>
+        <span class="chip mech" id="mechChip" hidden></span>
         <span class="chip boost" id="boostChip" hidden></span>
         <button class="chip branch" id="branchBtn" type="button" hidden>Filialen</button>
         <button class="chip evbtn" id="evtBtn" type="button" hidden>Herbstfest</button>
@@ -41,16 +42,16 @@
       </button>
       <div hidden><b id="price">5</b><span id="friesChip"></span><b id="fprice">3</b></div>
     </div>
-    <nav class="tabbar" aria-label="Menü">
+    <nav class="tabbar" aria-label="Menü" data-i18n-aria>
       <button id="upBtn" type="button">
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7" /></svg
-        ><span>Upgrades</span>
+        ><span data-i18n>Upgrades</span>
       </button>
       <button id="shopBtn" type="button">
         <svg viewBox="0 0 24 24" aria-hidden="true">
           <path d="M5 8h14l-1 12H6L5 8z" />
           <path d="M9 8a3 3 0 0 1 6 0" /></svg
-        ><span>Shop</span>
+        ><span data-i18n>Shop</span>
       </button>
       <button id="wheelBtn" type="button">
         <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -68,30 +69,31 @@
         <svg viewBox="0 0 24 24" aria-hidden="true">
           <path d="M3 6l6-2 6 2 6-2v14l-6 2-6-2-6 2z" />
           <path d="M9 4v14M15 6v14" /></svg
-        ><span>Karte</span>
+        ><span data-i18n>Karte</span>
       </button>
     </nav>
     <div class="sheet" id="mapSheet" hidden role="dialog" aria-labelledby="mapTitle">
       <div class="sheet-head">
-        <h2 id="mapTitle">Deine Filialen</h2>
-        <button type="button" data-close>Schließen</button>
+        <h2 id="mapTitle" data-i18n>Deine Filialen</h2>
+        <button type="button" data-close data-i18n>Schließen</button>
       </div>
       <div class="mapwrap">
-        <svg id="mapSvg" viewBox="0 0 380 210" role="img" aria-label="Route der Döner-Palast-Filialen"></svg>
+        <svg id="mapSvg" viewBox="0 0 380 210" role="img" aria-label="Route der Döner-Palast-Filialen" data-i18n-aria></svg>
       </div>
       <p class="sub" id="mapInfo"></p>
+      <button class="bigbtn travel" id="mapTravel" type="button" hidden>Reisen</button>
       <button class="bigbtn" id="mapCollect" type="button">Abholen</button>
     </div>
     <div id="rushFx" hidden></div>
     <div class="sheet" id="sheet" hidden role="dialog" aria-labelledby="sheetTitle">
       <div class="sheet-head">
-        <h2 id="sheetTitle">Upgrades</h2>
-        <button id="closeSheet" type="button" data-close>Schließen</button>
+        <h2 id="sheetTitle" data-i18n>Upgrades</h2>
+        <button id="closeSheet" type="button" data-close data-i18n>Schließen</button>
       </div>
       <div id="upList"></div>
       <div class="tempo">
         <div>
-          <b>Spieltempo</b
+          <b data-i18n>Spieltempo</b
           ><span id="tempoDesc">Normal: Rush Hour, Kritiker, Kontrollen und ungeduldige Gäste</span>
         </div>
         <button id="tempoBtn" type="button">Gemütlich</button>
@@ -99,30 +101,31 @@
       <div class="settings">
         <button id="snd" type="button">Ton: an</button><button id="musicBtn" type="button">Musik: aus</button
         ><button id="gfxBtn" type="button">Grafik: Neu (Test)</button
-        ><button id="rst" type="button">Laden neu starten</button>
+        ><button id="langBtn" type="button">Sprache: Deutsch</button
+        ><button id="rst" type="button" data-i18n>Laden neu starten</button>
       </div>
     </div>
     <div class="sheet" id="shopSheet" hidden role="dialog" aria-labelledby="shopTitle">
       <div class="sheet-head">
-        <h2 id="shopTitle">Shop</h2>
-        <button type="button" data-close>Schließen</button>
+        <h2 id="shopTitle" data-i18n>Shop</h2>
+        <button type="button" data-close data-i18n>Schließen</button>
       </div>
       <p class="sub">
         Bezahlt wird mit Goldmünzen aus Aufgaben, Tagesbonus, Glücksrad, Erfolgen und Bonus-Kisten.
       </p>
       <div class="shopscroll">
-        <h3 class="sh">Begleiter</h3>
+        <h3 class="sh" data-i18n>Begleiter</h3>
         <div id="petList"></div>
-        <h3 class="sh">Outfits</h3>
+        <h3 class="sh" data-i18n>Outfits</h3>
         <div id="shopList"></div>
-        <h3 class="sh">Laden-Deko</h3>
+        <h3 class="sh" data-i18n>Laden-Deko</h3>
         <div id="decoList"></div>
       </div>
     </div>
     <div class="sheet" id="dailySheet" hidden role="dialog" aria-labelledby="dailyTitle">
       <div class="sheet-head">
-        <h2 id="dailyTitle">Tagesbonus</h2>
-        <button type="button" data-close>Später</button>
+        <h2 id="dailyTitle" data-i18n>Tagesbonus</h2>
+        <button type="button" data-close data-i18n>Später</button>
       </div>
       <p class="sub" id="streakInfo">Login-Serie</p>
       <div class="days" id="dailyGrid"></div>
@@ -130,27 +133,27 @@
     </div>
     <div class="sheet" id="cutSheet" hidden role="dialog" aria-labelledby="cutTitle">
       <div class="sheet-head">
-        <h2 id="cutTitle">Döner schneiden</h2>
-        <button type="button" data-close>Abbrechen</button>
+        <h2 id="cutTitle" data-i18n>Döner schneiden</h2>
+        <button type="button" data-close data-i18n>Abbrechen</button>
       </div>
       <p class="sub" id="cutResult">Tippe, wenn der Zeiger im grünen Feld ist!</p>
       <div class="cutbar" id="cutBar">
         <span class="zone good"></span><span class="zone perfect"></span
         ><span class="marker" id="cutMarker"></span>
       </div>
-      <button class="bigbtn" id="cutGo" type="button">Schneiden!</button>
+      <button class="bigbtn" id="cutGo" type="button" data-i18n>Schneiden!</button>
     </div>
     <div class="sheet" id="eventSheet" hidden role="dialog" aria-labelledby="evtTitle">
       <div class="sheet-head">
-        <h2 id="evtTitle">Herbstfest</h2>
-        <button type="button" data-close>Schließen</button>
+        <h2 id="evtTitle" data-i18n>Herbstfest</h2>
+        <button type="button" data-close data-i18n>Schließen</button>
       </div>
       <p class="sub">
         Bis Ende November: Jede Bestellung bringt 1 Kürbis, jede Bonus-Kiste 10. Sammle Kürbisse für
         Belohnungen – auch das exklusive Outfit „Kürbis-Chef“.
       </p>
       <div class="evthead">
-        <span class="pumpkin" aria-hidden="true"></span><b id="evtPts">0</b> Kürbisse<span class="abar"
+        <span class="pumpkin" aria-hidden="true"></span><b id="evtPts">0</b> <span data-i18n>Kürbisse</span><span class="abar"
           ><i id="evtBar"></i
         ></span>
       </div>
@@ -159,7 +162,7 @@
     <div class="sheet" id="levelSheet" hidden role="dialog" aria-labelledby="levelTitle">
       <div class="sheet-head">
         <h2 id="levelTitle">Level</h2>
-        <button type="button" data-close>Schließen</button>
+        <button type="button" data-close data-i18n>Schließen</button>
       </div>
       <p class="sub" id="levelIntro"></p>
       <div id="levelList"></div>
@@ -167,19 +170,19 @@
     </div>
     <div class="sheet" id="achSheet" hidden role="dialog" aria-labelledby="achTitle">
       <div class="sheet-head">
-        <h2 id="achTitle">Erfolge</h2>
-        <button type="button" data-close>Schließen</button>
+        <h2 id="achTitle" data-i18n>Erfolge</h2>
+        <button type="button" data-close data-i18n>Schließen</button>
       </div>
       <p class="sub" id="lifeStats">Statistik</p>
       <div id="achList"></div>
     </div>
     <div class="sheet" id="wheelSheet" hidden role="dialog" aria-labelledby="wheelTitle">
       <div class="sheet-head">
-        <h2 id="wheelTitle">Glücksrad</h2>
-        <button type="button" data-close>Schließen</button>
+        <h2 id="wheelTitle" data-i18n>Glücksrad</h2>
+        <button type="button" data-close data-i18n>Schließen</button>
       </div>
       <div class="wheelwrap">
-        <canvas id="wheelCanvas" width="520" height="520" aria-label="Glücksrad"></canvas>
+        <canvas id="wheelCanvas" width="520" height="520" aria-label="Glücksrad" data-i18n-aria></canvas>
         <div class="pointer"></div>
       </div>
       <p class="result" id="wheelResult"></p>

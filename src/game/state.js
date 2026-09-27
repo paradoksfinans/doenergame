@@ -6,6 +6,7 @@ import { bumpMoney, showBanner } from './hud.js';
 import { M, addGems } from './meta.js';
 import { life } from './achievements.js';
 import { burst } from './confetti.js';
+import { t, fmt } from './i18n.js';
 
 export let G;
 
@@ -130,13 +131,13 @@ export function newMission() {
 }
 
 export const MTEXT = {
-  sell: g => `${g} Döner an der Theke verkaufen`,
-  earn: g => `${g.toLocaleString('de-DE')} € verdienen`,
-  cars: g => `${g} Autos am Drive-In bedienen`,
-  deliv: g => `${g} Lieferungen rausschicken`,
-  fries: g => `${g} Pommes verkaufen`,
-  clean: g => `${g} Teller abräumen`,
-  spec: g => `${g}× ${specOf().name} verkaufen`,
+  sell: g => t('{g} Döner an der Theke verkaufen', { g: fmt(g) }),
+  earn: g => t('{g} € verdienen', { g: fmt(g) }),
+  cars: g => t('{g} Autos am Drive-In bedienen', { g: fmt(g) }),
+  deliv: g => t('{g} Lieferungen rausschicken', { g: fmt(g) }),
+  fries: g => t('{g} Pommes verkaufen', { g: fmt(g) }),
+  clean: g => t('{g} Teller abräumen', { g: fmt(g) }),
+  spec: g => t('{g}× {s} verkaufen', { g: fmt(g), s: t(specOf().name) }),
 };
 
 export function stat(type, n) {
@@ -150,7 +151,7 @@ export function stat(type, n) {
     chord();
     addGems(1);
     burst(40);
-    showBanner('Aufgabe erledigt!', `+${m.reward.toLocaleString('de-DE')} € und 1 Goldmünze`);
+    showBanner(t('Aufgabe erledigt!'), t('+{r} € und 1 Goldmünze', { r: fmt(m.reward) }));
     G.mission = newMission();
   }
 }

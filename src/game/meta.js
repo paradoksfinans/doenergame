@@ -8,6 +8,8 @@ import { burst } from './confetti.js';
 import { PETS } from './pets.js';
 import { renderPets } from './cutting.js';
 import { renderDeco } from './decor.js';
+import { t, fmt, nextLang, langName } from './i18n.js';
+import { save } from './save.js';
 
 export let $shop, $shopList, $daily, $wheel, wc, wx;
 
@@ -32,7 +34,7 @@ export function saveMeta() {
 export function addGems(n) {
   M.gems += n;
   saveMeta();
-  $('gems').textContent = M.gems;
+  $('gems').textContent = fmt(M.gems);
 }
 
 export const OUTFITS = [
@@ -96,7 +98,7 @@ export function giveBoost(kind, sec) {
   G.boost[kind] = Math.max(G.boost[kind] || 0, 0) + sec;
 }
 
-export const BOOSTNAME = { cash: '2× Umsatz', speed: 'Turbo' };
+export const BOOSTNAME = { cash: '2× Umsatz', speed: 'Turbo' }; // t() beim Anzeigen (siehe metaHud)
 
 export function openSheet(el) {
   for (const s of document.querySelectorAll('.sheet')) s.hidden = s !== el;
@@ -125,10 +127,10 @@ export function renderShop() {
     cap.className = 'swcap';
     cap.style.background = o.hat === 'toque' ? '#ffffff' : o.hat === 'crown' ? '#f2c75a' : o.capCol;
     sw.append(cap);
-    n.append(sw, document.createTextNode(o.name));
+    n.append(sw, document.createTextNode(t(o.name)));
     const d = document.createElement('div');
     d.className = 'd';
-    d.textContent =
+    d.textContent = t(
       o.hat === 'pumpkin'
         ? 'Kürbis-Mütze'
         : o.hat === 'toque'
@@ -137,24 +139,25 @@ export function renderShop() {
             ? 'Kopftuch'
             : o.hat === 'crown'
               ? 'Goldene Krone'
-              : 'Kappe';
-    if (o.extra) d.textContent += ' ' + o.extra;
+              : 'Kappe',
+    );
+    if (o.extra) d.textContent += ' ' + t(o.extra);
     const b = document.createElement('button');
     b.type = 'button';
     b.id = 'outfit-' + o.id;
     const own = M.owned.includes(o.id);
     if (o.event && !own) {
-      b.textContent = 'Herbstfest';
+      b.textContent = t('Herbstfest');
       b.disabled = true;
       row.append(n, b, d);
       $shopList.append(row);
       continue;
     }
     if (M.outfit === o.id) {
-      b.textContent = 'Getragen';
+      b.textContent = t('Getragen');
       b.disabled = true;
     } else if (own) {
-      b.textContent = 'Anziehen';
+      b.textContent = t('Anziehen');
       b.onclick = () => {
         M.outfit = o.id;
         saveMeta();
@@ -163,7 +166,7 @@ export function renderShop() {
         beep(880, 0.08);
       };
     } else {
-      b.textContent = o.price + ' Münzen';
+      b.textContent = t('{p} Münzen', { p: fmt(o.price) });
       b.disabled = M.gems < o.price;
       b.onclick = () => {
         if (M.gems < o.price) return;
@@ -171,11 +174,11 @@ export function renderShop() {
         M.owned.push(o.id);
         M.outfit = o.id;
         saveMeta();
-        $('gems').textContent = M.gems;
+        $('gems').textContent = fmt(M.gems);
         applyOutfit();
         chord();
         renderShop();
-        showBanner(o.name + ' freigeschaltet!', 'Steht dir gut');
+        showBanner(t('{n} freigeschaltet!', { n: t(o.name) }), t('Steht dir gut'));
       };
     }
     row.append(n, b, d);
@@ -197,9 +200,9 @@ export const dayStr = d => `${d.getFullYear()}-${d.getMonth() + 1}-${d.getDate()
 
 export function dailyText(r) {
   const a = [];
-  if (r.c) a.push('+' + cashFor(r.c).toLocaleString('de-DE') + ' €');
-  if (r.g) a.push('+' + r.g + ' Münze' + (r.g > 1 ? 'n' : ''));
-  if (r.boost) a.push('2× Umsatz ' + r.boost / 60 + ' Min');
+  if (r.c) a.push('+' + fmt(cashFor(r.c)) + ' €');
+  if (r.g) a.push(t(r.g > 1 ? '+{g} Münzen' : '+{g} Münze', { g: r.g }));
+  if (r.boost) a.push(t('2× Umsatz {m} Min', { m: r.boost / 60 }));
   return a;
 }
 
@@ -208,26 +211,29 @@ export function renderDaily() {
   grid.innerHTML = '';
   DAILY.forEach((r, i) => {
     const day = i + 1,
-      t = document.createElement('div');
-    t.className =
+      dayEl = document.createElement('div');
+    dayEl.className =
       'day' +
       (day < M.streak || (day === M.streak && M.claimed) ? ' done' : '') +
       (day === M.streak && !M.claimed ? ' today' : '') +
       (day === 7 ? ' big' : '');
     const h = document.createElement('b');
-    h.textContent = 'Tag ' + day;
-    t.append(h);
+    h.textContent = t('Tag {d}', { d: day });
+    dayEl.append(h);
     for (const line of dailyText(r)) {
       const s = document.createElement('span');
       s.textContent = line;
-      t.append(s);
+      dayEl.append(s);
     }
-    grid.append(t);
+    grid.append(dayEl);
   });
   const btn = $('claimDaily');
   btn.disabled = M.claimed;
-  btn.textContent = M.claimed ? 'Morgen wiederkommen' : 'Tag ' + M.streak + ' abholen';
-  $('streakInfo').textContent = `Login-Serie: ${M.streak} ${M.streak === 1 ? 'Tag' : 'Tage'} in Folge`;
+  btn.textContent = M.claimed ? t('Morgen wiederkommen') : t('Tag {d} abholen', { d: M.streak });
+  $('streakInfo').textContent = t(
+    M.streak === 1 ? 'Login-Serie: {n} Tag in Folge' : 'Login-Serie: {n} Tage in Folge',
+    { n: M.streak },
+  );
 }
 
 export const WHEEL = [
@@ -239,7 +245,7 @@ export const WHEEL = [
       const a = cashFor(1);
       G.money += a;
       bumpMoney();
-      return '+' + a.toLocaleString('de-DE') + ' €';
+      return '+' + fmt(a) + ' €';
     },
   },
   {
@@ -248,7 +254,7 @@ export const WHEEL = [
     col: '#4fae62',
     do: () => {
       giveBoost('cash', 60);
-      return '2× Umsatz für 60 Sekunden';
+      return t('2× Umsatz für 60 Sekunden');
     },
   },
   {
@@ -257,7 +263,7 @@ export const WHEEL = [
     col: '#fff6e8',
     do: () => {
       addGems(1);
-      return '+1 Goldmünze';
+      return t('+1 Goldmünze');
     },
   },
   {
@@ -268,7 +274,7 @@ export const WHEEL = [
       const a = cashFor(3);
       G.money += a;
       bumpMoney();
-      return '+' + a.toLocaleString('de-DE') + ' €';
+      return '+' + fmt(a) + ' €';
     },
   },
   {
@@ -277,7 +283,7 @@ export const WHEEL = [
     col: '#3f7fbf',
     do: () => {
       giveBoost('speed', 60);
-      return 'Turbo-Laufen für 60 Sekunden';
+      return t('Turbo-Laufen für 60 Sekunden');
     },
   },
   {
@@ -286,7 +292,7 @@ export const WHEEL = [
     col: '#fff6e8',
     do: () => {
       addGems(2);
-      return '+2 Goldmünzen';
+      return t('+2 Goldmünzen');
     },
   },
   {
@@ -297,7 +303,7 @@ export const WHEEL = [
       const a = cashFor(1);
       G.money += a;
       bumpMoney();
-      return '+' + a.toLocaleString('de-DE') + ' €';
+      return '+' + fmt(a) + ' €';
     },
   },
   {
@@ -310,7 +316,7 @@ export const WHEEL = [
       bumpMoney();
       addGems(3);
       burst(150);
-      return 'JACKPOT! +' + a.toLocaleString('de-DE') + ' € und 3 Münzen';
+      return t('JACKPOT! +{a} € und 3 Münzen', { a: fmt(a) });
     },
   },
 ];
@@ -347,7 +353,7 @@ export function drawWheel() {
         ? '#fff6e8'
         : '#231a24';
     wx.font = (sg.label === 'JACKPOT' ? '30px' : '23px') + ' Bungee, Impact, sans-serif';
-    wx.fillText(sg.label, R - 22, 0);
+    wx.fillText(t(sg.label), R - 22, 0);
     wx.restore();
   });
   wx.beginPath();
@@ -378,17 +384,17 @@ export function renderWheelBtn() {
   const b = $('spinBtn');
   if (spinning) {
     b.disabled = true;
-    b.textContent = 'Dreht …';
+    b.textContent = t('Dreht …');
     return;
   }
   b.disabled = !wheelReady();
-  b.textContent = wheelReady() ? 'Drehen!' : 'Wieder in ' + fmtWait(M.wheelAt - Date.now());
+  b.textContent = wheelReady() ? t('Drehen!') : t('Wieder in {t}', { t: fmtWait(M.wheelAt - Date.now()) });
 }
 
 export function metaHud(dt) {
   const wb = $('wheelBtn'),
     ready = wheelReady();
-  $('wheelLbl').textContent = ready ? 'Drehen!' : fmtWait(M.wheelAt - Date.now());
+  $('wheelLbl').textContent = ready ? t('Drehen!') : fmtWait(M.wheelAt - Date.now());
   wb.classList.toggle('hot', ready);
   $('shopBtn').classList.toggle(
     'hot',
@@ -398,7 +404,7 @@ export function metaHud(dt) {
   if (!$wheel.hidden) renderWheelBtn();
   const bs = [];
   for (const k in G.boost) {
-    if (G.boost[k] > 0) bs.push(BOOSTNAME[k] + ' ' + Math.ceil(G.boost[k]) + ' s');
+    if (G.boost[k] > 0) bs.push(t(BOOSTNAME[k]) + ' ' + Math.ceil(G.boost[k]) + ' s');
   }
   const bc = $('boostChip');
   if (bs.length) {
@@ -412,6 +418,19 @@ export function initMeta() {
     Object.assign(M, JSON.parse(localStorage.getItem(MKEY) || '{}'));
   } catch (e) {}
   document.querySelectorAll('[data-close]').forEach(b => (b.onclick = closeSheets));
+  // Sprache umschalten: Spielstand sichern und neu laden, damit alle Texte neu aufgebaut werden
+  const lb = $('langBtn');
+  if (lb) {
+    lb.textContent = t('Sprache: {l}', { l: langName() });
+    lb.onclick = () => {
+      M.lang = nextLang().id;
+      saveMeta();
+      try {
+        save();
+      } catch (e) {}
+      location.reload();
+    };
+  }
   $shop = $('shopSheet');
   $shopList = $('shopList');
   $('shopBtn').onclick = () => {
@@ -439,7 +458,7 @@ export function initMeta() {
     chord();
     ching();
     renderDaily();
-    showBanner('Tagesbonus abgeholt!', dailyText(r).join(' · '));
+    showBanner(t('Tagesbonus abgeholt!'), dailyText(r).join(' · '));
     setTimeout(closeSheets, 700);
   };
   {
@@ -497,7 +516,7 @@ export function initMeta() {
         chord();
         ching();
         $('wheelResult').textContent = txt;
-        showBanner('Glücksrad', txt);
+        showBanner(t('Glücksrad'), txt);
         renderWheelBtn();
       }
     };
@@ -510,11 +529,11 @@ export function initMeta() {
       return;
     }
     $('wheelResult').textContent = wheelReady()
-      ? 'Ein Dreh ist bereit.'
-      : 'Alle 20 Minuten gibt es einen Gratis-Dreh.';
+      ? t('Ein Dreh ist bereit.')
+      : t('Alle 20 Minuten gibt es einen Gratis-Dreh.');
     drawWheel();
     renderWheelBtn();
     openSheet($wheel);
   };
-  $('gems').textContent = M.gems;
+  $('gems').textContent = fmt(M.gems);
 }

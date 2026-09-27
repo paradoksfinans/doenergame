@@ -18,6 +18,7 @@ import {
 import { v8Hud } from './events.js';
 import { v9Hud } from './cutting.js';
 import { v12Hud } from './festival.js';
+import { t } from './i18n.js';
 
 export let confetti, reduceMotion;
 
@@ -58,14 +59,15 @@ export function drawConfetti(dt) {
   for (let i = confetti.length - 1; i >= 0; i--) if (confetti[i].life <= 0) confetti.splice(i, 1);
 }
 
+const PHASE_SHORT = { mittag: 'Mittag', nachm: 'Nachm.' };
 export function v7Hud(dt) {
-  $('clockChip').textContent =
-    clockStr() + ' · ' + phaseNow().name.replace('Mittagspause', 'Mittag').replace('Nachmittag', 'Nachm.');
+  const p = phaseNow();
+  $('clockChip').textContent = clockStr() + ' · ' + t(PHASE_SHORT[p.id] || p.name);
   v8Hud();
   v9Hud();
   v12Hud();
   const cl = achClaimable().length;
-  $('achLbl').textContent = cl ? `Erfolge (${cl})` : 'Erfolge';
+  $('achLbl').textContent = cl ? t('Erfolge ({n})', { n: cl }) : t('Erfolge');
   $('achBtn').classList.toggle('hot', cl > 0);
   if (!$ach.hidden) {
     achT -= dt;

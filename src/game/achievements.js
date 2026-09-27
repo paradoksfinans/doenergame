@@ -4,6 +4,7 @@ import { audioInit, chord } from './audio.js';
 import { $, showBanner } from './hud.js';
 import { M, addGems, closeSheets, openSheet, saveMeta } from './meta.js';
 import { burst } from './confetti.js';
+import { t, fmt } from './i18n.js';
 
 export let $ach;
 
@@ -58,7 +59,10 @@ export function checkAch() {
     if (achDone(a) && !M.achSeen.includes(a.id)) {
       M.achSeen.push(a.id);
       lifeDirty = true;
-      showBanner('Erfolg: ' + a.name, 'Im Erfolge-Menü abholen: ' + a.g + ' Münzen');
+      showBanner(
+        t('Erfolg: {n}', { n: t(a.name) }),
+        t('Im Erfolge-Menü abholen: {g} Münzen', { g: a.g }),
+      );
       burst(50);
     }
   }
@@ -67,13 +71,17 @@ export function checkAch() {
 export function fmtTime(sec) {
   const h = Math.floor(sec / 3600),
     m = Math.floor((sec % 3600) / 60);
-  return h ? `${h} Std ${m} Min` : `${m} Min`;
+  return h ? t('{h} Std {m} Min', { h, m }) : t('{m} Min', { m });
 }
 
 export function renderAch() {
   const L = M.life;
-  $('lifeStats').textContent =
-    `Gespielt ${fmtTime(L.play || 0)} · ${(L.doner || 0).toLocaleString('de-DE')} Döner · ${(L.fries || 0).toLocaleString('de-DE')} Pommes · ${Math.round(L.earned || 0).toLocaleString('de-DE')} € Umsatz`;
+  $('lifeStats').textContent = t('Gespielt {t} · {d} Döner · {f} Pommes · {e} € Umsatz', {
+    t: fmtTime(L.play || 0),
+    d: fmt(L.doner || 0),
+    f: fmt(L.fries || 0),
+    e: fmt(Math.round(L.earned || 0)),
+  });
   const list = $('achList');
   list.innerHTML = '';
   const sorted = ACH.slice().sort((a, b) => {
@@ -87,12 +95,12 @@ export function renderAch() {
     row.className = 'up' + (claimed ? ' claimed' : '');
     const n = document.createElement('div');
     n.className = 'n';
-    n.textContent = a.name;
+    n.textContent = t(a.name);
     const d = document.createElement('div');
     d.className = 'd';
     d.textContent =
-      a.desc +
-      (a.goal > 1 ? ` · ${Math.floor(cur).toLocaleString('de-DE')}/${a.goal.toLocaleString('de-DE')}` : '');
+      t(a.desc) +
+      (a.goal > 1 ? ' · ' + t('{c}/{g}', { c: fmt(Math.floor(cur)), g: fmt(a.goal) }) : '');
     const bar = document.createElement('span');
     bar.className = 'abar';
     const fill = document.createElement('i');
@@ -103,10 +111,10 @@ export function renderAch() {
     b.type = 'button';
     b.id = 'ach-' + a.id;
     if (claimed) {
-      b.textContent = 'Erledigt';
+      b.textContent = t('Erledigt');
       b.disabled = true;
     } else if (achDone(a)) {
-      b.textContent = '+' + a.g + ' Münzen';
+      b.textContent = t('+{g} Münzen', { g: a.g });
       b.onclick = () => {
         M.achClaimed.push(a.id);
         saveMeta();
@@ -116,7 +124,7 @@ export function renderAch() {
         renderAch();
       };
     } else {
-      b.textContent = a.g + ' Münzen';
+      b.textContent = t('{g} Münzen', { g: a.g });
       b.disabled = true;
     }
     row.append(n, b, d);
