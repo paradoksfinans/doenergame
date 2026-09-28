@@ -66,7 +66,9 @@ export const padLevel = id => {
       if (w.fix) wingLv[w.fix.id] = w.fix.lv;
     }
   }
-  return PAD_LEVEL[id] || wingLv[id] || 1;
+  const lv = PAD_LEVEL[id] || wingLv[id] || 1,
+    early = (M.pres && M.pres.ups && M.pres.ups.pRooms) || 0;
+  return /^(room|wing_)/.test(id) ? Math.max(2, lv - early) : lv;
 };
 
 // Ziel, um von Level n auf n+1 zu kommen (Zählung ab Ankunft in der Stadt)
@@ -153,10 +155,13 @@ export function levelsTick(dt) {
   const pr = levelProgress();
   if (pr.lv >= MAX_LEVEL || pr.bought < pr.pads.length || !pr.g || !pr.g.done) return;
   G.cityLv++;
-  const gems = 1 + Math.floor(G.cityLv / 3);
+  const gems = 1 + Math.floor(G.cityLv / 3) + ((M.pres && M.pres.ups && M.pres.ups.pGems) || 0);
   addGems(gems);
   const next = levelPads(G.cityLv).map(p => padName(p));
-  if (G.cityLv >= MAX_LEVEL) next.push(t('Filiale {c}', { c: t(cityOf(G.city + 1).name) }));
+  if (G.cityLv >= MAX_LEVEL)
+    next.push(
+      G.city >= 4 ? t('Prestige: Palast übergeben') : t('Filiale {c}', { c: t(cityOf(G.city + 1).name) }),
+    );
   showBanner(
     t('{c} – Level {lv}!', { c: t(cityOf(G.city).name), lv: G.cityLv }),
     t('+{g} Goldmünzen · Neu: {list}', { g: gems, list: next.join(', ') }),
@@ -257,7 +262,10 @@ export function renderLevel() {
   const nx = $('levelNext');
   if (pr.lv < MAX_LEVEL) {
     const next = levelPads(pr.lv + 1).map(padName);
-    if (pr.lv + 1 >= MAX_LEVEL) next.push(t('Filiale {c}', { c: t(cityOf(G.city + 1).name) }));
+    if (pr.lv + 1 >= MAX_LEVEL)
+      next.push(
+        G.city >= 4 ? t('Prestige: Palast übergeben') : t('Filiale {c}', { c: t(cityOf(G.city + 1).name) }),
+      );
     nx.textContent = t('Level {lv} bringt: {list} und {g} Goldmünzen.', {
       lv: pr.lv + 1,
       list: next.join(', '),

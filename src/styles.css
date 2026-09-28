@@ -648,6 +648,29 @@ body {
   background: #a8452a;
   border-color: #e0742a;
 }
+.presbtn {
+  pointer-events: auto;
+  cursor: pointer;
+  font:
+    800 12px Figtree,
+    system-ui,
+    sans-serif;
+  color: #231a24;
+  background: #f2c75a;
+  border-color: #b8912f;
+}
+.presbtn.pulse {
+  animation: pulse 1s ease-in-out infinite;
+}
+.presbr {
+  margin: 14px 0 4px;
+  font: 400 13px Bungee, Impact, sans-serif;
+  color: #f2b134;
+}
+.presnote {
+  opacity: 0.75;
+  font-size: 12px;
+}
 .evbtn.ready {
   animation: pulse 1s ease-in-out infinite;
 }

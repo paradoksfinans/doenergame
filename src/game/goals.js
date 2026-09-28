@@ -18,6 +18,7 @@ import {
 import { G, STATIONS, padPrice, stationOn } from './state.js';
 import { activePads, bestSpit, dirtyCount } from './world.js';
 import { t, fmt } from './i18n.js';
+import { presAvailable } from './prestige.js';
 
 export function goal() {
   const pl = G.player,
@@ -123,7 +124,12 @@ export function goal() {
   if (
     PADS.every(p => p.id === 'city' || G.unlocked.has(p.id) || (p.cities && !p.cities.includes(G.city % 5)))
   )
-    return { t: t('<b>Döner Palast komplett!</b> Sammle weiter ein.'), x: null };
+    return {
+      t: presAvailable()
+        ? t('<b>Prestige bereit!</b> Tippe oben auf 👑 und übergib den Palast')
+        : t('<b>Döner Palast komplett!</b> Sammle weiter ein.'),
+      x: null,
+    };
   return { t: t('Der Spieß brutzelt … gleich gibt es Nachschub'), x: null };
 }
 

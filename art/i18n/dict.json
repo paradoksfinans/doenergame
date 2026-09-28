@@ -3158,5 +3158,173 @@
  "Der Dolmuş bringt regelmäßig ganze Gruppen, die 20 % mehr zahlen": {
   "en": "The dolmuş regularly brings whole groups who pay 20% more",
   "tr": "Dolmuş düzenli olarak %20 fazla ödeyen gruplar getirir"
+ },
+ "<b>Prestige bereit!</b> Tippe oben auf 👑 und übergib den Palast": {
+  "en": "<b>Prestige ready!</b> Tap 👑 at the top and hand over the palace",
+  "tr": "<b>Prestij hazır!</b> Üstteki 👑'ye dokun ve sarayı devret"
+ },
+ "Prestige: Palast übergeben": {
+  "en": "Prestige: hand over the palace",
+  "tr": "Prestij: sarayı devret"
+ },
+ "Prestige {n}!": {
+  "en": "Prestige {n}!",
+  "tr": "Prestij {n}!"
+ },
+ "+{g} Goldene Spieße · alle Einnahmen jetzt ×{m}": {
+  "en": "+{g} golden spits · all earnings now ×{m}",
+  "tr": "+{g} altın şiş · tüm kazanç artık ×{m}"
+ },
+ "Prestige-Stufe <b>{l}</b> · <b>{p}</b> Goldene Spieße übrig · Einnahmen ×{m}": {
+  "en": "Prestige level <b>{l}</b> · <b>{p}</b> golden spits left · earnings ×{m}",
+  "tr": "Prestij seviyesi <b>{l}</b> · <b>{p}</b> altın şiş kaldı · kazanç ×{m}"
+ },
+ "Wirklich übergeben? Nochmal tippen": {
+  "en": "Really hand over? Tap again",
+  "tr": "Gerçekten devredilsin mi? Tekrar dokun"
+ },
+ "Palast übergeben: +{g} Goldene Spieße": {
+  "en": "Hand over the palace: +{g} golden spits",
+  "tr": "Sarayı devret: +{g} altın şiş"
+ },
+ "▶ Video ansehen: +{g} Goldene Spieße": {
+  "en": "▶ Watch video: +{g} golden spits",
+  "tr": "▶ Video izle: +{g} altın şiş"
+ },
+ "👑 Prestige bereit!": {
+  "en": "👑 Prestige ready!",
+  "tr": "👑 Prestij hazır!"
+ },
+ "Prestige {n}": {
+  "en": "Prestige {n}",
+  "tr": "Prestij {n}"
+ },
+ "Einnahmen": {
+  "en": "Earnings",
+  "tr": "Kazanç"
+ },
+ "Familienrezept": {
+  "en": "Family recipe",
+  "tr": "Aile tarifi"
+ },
+ "Alle Einnahmen +10 %": {
+  "en": "All earnings +10%",
+  "tr": "Tüm kazanç +%10"
+ },
+ "Start": {
+  "en": "Start",
+  "tr": "Başlangıç"
+ },
+ "Erbe": {
+  "en": "Inheritance",
+  "tr": "Miras"
+ },
+ "+500 € Startgeld": {
+  "en": "+500 € starting cash",
+  "tr": "+500 € başlangıç parası"
+ },
+ "Zweiter Spieß": {
+  "en": "Second spit",
+  "tr": "İkinci şiş"
+ },
+ "Der 2. Spieß steht schon": {
+  "en": "The 2nd spit is already there",
+  "tr": "2. şiş hazır bekliyor"
+ },
+ "Alte Freunde": {
+  "en": "Old friends",
+  "tr": "Eski dostlar"
+ },
+ "Zeynep und Ali arbeiten ab der ersten Minute": {
+  "en": "Zeynep and Ali work from the first minute",
+  "tr": "Zeynep ve Ali ilk dakikadan çalışır"
+ },
+ "Tempo": {
+  "en": "Speed",
+  "tr": "Hız"
+ },
+ "Flinke Füße": {
+  "en": "Quick feet",
+  "tr": "Çevik ayaklar"
+ },
+ "Du läufst 8 % schneller": {
+  "en": "You walk 8% faster",
+  "tr": "%8 daha hızlı yürürsün"
+ },
+ "Eingespieltes Team": {
+  "en": "Well-oiled team",
+  "tr": "Uyumlu ekip"
+ },
+ "Personal arbeitet 8 % schneller": {
+  "en": "Staff work 8% faster",
+  "tr": "Personel %8 daha hızlı çalışır"
+ },
+ "Starke Arme": {
+  "en": "Strong arms",
+  "tr": "Güçlü kollar"
+ },
+ "Du trägst 2 Döner mehr": {
+  "en": "You carry 2 more Döner",
+  "tr": "2 döner daha fazla taşırsın"
+ },
+ "Räume": {
+  "en": "Rooms",
+  "tr": "Odalar"
+ },
+ "Handwerker-Rabatt": {
+  "en": "Builder discount",
+  "tr": "Usta indirimi"
+ },
+ "Alle Ausbauten 8 % billiger": {
+  "en": "All upgrades 8% cheaper",
+  "tr": "Tüm yükseltmeler %8 daha ucuz"
+ },
+ "Alter Bauplan": {
+  "en": "Old blueprint",
+  "tr": "Eski plan"
+ },
+ "Nebenräume 1 Level früher": {
+  "en": "Side rooms 1 level earlier",
+  "tr": "Yan odalar 1 seviye erken"
+ },
+ "Yusuf bleibt": {
+  "en": "Yusuf stays",
+  "tr": "Yusuf kalıyor"
+ },
+ "Flur-Kellner Yusuf kostet nichts": {
+  "en": "Hall waiter Yusuf is free",
+  "tr": "Koridor garsonu Yusuf bedava"
+ },
+ "Events": {
+  "en": "Events",
+  "tr": "Etkinlikler"
+ },
+ "Gute Kontakte": {
+  "en": "Good connections",
+  "tr": "İyi bağlantılar"
+ },
+ "Events 20 % häufiger, Belohnungen +25 %": {
+  "en": "Events 20% more often, rewards +25%",
+  "tr": "Etkinlikler %20 daha sık, ödüller +%25"
+ },
+ "Glückspilz": {
+  "en": "Lucky one",
+  "tr": "Şanslı"
+ },
+ "+1 Goldmünze bei jedem Level-Aufstieg": {
+  "en": "+1 gold coin on every level-up",
+  "tr": "Her seviye atlamada +1 altın"
+ },
+ "Prestige": {
+  "en": "Prestige",
+  "tr": "Prestij"
+ },
+ "Baue Istanbul bis Level 10 mit Goldenem Spieß aus, dann kannst du den Palast an die nächste Generation übergeben.": {
+  "en": "Build Istanbul up to level 10 with the Golden Spit, then you can hand the palace over to the next generation.",
+  "tr": "İstanbul'u Altın Şiş ile 10. seviyeye kadar büyüt, sonra sarayı yeni nesle devredebilirsin."
+ },
+ "Beim Übergeben startest du wieder in Berlin. Du behältst Goldmünzen, Haustiere, Erfolge, Shop-Käufe und alle Goldenen Spieße. Jeder Goldene Spieß bringt dauerhaft +2 % auf alle Einnahmen.": {
+  "en": "When you hand over, you start again in Berlin. You keep gold coins, pets, achievements, shop purchases and all golden spits. Every golden spit permanently adds +2% to all earnings.",
+  "tr": "Devrettiğinde Berlin'de yeniden başlarsın. Altınlar, evcil hayvanlar, başarılar, mağaza alımları ve tüm altın şişler sende kalır. Her altın şiş tüm kazancı kalıcı olarak +%2 artırır."
  }
 }

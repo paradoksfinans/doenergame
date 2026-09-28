@@ -10,6 +10,7 @@ import { cam } from './render.js';
 import { KEY, save } from './save.js';
 import { applyOutfit, closeSheets, metaHud, openSheet } from './meta.js';
 import { v7Hud } from './confetti.js';
+import { applyPresStart } from './prestige.js';
 import { tutTick } from './tutorial.js';
 import { t, fmt } from './i18n.js';
 
@@ -225,6 +226,7 @@ export function initHud() {
       $rst.classList.remove('warn');
       rstArm = 0;
       applyOutfit();
+      applyPresStart();
       closeSheets();
       showBanner(t('Neuer Laden, neues Glück!'));
       return;

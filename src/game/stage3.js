@@ -14,10 +14,11 @@ import { sfx, ching, chord } from './audio.js';
 import { $, showBanner, bumpMoney } from './hud.js';
 import { t, fmt } from './i18n.js';
 import { burst } from './confetti.js';
-import { addGems } from './meta.js';
+import { addGems, M } from './meta.js';
 import { addGroup } from './citymech.js';
 
-const city = () => G.city % 5; // 0 Berlin, 1 Hamburg, 2 München, 3 Köln, 4 Istanbul
+const city = () => G.city % 5;
+const pEv = () => (M.pres && M.pres.ups && M.pres.ups.pEvents) || 0; // 0 Berlin, 1 Hamburg, 2 München, 3 Köln, 4 Istanbul
 const person = g => drawPersonSprite(g) || drawPerson(g);
 function E() {
   if (!G.ev3) G.ev3 = { t: 70, cur: null, uiT: 0, served: 0 };
@@ -196,7 +197,7 @@ function start(id) {
 function end() {
   const e = E();
   e.cur = null;
-  e.t = (150 + Math.random() * 60) * slow();
+  e.t = ((150 + Math.random() * 60) * slow()) / (1 + 0.2 * pEv());
 }
 function pool() {
   const out = [],
@@ -229,7 +230,7 @@ EV.mega = {
     ev.T -= dt;
     ev.served = E().megaServed || 0;
     if (ev.served >= ev.n) {
-      const amt = Math.round(ev.n * price() * 1.5);
+      const amt = Math.round(ev.n * price() * 1.5 * (1 + 0.25 * pEv()));
       G.money += amt;
       bumpMoney();
       addGems(2);
@@ -479,7 +480,7 @@ EV.record = {
     ev.T -= dt;
     ev.have = (G.stats.sell || 0) - ev.base;
     if (ev.have >= ev.need) {
-      const amt = Math.round(ev.need * price() * 2);
+      const amt = Math.round(ev.need * price() * 2 * (1 + 0.25 * pEv()));
       G.money += amt;
       bumpMoney();
       ching();
@@ -583,7 +584,7 @@ EV.uncle = {
       ];
     };
     if (ev.got >= ev.need) {
-      const amt = Math.round(20 * price());
+      const amt = Math.round(20 * price() * (1 + 0.25 * pEv()));
       G.money += amt;
       bumpMoney();
       ching();

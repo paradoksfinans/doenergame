@@ -172,6 +172,21 @@ export function drawWalls() {
   ctx.textAlign = 'left';
   ctx.textBaseline = 'middle';
   ctx.fillText(T('DÖNER PALAST'), 10, 14);
+  // Prestige-Sterne neben dem Namen, ab Stufe 3 goldener Rahmen
+  const pl = (M.pres && M.pres.lvl) || 0;
+  if (pl > 0) {
+    ctx.fillStyle = '#f2c75a';
+    ctx.font = '9px sans-serif';
+    ctx.textAlign = 'right';
+    ctx.fillText(pl > 5 ? '★×' + pl : '★'.repeat(pl), 118, 30);
+    ctx.textAlign = 'left';
+    if (pl >= 3) {
+      ctx.strokeStyle = '#f2c75a';
+      ctx.lineWidth = 3;
+      rr(-2, -2, 128, 44, 6, null);
+      ctx.stroke();
+    }
+  }
   ctx.fillStyle = '#cdbfae';
   ctx.font = '800 9px Figtree, system-ui, sans-serif';
   ctx.fillText(T(CT.name).toUpperCase(), 10, 30);

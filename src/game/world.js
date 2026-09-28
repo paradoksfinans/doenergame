@@ -27,6 +27,7 @@ import { floatText, fly, flyers, texts } from './fx.js';
 import { chord, sfx } from './audio.js';
 import { ratePerMin } from './update.js';
 import { cam } from './render.js';
+import { capFix, presIncomeMul, addRunEarn } from './prestige.js';
 import { __set_bestRate, bestRate, lastRate, showBanner } from './hud.js';
 import { applyCity, citySnap, fullCity, save } from './save.js';
 import { t, fmt } from './i18n.js';
@@ -126,7 +127,10 @@ export function activePads() {
   for (const p of PADS) {
     if (G.unlocked.has(p.id)) continue;
     if (p.cities && !p.cities.includes(G.city % 5)) continue;
-    if (p.id === 'city' && (!G.unlocked.has('golden') || G.cityLv < MAX_LEVEL || G.city < (G.top ?? G.city)))
+    if (
+      p.id === 'city' &&
+      (G.city >= 4 || !G.unlocked.has('golden') || G.cityLv < MAX_LEVEL || G.city < (G.top ?? G.city))
+    )
       continue;
     if (padLevel(p.id) > G.cityLv) continue;
     if (out.some(o => o.x === p.x && o.y === p.y)) continue;
@@ -268,10 +272,10 @@ export function unlock(id, silent) {
       G.workers.push(mkWorker('drive', 10.75, 1.5, '#2f9a8a', 'Elif', { long: true }));
       break;
     case 'tray':
-      G.cap = 8;
+      capFix();
       break;
     case 'tray2':
-      G.cap = 12;
+      capFix();
       break;
     case 'tables1':
       G.tablesLv = Math.max(G.tablesLv, 1);
@@ -342,6 +346,7 @@ function switchCity(to, citySnapOrNull, branches) {
   texts.length = 0;
   __set_bestRate(0);
   applyOutfit();
+  capFix();
 }
 
 function leaveEntry() {
@@ -394,6 +399,8 @@ export function sale(pileKey, amt, wx, wy, label) {
   if (G.boost.cash > 0) amt *= 2;
   if (M.pet === 'parrot') amt = Math.round(amt * 1.05);
   if (G.rush > 0) amt = Math.round(amt * 1.5);
+  amt = Math.round(amt * presIncomeMul());
+  addRunEarn(amt);
   const pile = G.piles[pileKey];
   pile.amount += amt;
   pile.count += Math.max(1, Math.round(amt / 6));

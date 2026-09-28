@@ -114,7 +114,12 @@ export const specPrice = () => Math.round(6 * priceMul());
 
 export const friesPrice = () => Math.round((3 + (G.unlocked.has('chili') ? 2 : 0)) * priceMul());
 
-export const padPrice = p => Math.round(p.price * padMul());
+export const padPrice = p =>
+  p.id === 'wingWaiter' && presUp('pYusuf')
+    ? 1
+    : Math.max(1, Math.round(p.price * padMul() * (1 - 0.08 * presUp('pCheap'))));
+// Prestige-Stufe direkt aus den Meta-Daten (vermeidet Import-Kreis mit prestige.js)
+const presUp = id => (M.pres && M.pres.ups && M.pres.ups[id]) || 0;
 
 export const upCost = u => Math.round(u.base * Math.pow(1.8, G.lv[u.id]) * padMul());
 
@@ -122,7 +127,7 @@ export const patMax = () => 45 * (G.unlocked.has('deco') ? 1.25 : 1) * (M.pet ==
 
 export const relax = () => !!(typeof M !== 'undefined' && M.relax);
 
-export const staffMul = () => 1 + 0.12 * G.lv.staff;
+export const staffMul = () => (1 + 0.12 * G.lv.staff) * (1 + 0.08 * presUp('pTeam'));
 
 export function newMission() {
   const n = G.missionsDone,

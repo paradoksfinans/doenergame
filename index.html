@@ -38,6 +38,7 @@
         <button class="chip vidchip" id="vidChip" type="button" hidden><span data-i18n>▶ 2× Umsatz</span></button>
         <button class="chip branch" id="branchBtn" type="button" hidden>Filialen</button>
         <button class="chip evbtn" id="evtBtn" type="button" hidden>Herbstfest</button>
+        <button class="chip presbtn" id="presBtn" type="button" hidden>👑 Prestige</button>
       </div>
       <button class="chip mission" id="mission" type="button" aria-expanded="true">
         <span class="mt" id="mHead">Aufgabe</span><span class="mtx" id="mText">…</span
@@ -161,6 +162,18 @@
         ></span>
       </div>
       <div id="evtList"></div>
+    </div>
+    <div class="sheet" id="presSheet" hidden role="dialog" aria-labelledby="presTitle">
+      <div class="sheet-head">
+        <h2 id="presTitle" data-i18n>Prestige</h2>
+        <button type="button" data-close data-i18n>Schließen</button>
+      </div>
+      <p class="sub" id="presInfo"></p>
+      <p class="sub" id="presLocked" data-i18n>Baue Istanbul bis Level 10 mit Goldenem Spieß aus, dann kannst du den Palast an die nächste Generation übergeben.</p>
+      <button class="bigbtn" id="presGo" type="button" hidden>Palast übergeben</button>
+      <button class="bigbtn adbtn" id="presGoAd" type="button" hidden>▶ Video</button>
+      <p class="sub presnote" data-i18n>Beim Übergeben startest du wieder in Berlin. Du behältst Goldmünzen, Haustiere, Erfolge, Shop-Käufe und alle Goldenen Spieße. Jeder Goldene Spieß bringt dauerhaft +2 % auf alle Einnahmen.</p>
+      <div id="presList"></div>
     </div>
     <div class="sheet" id="levelSheet" hidden role="dialog" aria-labelledby="levelTitle">
       <div class="sheet-head">

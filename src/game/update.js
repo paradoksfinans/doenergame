@@ -78,6 +78,7 @@ import { evtPoints } from './festival.js';
 import { mechDecorate, mechSale, mechSpawnMul, mechTick } from './citymech.js';
 import { roomsTick, roomSpawnMul } from './rooms.js';
 import { stage3Tick } from './stage3.js';
+import { presTick } from './prestige.js';
 import { t as T, fmt } from './i18n.js';
 
 let sizT = 0;
@@ -145,7 +146,12 @@ export function update(dt) {
     const m = Math.hypot(wx, wy);
     wx /= m;
     wy /= m;
-    const sp = 4.2 * (1 + 0.1 * G.lv.walk) * (G.boost.speed > 0 ? 1.5 : 1) * dt,
+    const sp =
+        4.2 *
+        (1 + 0.1 * G.lv.walk) *
+        (1 + 0.08 * ((M.pres && M.pres.ups && M.pres.ups.pWalk) || 0)) *
+        (G.boost.speed > 0 ? 1.5 : 1) *
+        dt,
       obs = obstacles();
     const nx = pl.x + wx * sp;
     if (!blocked(nx, pl.y, obs)) pl.x = nx;
@@ -581,6 +587,7 @@ export function update(dt) {
   mechTick(dt);
   roomsTick(dt);
   stage3Tick(dt);
+  presTick(dt);
 
   // rating drift
   const tgt = 4 + (G.unlocked.has('deco') ? 0.6 : 0) - (relax() ? 0 : 0.25 * dirtyCount());
