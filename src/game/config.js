@@ -7,8 +7,12 @@ export let cv, ctx;
 export const TW = 64,
   TH = 32,
   W = 12,
-  D = 10,
-  WALL = 100;
+  D = 14, // Gastraum ist tiefer (vorher 10) – Platz für Tische und die neuen Räume
+  WALL = 128;
+
+// Ganzes Gebäude: Nebenräume links (x < 0) und vorne (y > D)
+export const BX0 = -6,
+  BD = 20;
 
 export const TRAY_MAX = 6;
 
@@ -16,7 +20,7 @@ export const SPIT_X = [1.2, 2.9, 4.6];
 
 export const PICK_Y = 2.1;
 
-export const BIN = { x: 0.75, y: 9.2 };
+export const BIN = { x: 0.9, y: 11.4 };
 
 export const SP = { x: 10.6, y: 7.2 },
   SP_PICK = { x: 10.1, y: 7.7 },
@@ -40,14 +44,16 @@ export const CRATE_SPOTS = [
   [2.6, 2.9],
   [9.6, 3.95],
   [5.9, 7.4],
+  [5.8, 11.4],
+  [9.0, 12.6],
 ];
 
 export const PLANTS = [
-  [0.45, 4.45],
-  [0.45, 9.55],
-  [11.55, 9.55],
+  [0.5, 5.8],
+  [3.2, 13.45],
+  [11.55, 11.8],
   [11.55, 4.45],
-  [8.2, 9.55],
+  [7.7, 13.45],
 ];
 
 export const FRY = { x: 7.05 },
@@ -69,14 +75,15 @@ export const QSLOTS = [
   [6.9, 8.7],
 ];
 
-export const ENTER = { x: 6.3, y: D + 1.3 },
-  EXIT = { x: 5.6, y: D + 1.4 };
+// Eingang vorne rechts (links davon liegen jetzt VIP-Lounge und Hochzeitssaal)
+export const ENTER = { x: 10.2, y: D + 1.3 },
+  EXIT = { x: 9.5, y: D + 1.4 };
 
 export const TABLES = [
-  { x: 1.6, y: 6.2, lv: 1 },
-  { x: 3.7, y: 6.6, lv: 2 },
-  { x: 1.8, y: 8.4, lv: 3 },
-  { x: 3.9, y: 8.7, lv: 3 },
+  { x: 2.0, y: 6.4, lv: 1 },
+  { x: 4.4, y: 6.9, lv: 2 },
+  { x: 2.1, y: 9.3, lv: 3 },
+  { x: 4.6, y: 9.9, lv: 3 },
 ];
 
 export const ST = {
@@ -115,25 +122,35 @@ export const ST = {
   },
 };
 
-export const PILES = { reg: { x: 8.0, y: 3.6 }, drive: { x: 10.8, y: 3.25 }, deliv: { x: 9.6, y: 5.3 } };
+export const PILES = {
+  reg: { x: 8.0, y: 3.6 },
+  drive: { x: 10.8, y: 3.25 },
+  deliv: { x: 9.6, y: 5.3 },
+  // Kassen der Nebenräume (siehe rooms.js)
+  barber: { x: -1.1, y: 4.05 },
+  gamer: { x: -1.1, y: 8.7 },
+  shisha: { x: -1.1, y: 13.4 },
+  vip: { x: 0.4, y: 14.9 },
+  hall: { x: 7.0, y: 14.9 },
+};
 
 export const PADS = [
   { id: 'spit2', name: '2. Dönerspieß', desc: 'Mehr Nachschub', price: 15, x: 3.4, y: 2.1 },
   { id: 'tray', name: 'Tablett', desc: 'Trage 8 Döner', price: 30, x: 1.0, y: 3.2 },
-  { id: 'tables1', name: 'Sitzplätze I', desc: 'Mehr Gäste', price: 45, x: 1.6, y: 6.2 },
+  { id: 'tables1', name: 'Sitzplätze I', desc: 'Mehr Gäste', price: 45, x: 2.0, y: 6.4 },
   { id: 'cashier', name: 'Kassiererin', desc: 'Verkauft automatisch', price: 80, x: 9.0, y: 2.4 },
-  { id: 'sauce', name: 'Knoblauchsoße', desc: 'Preis +2 €', price: 120, x: 0.9, y: 4.9 },
+  { id: 'sauce', name: 'Knoblauchsoße', desc: 'Preis +2 €', price: 120, x: 1.0, y: 5.3 },
   { id: 'fryer', name: 'Fritteuse', desc: 'Neues Produkt: Pommes', price: 160, x: 7.55, y: 2.1 },
   { id: 'runner', name: 'Träger Ali', desc: 'Trägt automatisch', price: 200, x: 8.9, y: 0.9 },
-  { id: 'tables2', name: 'Sitzplätze II', desc: 'Mehr Gäste', price: 250, x: 3.7, y: 6.6 },
+  { id: 'tables2', name: 'Sitzplätze II', desc: 'Mehr Gäste', price: 250, x: 4.4, y: 6.9 },
   { id: 'spit3', name: '3. Dönerspieß', desc: 'Mehr Nachschub', price: 330, x: 5.1, y: 2.1 },
-  { id: 'cleaner', name: 'Putzkraft Hatice', desc: 'Räumt Tische ab', price: 380, x: 4.9, y: 9.2 },
+  { id: 'cleaner', name: 'Putzkraft Hatice', desc: 'Räumt Tische ab', price: 380, x: 2.3, y: 11.6 },
   { id: 'drivein', name: 'Drive-In', desc: 'Neue Station · +1 €/Döner', price: 450, x: 10.8, y: 2.0 },
   { id: 'special', name: 'Spezialität', desc: 'Neues Produkt dieser Stadt', price: 520, x: 10.1, y: 7.7 },
-  { id: 'ayran', name: 'Ayran-Menü', desc: 'Preis +2 €', price: 600, x: 0.9, y: 4.9 },
-  { id: 'deco', name: 'Deko & Pflanzen', desc: 'Bessere Bewertung', price: 680, x: 9.3, y: 8.6 },
+  { id: 'ayran', name: 'Ayran-Menü', desc: 'Preis +2 €', price: 600, x: 1.0, y: 5.3 },
+  { id: 'deco', name: 'Deko & Pflanzen', desc: 'Bessere Bewertung', price: 680, x: 9.6, y: 10.4 },
   { id: 'driveStaff', name: 'Drive-In-Kraft', desc: 'Bedient Autos', price: 750, x: 10.1, y: 0.8 },
-  { id: 'chili', name: 'Chili-Cheese', desc: 'Pommes +2 €', price: 850, x: 0.9, y: 4.9 },
+  { id: 'chili', name: 'Chili-Cheese', desc: 'Pommes +2 €', price: 850, x: 1.0, y: 5.3 },
   {
     id: 'driveRunner',
     name: 'Drive-In-Läufer',
@@ -143,14 +160,23 @@ export const PADS = [
     y: 2.0,
   },
   { id: 'tray2', name: 'Großes Tablett', desc: 'Trage 12 Döner', price: 850, x: 1.0, y: 3.2 },
-  { id: 'tables3', name: 'Sitzplätze III', desc: 'Viel mehr Gäste', price: 1000, x: 2.85, y: 8.55 },
+  { id: 'tables3', name: 'Sitzplätze III', desc: 'Viel mehr Gäste', price: 1000, x: 3.3, y: 9.6 },
   { id: 'runner2', name: 'Träger Mehmet', desc: 'Trägt automatisch', price: 1200, x: 8.9, y: 0.9 },
-  { id: 'combo', name: 'Menü-Deal', desc: 'Döner + Pommes: +3 € Bonus', price: 1450, x: 0.9, y: 4.9 },
+  { id: 'combo', name: 'Menü-Deal', desc: 'Döner + Pommes: +3 € Bonus', price: 1450, x: 1.0, y: 5.3 },
   { id: 'delivery', name: 'Lieferdienst', desc: 'Neue Station · +2 €/Döner', price: 1500, x: 10.9, y: 4.75 },
   { id: 'delivRunner', name: 'Liefer-Läufer', desc: 'Füllt nur das Lieferregal', price: 900, x: 8.2, y: 5.6 },
   { id: 'spitSpeed', name: 'Turbo-Grill', desc: 'Spieße 50 % schneller', price: 1900, x: 6.4, y: 1.3 },
   { id: 'golden', name: 'Goldener Spieß', desc: 'Preis +3 €, noch schneller', price: 2800, x: 6.4, y: 1.3 },
-  { id: 'city', name: 'Neue Filiale', desc: '', price: 4200, x: 5.3, y: 8.5 },
+  // Nebenräume (rooms.js) und ihre Ausbauten gegen die Nebenwirkungen
+  { id: 'roomBarber', name: 'Barbershop', desc: 'Neuer Raum: Haarschnitt, danach Döner', price: 500, x: 0.8, y: 4.15 },
+  { id: 'roomGamer', name: 'Zocker-Lounge', desc: 'Neuer Raum: Döner an die Couch', price: 700, x: 0.8, y: 8.0 },
+  { id: 'barberGlass', name: 'Glaswand', desc: 'Keine Haare mehr im Essen', price: 400, x: -1.4, y: 2.9 },
+  { id: 'roomShisha', name: 'Shisha-Whirlpool', desc: 'Neuer Raum: Whirlpool und Shisha', price: 1200, x: 0.8, y: 12.8 },
+  { id: 'gamerSound', name: 'Schallschutz', desc: 'Torgebrüll bleibt in der Lounge', price: 600, x: -1.4, y: 6.0 },
+  { id: 'shishaVent', name: 'Lüftung', desc: 'Rauch bleibt in der Lounge', price: 800, x: -1.4, y: 10.3 },
+  { id: 'roomVip', name: 'Gold-VIP-Lounge', desc: 'Neuer Raum: Gold-Döner für VIPs', price: 1800, x: 1.1, y: 13.2 },
+  { id: 'roomHall', name: 'Hochzeitssaal', desc: 'Neuer Raum: große Hochzeitsaufträge', price: 2200, x: 5.5, y: 13.2 },
+  { id: 'city', name: 'Neue Filiale', desc: '', price: 4200, x: 6.8, y: 12.2 },
 ];
 
 export const CITIES = [
@@ -202,6 +228,14 @@ export const MSG = {
   fryer: ['Fritteuse läuft!', 'Gäste bestellen jetzt auch Pommes'],
   chili: ['Chili-Cheese-Pommes', 'Jede Portion Pommes bringt 2 € mehr'],
   combo: ['Menü-Deal', 'Wer Döner und Pommes nimmt, zahlt 3 € Bonus'],
+  roomBarber: ['Barbershop eröffnet!', 'Frisch frisiert holen sich viele gleich einen Döner'],
+  barberGlass: ['Glaswand eingebaut', 'Keine Haare mehr im Döner'],
+  roomGamer: ['Zocker-Lounge eröffnet!', 'Bring den Zockern Döner an die Couch – sie zahlen extra'],
+  gamerSound: ['Schallschutz', 'Das Torgebrüll bleibt in der Lounge'],
+  roomShisha: ['Shisha-Whirlpool eröffnet!', 'Leg am Ofen Kohle nach, sonst kippt die Stimmung'],
+  shishaVent: ['Lüftung läuft', 'Der Rauch bleibt in der Lounge'],
+  roomVip: ['Gold-VIP-Lounge eröffnet!', 'Veredle Döner mit Blattgold – VIPs zahlen das Achtfache'],
+  roomHall: ['Hochzeitssaal eröffnet!', 'Bald kommt die erste Hochzeit – halte viele Döner bereit'],
 };
 
 export const SKINS = ['#f1c9a5', '#d9a47a', '#b97a52', '#8d5a3b', '#f5d6bc'];

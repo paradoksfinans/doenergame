@@ -17,6 +17,8 @@ import {
   TABLES,
   W,
   WALL,
+  BX0,
+  BD,
   cityOf,
   ctx,
   cv,
@@ -61,6 +63,7 @@ import { decoFloor, decoNeon } from './decor.js';
 import { PUMPKINS, drawLeaves, drawPumpkin, evtActive } from './festival.js';
 import { lastDt } from './loop.js';
 import { mechDrawables } from './citymech.js';
+import { ROOM_PILES, drawRoomFloors, drawRoomWallDecor, roomDrawables, roomOpen } from './rooms.js';
 
 export let vw = 0,
   vh = 0,
@@ -105,23 +108,24 @@ export function drawRoad() {
 
 export function drawWalls() {
   const CT = cityOf(G.city);
-  poly([P(0, 0), P(0, D), P(0, D, WALL), P(0, 0, WALL)], '#e2dbd0');
-  poly([P(0, 0), P(W, 0), P(W, 0, WALL), P(0, 0, WALL)], '#f3efe8');
+  // Außenwände des ganzen Gebäudes (Gastraum + Nebenräume links und vorne)
+  poly([P(BX0, 0), P(BX0, BD), P(BX0, BD, WALL), P(BX0, 0, WALL)], '#e2dbd0');
+  poly([P(BX0, 0), P(W, 0), P(W, 0, WALL), P(BX0, 0, WALL)], '#f3efe8');
   ctx.strokeStyle = 'rgba(60,40,50,.07)';
   ctx.lineWidth = 1;
   for (let z = 12; z < WALL; z += 12) {
     ctx.beginPath();
-    let a = P(0, 0, z),
+    let a = P(BX0, 0, z),
       b = P(W, 0, z);
     ctx.moveTo(a.x, a.y);
     ctx.lineTo(b.x, b.y);
-    a = P(0, D, z);
-    b = P(0, 0, z);
+    a = P(BX0, BD, z);
+    b = P(BX0, 0, z);
     ctx.moveTo(a.x, a.y);
     ctx.lineTo(b.x, b.y);
     ctx.stroke();
   }
-  for (let i = 0; i <= W * 2; i++) {
+  for (let i = BX0 * 2; i <= W * 2; i++) {
     const a = P(i / 2, 0),
       b = P(i / 2, 0, WALL);
     ctx.beginPath();
@@ -129,23 +133,32 @@ export function drawWalls() {
     ctx.lineTo(b.x, b.y);
     ctx.stroke();
   }
-  for (let i = 0; i <= D * 2; i++) {
-    const a = P(0, i / 2),
-      b = P(0, i / 2, WALL);
+  for (let i = 0; i <= BD * 2; i++) {
+    const a = P(BX0, i / 2),
+      b = P(BX0, i / 2, WALL);
     ctx.beginPath();
     ctx.moveTo(a.x, a.y);
     ctx.lineTo(b.x, b.y);
     ctx.stroke();
   }
   const NE = decoNeon(CT);
-  poly([P(0, 0, 38), P(W, 0, 38), P(W, 0, 48), P(0, 0, 48)], NE.s1);
-  poly([P(0, D, 38), P(0, 0, 38), P(0, 0, 48), P(0, D, 48)], NE.s2);
+  poly([P(BX0, 0, 38), P(W, 0, 38), P(W, 0, 48), P(BX0, 0, 48)], NE.s1);
+  poly([P(BX0, BD, 38), P(BX0, 0, 38), P(BX0, 0, 48), P(BX0, BD, 48)], NE.s2);
   poly(
-    [P(0, D, WALL), P(0, 0, WALL), P(W, 0, WALL), P(W, 0, WALL + 6), P(0, 0, WALL + 6), P(0, D, WALL + 6)],
+    [
+      P(BX0, BD, WALL),
+      P(BX0, 0, WALL),
+      P(W, 0, WALL),
+      P(W, 0, WALL + 6),
+      P(BX0, 0, WALL + 6),
+      P(BX0, BD, WALL + 6),
+    ],
     '#3d2f3f',
   );
+  drawRoomWallDecor();
   ctx.save();
-  let o = P(6.6, 0, WALL - 10);
+  // Schild über den Spießen, Menütafel rechts darüber (über Fritteuse/Drive-In)
+  let o = P(0.5, 0, WALL - 4);
   ctx.translate(o.x, o.y);
   ctx.transform(1, 0.5, 0, 1, 0, 0);
   rr(0, 0, 124, 40, 5, '#231a24');
@@ -162,10 +175,10 @@ export function drawWalls() {
   ctx.fillText(T(CT.name).toUpperCase(), 10, 30);
   ctx.restore();
   ctx.save();
-  o = P(0, 6.4, WALL - 8);
+  o = P(8.1, 0, WALL - 4);
   ctx.translate(o.x, o.y);
-  ctx.transform(1, -0.5, 0, 1, 0, 0);
-  rr(0, 0, 132, 70, 5, '#231a24');
+  ctx.transform(1, 0.5, 0, 1, 0, 0);
+  rr(0, 0, 116, 70, 5, '#231a24');
   ctx.textBaseline = 'middle';
   ctx.textAlign = 'left';
   ctx.fillStyle = '#f2b134';
@@ -173,31 +186,31 @@ export function drawWalls() {
   ctx.fillText(T('MENÜ'), 9, 12);
   ctx.fillStyle = '#fff6e8';
   ctx.font = '700 9.5px Figtree, system-ui, sans-serif';
-  ctx.fillText(T('Döner Kebap'), 9, 28, 72);
+  ctx.fillText(T('Döner Kebap'), 9, 28, 62);
   ctx.textAlign = 'right';
-  ctx.fillText(fmt(price(), 2) + ' €', 123, 28);
+  ctx.fillText(fmt(price(), 2) + ' €', 108, 28);
   ctx.textAlign = 'left';
   ctx.fillStyle = '#cdbfae';
   if (G.fryer.on) {
     ctx.fillStyle = '#fff6e8';
-    ctx.fillText(G.unlocked.has('chili') ? T('Chili-Cheese-Pommes') : T('Pommes'), 9, 40, 72);
+    ctx.fillText(G.unlocked.has('chili') ? T('Chili-Cheese-Pommes') : T('Pommes'), 9, 40, 62);
     ctx.textAlign = 'right';
-    ctx.fillText(fmt(friesPrice(), 2) + ' €', 123, 40);
+    ctx.fillText(fmt(friesPrice(), 2) + ' €', 108, 40);
     ctx.textAlign = 'left';
   }
   ctx.fillStyle = '#cdbfae';
   const ex = [G.unlocked.has('sauce') && T('Soße'), G.unlocked.has('ayran') && T('Ayran')].filter(Boolean);
   if (G.special.on) {
     ctx.fillStyle = '#fff6e8';
-    ctx.fillText(T(specOf().name), 9, 52, 72);
+    ctx.fillText(T(specOf().name), 9, 52, 62);
     ctx.textAlign = 'right';
-    ctx.fillText(fmt(specPrice(), 2) + ' €', 123, 52);
+    ctx.fillText(fmt(specPrice(), 2) + ' €', 108, 52);
     ctx.textAlign = 'left';
     ctx.fillStyle = '#cdbfae';
-  } else ctx.fillText(ex.length ? '+ ' + ex.join(' · ') : T('mit alles, scharf?'), 9, 52);
+  } else ctx.fillText(ex.length ? '+ ' + ex.join(' · ') : T('mit alles, scharf?'), 9, 52, 100);
   if (G.unlocked.has('combo')) {
     ctx.fillStyle = '#f2b134';
-    ctx.fillText(T('Menü-Deal: +3 € Bonus'), 9, 63);
+    ctx.fillText(T('Menü-Deal: +3 € Bonus'), 9, 63, 100);
   }
   ctx.restore();
 }
@@ -220,7 +233,7 @@ export function drawFloor() {
         }
       }
     }
-  poly([P(5.5, D - 0.7), P(7.4, D - 0.7), P(7.4, D), P(5.5, D)], '#5a3b33');
+  poly([P(9.1, D - 0.7), P(11.0, D - 0.7), P(11.0, D), P(9.1, D)], '#5a3b33');
   for (const s of G.spits)
     if (s.on)
       poly(
@@ -287,6 +300,7 @@ export function render() {
   drawRoad();
   drawWalls();
   drawFloor();
+  drawRoomFloors();
   for (const pad of pads) drawPadFloor(pad, t);
 
   const S = [];
@@ -367,6 +381,7 @@ export function render() {
   for (const k in PILES) {
     if (k === 'drive' && !G.unlocked.has('drivein')) continue;
     if (k === 'deliv' && !G.unlocked.has('delivery')) continue;
+    if (ROOM_PILES[k] && !roomOpen(k)) continue;
     const p = PILES[k];
     S.push({ d: p.x + p.y, f: () => drawPile(k) });
   }
@@ -441,6 +456,7 @@ export function render() {
     );
   if (G.crate) S.push({ d: G.crate.x + G.crate.y, f: () => drawCrate(G.crate, t) });
   mechDrawables(S, t);
+  roomDrawables(S, t);
   G.seats.forEach(s => {
     if (s.lv > G.tablesLv) return;
     if (!s.occ || s.occ.state !== 'sit' || gfxOn())
@@ -464,7 +480,7 @@ export function render() {
     const I = G.inspector;
     S.push({ d: I.x + I.y, f: () => drawPerson(I) });
   }
-  for (const ly of [0, 5, 10]) S.push({ d: 12.05 + ly, f: () => drawLamp(ly) });
+  for (const ly of [0, 5, 10, 15]) S.push({ d: 12.05 + ly, f: () => drawLamp(ly) });
   S.sort((a, b) => a.d - b.d);
   for (const s of S) s.f();
   drawNight();

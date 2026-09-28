@@ -34,6 +34,7 @@ import { M, addGems, applyOutfit } from './meta.js';
 import { lifeMax } from './achievements.js';
 import { burst } from './confetti.js';
 import { evtPoints } from './festival.js';
+import { walkable, roomObstacles } from './rooms.js';
 
 export function obstacles() {
   const o = [];
@@ -48,12 +49,13 @@ export function obstacles() {
   TABLES.forEach(t => {
     if (t.lv <= G.tablesLv) o.push({ x: t.x - 0.3, y: t.y - 0.3, w: 0.6, d: 0.6 });
   });
+  o.push(...roomObstacles());
   return o;
 }
 
 export function blocked(x, y, obs) {
   const r = 0.28;
-  if (x < 0.35 || y < 0.35 || x > W - 0.35 || y > D - 0.35) return true;
+  if (!walkable(x, y)) return true;
   for (const o of obs) if (x > o.x - r && x < o.x + o.w + r && y > o.y - r && y < o.y + o.d + r) return true;
   return false;
 }
@@ -153,6 +155,7 @@ export function give(c, t) {
 
 export function accepts(k, t) {
   if (!stationOn(k)) return false;
+  if (t === 'g') return false; // Gold-Döner nur für die VIP-Lounge
   if (t === 's') return k === 'counter' && G.special.on && G.stock.spec < SPEC_MAX;
   if (t === 'f') return k === 'counter' && G.fryer.on && G.stock.fries < FRIES_MAX;
   return G.stock[k] < ST[k].max;

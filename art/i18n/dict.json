@@ -2066,5 +2066,261 @@
  "▶ Video ansehen: verdoppeln": {
   "en": "▶ Watch a video: double it",
   "tr": "▶ Video izle: ikiye katla"
+ },
+ "Haare im Essen!": {
+  "en": "Hair in the food!",
+  "tr": "Yemekte saç var!"
+ },
+ "RAGE QUIT!": {
+  "en": "RAGE QUIT!",
+  "tr": "SİNİRLENDİ!"
+ },
+ "TOOOR!": {
+  "en": "GOOOAL!",
+  "tr": "GOOOL!"
+ },
+ "Zu laut!": {
+  "en": "Too loud!",
+  "tr": "Çok gürültülü!"
+ },
+ "Kohle nachgelegt": {
+  "en": "Coal refilled",
+  "tr": "Kömür eklendi"
+ },
+ "Kohle ist aus!": {
+  "en": "Out of coal!",
+  "tr": "Kömür bitti!"
+ },
+ "*hust*": {
+  "en": "*cough*",
+  "tr": "*öhö*"
+ },
+ "Influencerin im Anmarsch!": {
+  "en": "Influencer incoming!",
+  "tr": "Influencer geliyor!"
+ },
+ "Bring ihr einen Gold-Döner, bevor ihr Live-Stream endet": {
+  "en": "Bring her a gold döner before her live stream ends",
+  "tr": "Canlı yayını bitmeden ona altın döner getir"
+ },
+ "Blattgold!": {
+  "en": "Gold leaf!",
+  "tr": "Varak altın!"
+ },
+ "GOLD!": {
+  "en": "GOLD!",
+  "tr": "ALTIN!"
+ },
+ "Das Video geht viral!": {
+  "en": "The video goes viral!",
+  "tr": "Video viral oldu!"
+ },
+ "60 Sekunden lang strömen doppelt so viele Gäste herein": {
+  "en": "Twice as many guests pour in for 60 seconds",
+  "tr": "60 saniye boyunca iki kat müşteri akın ediyor"
+ },
+ "Schlechte Presse!": {
+  "en": "Bad press!",
+  "tr": "Kötü basın!"
+ },
+ "Die Influencerin ist ohne Gold-Döner gegangen": {
+  "en": "The influencer left without a gold döner",
+  "tr": "Influencer altın döner almadan gitti"
+ },
+ "Unerhört!": {
+  "en": "Outrageous!",
+  "tr": "Rezalet!"
+ },
+ "Hochzeit!": {
+  "en": "Wedding!",
+  "tr": "Düğün!"
+ },
+ "Bring {n} Döner ans Buffet im Hochzeitssaal": {
+  "en": "Bring {n} döner to the buffet in the wedding hall",
+  "tr": "Düğün salonundaki büfeye {n} döner getir"
+ },
+ "Hochzeit gerettet!": {
+  "en": "Wedding saved!",
+  "tr": "Düğün kurtarıldı!"
+ },
+ "+{a} € und 1 Goldmünze – das Brautpaar tanzt": {
+  "en": "+{a} € and 1 gold coin – the couple is dancing",
+  "tr": "+{a} € ve 1 altın – gelin ve damat dans ediyor"
+ },
+ "Die Gäste sind hungrig gegangen": {
+  "en": "The guests left hungry",
+  "tr": "Misafirler aç gitti"
+ },
+ "Nächstes Mal mehr Döner vorbereiten": {
+  "en": "Prepare more döner next time",
+  "tr": "Bir dahaki sefere daha çok döner hazırla"
+ },
+ "Hochzeit {h}/{n} · {s} s": {
+  "en": "Wedding {h}/{n} · {s} s",
+  "tr": "Düğün {h}/{n} · {s} sn"
+ },
+ "Influencerin wartet · {s} s": {
+  "en": "Influencer waiting · {s} s",
+  "tr": "Influencer bekliyor · {s} sn"
+ },
+ "Shisha: Kohle nachlegen!": {
+  "en": "Shisha: add coal!",
+  "tr": "Nargile: kömür ekle!"
+ },
+ "Zocker wollen Döner: {n}": {
+  "en": "Gamers want döner: {n}",
+  "tr": "Oyuncular döner istiyor: {n}"
+ },
+ "VIP wartet auf Gold-Döner": {
+  "en": "VIP waiting for gold döner",
+  "tr": "VIP altın döner bekliyor"
+ },
+ "Viral! {s} s": {
+  "en": "Viral! {s} s",
+  "tr": "Viral! {s} sn"
+ },
+ "Jetzt freischaltbar": {
+  "en": "Ready to unlock",
+  "tr": "Şimdi açılabilir"
+ },
+ "Ab Level {l}": {
+  "en": "From level {l}",
+  "tr": "Seviye {l} itibarıyla"
+ },
+ "KOHLE": {
+  "en": "COAL",
+  "tr": "KÖMÜR"
+ },
+ "BLATTGOLD": {
+  "en": "GOLD LEAF",
+  "tr": "VARAK ALTIN"
+ },
+ "BUFFET": {
+  "en": "BUFFET",
+  "tr": "BÜFE"
+ },
+ "Barbershop": {
+  "en": "Barbershop",
+  "tr": "Berber"
+ },
+ "Neuer Raum: Haarschnitt, danach Döner": {
+  "en": "New room: haircut, then döner",
+  "tr": "Yeni oda: önce tıraş, sonra döner"
+ },
+ "Zocker-Lounge": {
+  "en": "Gaming Lounge",
+  "tr": "Oyun Salonu"
+ },
+ "Neuer Raum: Döner an die Couch": {
+  "en": "New room: döner delivered to the couch",
+  "tr": "Yeni oda: koltuğa döner servisi"
+ },
+ "Glaswand": {
+  "en": "Glass wall",
+  "tr": "Cam bölme"
+ },
+ "Keine Haare mehr im Essen": {
+  "en": "No more hair in the food",
+  "tr": "Yemekte artık saç yok"
+ },
+ "Shisha-Whirlpool": {
+  "en": "Shisha Whirlpool",
+  "tr": "Nargile Jakuzi"
+ },
+ "Neuer Raum: Whirlpool und Shisha": {
+  "en": "New room: whirlpool and shisha",
+  "tr": "Yeni oda: jakuzi ve nargile"
+ },
+ "Schallschutz": {
+  "en": "Soundproofing",
+  "tr": "Ses yalıtımı"
+ },
+ "Torgebrüll bleibt in der Lounge": {
+  "en": "Goal screams stay in the lounge",
+  "tr": "Gol çığlıkları salonda kalır"
+ },
+ "Lüftung": {
+  "en": "Ventilation",
+  "tr": "Havalandırma"
+ },
+ "Rauch bleibt in der Lounge": {
+  "en": "Smoke stays in the lounge",
+  "tr": "Duman salonda kalır"
+ },
+ "Gold-VIP-Lounge": {
+  "en": "Gold VIP Lounge",
+  "tr": "Altın VIP Salonu"
+ },
+ "Neuer Raum: Gold-Döner für VIPs": {
+  "en": "New room: gold döner for VIPs",
+  "tr": "Yeni oda: VIP'lere altın döner"
+ },
+ "Hochzeitssaal": {
+  "en": "Wedding Hall",
+  "tr": "Düğün Salonu"
+ },
+ "Neuer Raum: große Hochzeitsaufträge": {
+  "en": "New room: big wedding orders",
+  "tr": "Yeni oda: büyük düğün siparişleri"
+ },
+ "Barbershop eröffnet!": {
+  "en": "Barbershop open!",
+  "tr": "Berber açıldı!"
+ },
+ "Frisch frisiert holen sich viele gleich einen Döner": {
+  "en": "Fresh from the chair, many grab a döner right away",
+  "tr": "Tıraştan çıkan çoğu hemen bir döner alıyor"
+ },
+ "Glaswand eingebaut": {
+  "en": "Glass wall installed",
+  "tr": "Cam bölme takıldı"
+ },
+ "Keine Haare mehr im Döner": {
+  "en": "No more hair in the döner",
+  "tr": "Dönerde artık saç yok"
+ },
+ "Zocker-Lounge eröffnet!": {
+  "en": "Gaming Lounge open!",
+  "tr": "Oyun Salonu açıldı!"
+ },
+ "Bring den Zockern Döner an die Couch – sie zahlen extra": {
+  "en": "Bring döner to the gamers on the couch – they pay extra",
+  "tr": "Oyunculara koltukta döner getir – fazladan öderler"
+ },
+ "Das Torgebrüll bleibt in der Lounge": {
+  "en": "The goal screams stay in the lounge",
+  "tr": "Gol çığlıkları salonda kalıyor"
+ },
+ "Shisha-Whirlpool eröffnet!": {
+  "en": "Shisha Whirlpool open!",
+  "tr": "Nargile Jakuzi açıldı!"
+ },
+ "Leg am Ofen Kohle nach, sonst kippt die Stimmung": {
+  "en": "Add coal at the stove or the mood turns sour",
+  "tr": "Ocağa kömür ekle, yoksa keyifler kaçar"
+ },
+ "Lüftung läuft": {
+  "en": "Ventilation running",
+  "tr": "Havalandırma çalışıyor"
+ },
+ "Der Rauch bleibt in der Lounge": {
+  "en": "The smoke stays in the lounge",
+  "tr": "Duman salonda kalıyor"
+ },
+ "Gold-VIP-Lounge eröffnet!": {
+  "en": "Gold VIP Lounge open!",
+  "tr": "Altın VIP Salonu açıldı!"
+ },
+ "Veredle Döner mit Blattgold – VIPs zahlen das Achtfache": {
+  "en": "Cover döner in gold leaf – VIPs pay eight times as much",
+  "tr": "Dönere varak altın kapla – VIP'ler sekiz katını öder"
+ },
+ "Hochzeitssaal eröffnet!": {
+  "en": "Wedding Hall open!",
+  "tr": "Düğün Salonu açıldı!"
+ },
+ "Bald kommt die erste Hochzeit – halte viele Döner bereit": {
+  "en": "The first wedding is coming soon – have plenty of döner ready",
+  "tr": "İlk düğün yakında – bol döner hazır tut"
  }
 }

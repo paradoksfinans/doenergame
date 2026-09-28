@@ -32,7 +32,7 @@ export function fresh(city = 0) {
     eventT: 90,
     inspector: null,
     money: 0,
-    piles: { reg: { amount: 0, count: 0 }, drive: { amount: 0, count: 0 }, deliv: { amount: 0, count: 0 } },
+    piles: Object.fromEntries(['reg', 'drive', 'deliv', 'barber', 'gamer', 'shisha', 'vip', 'hall'].map(k => [k, { amount: 0, count: 0 }])),
     unlocked: new Set(),
     paid: {},
     stock: { counter: 3, drive: 0, deliv: 0, fries: 0, spec: 0 },

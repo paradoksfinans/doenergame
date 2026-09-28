@@ -138,9 +138,9 @@ export function drawPumpkin(x, y) {
 export const PUMPKINS = [
   [0.5, 4.0],
   [11.5, 4.2],
-  [11.5, 9.5],
-  [0.5, 9.6],
-  [7.7, 9.6],
+  [11.5, 13.3],
+  [2.6, 13.5],
+  [7.9, 13.4],
 ];
 
 export function v12Hud() {

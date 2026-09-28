@@ -41,6 +41,14 @@ export const PAD_LEVEL = {
   spitSpeed: 9,
   golden: 10,
   city: 10,
+  roomBarber: 3,
+  roomGamer: 4,
+  barberGlass: 5,
+  roomShisha: 6,
+  gamerSound: 6,
+  shishaVent: 7,
+  roomVip: 8,
+  roomHall: 9,
 };
 export const padLevel = id => PAD_LEVEL[id] || 1;
 

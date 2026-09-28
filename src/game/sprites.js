@@ -30,6 +30,17 @@ export function drawDoner(x, y) {
   ctx.fillRect(x - 8, y + 2, 16, 1.5);
 }
 
+/** Gold-Döner (mit Blattgold veredelt, für die VIP-Lounge). */
+export function drawGold(x, y) {
+  drawDoner(x, y);
+  ctx.fillStyle = 'rgba(242,199,90,.8)';
+  rr(x - 7, y - 6, 14, 5, 2.5);
+  ctx.fill();
+  ctx.fillStyle = '#fff2b0';
+  ctx.fillRect(x - 3, y - 5, 2, 1);
+  ctx.fillRect(x + 2, y - 4, 1.5, 1);
+}
+
 export function drawFries(x, y) {
   ctx.fillStyle = '#f2c94c';
   for (let i = -2; i <= 2; i++) ctx.fillRect(x + i * 2.3 - 1, y - 11 + Math.abs(i) * 1.2, 2, 8);
@@ -154,6 +165,7 @@ export function drawItem(t, x, y) {
   }
   if (t === 'f') drawFries(x, y);
   else if (t === 't') drawTrash(x, y);
+  else if (t === 'g') drawGold(x, y);
   else drawDoner(x, y);
 }
 

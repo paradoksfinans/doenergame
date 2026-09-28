@@ -74,6 +74,10 @@ Figuren und Autos sind **einfärbbar**: `render2.py` rendert sie einmal in Hellg
 
 Ab Level 2 hat jede Stadt eine eigene Mechanik (`src/game/citymech.js`): Berlin – Partygruppen am Abend/in der Nacht, Hamburg – Hafen-Order (Döner zur Hafenkiste bringen), München – Wiesn-Zeit, Köln – Alaaf-Kette (schnell hintereinander bedienen), Istanbul – Bosporus-Fähre mit Touristengruppen. Über die Karte kann man zwischen eigenen Filialen hin- und herreisen.
 
+## Nebenräume (v0.19)
+
+Der Gastraum ist größer (12 × 14 Felder), links und vorne liegen Nebenräume hinter Türen (`src/game/rooms.js`): Barbershop (Level 3), Zocker-Lounge (4), Shisha-Whirlpool (6), Gold-VIP-Lounge (8), Hochzeitssaal (9). Jeder Raum hat eine eigene Kasse, eigene Gäste und eine Nebenwirkung, die ein Ausbau abstellt: Glaswand (Haare im Essen), Schallschutz (Torgebrüll), Lüftung (Rauch). Geplant: Katzen-Lounge, Scharf-Challenge, Livestream-Studio in allen Städten, dazu Stadt-Räume und Ereignisse.
+
 ## Sprachen
 
 Deutsch, Englisch, Türkisch (`src/game/i18n.js`, Wörterbuch `src/game/i18n-dict.js`). Im Code stehen die Texte auf Deutsch in `t('…')`; der deutsche Text ist der Schlüssel. Statische Texte in `index.html` tragen `data-i18n`. Beim ersten Start wird die Handysprache genommen, umschalten unter Upgrades → „Sprache“ (lädt das Spiel neu, Spielstand bleibt).

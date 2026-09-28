@@ -75,6 +75,7 @@ import { criticServed, newDayWeather, rainy, updateEvents } from './events.js';
 import { v9Update } from './cutting.js';
 import { evtPoints } from './festival.js';
 import { mechDecorate, mechSale, mechSpawnMul, mechTick } from './citymech.js';
+import { roomsTick, roomSpawnMul } from './rooms.js';
 import { t as T, fmt } from './i18n.js';
 
 let sizT = 0;
@@ -375,6 +376,7 @@ export function update(dt) {
         phaseNow().mul /
         (rainy() ? 0.7 : 1)) *
       mechSpawnMul() *
+      roomSpawnMul() *
       (0.7 + Math.random() * 0.6);
     if (G.queue.length < QSLOTS.length) {
       const vip = G.unlocked.has('tables2') && Math.random() < 0.12;
@@ -535,6 +537,7 @@ export function update(dt) {
   }
 
   mechTick(dt);
+  roomsTick(dt);
 
   // rating drift
   const tgt = 4 + (G.unlocked.has('deco') ? 0.6 : 0) - (relax() ? 0 : 0.25 * dirtyCount());
