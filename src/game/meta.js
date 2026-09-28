@@ -10,6 +10,7 @@ import { renderPets } from './cutting.js';
 import { renderDeco } from './decor.js';
 import { t, fmt, nextLang, langName } from './i18n.js';
 import { save } from './save.js';
+import { renderIap } from './iap.js';
 
 export let $shop, $shopList, $daily, $wheel, wc, wx;
 
@@ -63,6 +64,16 @@ export const OUTFITS = [
     extra: 'mit Glitzer',
   },
   {
+    id: 'sultan',
+    name: 'Sultan',
+    price: null,
+    shirt: '#8a1f2e',
+    hat: 'fez',
+    iap: true,
+    sparkle: true,
+    extra: '– im Starter-Paket',
+  },
+  {
     id: 'kuerbis',
     name: 'Kürbis-Chef',
     price: null,
@@ -83,6 +94,7 @@ export function applyOutfit() {
   p.bandana = o.hat === 'bandana';
   p.crown = o.hat === 'crown';
   p.pumpkin = o.hat === 'pumpkin';
+  p.fez = o.hat === 'fez';
   p.trail = !!o.trail;
   p.sparkle = !!o.sparkle;
 }
@@ -114,6 +126,7 @@ export function closeSheets() {
 export function renderShop() {
   $shopList.innerHTML = '';
   renderPets();
+  renderIap();
   if (typeof renderDeco === 'function') renderDeco();
   for (const o of OUTFITS) {
     const row = document.createElement('div');
@@ -125,7 +138,8 @@ export function renderShop() {
     sw.style.background = o.shirt;
     const cap = document.createElement('span');
     cap.className = 'swcap';
-    cap.style.background = o.hat === 'toque' ? '#ffffff' : o.hat === 'crown' ? '#f2c75a' : o.capCol;
+    cap.style.background =
+      o.hat === 'toque' ? '#ffffff' : o.hat === 'crown' ? '#f2c75a' : o.hat === 'fez' ? '#b3212e' : o.capCol;
     sw.append(cap);
     n.append(sw, document.createTextNode(t(o.name)));
     const d = document.createElement('div');
@@ -139,13 +153,22 @@ export function renderShop() {
             ? 'Kopftuch'
             : o.hat === 'crown'
               ? 'Goldene Krone'
-              : 'Kappe',
+              : o.hat === 'fez'
+                ? 'Roter Fes'
+                : 'Kappe',
     );
     if (o.extra) d.textContent += ' ' + t(o.extra);
     const b = document.createElement('button');
     b.type = 'button';
     b.id = 'outfit-' + o.id;
     const own = M.owned.includes(o.id);
+    if (o.iap && !own) {
+      b.textContent = t('Starter-Paket');
+      b.disabled = true;
+      row.append(n, b, d);
+      $shopList.append(row);
+      continue;
+    }
     if (o.event && !own) {
       b.textContent = t('Herbstfest');
       b.disabled = true;

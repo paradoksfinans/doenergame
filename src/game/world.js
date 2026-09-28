@@ -28,6 +28,7 @@ import { chord, sfx } from './audio.js';
 import { ratePerMin } from './update.js';
 import { cam } from './render.js';
 import { capFix, presIncomeMul, addRunEarn } from './prestige.js';
+import { incomeIapMul } from './iap.js';
 import { __set_bestRate, bestRate, lastRate, showBanner } from './hud.js';
 import { applyCity, citySnap, fullCity, save } from './save.js';
 import { t, fmt } from './i18n.js';
@@ -399,7 +400,7 @@ export function sale(pileKey, amt, wx, wy, label) {
   if (G.boost.cash > 0) amt *= 2;
   if (M.pet === 'parrot') amt = Math.round(amt * 1.05);
   if (G.rush > 0) amt = Math.round(amt * 1.5);
-  amt = Math.round(amt * presIncomeMul());
+  amt = Math.round(amt * presIncomeMul() * incomeIapMul());
   addRunEarn(amt);
   const pile = G.piles[pileKey];
   pile.amount += amt;

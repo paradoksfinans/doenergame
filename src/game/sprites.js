@@ -387,6 +387,26 @@ export function drawHats(c, p, b, sy) {
     ctx.lineWidth = 1;
     ctx.stroke();
   }
+  if (c.fez) {
+    // Fes (Starter-Paket „Sultan“)
+    const fy = p.y - 47 - b + sy;
+    ctx.fillStyle = '#b3212e';
+    ctx.beginPath();
+    ctx.moveTo(p.x - 7, fy + 3);
+    ctx.lineTo(p.x + 7, fy + 3);
+    ctx.lineTo(p.x + 5.5, fy - 8);
+    ctx.lineTo(p.x - 5.5, fy - 8);
+    ctx.closePath();
+    ctx.fill();
+    ell(p.x, fy - 8, 5.5, 1.8, '#8f1a24');
+    ctx.strokeStyle = '#231a24';
+    ctx.lineWidth = 1.2;
+    ctx.beginPath();
+    ctx.moveTo(p.x, fy - 8);
+    ctx.quadraticCurveTo(p.x + 7, fy - 7, p.x + 6, fy + 1);
+    ctx.stroke();
+    ell(p.x + 6, fy + 2, 1.6, 2.4, '#231a24');
+  }
   if (c.pumpkin) {
     const hy = p.y - 49 - b + sy;
     ell(p.x - 5, hy, 5.5, 5, '#c9531f');

@@ -11,7 +11,8 @@ const TESTING = true;
 // Googles öffentliche Test-ID für Belohnungs-Videos (Android)
 const AD_UNIT = 'ca-app-pub-3940256099942544/5224354917';
 
-const native = () => !!(window.Capacitor && window.Capacitor.isNativePlatform && window.Capacitor.isNativePlatform());
+const native = () =>
+  !!(window.Capacitor && window.Capacitor.isNativePlatform && window.Capacitor.isNativePlatform());
 let admob = null,
   ready = false,
   loading = null;
@@ -44,6 +45,8 @@ function preload() {
 /** Zeigt ein Belohnungs-Video. Ergebnis: true = bis zum Ende angesehen (Belohnung geben). */
 export async function showRewarded() {
   audioInit();
+  // Werbefrei gekauft: Belohnung sofort, ohne Video
+  if (M.iap && M.iap.werbefrei) return true;
   if (!native()) return simulated();
   try {
     await preload();

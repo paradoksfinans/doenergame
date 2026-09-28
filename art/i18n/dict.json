@@ -3326,5 +3326,201 @@
  "Beim Übergeben startest du wieder in Berlin. Du behältst Goldmünzen, Haustiere, Erfolge, Shop-Käufe und alle Goldenen Spieße. Jeder Goldene Spieß bringt dauerhaft +2 % auf alle Einnahmen.": {
   "en": "When you hand over, you start again in Berlin. You keep gold coins, pets, achievements, shop purchases and all golden spits. Every golden spit permanently adds +2% to all earnings.",
   "tr": "Devrettiğinde Berlin'de yeniden başlarsın. Altınlar, evcil hayvanlar, başarılar, mağaza alımları ve tüm altın şişler sende kalır. Her altın şiş tüm kazancı kalıcı olarak +%2 artırır."
+ },
+ "Danke für deinen Kauf!": {
+  "en": "Thanks for your purchase!",
+  "tr": "Satın aldığın için teşekkürler!"
+ },
+ "{n} ist freigeschaltet": {
+  "en": "{n} is unlocked",
+  "tr": "{n} açıldı"
+ },
+ "Käufe wiederhergestellt": {
+  "en": "Purchases restored",
+  "tr": "Satın almalar geri yüklendi"
+ },
+ "{n} Kauf/Käufe gutgeschrieben": {
+  "en": "{n} purchase(s) credited",
+  "tr": "{n} satın alma eklendi"
+ },
+ "Nichts wiederherzustellen": {
+  "en": "Nothing to restore",
+  "tr": "Geri yüklenecek bir şey yok"
+ },
+ "Es gibt keine offenen Käufe": {
+  "en": "There are no open purchases",
+  "tr": "Açık satın alma yok"
+ },
+ "Wiederherstellen fehlgeschlagen": {
+  "en": "Restore failed",
+  "tr": "Geri yükleme başarısız"
+ },
+ "Bitte später erneut versuchen": {
+  "en": "Please try again later",
+  "tr": "Lütfen daha sonra tekrar dene"
+ },
+ "Kauf wird bearbeitet": {
+  "en": "Purchase is being processed",
+  "tr": "Satın alma işleniyor"
+ },
+ "Sobald Google Play ihn bestätigt, bekommst du die Belohnung": {
+  "en": "You'll get the reward as soon as Google Play confirms it",
+  "tr": "Google Play onaylayınca ödülünü alacaksın"
+ },
+ "Testkauf – kein echtes Geld": {
+  "en": "Test purchase – no real money",
+  "tr": "Test satın alma – gerçek para yok"
+ },
+ "Kaufen (Test)": {
+  "en": "Buy (test)",
+  "tr": "Satın al (test)"
+ },
+ "Kauf nicht möglich": {
+  "en": "Purchase not possible",
+  "tr": "Satın alma mümkün değil"
+ },
+ "Google Play hat den Kauf nicht abgeschlossen": {
+  "en": "Google Play did not complete the purchase",
+  "tr": "Google Play satın almayı tamamlamadı"
+ },
+ "Gekauft": {
+  "en": "Owned",
+  "tr": "Satın alındı"
+ },
+ "Käufe wiederherstellen": {
+  "en": "Restore purchases",
+  "tr": "Satın almaları geri yükle"
+ },
+ "Nur in der App": {
+  "en": "Only in the app",
+  "tr": "Sadece uygulamada"
+ },
+ "Im Browser gibt es nur Testkäufe": {
+  "en": "The browser only has test purchases",
+  "tr": "Tarayıcıda sadece test satın alma var"
+ },
+ "+{a} € sofort (10 Min Umsatz)": {
+  "en": "+{a} € now (10 min of earnings)",
+  "tr": "+{a} € hemen (10 dk kazanç)"
+ },
+ "+{a} € sofort (1 Std Umsatz)": {
+  "en": "+{a} € now (1 hour of earnings)",
+  "tr": "+{a} € hemen (1 saat kazanç)"
+ },
+ "30 Minuten doppelte Einnahmen": {
+  "en": "Double earnings for 30 minutes",
+  "tr": "30 dakika iki kat kazanç"
+ },
+ "10 Minuten 50 % schneller laufen": {
+  "en": "Walk 50% faster for 10 minutes",
+  "tr": "10 dakika %50 daha hızlı yürü"
+ },
+ "Roter Fes": {
+  "en": "Red fez",
+  "tr": "Kırmızı fes"
+ },
+ "Starter-Paket": {
+  "en": "Starter pack",
+  "tr": "Başlangıç paketi"
+ },
+ "60 Münzen, Outfit „Sultan“ und 30 Min 2× Umsatz": {
+  "en": "60 coins, “Sultan” outfit and 30 min of 2× earnings",
+  "tr": "60 altın, „Sultan“ kıyafeti ve 30 dk 2× kazanç"
+ },
+ "Einmalig": {
+  "en": "One-time",
+  "tr": "Tek seferlik"
+ },
+ "Handvoll Münzen": {
+  "en": "Handful of coins",
+  "tr": "Bir avuç altın"
+ },
+ "30 Goldmünzen": {
+  "en": "30 gold coins",
+  "tr": "30 altın"
+ },
+ "Beutel Münzen": {
+  "en": "Bag of coins",
+  "tr": "Kese altın"
+ },
+ "100 Goldmünzen": {
+  "en": "100 gold coins",
+  "tr": "100 altın"
+ },
+ "Beliebt": {
+  "en": "Popular",
+  "tr": "Popüler"
+ },
+ "Truhe Münzen": {
+  "en": "Chest of coins",
+  "tr": "Sandık altın"
+ },
+ "250 Goldmünzen": {
+  "en": "250 gold coins",
+  "tr": "250 altın"
+ },
+ "Münzschatz": {
+  "en": "Coin treasure",
+  "tr": "Altın hazinesi"
+ },
+ "600 Goldmünzen": {
+  "en": "600 gold coins",
+  "tr": "600 altın"
+ },
+ "Bester Wert": {
+  "en": "Best value",
+  "tr": "En avantajlı"
+ },
+ "Werbefrei": {
+  "en": "Ad-free",
+  "tr": "Reklamsız"
+ },
+ "Alle Video-Belohnungen sofort – ohne Werbung": {
+  "en": "All video rewards instantly – no ads",
+  "tr": "Tüm video ödülleri anında – reklamsız"
+ },
+ "Doppelter Umsatz": {
+  "en": "Double earnings",
+  "tr": "İki kat kazanç"
+ },
+ "Für immer ×2 auf alle Einnahmen": {
+  "en": "×2 on all earnings forever",
+  "tr": "Tüm kazançta sonsuza kadar ×2"
+ },
+ "5 Goldene Spieße": {
+  "en": "5 golden spits",
+  "tr": "5 altın şiş"
+ },
+ "Für den Prestige-Baum": {
+  "en": "For the prestige tree",
+  "tr": "Prestij ağacı için"
+ },
+ "Geldsack": {
+  "en": "Money bag",
+  "tr": "Para kesesi"
+ },
+ "Geldtruhe": {
+  "en": "Money chest",
+  "tr": "Para sandığı"
+ },
+ "Sultan": {
+  "en": "Sultan",
+  "tr": "Sultan"
+ },
+ "– im Starter-Paket": {
+  "en": "– in the starter pack",
+  "tr": "– başlangıç paketinde"
+ },
+ "Münzen & Pakete": {
+  "en": "Coins & packs",
+  "tr": "Altınlar ve paketler"
+ },
+ "Münzen einsetzen": {
+  "en": "Spend coins",
+  "tr": "Altın harca"
+ },
+ "Goldmünzen gibt es für Aufgaben, Tagesbonus, Glücksrad, Erfolge und Bonus-Kisten – oder hier im Shop.": {
+  "en": "You get gold coins from tasks, daily bonus, lucky wheel, achievements and bonus crates – or here in the shop.",
+  "tr": "Altınları görevlerden, günlük bonustan, çarktan, başarılardan ve bonus sandıklardan – ya da burada mağazadan alırsın."
  }
 }

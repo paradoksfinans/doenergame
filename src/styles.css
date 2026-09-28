@@ -648,6 +648,41 @@ body {
   background: #a8452a;
   border-color: #e0742a;
 }
+.iaptag {
+  margin-left: 8px;
+  padding: 1px 7px;
+  border-radius: 8px;
+  background: #d8342b;
+  color: #fff;
+  font:
+    400 9px Bungee,
+    Impact,
+    sans-serif;
+  vertical-align: middle;
+}
+.up.iaphot {
+  outline: 2px solid #f2c75a;
+  outline-offset: -2px;
+  border-radius: 10px;
+}
+.linkbtn {
+  display: block;
+  margin: 6px auto 4px;
+  background: none;
+  border: 0;
+  color: #cdbfae;
+  text-decoration: underline;
+  font:
+    700 12px Figtree,
+    system-ui,
+    sans-serif;
+  cursor: pointer;
+}
+.adbox .no {
+  margin-top: 6px;
+  background: transparent;
+  color: #cdbfae;
+}
 .presbtn {
   pointer-events: auto;
   cursor: pointer;
@@ -664,7 +699,10 @@ body {
 }
 .presbr {
   margin: 14px 0 4px;
-  font: 400 13px Bungee, Impact, sans-serif;
+  font:
+    400 13px Bungee,
+    Impact,
+    sans-serif;
   color: #f2b134;
 }
 .presnote {
@@ -1004,24 +1042,125 @@ body {
   }
 }
 
-.chip.mech{background:#2f5f93;border-color:#7fb4f0;color:#fff}
-.bigbtn.travel{background:#2f5f93;color:#fff;border-color:#7fb4f0;margin-bottom:8px}
-#mapSvg .city{cursor:pointer}
+.chip.mech {
+  background: #2f5f93;
+  border-color: #7fb4f0;
+  color: #fff;
+}
+.bigbtn.travel {
+  background: #2f5f93;
+  color: #fff;
+  border-color: #7fb4f0;
+  margin-bottom: 8px;
+}
+#mapSvg .city {
+  cursor: pointer;
+}
 
 /* Belohnungs-Videos */
-.vidchip{pointer-events:auto;cursor:pointer;color:#fff;background:#6b3fa0;border-color:#b48cff;font:800 12px Figtree,system-ui,sans-serif;animation:1.6s ease-in-out infinite pulse}
-.vidchip:focus-visible{outline:2px solid var(--mustard);outline-offset:2px}
-.bigbtn.adbtn{background:#6b3fa0;border-color:#4a2a70;color:#fff;margin-top:8px}
-.bigbtn.ghost{background:var(--panel);color:var(--ink);border-color:var(--line);margin-top:8px}
-.offamt{text-align:center;color:var(--mustard);font:400 34px Bungee,Impact,sans-serif;margin:6px 0 10px}
-.adsim{position:fixed;inset:0;z-index:50;background:rgba(10,6,12,.92);display:grid;place-items:center}
-.adbox{width:min(320px,86vw);background:#2c212e;border:2px solid var(--line);border-radius:18px;padding:22px;display:flex;flex-direction:column;gap:12px;align-items:center;text-align:center}
-.adbox small{color:var(--muted);font-weight:800;letter-spacing:.08em;text-transform:uppercase}
-.adbox b{color:var(--mustard);font:400 26px Bungee,Impact,sans-serif}
-.adbox .adt{font-weight:800}
-.adbox button{border:2px solid var(--line);background:var(--panel);color:var(--ink);border-radius:10px;padding:8px 16px;font:800 14px Figtree,system-ui,sans-serif;cursor:pointer}
-.adtoast{position:fixed;left:50%;bottom:calc(env(safe-area-inset-bottom,0px) + 90px);transform:translateX(-50%);z-index:60;background:var(--panel);border:2px solid var(--line);border-radius:12px;padding:8px 14px;font-weight:800;max-width:calc(100% - 32px)}
-@media (prefers-reduced-motion:reduce){.vidchip{animation:none}}
+.vidchip {
+  pointer-events: auto;
+  cursor: pointer;
+  color: #fff;
+  background: #6b3fa0;
+  border-color: #b48cff;
+  font:
+    800 12px Figtree,
+    system-ui,
+    sans-serif;
+  animation: 1.6s ease-in-out infinite pulse;
+}
+.vidchip:focus-visible {
+  outline: 2px solid var(--mustard);
+  outline-offset: 2px;
+}
+.bigbtn.adbtn {
+  background: #6b3fa0;
+  border-color: #4a2a70;
+  color: #fff;
+  margin-top: 8px;
+}
+.bigbtn.ghost {
+  background: var(--panel);
+  color: var(--ink);
+  border-color: var(--line);
+  margin-top: 8px;
+}
+.offamt {
+  text-align: center;
+  color: var(--mustard);
+  font:
+    400 34px Bungee,
+    Impact,
+    sans-serif;
+  margin: 6px 0 10px;
+}
+.adsim {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  background: rgba(10, 6, 12, 0.92);
+  display: grid;
+  place-items: center;
+}
+.adbox {
+  width: min(320px, 86vw);
+  background: #2c212e;
+  border: 2px solid var(--line);
+  border-radius: 18px;
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: center;
+  text-align: center;
+}
+.adbox small {
+  color: var(--muted);
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.adbox b {
+  color: var(--mustard);
+  font:
+    400 26px Bungee,
+    Impact,
+    sans-serif;
+}
+.adbox .adt {
+  font-weight: 800;
+}
+.adbox button {
+  border: 2px solid var(--line);
+  background: var(--panel);
+  color: var(--ink);
+  border-radius: 10px;
+  padding: 8px 16px;
+  font:
+    800 14px Figtree,
+    system-ui,
+    sans-serif;
+  cursor: pointer;
+}
+.adtoast {
+  position: fixed;
+  left: 50%;
+  bottom: calc(env(safe-area-inset-bottom, 0px) + 90px);
+  transform: translateX(-50%);
+  z-index: 60;
+  background: var(--panel);
+  border: 2px solid var(--line);
+  border-radius: 12px;
+  padding: 8px 14px;
+  font-weight: 800;
+  max-width: calc(100% - 32px);
+}
+@media (prefers-reduced-motion: reduce) {
+  .vidchip {
+    animation: none;
+  }
+}
 
 /* Bungee hat kein „ı“: auf Türkisch in Großbuchstaben nach türkischen Regeln (ı→I, i→İ) */
 :lang(tr) .adbox b,
@@ -1034,6 +1173,12 @@ body {
 :lang(tr) .offamt,
 :lang(tr) .rush,
 :lang(tr) .sh,
-:lang(tr) .sheet h2{text-transform:uppercase}
-:lang(tr) .banner small{text-transform:none}
-:lang(tr) #mapSvg text{text-transform:uppercase}
+:lang(tr) .sheet h2 {
+  text-transform: uppercase;
+}
+:lang(tr) .banner small {
+  text-transform: none;
+}
+:lang(tr) #mapSvg text {
+  text-transform: uppercase;
+}
