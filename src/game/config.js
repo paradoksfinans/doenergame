@@ -10,9 +10,176 @@ export const TW = 64,
   D = 16, // Gastraum ist tiefer (vorher 10) – Platz für Tische und die neuen Räume
   WALL = 128;
 
-// Ganzes Gebäude: Nebenräume links (x < 0) und vorne (y > D)
+// Ganzes Gebäude: Nebenräume links (x < 0) und vorne (y > D). Hinter VIP-Lounge und Hochzeitssaal
+// (bis FY) führt ein Flur (x FL0…FL1) nach vorne zum Anbau mit drei Reihen weiterer Räume (bis BD).
 export const BX0 = -9,
-  BD = 24;
+  FY = 24,
+  BD = 46.5,
+  FL0 = 1.8,
+  FL1 = 3.6,
+  FLX = 2.7;
+
+// Anbau: sechs Plätze (links/rechts vom Flur, je 7,5 tief). Tür immer zum Flur.
+export const WING_SLOTS = {
+  w1: { side: -1, y0: FY },
+  w2: { side: 1, y0: FY },
+  w3: { side: -1, y0: FY + 7.5 },
+  w4: { side: 1, y0: FY + 7.5 },
+  w5: { side: -1, y0: FY + 15 },
+  w6: { side: 1, y0: FY + 15 },
+};
+// Räume im Anbau. cities: nur in diesen Städten (Index % 5), sonst überall.
+export const WING_DEF = [
+  {
+    id: 'cat',
+    slot: 'w1',
+    lv: 5,
+    price: 1100,
+    name: 'Katzen-Lounge',
+    desc: 'Neuer Raum: Katzen streicheln',
+    fix: { id: 'catFlap', lv: 6, price: 700, name: 'Katzenklappe', desc: 'Keine Katzen mehr an der Theke' },
+  },
+  {
+    id: 'spicy',
+    slot: 'w2',
+    lv: 7,
+    price: 1600,
+    name: 'Scharf-Challenge',
+    desc: 'Neuer Raum: Wer schafft den Höllen-Döner?',
+    fix: {
+      id: 'spicyMilk',
+      lv: 8,
+      price: 900,
+      name: 'Milch-Kühlschrank',
+      desc: 'Verlierer löschen den Brand hier',
+    },
+  },
+  {
+    id: 'stream',
+    slot: 'w3',
+    lv: 10,
+    price: 2600,
+    name: 'Livestream-Studio',
+    desc: 'Neuer Raum: Mukbang-Livestream',
+    fix: { id: 'streamFiber', lv: 10, price: 1000, name: 'Glasfaser', desc: 'Kein Lag mehr im Stream' },
+  },
+  {
+    id: 'phone',
+    slot: 'w4',
+    cities: [0],
+    lv: 4,
+    price: 900,
+    name: 'Handy-Reparatur',
+    desc: 'Neuer Raum: Displays tauschen',
+  },
+  {
+    id: 'tattoo',
+    slot: 'w5',
+    cities: [0],
+    lv: 6,
+    price: 1400,
+    name: 'Döner-Tattoo',
+    desc: 'Neuer Raum: Döner unter die Haut',
+  },
+  {
+    id: 'karaoke',
+    slot: 'w4',
+    cities: [1],
+    lv: 4,
+    price: 900,
+    name: 'Arabesk-Karaoke',
+    desc: 'Neuer Raum: Herzschmerz-Lieder',
+  },
+  {
+    id: 'mama',
+    slot: 'w5',
+    cities: [1],
+    lv: 6,
+    price: 1400,
+    name: 'Mama-Küche',
+    desc: 'Neuer Raum: Mama kocht Döner',
+  },
+  {
+    id: 'wash',
+    slot: 'w4',
+    cities: [2],
+    lv: 4,
+    price: 900,
+    name: 'Waschanlage',
+    desc: 'Neuer Raum: Autos waschen',
+  },
+  {
+    id: 'fitness',
+    slot: 'w5',
+    cities: [2],
+    lv: 6,
+    price: 1400,
+    name: 'Fitness-Ecke',
+    desc: 'Neuer Raum: Protein-Döner',
+  },
+  {
+    id: 'giant',
+    slot: 'w6',
+    cities: [2],
+    lv: 8,
+    price: 2000,
+    name: 'Riesenspieß-Bühne',
+    desc: 'Neuer Raum: Riesenspieß-Show',
+  },
+  {
+    id: 'automat',
+    slot: 'w4',
+    cities: [3],
+    lv: 4,
+    price: 900,
+    name: 'Döner-Automat',
+    desc: 'Neuer Raum: verkauft rund um die Uhr',
+  },
+  {
+    id: 'roof',
+    slot: 'w5',
+    cities: [3],
+    lv: 6,
+    price: 1400,
+    name: 'Domblick-Terrasse',
+    desc: 'Neuer Raum: Döner mit Domblick',
+  },
+  {
+    id: 'school',
+    slot: 'w6',
+    cities: [3],
+    lv: 8,
+    price: 2000,
+    name: 'Döner-Kochschule',
+    desc: 'Neuer Raum: Kurse für Döner-Fans',
+  },
+  {
+    id: 'hamam',
+    slot: 'w4',
+    cities: [4],
+    lv: 4,
+    price: 900,
+    name: 'Hamam',
+    desc: 'Neuer Raum: Schaum und heißer Stein',
+  },
+  {
+    id: 'tavla',
+    slot: 'w5',
+    cities: [4],
+    lv: 6,
+    price: 1400,
+    name: 'Tavla-Ecke',
+    desc: 'Neuer Raum: Tavla und Çay',
+  },
+  // Deko-Flächen ohne Raum (Städte mit nur zwei eigenen Räumen)
+  { id: 'garden', slot: 'w6', cities: [0, 1], deco: true, name: 'Hinterhof' },
+  { id: 'kedi', slot: 'w6', cities: [4], deco: true, name: 'Kedi-Garten' },
+];
+export const wingIn = (w, city) => !w.cities || w.cities.includes(city % 5);
+const wingLocal = (sl, u, v) => ({
+  x: +(WING_SLOTS[sl].side < 0 ? FL0 - u : FL1 + u).toFixed(2),
+  y: +(WING_SLOTS[sl].y0 + v).toFixed(2),
+});
 
 export const TRAY_MAX = 6;
 
@@ -133,7 +300,14 @@ export const PILES = {
   gamer: { x: -1.4, y: 10.2 },
   shisha: { x: -1.4, y: 15.5 },
   vip: { x: 0.2, y: 17.0 },
-  hall: { x: 4.0, y: 16.9 },
+  hall: { x: 4.3, y: 16.9 },
+  // Kassen im Anbau: direkt hinter der Tür jedes Platzes
+  w1: { x: FL0 - 1.1, y: FY + 5.2 },
+  w2: { x: FL1 + 1.1, y: FY + 5.2 },
+  w3: { x: FL0 - 1.1, y: FY + 12.7 },
+  w4: { x: FL1 + 1.1, y: FY + 12.7 },
+  w5: { x: FL0 - 1.1, y: FY + 20.2 },
+  w6: { x: FL1 + 1.1, y: FY + 20.2 },
 };
 
 export const PADS = [
@@ -170,16 +344,93 @@ export const PADS = [
   { id: 'spitSpeed', name: 'Turbo-Grill', desc: 'Spieße 50 % schneller', price: 1900, x: 6.4, y: 1.3 },
   { id: 'golden', name: 'Goldener Spieß', desc: 'Preis +3 €, noch schneller', price: 2800, x: 6.4, y: 1.3 },
   // Nebenräume (rooms.js) und ihre Ausbauten gegen die Nebenwirkungen
-  { id: 'roomBarber', name: 'Barbershop', desc: 'Neuer Raum: Haarschnitt, danach Döner', price: 500, x: 0.8, y: 3.9 },
-  { id: 'roomGamer', name: 'Zocker-Lounge', desc: 'Neuer Raum: Döner an die Couch', price: 700, x: 0.8, y: 9.5 },
+  {
+    id: 'roomBarber',
+    name: 'Barbershop',
+    desc: 'Neuer Raum: Haarschnitt, danach Döner',
+    price: 500,
+    x: 0.8,
+    y: 3.9,
+  },
+  {
+    id: 'roomGamer',
+    name: 'Zocker-Lounge',
+    desc: 'Neuer Raum: Döner an die Couch',
+    price: 700,
+    x: 0.8,
+    y: 9.5,
+  },
   { id: 'barberGlass', name: 'Glaswand', desc: 'Keine Haare mehr im Essen', price: 400, x: -1.6, y: 2.6 },
-  { id: 'roomShisha', name: 'Shisha-Whirlpool', desc: 'Neuer Raum: Whirlpool und Shisha', price: 1200, x: 0.8, y: 14.8 },
-  { id: 'gamerSound', name: 'Schallschutz', desc: 'Torgebrüll bleibt in der Lounge', price: 600, x: -1.6, y: 6.4 },
+  {
+    id: 'roomShisha',
+    name: 'Shisha-Whirlpool',
+    desc: 'Neuer Raum: Whirlpool und Shisha',
+    price: 1200,
+    x: 0.8,
+    y: 14.8,
+  },
+  {
+    id: 'gamerSound',
+    name: 'Schallschutz',
+    desc: 'Torgebrüll bleibt in der Lounge',
+    price: 600,
+    x: -1.6,
+    y: 6.4,
+  },
   { id: 'shishaVent', name: 'Lüftung', desc: 'Rauch bleibt in der Lounge', price: 800, x: -1.6, y: 11.6 },
-  { id: 'roomVip', name: 'Gold-VIP-Lounge', desc: 'Neuer Raum: Gold-Döner für VIPs', price: 1800, x: 1.8, y: 15.2 },
-  { id: 'roomHall', name: 'Hochzeitssaal', desc: 'Neuer Raum: große Hochzeitsaufträge', price: 2200, x: 6.1, y: 15.2 },
+  {
+    id: 'roomVip',
+    name: 'Gold-VIP-Lounge',
+    desc: 'Neuer Raum: Gold-Döner für VIPs',
+    price: 1800,
+    x: 0.9,
+    y: 15.2,
+  },
+  {
+    id: 'roomHall',
+    name: 'Hochzeitssaal',
+    desc: 'Neuer Raum: große Hochzeitsaufträge',
+    price: 2200,
+    x: 6.1,
+    y: 15.2,
+  },
+  // Anbau: Raum-Felder im Flur vor der jeweiligen Tür, Ausbauten im Raum
+  ...WING_DEF.filter(w => !w.deco).flatMap(w => {
+    const sl = WING_SLOTS[w.slot],
+      out = [
+        {
+          id: 'wing_' + w.id,
+          name: w.name,
+          desc: w.desc,
+          price: w.price,
+          x: FLX,
+          y: sl.y0 + (sl.side < 0 ? 2.6 : 5.0),
+          cities: w.cities,
+        },
+      ];
+    if (w.fix)
+      out.push({
+        id: w.fix.id,
+        name: w.fix.name,
+        desc: w.fix.desc,
+        price: w.fix.price,
+        ...wingLocal(w.slot, 1.8, 1.2),
+        cities: w.cities,
+      });
+    return out;
+  }),
+  {
+    id: 'wingWaiter',
+    name: 'Flur-Kellner Yusuf',
+    desc: 'Bedient den Anbau automatisch',
+    price: 1200,
+    x: FLX,
+    y: FY - 4.5,
+  },
   { id: 'city', name: 'Neue Filiale', desc: '', price: 4200, x: 8.0, y: 13.9 },
 ];
+/** Gibt es dieses Ausbaufeld in der aktuellen Stadt? */
+export const padHere = p => !p.cities || p.cities.includes(G.city % 5);
 
 export const CITIES = [
   { name: 'Berlin', a: '#e8c9a0', b: '#dcb88b', s1: '#d8342b', s2: '#b82a22' },
@@ -238,6 +489,37 @@ export const MSG = {
   shishaVent: ['Lüftung läuft', 'Der Rauch bleibt in der Lounge'],
   roomVip: ['Gold-VIP-Lounge eröffnet!', 'Veredle Döner mit Blattgold – VIPs zahlen das Achtfache'],
   roomHall: ['Hochzeitssaal eröffnet!', 'Bald kommt die erste Hochzeit – halte viele Döner bereit'],
+  wing_cat: [
+    'Katzen-Lounge eröffnet!',
+    'Bring Döner in den Futternapf – hungrige Katzen machen schlechte Laune',
+  ],
+  catFlap: ['Katzenklappe eingebaut', 'Die Katzen klauen keine Döner mehr von der Theke'],
+  wing_spicy: ['Scharf-Challenge eröffnet!', 'Bring Herausforderern einen Döner – er wird zum Höllen-Döner'],
+  spicyMilk: ['Milch-Kühlschrank steht', 'Verlierer rennen nicht mehr schreiend durch den Laden'],
+  wing_stream: [
+    'Livestream-Studio eröffnet!',
+    'Halte den Teller voll – solange gegessen wird, steigen die Zuschauer',
+  ],
+  streamFiber: ['Glasfaser verlegt', 'Kein Lag mehr – die Zuschauer bleiben'],
+  wing_phone: [
+    'Handy-Reparatur eröffnet!',
+    'Stell dich an die Werkbank, dann geht die Reparatur dreimal so schnell',
+  ],
+  wing_tattoo: ['Döner-Tattoo eröffnet!', 'Füll am Regal die Tinte nach – frisch Tätowierte machen Werbung'],
+  wing_karaoke: ['Arabesk-Karaoke eröffnet!', 'Traurige Lieder machen hungrig – bring den Tränen Döner'],
+  wing_mama: ['Mama-Küche eröffnet!', 'Mama kocht Döner im Topf – hol sie ab, wenn es im Anbau knapp wird'],
+  wing_wash: ['Waschanlage eröffnet!', 'Autos von der Straße werden gewaschen – füll am Fass die Seife nach'],
+  wing_fitness: ['Fitness-Ecke eröffnet!', 'Nach dem Training wollen alle Protein-Döner – doppelter Preis'],
+  wing_giant: [
+    'Riesenspieß-Bühne eröffnet!',
+    'Zur Show stellst du dich an den Riesenspieß und schneidest für alle',
+  ],
+  wing_automat: ['Döner-Automat steht!', 'Füll den Automaten mit Döner – er verkauft auch ohne dich'],
+  wing_roof: ['Domblick-Terrasse eröffnet!', 'Abends beim Sonnenuntergang zahlen die Gäste doppelt'],
+  wing_school: ['Döner-Kochschule eröffnet!', 'Jeder Kurs braucht vier Döner als Anschauung am Lehrertisch'],
+  wing_hamam: ['Hamam eröffnet!', 'Leg am Kessel Holz nach, sonst wird der Stein kalt'],
+  wing_tavla: ['Tavla-Ecke eröffnet!', 'Ohne Çay kein Tavla – füll am Samowar nach'],
+  wingWaiter: ['Yusuf übernimmt den Anbau', 'Er bringt Döner in alle Räume im Anbau'],
 };
 
 export const SKINS = ['#f1c9a5', '#d9a47a', '#b97a52', '#8d5a3b', '#f5d6bc'];

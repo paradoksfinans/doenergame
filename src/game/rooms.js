@@ -11,6 +11,13 @@ import {
   D,
   BX0,
   BD,
+  FY,
+  FL0,
+  FL1,
+  FLX,
+  WING_DEF,
+  WING_SLOTS,
+  wingIn,
   ENTER,
   EXIT,
   QSLOTS,
@@ -32,6 +39,16 @@ import { $, showBanner } from './hud.js';
 import { t, fmt } from './i18n.js';
 import { burst } from './confetti.js';
 import { addGems } from './meta.js';
+import {
+  setWingHelpers,
+  wingTick,
+  wingDraw,
+  wingFloor,
+  wingFloorDecor,
+  wingWallDecor,
+  wingObstacles,
+  wingHud,
+} from './rooms2.js';
 
 // ---------------------------------------------------------------- Grundriss
 export const ROOMS = [
@@ -45,7 +62,7 @@ export const ROOMS = [
     x1: 0,
     y0: 0,
     y1: 5.3,
-    door: { s: 'x', a: 3.4, b: 4.4 },
+    door: { s: 'x', at: 0, side: -1, a: 3.4, b: 4.4 },
   },
   {
     id: 'gamer',
@@ -57,7 +74,7 @@ export const ROOMS = [
     x1: 0,
     y0: 5.3,
     y1: 10.7,
-    door: { s: 'x', a: 9.0, b: 10.0 },
+    door: { s: 'x', at: 0, side: -1, a: 9.0, b: 10.0 },
   },
   {
     id: 'shisha',
@@ -69,7 +86,7 @@ export const ROOMS = [
     x1: 0,
     y0: 10.7,
     y1: D,
-    door: { s: 'x', a: 14.3, b: 15.3 },
+    door: { s: 'x', at: 0, side: -1, a: 14.3, b: 15.3 },
   },
   {
     id: 'vip',
@@ -77,47 +94,115 @@ export const ROOMS = [
     name: 'Gold-VIP-Lounge',
     lv: 8,
     x0: BX0,
-    x1: 3,
+    x1: 1.8, // = FL0 (Konstante hier direkt, da config.js beim Laden evtl. noch nicht ausgewertet ist)
     y0: D,
-    y1: BD,
-    door: { s: 'y', a: 1.2, b: 2.4 },
+    y1: 24,
+    door: { s: 'y', at: D, side: 1, a: 0.3, b: 1.5 },
   },
   {
     id: 'hall',
     pad: 'roomHall',
     name: 'Hochzeitssaal',
     lv: 9,
-    x0: 3,
+    x0: 3.6, // = FL1
     x1: 9.4,
     y0: D,
-    y1: BD,
-    door: { s: 'y', a: 5.4, b: 6.8 },
+    y1: 24,
+    door: { s: 'y', at: D, side: 1, a: 5.4, b: 6.8 },
   },
 ];
-const R = id => ROOMS.find(r => r.id === id);
-export const roomOpen = id => G.unlocked.has(R(id).pad);
+// Anbau-Räume der aktuellen Stadt (hängen von der Stadt ab, daher pro Stadt zwischengespeichert)
+let wingCache = null,
+  wingCity = -1;
+export function wingRooms() {
+  if (wingCity !== G.city || !wingCache) {
+    wingCity = G.city;
+    wingCache = WING_DEF.filter(w => wingIn(w, G.city)).map(w => {
+      const sl = WING_SLOTS[w.slot],
+        left = sl.side < 0;
+      return {
+        id: w.id,
+        slot: w.slot,
+        wing: true,
+        deco: !!w.deco,
+        pad: w.deco ? null : 'wing_' + w.id,
+        fix: w.fix ? w.fix.id : null,
+        name: w.name,
+        lv: w.lv || 0,
+        side: sl.side,
+        x0: left ? BX0 : FL1,
+        x1: left ? FL0 : W,
+        y0: sl.y0,
+        y1: sl.y0 + 7.5,
+        door: w.deco ? null : { s: 'x', at: left ? FL0 : FL1, side: sl.side, a: sl.y0 + 3.2, b: sl.y0 + 4.4 },
+      };
+    });
+  }
+  return wingCache;
+}
+export const allRooms = () => ROOMS.concat(wingRooms());
+const R = id => ROOMS.find(r => r.id === id) || wingRooms().find(r => r.id === id || r.slot === id);
+export const roomOpen = id => {
+  const r = R(id);
+  return !!(r && r.pad && G.unlocked.has(r.pad));
+};
+/** Der Flur zum Anbau ist ab Level 4 begehbar (dort liegen die Felder der Anbau-Räume). */
+export const flurOpen = () => G.cityLv >= 4 || wingRooms().some(r => roomOpen(r.id));
 export const ROOM_PILES = {
-  barber: { x: -1.3, y: 4.9 },
-  gamer: { x: -1.4, y: 10.2 },
-  shisha: { x: -1.4, y: 15.5 },
-  vip: { x: 0.2, y: 17.0 },
-  hall: { x: 4.0, y: 16.9 },
+  barber: 1,
+  gamer: 1,
+  shisha: 1,
+  vip: 1,
+  hall: 1,
+  w1: 1,
+  w2: 1,
+  w3: 1,
+  w4: 1,
+  w5: 1,
+  w6: 1,
 };
 const inRoom = (r, x, y) => x > r.x0 && x < r.x1 && y > r.y0 && y < r.y1;
 const mid = r => (r.door.a + r.door.b) / 2;
-const doorOut = r => (r.door.s === 'x' ? { x: 0.75, y: mid(r) } : { x: mid(r), y: D - 0.75 });
-const doorIn = r => (r.door.s === 'x' ? { x: -0.75, y: mid(r) } : { x: mid(r), y: D + 0.75 });
+const doorPt = (r, k) => {
+  const d = r.door,
+    o = d.at + d.side * 0.75 * k;
+  return d.s === 'x' ? { x: o, y: mid(r) } : { x: mid(r), y: o };
+};
+const doorOut = r => doorPt(r, -1);
+const doorIn = r => doorPt(r, 1);
+// als Getter: config.js ist beim Laden dieses Moduls evtl. noch nicht fertig ausgewertet
+export const FL_OUT = {
+    get x() {
+      return FLX;
+    },
+    get y() {
+      return D - 0.75;
+    },
+  },
+  FL_IN = {
+    get x() {
+      return FLX;
+    },
+    get y() {
+      return D + 0.75;
+    },
+  };
 
 /** Darf man an (x, y) stehen? Gastraum, geöffnete Räume und ihre Türen. */
 export function walkable(x, y) {
   const m = 0.35;
   if (x >= m && x <= W - m && y >= m && y <= D - m) return true;
-  for (const r of ROOMS) {
+  if (y > D - m - 0.1 && flurOpen()) {
+    // Flur und seine Tür im Gastraum
+    if (x >= FL0 + m && x <= FL1 - m && y >= D + m && y <= BD - m) return true;
+    if (y < D + m + 0.1 && x > FL0 + 0.5 && x < FL1 - 0.5) return true;
+  }
+  for (const r of allRooms()) {
     if (!roomOpen(r.id)) continue;
     if (x >= r.x0 + m && x <= r.x1 - m && y >= r.y0 + m && y <= r.y1 - m) return true;
     const d = r.door;
-    if (d.s === 'x' && x > -m - 0.1 && x < m + 0.1 && y > d.a + 0.2 && y < d.b - 0.2) return true;
-    if (d.s === 'y' && y > D - m - 0.1 && y < D + m + 0.1 && x > d.a + 0.2 && x < d.b - 0.2) return true;
+    if (d.s === 'x' && Math.abs(x - d.at) < m + 0.1 && y > d.a + 0.2 && y < d.b - 0.2) return true;
+    if (d.s === 'y' && Math.abs(y - d.at) < m + 0.1 && x > d.a + 0.2 && x < d.b - 0.2) return true;
   }
   return false;
 }
@@ -141,6 +226,7 @@ const FURN = {
 export function roomObstacles() {
   const o = [];
   for (const r of ROOMS) if (roomOpen(r.id)) o.push(...FURN[r.id]);
+  for (const r of wingRooms()) if (roomOpen(r.id)) o.push(...wingObstacles(r));
   return o;
 }
 
@@ -190,9 +276,18 @@ function walk(g, dt, sp = 2.5) {
   g.moving = false;
   return true;
 }
-const goIn = (r, spot) => [doorOut(r), doorIn(r), spot];
+const ENTRY = {
+  x: 10.4,
+  get y() {
+    return D - 0.9;
+  },
+};
+const goIn = (r, spot) =>
+  r.wing ? [ENTRY, FL_OUT, FL_IN, doorOut(r), doorIn(r), spot] : [ENTRY, doorOut(r), doorIn(r), spot];
 const goOut = (g, r) => {
-  g.path = [doorIn(r), doorOut(r), { x: EXIT.x, y: EXIT.y }];
+  g.path = r.wing
+    ? [doorIn(r), doorOut(r), FL_IN, FL_OUT, ENTRY, { x: EXIT.x, y: EXIT.y }]
+    : [doorIn(r), doorOut(r), ENTRY, { x: EXIT.x, y: EXIT.y }];
   g.state = 'out';
   g.sitting = false;
 };
@@ -853,6 +948,7 @@ export function roomsTick(dt) {
   if (roomOpen('hall')) hallTick(dt);
   if (roomOpen('gamer')) staffTick('gamer', dt);
   if (roomOpen('vip')) staffTick('vip', dt);
+  wingTick(dt);
   for (const h of hairBits) {
     h.v += dt * 60;
     h.z -= h.v * dt;
@@ -882,6 +978,7 @@ function roomsHud(dt) {
     txt = t('Shisha: Kohle nachlegen!');
   else if (gamers) txt = t('Zocker wollen Döner: {n}', { n: gamers });
   else if (vipWait) txt = t('VIP wartet auf Gold-Döner');
+  else if (wingHud()) txt = wingHud();
   else if (s.viralT > 0) txt = t('Viral! {s} s', { s: Math.ceil(s.viralT) });
   el.hidden = !txt;
   el.textContent = txt;
@@ -898,34 +995,51 @@ const FLOORS = {
 export function drawRoomFloors() {
   // Gehweg vor dem Eingang
   for (let x = 9.4; x < W; x += 0.65)
-    for (let y = D; y < BD; y += 1)
+    for (let y = D; y < FY; y += 1)
       poly(
         [P(x, y), P(Math.min(W, x + 0.65), y), P(Math.min(W, x + 0.65), y + 1), P(x, y + 1)],
         (Math.floor(x) + y) % 2 ? '#9b949f' : '#928b97',
       );
-  for (const r of ROOMS) {
-    const open = roomOpen(r.id);
+  // Flur zum Anbau
+  const fo = flurOpen();
+  for (let y = D; y < BD; y += 1)
+    poly(
+      [P(FL0, y), P(FL1, y), P(FL1, Math.min(BD, y + 1)), P(FL0, Math.min(BD, y + 1))],
+      fo ? (y % 2 ? '#b9a88f' : '#c4b49b') : y % 2 ? '#3a3040' : '#40354a',
+    );
+  if (fo)
+    for (let y = D + 0.5; y < BD; y += 2)
+      poly(
+        [P(FLX - 0.35, y), P(FLX + 0.35, y), P(FLX + 0.35, y + 1.2), P(FLX - 0.35, y + 1.2)],
+        'rgba(192,57,47,.35)',
+      );
+  for (const r of allRooms()) {
+    const open = roomOpen(r.id) || r.deco;
     for (let x = r.x0; x < r.x1; x++)
       for (let y = r.y0; y < r.y1; y += 1) {
         const x1 = Math.min(r.x1, x + 1),
-          y1 = Math.min(r.y1, y + 1);
+          y1 = Math.min(r.y1, y + 1),
+          ix = Math.floor(x - r.x0),
+          iy = Math.floor(y - r.y0);
         poly(
           [P(x, y), P(x1, y), P(x1, y1), P(x, y1)],
           open
-            ? FLOORS[r.id](Math.floor(x - r.x0), Math.floor(y - r.y0))
+            ? r.wing
+              ? wingFloor(r, ix, iy)
+              : FLOORS[r.id](ix, iy)
             : (Math.floor(x) + Math.floor(y)) % 2
               ? '#3a3040'
               : '#40354a',
         );
       }
-    if (open) drawRoomFloorDecor(r);
+    if (open) r.wing ? wingFloorDecor(r) : drawRoomFloorDecor(r);
   }
 }
 function drawRoomFloorDecor(r) {
   const tm = G.time;
   if (r.id === 'vip') {
     // roter Teppich von der Tür zum Tisch
-    poly([P(1.4, D), P(2.2, D), P(-2.9, 19.1), P(-3.7, 19.1)], '#c0392f');
+    poly([P(0.5, D), P(1.3, D), P(-2.9, 19.1), P(-3.7, 19.1)], '#c0392f');
     poly([P(-8.3, 16.7), P(-6.9, 16.7), P(-6.9, 18.1), P(-8.3, 18.1)], 'rgba(242,199,90,.35)');
   }
   if (r.id === 'hall') {
@@ -970,11 +1084,26 @@ function wallSegs() {
   add(BX0, 5.3, 0, 5.3);
   add(BX0, 10.7, 0, 10.7);
   add(BX0, D, 0, D);
-  add(0, D, 3, D, PH, gap('vip'));
-  add(3, D, 9.4, D, PH, gap('hall'));
-  add(3, D, 3, BD);
-  add(9.4, D, 9.4, BD, 14);
-  add(BX0, BD, 9.4, BD, 10);
+  add(0, D, FL0, D, PH, gap('vip'));
+  add(FL0, D, FL1, D, PH, flurOpen() ? [FL0 + 0.3, FL1 - 0.3] : null);
+  add(FL1, D, 9.4, D, PH, gap('hall'));
+  add(9.4, D, 9.4, FY, 14);
+  add(FL0, D, FL0, FY);
+  add(FL1, D, FL1, FY);
+  // Anbau: Reihen-Trennwände, Flurwände mit Türen, Außenwände
+  const wr = wingRooms();
+  for (const k of [0, 1, 2]) {
+    const y0 = FY + k * 7.5;
+    add(BX0, y0, FL0, y0, k ? PH : PH);
+    add(FL1, y0, W, y0, k ? PH : 14);
+    const L = wr.find(r => r.y0 === y0 && r.side < 0),
+      Rr = wr.find(r => r.y0 === y0 && r.side > 0);
+    add(FL0, y0, FL0, y0 + 7.5, PH, L && roomOpen(L.id) ? [L.door.a, L.door.b] : null);
+    add(FL1, y0, FL1, y0 + 7.5, PH, Rr && roomOpen(Rr.id) ? [Rr.door.a, Rr.door.b] : null);
+    const g2 = Rr && roomOpen(Rr.id) && Rr.id === 'wash' ? [y0 + 2.6, y0 + 5.0] : null;
+    add(W, y0, W, y0 + 7.5, 14, g2);
+  }
+  add(BX0, BD, W, BD, 10);
   return segs;
 }
 function drawSeg(s) {
@@ -1013,6 +1142,7 @@ export function drawRoomWallDecor() {
   }
   if (roomOpen('shisha')) wallSign(BX0, 15.7, 'y', '💨 SHISHA SPA', '#1e5e5a', '#bff5ef');
   if (roomOpen('vip')) wallSign(BX0, 23.3, 'y', '👑 VIP', '#4a1822', '#f2c75a');
+  for (const r of wingRooms()) if (roomOpen(r.id) || r.deco) wingWallDecor(r, wallSign);
 }
 function wallSign(x, y, dir, text, bg, fg) {
   ctx.save();
@@ -1043,7 +1173,10 @@ function lockedLabel(r) {
   ctx.fillText(G.cityLv >= r.lv ? t('Jetzt freischaltbar') : t('Ab Level {l}', { l: r.lv }), c.x, c.y + 12);
 }
 export function roomDrawables(S0, time) {
-  for (const r of ROOMS) if (!roomOpen(r.id)) S0.push({ d: 98, f: () => lockedLabel(r) });
+  for (const r of allRooms())
+    if (!r.deco && !roomOpen(r.id) && G.cityLv >= (r.wing ? 4 : 1))
+      S0.push({ d: 98, f: () => lockedLabel(r) });
+  wingDraw(S0, time);
   for (const s of wallSegs())
     S0.push({ d: (s.sx + s.ex) / 2 + (s.sy + s.ey) / 2 + 0.01, f: () => drawSeg(s) });
   const st = S();
@@ -1247,7 +1380,7 @@ function goldStation(tm) {
   }
 }
 function ropes() {
-  for (const x of [1.05, 2.55]) box(x - 0.05, D + 0.2, 0.1, 0.1, 22, '#f2c75a', '#b8912f', '#d4a93f');
+  for (const x of [0.25, 1.55]) box(x - 0.05, D + 0.2, 0.1, 0.1, 22, '#f2c75a', '#b8912f', '#d4a93f');
 }
 function ringLight(g, tm) {
   const p = P(g.x + g.fx * 0.35, g.y, 44);
@@ -1314,7 +1447,7 @@ function lights(tm) {
   if (!roomOpen('hall')) return;
   // Lichterkette quer durch den Saal
   const pts = [];
-  for (let i = 0; i <= 12; i++) pts.push(P(3.3 + i * 0.475, 19.8, 104 - Math.sin((i / 12) * Math.PI) * 22));
+  for (let i = 0; i <= 12; i++) pts.push(P(3.9 + i * 0.43, 19.8, 104 - Math.sin((i / 12) * Math.PI) * 22));
   ctx.strokeStyle = 'rgba(35,26,36,.6)';
   ctx.lineWidth = 1;
   ctx.beginPath();
@@ -1324,3 +1457,4 @@ function lights(tm) {
 }
 
 export function initRooms() {}
+setWingHelpers({ mkGuest, walk, goIn, goOut, person, S, R, doorIn, doorOut, inRoom, pm, wallSign });

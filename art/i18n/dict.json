@@ -2330,5 +2330,541 @@
  "SPÜLE": {
   "en": "SINK",
   "tr": "LAVABO"
+ },
+ "Miau!": {
+  "en": "Meow!",
+  "tr": "Miyav!"
+ },
+ "Katze klaut Döner!": {
+  "en": "Cat steals a Döner!",
+  "tr": "Kedi döner çaldı!"
+ },
+ "Katzen haben Hunger!": {
+  "en": "The cats are hungry!",
+  "tr": "Kediler aç!"
+ },
+ "LEGENDE!": {
+  "en": "LEGEND!",
+  "tr": "EFSANE!"
+ },
+ "ZU SCHARF!": {
+  "en": "TOO HOT!",
+  "tr": "ÇOK ACI!"
+ },
+ "WASSER!!!": {
+  "en": "WATER!!!",
+  "tr": "SU!!!"
+ },
+ "Mein Mund brennt!": {
+  "en": "My mouth is on fire!",
+  "tr": "Ağzım yanıyor!"
+ },
+ "SIEGER": {
+  "en": "WINNERS",
+  "tr": "KAZANANLAR"
+ },
+ "Scharf-Challenge wartet auf Döner": {
+  "en": "Spicy challenge waits for a Döner",
+  "tr": "Acı meydan okuma döner bekliyor"
+ },
+ "Streamer ist live!": {
+  "en": "Streamer is live!",
+  "tr": "Yayıncı canlıda!"
+ },
+ "Halte den Teller im Studio voll – beim Essen steigen die Zuschauer": {
+  "en": "Keep the studio plate full – viewers rise while they eat",
+  "tr": "Stüdyodaki tabağı dolu tut – yerken izleyici artar"
+ },
+ "LAG!": {
+  "en": "LAG!",
+  "tr": "DONDU!"
+ },
+ "Der Stream geht viral!": {
+  "en": "The stream goes viral!",
+  "tr": "Yayın viral oldu!"
+ },
+ "40 Sekunden lang kommen doppelt so viele Gäste": {
+  "en": "Twice as many guests for 40 seconds",
+  "tr": "40 saniye boyunca iki kat misafir"
+ },
+ "TELLER": {
+  "en": "PLATE",
+  "tr": "TABAK"
+ },
+ "Stream: Teller ist leer!": {
+  "en": "Stream: the plate is empty!",
+  "tr": "Yayın: tabak boş!"
+ },
+ "Dauert zu lange!": {
+  "en": "Takes too long!",
+  "tr": "Çok uzun sürdü!"
+ },
+ "Neues Tattoo gepostet!": {
+  "en": "New tattoo posted!",
+  "tr": "Yeni dövme paylaşıldı!"
+ },
+ "Tattoo: Tinte ist leer!": {
+  "en": "Tattoo: out of ink!",
+  "tr": "Dövme: mürekkep bitti!"
+ },
+ "TOPF": {
+  "en": "POT",
+  "tr": "TENCERE"
+ },
+ "Noch dreckig!": {
+  "en": "Still dirty!",
+  "tr": "Hâlâ kirli!"
+ },
+ "Waschanlage: Seife ist leer!": {
+  "en": "Car wash: out of soap!",
+  "tr": "Oto yıkama: sabun bitti!"
+ },
+ "NO PAIN NO DÖNER": {
+  "en": "NO PAIN NO DÖNER",
+  "tr": "EMEK YOKSA DÖNER YOK"
+ },
+ "Riesenspieß-Show!": {
+  "en": "Giant spit show!",
+  "tr": "Dev şiş şovu!"
+ },
+ "Stell dich an den Riesenspieß im Anbau und schneide für die Menge": {
+  "en": "Stand at the giant spit in the annex and carve for the crowd",
+  "tr": "Ek binadaki dev şişin başına geç ve kalabalığa kes"
+ },
+ "SHOW!": {
+  "en": "SHOW!",
+  "tr": "ŞOV!"
+ },
+ "Buuh!": {
+  "en": "Boo!",
+  "tr": "Yuhh!"
+ },
+ "SCHNEIDEN": {
+  "en": "CARVE",
+  "tr": "KES"
+ },
+ "Show in {s} s": {
+  "en": "Show in {s} s",
+  "tr": "Şov {s} sn sonra"
+ },
+ "Riesenspieß-Show: schneiden! {s} s": {
+  "en": "Giant spit show: carve! {s} s",
+  "tr": "Dev şiş şovu: kes! {s} sn"
+ },
+ "Leer?!": {
+  "en": "Empty?!",
+  "tr": "Boş mu?!"
+ },
+ "Döner-Automat ist leer": {
+  "en": "Döner vending machine is empty",
+  "tr": "Döner otomatı boş"
+ },
+ "Der Kurs beginnt!": {
+  "en": "Class begins!",
+  "tr": "Ders başlıyor!"
+ },
+ "ZUTATEN": {
+  "en": "INGREDIENTS",
+  "tr": "MALZEME"
+ },
+ "Kochschule braucht Döner {n}/4": {
+  "en": "Cooking school needs Döner {n}/4",
+  "tr": "Aşçılık okulu döner istiyor {n}/4"
+ },
+ "Hamam: der Stein wird kalt!": {
+  "en": "Hamam: the stone is getting cold!",
+  "tr": "Hamam: göbek taşı soğuyor!"
+ },
+ "Çay yok mu?!": {
+  "en": "No çay?!",
+  "tr": "Çay yok mu?!"
+ },
+ "Tavla: Çay ist alle!": {
+  "en": "Tavla: out of çay!",
+  "tr": "Tavla: çay bitti!"
+ },
+ "ANBAU": {
+  "en": "ANNEX",
+  "tr": "EK BİNA"
+ },
+ "Katzen-Lounge": {
+  "en": "Cat Lounge",
+  "tr": "Kedi Salonu"
+ },
+ "Neuer Raum: Katzen streicheln": {
+  "en": "New room: pet the cats",
+  "tr": "Yeni oda: kedi sev"
+ },
+ "Katzenklappe": {
+  "en": "Cat flap",
+  "tr": "Kedi kapısı"
+ },
+ "Keine Katzen mehr an der Theke": {
+  "en": "No more cats at the counter",
+  "tr": "Tezgâhta artık kedi yok"
+ },
+ "Scharf-Challenge": {
+  "en": "Spicy Challenge",
+  "tr": "Acı Meydan Okuma"
+ },
+ "Neuer Raum: Wer schafft den Höllen-Döner?": {
+  "en": "New room: who can handle the hell Döner?",
+  "tr": "Yeni oda: cehennem dönerini kim bitirir?"
+ },
+ "Milch-Kühlschrank": {
+  "en": "Milk fridge",
+  "tr": "Süt dolabı"
+ },
+ "Verlierer löschen den Brand hier": {
+  "en": "Losers put out the fire here",
+  "tr": "Kaybedenler yangını burada söndürür"
+ },
+ "Livestream-Studio": {
+  "en": "Livestream Studio",
+  "tr": "Canlı Yayın Stüdyosu"
+ },
+ "Neuer Raum: Mukbang-Livestream": {
+  "en": "New room: mukbang livestream",
+  "tr": "Yeni oda: mukbang yayını"
+ },
+ "Glasfaser": {
+  "en": "Fiber optics",
+  "tr": "Fiber internet"
+ },
+ "Kein Lag mehr im Stream": {
+  "en": "No more lag in the stream",
+  "tr": "Yayında artık donma yok"
+ },
+ "Handy-Reparatur": {
+  "en": "Phone Repair",
+  "tr": "Telefon Tamiri"
+ },
+ "Neuer Raum: Displays tauschen": {
+  "en": "New room: replace screens",
+  "tr": "Yeni oda: ekran değişimi"
+ },
+ "Döner-Tattoo": {
+  "en": "Döner Tattoo",
+  "tr": "Döner Dövmesi"
+ },
+ "Neuer Raum: Döner unter die Haut": {
+  "en": "New room: Döner under the skin",
+  "tr": "Yeni oda: derinin altında döner"
+ },
+ "Arabesk-Karaoke": {
+  "en": "Arabesk Karaoke",
+  "tr": "Arabesk Karaoke"
+ },
+ "Neuer Raum: Herzschmerz-Lieder": {
+  "en": "New room: heartbreak songs",
+  "tr": "Yeni oda: acılı şarkılar"
+ },
+ "Mama-Küche": {
+  "en": "Mama's Kitchen",
+  "tr": "Anne Mutfağı"
+ },
+ "Neuer Raum: Mama kocht Döner": {
+  "en": "New room: Mama cooks Döner",
+  "tr": "Yeni oda: annem döner pişiriyor"
+ },
+ "Waschanlage": {
+  "en": "Car Wash",
+  "tr": "Oto Yıkama"
+ },
+ "Neuer Raum: Autos waschen": {
+  "en": "New room: wash cars",
+  "tr": "Yeni oda: araba yıka"
+ },
+ "Fitness-Ecke": {
+  "en": "Fitness Corner",
+  "tr": "Fitness Köşesi"
+ },
+ "Neuer Raum: Protein-Döner": {
+  "en": "New room: protein Döner",
+  "tr": "Yeni oda: protein döner"
+ },
+ "Riesenspieß-Bühne": {
+  "en": "Giant Spit Stage",
+  "tr": "Dev Şiş Sahnesi"
+ },
+ "Neuer Raum: Riesenspieß-Show": {
+  "en": "New room: giant spit show",
+  "tr": "Yeni oda: dev şiş şovu"
+ },
+ "Döner-Automat": {
+  "en": "Döner Vending Machine",
+  "tr": "Döner Otomatı"
+ },
+ "Neuer Raum: verkauft rund um die Uhr": {
+  "en": "New room: sells around the clock",
+  "tr": "Yeni oda: 7/24 satış"
+ },
+ "Domblick-Terrasse": {
+  "en": "Cathedral View Terrace",
+  "tr": "Katedral Manzaralı Teras"
+ },
+ "Neuer Raum: Döner mit Domblick": {
+  "en": "New room: Döner with a cathedral view",
+  "tr": "Yeni oda: katedral manzaralı döner"
+ },
+ "Döner-Kochschule": {
+  "en": "Döner Cooking School",
+  "tr": "Döner Aşçılık Okulu"
+ },
+ "Neuer Raum: Kurse für Döner-Fans": {
+  "en": "New room: classes for Döner fans",
+  "tr": "Yeni oda: döner hayranlarına kurslar"
+ },
+ "Hamam": {
+  "en": "Hamam",
+  "tr": "Hamam"
+ },
+ "Neuer Raum: Schaum und heißer Stein": {
+  "en": "New room: foam and hot stone",
+  "tr": "Yeni oda: köpük ve sıcak taş"
+ },
+ "Tavla-Ecke": {
+  "en": "Tavla Corner",
+  "tr": "Tavla Köşesi"
+ },
+ "Neuer Raum: Tavla und Çay": {
+  "en": "New room: tavla and çay",
+  "tr": "Yeni oda: tavla ve çay"
+ },
+ "Hinterhof": {
+  "en": "Backyard",
+  "tr": "Arka Bahçe"
+ },
+ "Kedi-Garten": {
+  "en": "Kedi Garden",
+  "tr": "Kedi Bahçesi"
+ },
+ "Katzen-Lounge eröffnet!": {
+  "en": "Cat Lounge opened!",
+  "tr": "Kedi Salonu açıldı!"
+ },
+ "Bring Döner in den Futternapf – hungrige Katzen machen schlechte Laune": {
+  "en": "Put Döner in the food bowl – hungry cats spoil the mood",
+  "tr": "Mama kabına döner koy – aç kediler keyif kaçırır"
+ },
+ "Katzenklappe eingebaut": {
+  "en": "Cat flap installed",
+  "tr": "Kedi kapısı takıldı"
+ },
+ "Die Katzen klauen keine Döner mehr von der Theke": {
+  "en": "The cats no longer steal Döner from the counter",
+  "tr": "Kediler artık tezgâhtan döner çalmıyor"
+ },
+ "Scharf-Challenge eröffnet!": {
+  "en": "Spicy Challenge opened!",
+  "tr": "Acı Meydan Okuma açıldı!"
+ },
+ "Bring Herausforderern einen Döner – er wird zum Höllen-Döner": {
+  "en": "Bring challengers a Döner – it becomes a hell Döner",
+  "tr": "Yarışmacılara döner getir – cehennem dönerine dönüşür"
+ },
+ "Milch-Kühlschrank steht": {
+  "en": "Milk fridge is in",
+  "tr": "Süt dolabı hazır"
+ },
+ "Verlierer rennen nicht mehr schreiend durch den Laden": {
+  "en": "Losers no longer run screaming through the shop",
+  "tr": "Kaybedenler artık bağırarak dükkânda koşmuyor"
+ },
+ "Livestream-Studio eröffnet!": {
+  "en": "Livestream Studio opened!",
+  "tr": "Canlı Yayın Stüdyosu açıldı!"
+ },
+ "Halte den Teller voll – solange gegessen wird, steigen die Zuschauer": {
+  "en": "Keep the plate full – viewers rise as long as they eat",
+  "tr": "Tabağı dolu tut – yendikçe izleyici artar"
+ },
+ "Glasfaser verlegt": {
+  "en": "Fiber installed",
+  "tr": "Fiber döşendi"
+ },
+ "Kein Lag mehr – die Zuschauer bleiben": {
+  "en": "No more lag – viewers stay",
+  "tr": "Donma yok – izleyiciler kalıyor"
+ },
+ "Handy-Reparatur eröffnet!": {
+  "en": "Phone Repair opened!",
+  "tr": "Telefon Tamiri açıldı!"
+ },
+ "Stell dich an die Werkbank, dann geht die Reparatur dreimal so schnell": {
+  "en": "Stand at the workbench and repairs go three times faster",
+  "tr": "Tezgâhın başına geç, tamir üç kat hızlı olur"
+ },
+ "Döner-Tattoo eröffnet!": {
+  "en": "Döner Tattoo opened!",
+  "tr": "Döner Dövmesi açıldı!"
+ },
+ "Füll am Regal die Tinte nach – frisch Tätowierte machen Werbung": {
+  "en": "Refill ink at the shelf – fresh tattoos are free advertising",
+  "tr": "Raftan mürekkep doldur – yeni dövmeler reklam yapar"
+ },
+ "Arabesk-Karaoke eröffnet!": {
+  "en": "Arabesk Karaoke opened!",
+  "tr": "Arabesk Karaoke açıldı!"
+ },
+ "Traurige Lieder machen hungrig – bring den Tränen Döner": {
+  "en": "Sad songs make people hungry – bring Döner to the tears",
+  "tr": "Acılı şarkılar acıktırır – gözyaşlarına döner getir"
+ },
+ "Mama-Küche eröffnet!": {
+  "en": "Mama's Kitchen opened!",
+  "tr": "Anne Mutfağı açıldı!"
+ },
+ "Mama kocht Döner im Topf – hol sie ab, wenn es im Anbau knapp wird": {
+  "en": "Mama cooks Döner in the pot – grab some when the annex runs low",
+  "tr": "Annem tencerede döner pişirir – ek binada azalınca oradan al"
+ },
+ "Waschanlage eröffnet!": {
+  "en": "Car Wash opened!",
+  "tr": "Oto Yıkama açıldı!"
+ },
+ "Autos von der Straße werden gewaschen – füll am Fass die Seife nach": {
+  "en": "Cars from the street get washed – refill soap at the barrel",
+  "tr": "Yoldaki arabalar yıkanır – varilden sabun doldur"
+ },
+ "Fitness-Ecke eröffnet!": {
+  "en": "Fitness Corner opened!",
+  "tr": "Fitness Köşesi açıldı!"
+ },
+ "Nach dem Training wollen alle Protein-Döner – doppelter Preis": {
+  "en": "After training everyone wants protein Döner – double price",
+  "tr": "Antrenmandan sonra herkes protein döner ister – iki kat fiyat"
+ },
+ "Riesenspieß-Bühne eröffnet!": {
+  "en": "Giant Spit Stage opened!",
+  "tr": "Dev Şiş Sahnesi açıldı!"
+ },
+ "Zur Show stellst du dich an den Riesenspieß und schneidest für alle": {
+  "en": "At show time, stand at the giant spit and carve for everyone",
+  "tr": "Şov zamanı dev şişin başına geç ve herkese kes"
+ },
+ "Döner-Automat steht!": {
+  "en": "Döner vending machine is up!",
+  "tr": "Döner otomatı kuruldu!"
+ },
+ "Füll den Automaten mit Döner – er verkauft auch ohne dich": {
+  "en": "Fill the machine with Döner – it sells even without you",
+  "tr": "Otomatı dönerle doldur – sen olmadan da satar"
+ },
+ "Domblick-Terrasse eröffnet!": {
+  "en": "Cathedral View Terrace opened!",
+  "tr": "Katedral Manzaralı Teras açıldı!"
+ },
+ "Abends beim Sonnenuntergang zahlen die Gäste doppelt": {
+  "en": "In the evening at sunset guests pay double",
+  "tr": "Akşam gün batımında misafirler iki kat öder"
+ },
+ "Döner-Kochschule eröffnet!": {
+  "en": "Döner Cooking School opened!",
+  "tr": "Döner Aşçılık Okulu açıldı!"
+ },
+ "Jeder Kurs braucht vier Döner als Anschauung am Lehrertisch": {
+  "en": "Every class needs four Döner on the teacher's table",
+  "tr": "Her ders öğretmen masasında dört döner ister"
+ },
+ "Hamam eröffnet!": {
+  "en": "Hamam opened!",
+  "tr": "Hamam açıldı!"
+ },
+ "Leg am Kessel Holz nach, sonst wird der Stein kalt": {
+  "en": "Add wood at the boiler or the stone goes cold",
+  "tr": "Kazana odun at, yoksa taş soğur"
+ },
+ "Tavla-Ecke eröffnet!": {
+  "en": "Tavla Corner opened!",
+  "tr": "Tavla Köşesi açıldı!"
+ },
+ "Ohne Çay kein Tavla – füll am Samowar nach": {
+  "en": "No çay, no tavla – refill at the samovar",
+  "tr": "Çaysız tavla olmaz – semaverden doldur"
+ },
+ "Flur-Kellner Yusuf": {
+  "en": "Hall waiter Yusuf",
+  "tr": "Koridor garsonu Yusuf"
+ },
+ "Bedient den Anbau automatisch": {
+  "en": "Serves the annex automatically",
+  "tr": "Ek binaya otomatik servis"
+ },
+ "Yusuf übernimmt den Anbau": {
+  "en": "Yusuf takes over the annex",
+  "tr": "Yusuf ek binayı devraldı"
+ },
+ "Er bringt Döner in alle Räume im Anbau": {
+  "en": "He brings Döner to every room in the annex",
+  "tr": "Ek binadaki tüm odalara döner götürür"
+ },
+ "NAPF": {
+  "en": "BOWL",
+  "tr": "MAMA KABI"
+ },
+ "TINTE": {
+  "en": "INK",
+  "tr": "MÜREKKEP"
+ },
+ "SEIFE": {
+  "en": "SOAP",
+  "tr": "SABUN"
+ },
+ "AUTOMAT": {
+  "en": "MACHINE",
+  "tr": "OTOMAT"
+ },
+ "KESSEL": {
+  "en": "BOILER",
+  "tr": "KAZAN"
+ },
+ "ÇAY": {
+  "en": "ÇAY",
+  "tr": "ÇAY"
+ },
+ "Tinte aufgefüllt": {
+  "en": "Ink refilled",
+  "tr": "Mürekkep dolduruldu"
+ },
+ "Seife aufgefüllt": {
+  "en": "Soap refilled",
+  "tr": "Sabun dolduruldu"
+ },
+ "Holz nachgelegt": {
+  "en": "Wood added",
+  "tr": "Odun atıldı"
+ },
+ "Çay ist fertig": {
+  "en": "Çay is ready",
+  "tr": "Çay hazır"
+ },
+ "Iss was, du bist so dünn!": {
+  "en": "Eat something, you're so thin!",
+  "tr": "Bir şey ye, çok zayıfsın!"
+ },
+ "Hast du Hunger, mein Sohn?": {
+  "en": "Are you hungry, my son?",
+  "tr": "Acıktın mı oğlum?"
+ },
+ "Noch ein Teller!": {
+  "en": "Another plate!",
+  "tr": "Bir tabak daha!"
+ },
+ "Wie bei Mama!": {
+  "en": "Just like Mama's!",
+  "tr": "Tıpkı annemin yaptığı gibi!"
+ },
+ "Mars!": {
+  "en": "Mars!",
+  "tr": "Mars!"
+ },
+ "Şeş beş!": {
+  "en": "Şeş beş!",
+  "tr": "Şeş beş!"
+ },
+ "Düşeş!": {
+  "en": "Düşeş!",
+  "tr": "Düşeş!"
  }
 }

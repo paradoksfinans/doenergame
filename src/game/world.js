@@ -125,6 +125,7 @@ export function activePads() {
   const out = [];
   for (const p of PADS) {
     if (G.unlocked.has(p.id)) continue;
+    if (p.cities && !p.cities.includes(G.city % 5)) continue;
     if (p.id === 'city' && (!G.unlocked.has('golden') || G.cityLv < MAX_LEVEL || G.city < (G.top ?? G.city)))
       continue;
     if (padLevel(p.id) > G.cityLv) continue;
@@ -376,10 +377,7 @@ export function travelTo(i) {
   branches.sort((a, b) => a.i - b.i);
   switchCity(i, target.snap || fullCity(i), branches);
   burst(80);
-  showBanner(
-    t('Zurück in {c}!', { c: t(cityOf(i).name) }),
-    t('Deine anderen Filialen verdienen weiter'),
-  );
+  showBanner(t('Zurück in {c}!', { c: t(cityOf(i).name) }), t('Deine anderen Filialen verdienen weiter'));
   chord();
   save();
 }

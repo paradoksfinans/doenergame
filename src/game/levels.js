@@ -1,6 +1,6 @@
 // levels.js – Stadt-Level 1–10: Ausbaufelder werden pro Level freigegeben,
 // ein Level steigt, wenn alle Felder des Levels gekauft sind UND das Level-Ziel erreicht ist.
-import { PADS, cityOf, specOf } from './config.js';
+import { PADS, WING_DEF, cityOf, specOf, padHere } from './config.js';
 import { G, priceMul, padPrice } from './state.js';
 import { $, showBanner, bumpMoney } from './hud.js';
 import { addGems, M } from './meta.js';
@@ -49,8 +49,20 @@ export const PAD_LEVEL = {
   shishaVent: 7,
   roomVip: 8,
   roomHall: 9,
+  wingWaiter: 8,
 };
-export const padLevel = id => PAD_LEVEL[id] || 1;
+let wingLv = null;
+export const padLevel = id => {
+  if (!wingLv) {
+    wingLv = {};
+    for (const w of WING_DEF) {
+      if (w.deco) continue;
+      wingLv['wing_' + w.id] = w.lv;
+      if (w.fix) wingLv[w.fix.id] = w.fix.lv;
+    }
+  }
+  return PAD_LEVEL[id] || wingLv[id] || 1;
+};
 
 // Ziel, um von Level n auf n+1 zu kommen (Zählung ab Ankunft in der Stadt)
 const GOALS = {
@@ -75,7 +87,7 @@ const GOALS = {
 };
 
 export function levelPads(lv) {
-  return PADS.filter(p => padLevel(p.id) === lv && p.id !== 'city');
+  return PADS.filter(p => padLevel(p.id) === lv && p.id !== 'city' && padHere(p));
 }
 export function goalOf(lv) {
   const g = GOALS[lv];
@@ -208,15 +220,16 @@ export function renderLevel() {
       { c: t(cityOf(G.city + 1).name) },
     );
   } else {
-    intro.textContent = t('Für Level {lv}: alle Ausbauten dieses Levels kaufen und das Level-Ziel erreichen.', {
-      lv: pr.lv + 1,
-    });
+    intro.textContent = t(
+      'Für Level {lv}: alle Ausbauten dieses Levels kaufen und das Level-Ziel erreichen.',
+      {
+        lv: pr.lv + 1,
+      },
+    );
   }
   for (const p of pr.pads) {
     const done = G.unlocked.has(p.id);
-    list.append(
-      row(padName(p), done ? t('gekauft') : t('{p} €', { p: fmt(padPrice(p)) }), done),
-    );
+    list.append(row(padName(p), done ? t('gekauft') : t('{p} €', { p: fmt(padPrice(p)) }), done));
   }
   if (pr.g)
     list.append(
@@ -229,11 +242,7 @@ export function renderLevel() {
     );
   {
     const me = mechOf(),
-      r = row(
-        (pr.lv >= 2 ? '★ ' : '🔒 ') + me.name(),
-        pr.lv >= 2 ? t('aktiv') : t('ab Level 2'),
-        false,
-      );
+      r = row((pr.lv >= 2 ? '★ ' : '🔒 ') + me.name(), pr.lv >= 2 ? t('aktiv') : t('ab Level 2'), false);
     const d = document.createElement('div');
     d.className = 'd';
     d.textContent = me.desc();

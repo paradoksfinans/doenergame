@@ -57,8 +57,7 @@ export function goal() {
       y: PILES[pk].y,
     };
   const carWait = G.cars.find(c => c.state === 'wait' && c.arr);
-  if (pl.items.includes('t'))
-    return { t: t('Müll zum <b>Mülleimer</b> bringen'), x: BIN.x, y: BIN.y };
+  if (pl.items.includes('t')) return { t: t('Müll zum <b>Mülleimer</b> bringen'), x: BIN.x, y: BIN.y };
   if (G.inspector && G.inspector.state !== 'out' && dirtyCount() > 0 && !pl.items.some(t => t !== 't')) {
     const di2 = G.tableTrash.findIndex((n, i) => n > 0 && TABLES[i].lv <= G.tablesLv);
     return { t: t('<b>Kontrolle!</b> Schnell Tische abräumen'), x: TABLES[di2].x, y: TABLES[di2].y };
@@ -121,7 +120,9 @@ export function goal() {
     return { t: t('Döner am <b>Spieß</b> abholen'), x: s.x + 0.5, y: PICK_Y };
   const lh = levelHint();
   if (lh) return { t: lh, x: null };
-  if (G.unlocked.size === PADS.length)
+  if (
+    PADS.every(p => p.id === 'city' || G.unlocked.has(p.id) || (p.cities && !p.cities.includes(G.city % 5)))
+  )
     return { t: t('<b>Döner Palast komplett!</b> Sammle weiter ein.'), x: null };
   return { t: t('Der Spieß brutzelt … gleich gibt es Nachschub'), x: null };
 }

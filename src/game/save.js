@@ -36,7 +36,12 @@ export function citySnap() {
 
 /** Voll ausgebaute Stadt für alte Spielstände ohne gespeicherten Stadtzustand. */
 export function fullCity(i) {
-  return { city: i, unlocked: PADS.filter(p => p.id !== 'city').map(p => p.id), cityLv: 10, rating: 4.6 };
+  return {
+    city: i,
+    unlocked: PADS.filter(p => p.id !== 'city' && (!p.cities || p.cities.includes(i % 5))).map(p => p.id),
+    cityLv: 10,
+    rating: 4.6,
+  };
 }
 
 /** Stadtzustand auf das frisch erzeugte G anwenden. */
@@ -123,7 +128,9 @@ export function load() {
   }
   if (s.weather) G.weather = s.weather;
   // Filialen: ältere Spielstände kennen den Stadt-Index noch nicht (Filialen entstanden der Reihe nach)
-  G.branches = (s.branches || []).map((b, k) => (typeof b.i === 'number' ? b : Object.assign({}, b, { i: k })));
+  G.branches = (s.branches || []).map((b, k) =>
+    typeof b.i === 'number' ? b : Object.assign({}, b, { i: k }),
+  );
   G.branchCash = s.branchCash || 0;
   if (G.branches.length && s.t) {
     const sec = Math.min(7200, (Date.now() - s.t) / 1000);

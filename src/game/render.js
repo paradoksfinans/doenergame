@@ -509,7 +509,7 @@ export function render() {
     const I = G.inspector;
     S.push({ d: I.x + I.y, f: () => drawPerson(I) });
   }
-  for (const ly of [0, 5, 10, 15, 20]) S.push({ d: 12.05 + ly, f: () => drawLamp(ly) });
+  for (const ly of [0, 5, 10, 15, 20, 26, 32, 38, 44]) S.push({ d: 12.05 + ly, f: () => drawLamp(ly) });
   S.sort((a, b) => a.d - b.d);
   for (const s of S) s.f();
   drawNight();
