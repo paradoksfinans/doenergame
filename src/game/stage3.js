@@ -88,7 +88,7 @@ function tubeTick(dt) {
     sfx('pop', 0.5, 1 + pl.carry * 0.03);
   }
 }
-/** Für Yusuf im Anbau: Döner aus der Rohrpost-Station nehmen (liefert die Anzahl). */
+/** Für Mert-Kaan im Anbau: Döner aus der Rohrpost-Station nehmen (liefert die Anzahl). */
 export function tubeTake(n) {
   if (!tubeOn()) return 0;
   const tb = tube(),

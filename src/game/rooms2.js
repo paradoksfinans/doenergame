@@ -878,7 +878,7 @@ CFG.phone = {
     const b = LR(r, 3.2, 0.9, 2.2, 0.8);
     const tech = npc(LX(r, 4.2), r.y0 + 0.5, {
       shirt: '#2f5f93',
-      name: 'Kerem',
+      name: 'Onur-Kaan',
       fx: 1,
       moving: !!st.cur,
       phase: tm * 6,
@@ -2082,7 +2082,7 @@ const deco = (withCats, extra) => ({
 CFG.garden = deco(false);
 CFG.kedi = deco(true);
 
-// ================================================================ Flur-Kellner Yusuf
+// ================================================================ Flur-Kellner Mert-Kaan
 const PICKUP = { x: 3.0, y: 5.1 };
 function jobs() {
   const out = [];
@@ -2129,7 +2129,7 @@ function waiterTick(dt) {
   if (!w)
     w = ws.yusuf = npc(home.x, home.y, {
       shirt: '#2f9a8a',
-      name: 'Yusuf',
+      name: 'Mert-Kaan',
       state: 'idle',
       path: [],
       wait: 0,

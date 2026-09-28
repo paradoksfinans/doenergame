@@ -250,27 +250,27 @@ export function unlock(id, silent) {
       G.fryer.stock = Math.max(G.fryer.stock, 3);
       break;
     case 'cashier':
-      G.workers.push(mkWorker('cashier', REG.x, REG.y, '#3f7fbf', 'Zeynep', { long: true }));
+      G.workers.push(mkWorker('cashier', REG.x, REG.y, '#3f7fbf', 'Samir'));
       break;
     case 'runner':
-      G.workers.push(mkWorker('runner', 8.9, 1.1, '#4f9a58', 'Ali'));
+      G.workers.push(mkWorker('runner', 8.9, 1.1, '#4f9a58', 'Sarper'));
       break;
     case 'cleaner':
       G.workers.push(
-        mkWorker('cleaner', BIN.x + 0.6, BIN.y - 0.6, '#c24d78', 'Hatice', { long: true, state: 'idle' }),
+        mkWorker('cleaner', BIN.x + 0.6, BIN.y - 0.6, '#c24d78', 'Sibel', { long: true, state: 'idle' }),
       );
       break;
     case 'runner2':
-      G.workers.push(mkWorker('runner', 8.9, 1.1, '#8a5bb0', 'Mehmet'));
+      G.workers.push(mkWorker('runner', 8.9, 1.1, '#8a5bb0', 'Selcuk'));
       break;
     case 'driveRunner':
-      G.workers.push(mkWorker('runner', 9.7, 2.0, '#e07a3a', 'Can', { home: 'drive' }));
+      G.workers.push(mkWorker('runner', 9.7, 2.0, '#e07a3a', 'Eymen', { home: 'drive' }));
       break;
     case 'delivRunner':
       G.workers.push(mkWorker('runner', 8.2, 5.6, '#3f7fbf', 'Emre', { home: 'deliv' }));
       break;
     case 'driveStaff':
-      G.workers.push(mkWorker('drive', 10.75, 1.5, '#2f9a8a', 'Elif', { long: true }));
+      G.workers.push(mkWorker('drive', 10.75, 1.5, '#2f9a8a', 'Samed'));
       break;
     case 'tray':
       capFix();

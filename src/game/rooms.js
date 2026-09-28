@@ -810,11 +810,11 @@ function hallTick(dt) {
 
 // ---------------------------------------------------------------- Takt
 // ---------------------------------------------------------------- Raum-Personal
-// Kellner Deniz (Zocker-Lounge) und Butler Selim (VIP) holen Döner von der Theke und servieren selbst.
+// Kellner Gökhan (Zocker-Lounge) und Butler Selim (VIP) holen Döner von der Theke und servieren selbst.
 const CORR = 1.5; // Laufgang an der linken Wand des Gastraums
 const PICKUP = { x: 3.0, y: 5.0 };
 const STAFF_DEF = {
-  gamer: { name: 'Deniz', home: { x: -1.6, y: 8.6 }, shirt: '#5a3fa0', skin: '#c68a5e', hair: '#1b1b1f' },
+  gamer: { name: 'Gökhan', home: { x: -1.6, y: 8.6 }, shirt: '#5a3fa0', skin: '#c68a5e', hair: '#1b1b1f' },
   vip: {
     name: 'Selim',
     home: { x: -0.4, y: 17.6 },
@@ -1188,8 +1188,8 @@ export function roomDrawables(S0, time) {
     });
     // Barbiere
     [
-      { x: -6.3, y: 2.4, n: 'Murat' },
-      { x: -3.3, y: 2.4, n: 'Kemal' },
+      { x: -6.3, y: 2.4, n: 'Kerim' },
+      { x: -3.3, y: 2.4, n: 'Tarik' },
     ].forEach((b, i) => {
       const busy = st.barber.guests.some(g => g.chair === i && g.state === 'cut');
       const nb = {

@@ -28,7 +28,7 @@ export const PRES_UPS = [
     id: 'pStaff0',
     br: 'Start',
     name: 'Alte Freunde',
-    desc: 'Zeynep und Ali arbeiten ab der ersten Minute',
+    desc: 'Samir und Sarper arbeiten ab der ersten Minute',
     cost: [6],
   },
   { id: 'pWalk', br: 'Tempo', name: 'Flinke Füße', desc: 'Du läufst 8 % schneller', cost: [2, 3, 5, 7, 10] },
@@ -48,7 +48,7 @@ export const PRES_UPS = [
     cost: [3, 5, 8, 12, 16],
   },
   { id: 'pRooms', br: 'Räume', name: 'Alter Bauplan', desc: 'Nebenräume 1 Level früher', cost: [8, 15] },
-  { id: 'pYusuf', br: 'Räume', name: 'Yusuf bleibt', desc: 'Flur-Kellner Yusuf kostet nichts', cost: [10] },
+  { id: 'pYusuf', br: 'Räume', name: 'Mert-Kaan bleibt', desc: 'Flur-Kellner Mert-Kaan kostet nichts', cost: [10] },
   {
     id: 'pEvents',
     br: 'Events',

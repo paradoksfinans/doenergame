@@ -259,9 +259,9 @@
   "en": "Alaaf Streak",
   "tr": "Alaaf Serisi"
  },
- "Ali trägt Döner": {
-  "en": "Ali carries döner",
-  "tr": "Ali döner taşıyor"
+ "Sarper trägt Döner": {
+  "en": "Sarper carries döner",
+  "tr": "Sarper döner taşıyor"
  },
  "Alle 20 Minuten gibt es einen Gratis-Dreh.": {
   "en": "There's a free spin every 20 minutes.",
@@ -411,9 +411,9 @@
   "en": "Fine!",
   "tr": "Ceza!"
  },
- "Can am Drive-In": {
-  "en": "Can at the drive-in",
-  "tr": "Can arabaya serviste"
+ "Eymen am Drive-In": {
+  "en": "Eymen at the drive-in",
+  "tr": "Eymen arabaya serviste"
  },
  "Chefkoch": {
   "en": "Head Chef",
@@ -615,9 +615,9 @@
   "en": "A new day – still quiet for now",
   "tr": "Yeni bir gün – şimdilik sakin"
  },
- "Elif am Drive-In": {
-  "en": "Elif at the drive-in",
-  "tr": "Elif arabaya serviste"
+ "Samed am Drive-In": {
+  "en": "Samed at the drive-in",
+  "tr": "Samed arabaya serviste"
  },
  "Emre fürs Lieferregal": {
   "en": "Emre for the delivery shelf",
@@ -839,9 +839,9 @@
   "en": "Hamburg",
   "tr": "Hamburg"
  },
- "Hatice räumt auf": {
-  "en": "Hatice cleans up",
-  "tr": "Hatice topluyor"
+ "Sibel räumt auf": {
+  "en": "Sibel cleans up",
+  "tr": "Sibel topluyor"
  },
  "Herbstfest": {
   "en": "Autumn Fest",
@@ -935,7 +935,7 @@
   "en": "Map",
   "tr": "Harita"
  },
- "Kassiererin": {
+ "Kassierer": {
   "en": "Cashier",
   "tr": "Kasiyer"
  },
@@ -1103,9 +1103,9 @@
   "en": "Maximum",
   "tr": "Maksimum"
  },
- "Mehmet trägt mit": {
-  "en": "Mehmet helps carry",
-  "tr": "Mehmet de taşıyor"
+ "Selcuk trägt mit": {
+  "en": "Selcuk helps carry",
+  "tr": "Selcuk de taşıyor"
  },
  "Mehr Gäste": {
   "en": "More guests",
@@ -1363,9 +1363,9 @@
   "en": "Prices ×{m} · old branch keeps earning",
   "tr": "Fiyatlar ×{m} · eski şube kazanmaya devam ediyor"
  },
- "Putzkraft Hatice": {
-  "en": "Cleaner Hatice",
-  "tr": "Temizlikçi Hatice"
+ "Putzkraft Sibel": {
+  "en": "Cleaner Sibel",
+  "tr": "Temizlikçi Sibel"
  },
  "REGAL": {
   "en": "SHELF",
@@ -1639,13 +1639,13 @@
   "en": "Carry 8 döner",
   "tr": "8 döner taşı"
  },
- "Träger Ali": {
-  "en": "Runner Ali",
-  "tr": "Taşıyıcı Ali"
+ "Träger Sarper": {
+  "en": "Runner Sarper",
+  "tr": "Taşıyıcı Sarper"
  },
- "Träger Mehmet": {
-  "en": "Runner Mehmet",
-  "tr": "Taşıyıcı Mehmet"
+ "Träger Selcuk": {
+  "en": "Runner Selcuk",
+  "tr": "Taşıyıcı Selcuk"
  },
  "Träger tragen 1 Döner mehr": {
   "en": "Runners carry 1 more döner",
@@ -1779,9 +1779,9 @@
   "en": "While you were away: +{a} €",
   "tr": "Sen yokken: +{a} €"
  },
- "Zeynep übernimmt die Kasse": {
-  "en": "Zeynep takes over the register",
-  "tr": "Kasayı Zeynep devralıyor"
+ "Samir übernimmt die Kasse": {
+  "en": "Samir takes over the register",
+  "tr": "Kasayı Samir devralıyor"
  },
  "Zieh irgendwo über den Bildschirm, um zu laufen.": {
   "en": "Drag anywhere on the screen to walk.",
@@ -2783,17 +2783,17 @@
   "en": "No çay, no tavla – refill at the samovar",
   "tr": "Çaysız tavla olmaz – semaverden doldur"
  },
- "Flur-Kellner Yusuf": {
-  "en": "Hall waiter Yusuf",
-  "tr": "Koridor garsonu Yusuf"
+ "Flur-Kellner Mert-Kaan": {
+  "en": "Hall waiter Mert-Kaan",
+  "tr": "Koridor garsonu Mert-Kaan"
  },
  "Bedient den Anbau automatisch": {
   "en": "Serves the annex automatically",
   "tr": "Ek binaya otomatik servis"
  },
- "Yusuf übernimmt den Anbau": {
-  "en": "Yusuf takes over the annex",
-  "tr": "Yusuf ek binayı devraldı"
+ "Mert-Kaan übernimmt den Anbau": {
+  "en": "Mert-Kaan takes over the annex",
+  "tr": "Mert-Kaan ek binayı devraldı"
  },
  "Er bringt Döner in alle Räume im Anbau": {
   "en": "He brings Döner to every room in the annex",
@@ -3235,9 +3235,9 @@
   "en": "Old friends",
   "tr": "Eski dostlar"
  },
- "Zeynep und Ali arbeiten ab der ersten Minute": {
-  "en": "Zeynep and Ali work from the first minute",
-  "tr": "Zeynep ve Ali ilk dakikadan çalışır"
+ "Samir und Sarper arbeiten ab der ersten Minute": {
+  "en": "Samir and Sarper work from the first minute",
+  "tr": "Samir ve Sarper ilk dakikadan çalışır"
  },
  "Tempo": {
   "en": "Speed",
@@ -3287,13 +3287,13 @@
   "en": "Side rooms 1 level earlier",
   "tr": "Yan odalar 1 seviye erken"
  },
- "Yusuf bleibt": {
-  "en": "Yusuf stays",
-  "tr": "Yusuf kalıyor"
+ "Mert-Kaan bleibt": {
+  "en": "Mert-Kaan stays",
+  "tr": "Mert-Kaan kalıyor"
  },
- "Flur-Kellner Yusuf kostet nichts": {
-  "en": "Hall waiter Yusuf is free",
-  "tr": "Koridor garsonu Yusuf bedava"
+ "Flur-Kellner Mert-Kaan kostet nichts": {
+  "en": "Hall waiter Mert-Kaan is free",
+  "tr": "Koridor garsonu Mert-Kaan bedava"
  },
  "Events": {
   "en": "Events",
