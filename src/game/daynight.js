@@ -30,6 +30,7 @@ export function phaseNow() {
 }
 
 export function darkness() {
+  if (G.blackout) return 0.8;
   const h = G.clock / 60;
   if (h >= 20 || h < 5) return 0.55;
   if (h >= 18) return (0.55 * (h - 18)) / 2;
@@ -82,7 +83,7 @@ export function drawNight() {
   dc.fillStyle = `rgba(16,14,46,${d})`;
   dc.fillRect(0, 0, dk.width, dk.height);
   dc.globalCompositeOperation = 'destination-out';
-  const ls = LIGHTS.concat([[G.player.x, G.player.y, 80]]);
+  const ls = G.blackout ? [[G.player.x, G.player.y, 110], [9.8, 0.8, 50]] : LIGHTS.concat([[G.player.x, G.player.y, 80]]);
   for (const L of ls) {
     const s = toScreen(L[0], L[1], 0),
       r = L[2] * zoom * dpr;
@@ -101,7 +102,7 @@ export function drawNight() {
   ctx.setTransform(1, 0, 0, 1, 0, 0);
   ctx.drawImage(dk, 0, 0);
   ctx.globalCompositeOperation = 'lighter';
-  for (const L of LIGHTS) {
+  for (const L of G.blackout ? [] : LIGHTS) {
     const s = toScreen(L[0], L[1], 0),
       r = L[2] * 0.8 * zoom * dpr;
     ctx.save();

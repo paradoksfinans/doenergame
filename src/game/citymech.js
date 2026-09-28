@@ -15,6 +15,7 @@ import { $, bumpMoney, showBanner } from './hud.js';
 import { burst } from './confetti.js';
 import { phaseNow } from './daynight.js';
 import { t, fmt } from './i18n.js';
+import { ev3Sale } from './stage3.js';
 
 export const HARBOR = { x: 5.3, y: 5.5 };
 
@@ -28,7 +29,9 @@ export const MECHS = [
     id: 'harbor',
     name: () => t('Hafen-Order'),
     desc: () =>
-      t('Wenn das Schiffshorn ertönt: Döner zur Hafenkiste bringen, bevor die Zeit abläuft – doppelter Preis.'),
+      t(
+        'Wenn das Schiffshorn ertönt: Döner zur Hafenkiste bringen, bevor die Zeit abläuft – doppelter Preis.',
+      ),
   },
   {
     id: 'wiesn',
@@ -38,7 +41,8 @@ export const MECHS = [
   {
     id: 'alaaf',
     name: () => t('Alaaf-Kette'),
-    desc: () => t('Bediene Gäste schnell hintereinander – jede Bestellung in der Kette bringt mehr (bis +60 %).'),
+    desc: () =>
+      t('Bediene Gäste schnell hintereinander – jede Bestellung in der Kette bringt mehr (bis +60 %).'),
   },
   {
     id: 'ferry',
@@ -85,6 +89,10 @@ function makeGuest(extra) {
   };
   return Object.assign(c, extra);
 }
+/** Gruppe von Gästen, die nach und nach in die Schlange gehen (auch für Events aus stage3.js). */
+export function addGroup(n, extra) {
+  queueGuests(n, extra);
+}
 function queueGuests(n, extra) {
   const m = M_();
   for (let i = 0; i < n; i++) m.pending.push(extra);
@@ -94,7 +102,8 @@ function queueGuests(n, extra) {
 export function mechDecorate(c) {
   if (!mechOn()) return;
   const id = mechOf().id;
-  if (id === 'alaaf' && Math.random() < 0.55) c.partyHat = rnd(['#e0742a', '#4fae62', '#3f7fbf', '#d8342b', '#8a5bb0']);
+  if (id === 'alaaf' && Math.random() < 0.55)
+    c.partyHat = rnd(['#e0742a', '#4fae62', '#3f7fbf', '#d8342b', '#8a5bb0']);
   if (id === 'wiesn' && M_().wiesn > 0) {
     c.tyrol = true;
     c.wiesn = true;
@@ -122,6 +131,11 @@ export function mechSale(c) {
   if (c.wiesn) {
     mul *= 1.3;
     label = t('Wiesn');
+  }
+  const e3 = ev3Sale(c);
+  if (e3.mul !== 1) {
+    mul *= e3.mul;
+    label = e3.label;
   }
   if (is('alaaf')) {
     const m = M_();
@@ -240,10 +254,18 @@ function uiTick(dt) {
   const el = $('mechChip');
   if (!el) return;
   let txt = '';
-  if (m.harbor) txt = t('Hafen {h}/{n} · {s} s', { h: m.harbor.have, n: m.harbor.need, s: Math.ceil(m.harbor.t) });
+  if (m.harbor)
+    txt = t('Hafen {h}/{n} · {s} s', { h: m.harbor.have, n: m.harbor.need, s: Math.ceil(m.harbor.t) });
   else if (m.wiesn > 0) txt = t('Wiesn · {s} s', { s: Math.ceil(m.wiesn) });
   else if (is('alaaf') && m.combo >= 2) txt = t('Alaaf ×{k}', { k: fmt(1 + 0.06 * m.combo, 2) });
-  else if (m.pending.length) txt = mechOf().id === 'ferry' ? t('Fähre: {n} Touristen', { n: m.pending.length }) : t('Party: {n} Gäste', { n: m.pending.length });
+  else if (m.pending.length) {
+    const p0 = m.pending[0];
+    txt = p0.tourist
+      ? t('Fähre: {n} Touristen', { n: m.pending.length })
+      : p0.party
+        ? t('Party: {n} Gäste', { n: m.pending.length })
+        : t('Warten draußen: {n}', { n: m.pending.length });
+  }
   el.hidden = !txt;
   el.textContent = txt;
 }

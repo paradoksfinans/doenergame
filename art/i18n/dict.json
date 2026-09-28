@@ -2866,5 +2866,297 @@
  "Düşeş!": {
   "en": "Düşeş!",
   "tr": "Düşeş!"
+ },
+ "Warten draußen: {n}": {
+  "en": "Waiting outside: {n}",
+  "tr": "Dışarıda bekleyen: {n}"
+ },
+ "ROHRPOST": {
+  "en": "TUBE MAIL",
+  "tr": "POSTA BORUSU"
+ },
+ "Mega-Schlange!": {
+  "en": "Mega queue!",
+  "tr": "Dev kuyruk!"
+ },
+ "{n} Leute stehen bis auf die Straße – alle bedienen gibt einen Bonus": {
+  "en": "{n} people line up into the street – serve them all for a bonus",
+  "tr": "{n} kişi sokağa kadar sıraya girdi – hepsine servis yaparsan bonus var"
+ },
+ "Mega-Schlange geschafft!": {
+  "en": "Mega queue done!",
+  "tr": "Dev kuyruk bitti!"
+ },
+ "+{a} € Bonus und 2 Goldmünzen": {
+  "en": "+{a} € bonus and 2 gold coins",
+  "tr": "+{a} € bonus ve 2 altın"
+ },
+ "Die Schlange löst sich auf": {
+  "en": "The queue breaks up",
+  "tr": "Kuyruk dağıldı"
+ },
+ "{s} von {n} bedient – beim nächsten Mal schneller!": {
+  "en": "{s} of {n} served – faster next time!",
+  "tr": "{n} kişiden {s} kişiye servis – bir dahakine daha hızlı!"
+ },
+ "Mega-Schlange {s}/{n} · {x} s": {
+  "en": "Mega queue {s}/{n} · {x} s",
+  "tr": "Dev kuyruk {s}/{n} · {x} sn"
+ },
+ "Autokorso!": {
+  "en": "Car parade!",
+  "tr": "Konvoy!"
+ },
+ "Hupende Autos mit Fahnen am Drive-In – sie zahlen 50 % mehr": {
+  "en": "Honking cars with flags at the drive-in – they pay 50% more",
+  "tr": "Bayraklı, korna çalan arabalar arabaya serviste – %50 fazla öderler"
+ },
+ "Hup hup!": {
+  "en": "Honk honk!",
+  "tr": "Düt düt!"
+ },
+ "Autokorso · {n} Autos": {
+  "en": "Car parade · {n} cars",
+  "tr": "Konvoy · {n} araba"
+ },
+ "Autokorso": {
+  "en": "Parade",
+  "tr": "Konvoy"
+ },
+ "Stromausfall!": {
+  "en": "Power outage!",
+  "tr": "Elektrik kesintisi!"
+ },
+ "Spieße und Fritteuse stehen still – schnell zum Sicherungskasten hinten rechts": {
+  "en": "Spits and fryer have stopped – hurry to the fuse box at the back right",
+  "tr": "Şişler ve fritöz durdu – hemen arka sağdaki sigorta kutusuna koş"
+ },
+ "Licht ist wieder an!": {
+  "en": "The lights are back on!",
+  "tr": "Işıklar geri geldi!"
+ },
+ "Die Spieße drehen sich wieder": {
+  "en": "The spits are turning again",
+  "tr": "Şişler yeniden dönüyor"
+ },
+ "Stromausfall! Sicherungskasten hinten rechts": {
+  "en": "Power outage! Fuse box at the back right",
+  "tr": "Elektrik kesik! Sigorta kutusu arka sağda"
+ },
+ "Public Viewing!": {
+  "en": "Public viewing!",
+  "tr": "Maç yayını!"
+ },
+ "Das Spiel läuft auf der Leinwand – 8 Fans wollen Döner, sie zahlen 30 % mehr": {
+  "en": "The match is on the big screen – 8 fans want Döner and pay 30% more",
+  "tr": "Maç dev ekranda – 8 taraftar döner istiyor, %30 fazla öderler"
+ },
+ "Die Fans rasten aus – alle in der Schlange warten gern noch länger": {
+  "en": "The fans go wild – everyone in the queue happily waits longer",
+  "tr": "Taraftarlar coştu – kuyruktaki herkes daha uzun bekler"
+ },
+ "Oh nein, Gegentor …": {
+  "en": "Oh no, they scored …",
+  "tr": "Eyvah, gol yedik …"
+ },
+ "Abpfiff!": {
+  "en": "Full time!",
+  "tr": "Maç bitti!"
+ },
+ "Endstand {a}:{b}": {
+  "en": "Final score {a}:{b}",
+  "tr": "Sonuç {a}:{b}"
+ },
+ "Public Viewing {a}:{b} · {s} s": {
+  "en": "Public viewing {a}:{b} · {s} s",
+  "tr": "Maç {a}:{b} · {s} sn"
+ },
+ "Rekordversuch!": {
+  "en": "Record attempt!",
+  "tr": "Rekor denemesi!"
+ },
+ "Verkaufe {n} Döner in {s} Sekunden – die Jury schaut zu": {
+  "en": "Sell {n} Döner in {s} seconds – the judges are watching",
+  "tr": "{s} saniyede {n} döner sat – jüri izliyor"
+ },
+ "Weltrekord!": {
+  "en": "World record!",
+  "tr": "Dünya rekoru!"
+ },
+ "+{a} € und 3 Goldmünzen – Köln feiert dich": {
+  "en": "+{a} € and 3 gold coins – Cologne celebrates you",
+  "tr": "+{a} € ve 3 altın – Köln seni kutluyor"
+ },
+ "Knapp daneben!": {
+  "en": "So close!",
+  "tr": "Kıl payı kaçtı!"
+ },
+ "{h} von {n} Dönern – nächstes Mal klappt der Rekord": {
+  "en": "{h} of {n} Döner – next time you'll set the record",
+  "tr": "{n} dönerden {h} – rekor bir dahaki sefere"
+ },
+ "Rekord {h}/{n} · {s} s": {
+  "en": "Record {h}/{n} · {s} s",
+  "tr": "Rekor {h}/{n} · {s} sn"
+ },
+ "Der Onkel aus dem Dorf!": {
+  "en": "The uncle from the village!",
+  "tr": "Köyden amca geldi!"
+ },
+ "Er setzt sich an einen Tisch – bring ihm 3 Döner, dann gibt es Harçlık": {
+  "en": "He sits down at a table – bring him 3 Döner and you get harçlık",
+  "tr": "Bir masaya oturdu – ona 3 döner götür, harçlık verecek"
+ },
+ "Al oğlum, harçlık!": {
+  "en": "Here, my boy, harçlık!",
+  "tr": "Al oğlum, harçlık!"
+ },
+ "Harçlık vom Onkel!": {
+  "en": "Harçlık from your uncle!",
+  "tr": "Amcadan harçlık!"
+ },
+ "Der Onkel ist beleidigt!": {
+  "en": "The uncle is offended!",
+  "tr": "Amca küstü!"
+ },
+ "Onkel will Döner {g}/{n} · {s} s": {
+  "en": "Uncle wants Döner {g}/{n} · {s} s",
+  "tr": "Amca döner istiyor {g}/{n} · {s} sn"
+ },
+ "Robo": {
+  "en": "Robo",
+  "tr": "Robo"
+ },
+ "📱 Der Roboter geht viral!": {
+  "en": "📱 The robot goes viral!",
+  "tr": "📱 Robot viral oldu!"
+ },
+ "Möwe hat die Lieferung geklaut!": {
+  "en": "A seagull stole the delivery!",
+  "tr": "Martı teslimatı çaldı!"
+ },
+ "Drohne": {
+  "en": "Drone",
+  "tr": "Drone"
+ },
+ "Parken": {
+  "en": "Parking",
+  "tr": "Otopark"
+ },
+ "Dolmuş! {n} Fahrgäste": {
+  "en": "Dolmuş! {n} passengers",
+  "tr": "Dolmuş! {n} yolcu"
+ },
+ "Mega": {
+  "en": "Mega",
+  "tr": "Mega"
+ },
+ "Fan": {
+  "en": "Fan",
+  "tr": "Taraftar"
+ },
+ "Dolmuş": {
+  "en": "Dolmuş",
+  "tr": "Dolmuş"
+ },
+ "Luxus": {
+  "en": "Luxury",
+  "tr": "Lüks"
+ },
+ "Oğlum, der Laden ist aber groß geworden!": {
+  "en": "My boy, this shop has grown so big!",
+  "tr": "Oğlum, dükkan ne kadar büyümüş!"
+ },
+ "Zu meiner Zeit kostete ein Döner eine Lira!": {
+  "en": "In my day a Döner cost one lira!",
+  "tr": "Bizim zamanımızda döner bir liraydı!"
+ },
+ "Wann heiratest du endlich?": {
+  "en": "When are you finally getting married?",
+  "tr": "Ne zaman evleniyorsun artık?"
+ },
+ "Im Dorf machen wir das Fleisch selbst!": {
+  "en": "In the village we make the meat ourselves!",
+  "tr": "Köyde eti kendimiz yaparız!"
+ },
+ "Rohrpost": {
+  "en": "Tube mail",
+  "tr": "Posta borusu"
+ },
+ "Döner fliegen von der Theke in den Flur": {
+  "en": "Döner fly from the counter to the hallway",
+  "tr": "Dönerler tezgâhtan koridora uçar"
+ },
+ "Roboter-Kellner": {
+  "en": "Robot waiter",
+  "tr": "Robot garson"
+ },
+ "Bringt Gästen am Tisch Nachschlag": {
+  "en": "Brings seconds to guests at their tables",
+  "tr": "Masadaki misafirlere ek porsiyon getirir"
+ },
+ "Döner-Drohne": {
+  "en": "Döner drone",
+  "tr": "Döner drone'u"
+ },
+ "Liefert per Luft – Vorsicht, Möwen!": {
+  "en": "Delivers by air – watch out for seagulls!",
+  "tr": "Havadan teslimat – martılara dikkat!"
+ },
+ "Luxusauto-Parkplatz": {
+  "en": "Luxury car parking",
+  "tr": "Lüks araba otoparkı"
+ },
+ "Reiche Gäste parken vor der Tür": {
+  "en": "Rich guests park at the door",
+  "tr": "Zengin misafirler kapının önüne park eder"
+ },
+ "Dolmuş-Haltestelle": {
+  "en": "Dolmuş stop",
+  "tr": "Dolmuş durağı"
+ },
+ "Der Dolmuş bringt ganze Gruppen": {
+  "en": "The dolmuş brings whole groups",
+  "tr": "Dolmuş koca gruplar getirir"
+ },
+ "Rohrpost läuft!": {
+  "en": "Tube mail is running!",
+  "tr": "Posta borusu çalışıyor!"
+ },
+ "Döner fliegen von der Theke zur Station im Flur – dort kannst du sie für den Anbau abholen": {
+  "en": "Döner fly from the counter to the station in the hallway – pick them up there for the annex",
+  "tr": "Dönerler tezgâhtan koridordaki istasyona uçar – ek bina için oradan alabilirsin"
+ },
+ "Roboter-Kellner im Dienst": {
+  "en": "Robot waiter on duty",
+  "tr": "Robot garson görevde"
+ },
+ "Er bringt Gästen am Tisch einen Nachschlag – und geht manchmal viral": {
+  "en": "He brings seconds to guests at their tables – and sometimes goes viral",
+  "tr": "Masadaki misafirlere ek porsiyon getirir – bazen viral olur"
+ },
+ "Döner-Drohne startet!": {
+  "en": "Döner drone takes off!",
+  "tr": "Döner drone'u havalandı!"
+ },
+ "Sie liefert 2 Döner per Luft, 60 % Aufschlag – solange keine Möwe dazwischenkommt": {
+  "en": "It delivers 2 Döner by air for 60% extra – unless a seagull gets in the way",
+  "tr": "Havadan 2 döner götürür, %60 fazla – yeter ki araya martı girmesin"
+ },
+ "Luxusauto-Parkplatz eröffnet": {
+  "en": "Luxury car parking opened",
+  "tr": "Lüks araba otoparkı açıldı"
+ },
+ "Reiche Gäste parken vor der Tür, bestellen viel und zahlen doppelt": {
+  "en": "Rich guests park at the door, order a lot and pay double",
+  "tr": "Zengin misafirler kapıya park eder, çok sipariş verir ve iki kat öder"
+ },
+ "Dolmuş-Haltestelle vor der Tür": {
+  "en": "Dolmuş stop at the door",
+  "tr": "Kapının önünde dolmuş durağı"
+ },
+ "Der Dolmuş bringt regelmäßig ganze Gruppen, die 20 % mehr zahlen": {
+  "en": "The dolmuş regularly brings whole groups who pay 20% more",
+  "tr": "Dolmuş düzenli olarak %20 fazla ödeyen gruplar getirir"
  }
 }

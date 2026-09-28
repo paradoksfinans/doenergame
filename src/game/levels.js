@@ -50,6 +50,11 @@ export const PAD_LEVEL = {
   roomVip: 8,
   roomHall: 9,
   wingWaiter: 8,
+  tubePost: 6,
+  robot: 7,
+  drone: 7,
+  dolmus: 7,
+  luxPark: 8,
 };
 let wingLv = null;
 export const padLevel = id => {

@@ -77,6 +77,7 @@ import { v9Update } from './cutting.js';
 import { evtPoints } from './festival.js';
 import { mechDecorate, mechSale, mechSpawnMul, mechTick } from './citymech.js';
 import { roomsTick, roomSpawnMul } from './rooms.js';
+import { stage3Tick } from './stage3.js';
 import { t as T, fmt } from './i18n.js';
 
 let sizT = 0;
@@ -159,7 +160,7 @@ export function update(dt) {
 
   for (const s of G.spits) {
     if (!s.on) continue;
-    if (s.stock < TRAY_MAX) {
+    if (s.stock < TRAY_MAX && !G.blackout) {
       s.t += dt * G.prodMul;
       if (s.t >= G.spitTime) {
         s.t = 0;
@@ -168,7 +169,7 @@ export function update(dt) {
     }
   }
   const fr = G.fryer;
-  if (fr.on && fr.stock < FRY_MAX) {
+  if (fr.on && fr.stock < FRY_MAX && !G.blackout) {
     fr.t += dt * G.prodMul;
     if (fr.t >= G.fryTime) {
       fr.t = 0;
@@ -176,7 +177,7 @@ export function update(dt) {
     }
   }
   const spc = G.special;
-  if (spc.on && spc.stock < SP_MAX) {
+  if (spc.on && spc.stock < SP_MAX && !G.blackout) {
     spc.t += dt * G.prodMul;
     if (spc.t >= G.specTime) {
       spc.t = 0;
@@ -579,6 +580,7 @@ export function update(dt) {
 
   mechTick(dt);
   roomsTick(dt);
+  stage3Tick(dt);
 
   // rating drift
   const tgt = 4 + (G.unlocked.has('deco') ? 0.6 : 0) - (relax() ? 0 : 0.25 * dirtyCount());
@@ -661,7 +663,13 @@ export function update(dt) {
       fly('doner', P(tp.x, tp.y, tp.z), { x: ROAD_CAR, y: fc.y }, 24);
       sfx('serve', 0.35, 1.05) || beep(760, 0.05);
       if (fc.got >= fc.want) {
-        sale('drive', fc.want * (PR + Math.round(priceMul())), ROAD_CAR, fc.y, T('Drive-In'));
+        sale(
+          'drive',
+          Math.round(fc.want * (PR + Math.round(priceMul())) * (fc.korso ? 1.5 : 1)),
+          ROAD_CAR,
+          fc.y,
+          fc.korso ? T('Autokorso') : T('Drive-In'),
+        );
         fc.state = 'out';
         stat('cars', 1);
       }

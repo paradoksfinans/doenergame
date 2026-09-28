@@ -86,6 +86,7 @@ if (new URLSearchParams(location.search).has('debug')) {
     window.__audio = () => a.audioLoaded();
     import('./game/fx.js').then(fx => (window.__fx = fx));
     import('./game/rooms.js').then(r => (window.__R = r));
+    import('./game/stage3.js').then(r => (window.__S3 = r));
     window.__G = () => st.G;
     window.__unlock = id => w.unlock(id);
     window.__nextCity = () => w.nextCity();

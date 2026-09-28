@@ -419,6 +419,51 @@ export const PADS = [
       });
     return out;
   }),
+  // Technik (Stufe 3): Rohrpost überall, dazu je Stadt eine eigene Erfindung am Technik-Feld
+  {
+    id: 'tubePost',
+    name: 'Rohrpost',
+    desc: 'Döner fliegen von der Theke in den Flur',
+    price: 1300,
+    x: 5.8,
+    y: 14.2,
+  },
+  {
+    id: 'robot',
+    name: 'Roboter-Kellner',
+    desc: 'Bringt Gästen am Tisch Nachschlag',
+    price: 1500,
+    x: 10.9,
+    y: 10.4,
+    cities: [0],
+  },
+  {
+    id: 'drone',
+    name: 'Döner-Drohne',
+    desc: 'Liefert per Luft – Vorsicht, Möwen!',
+    price: 1500,
+    x: 10.9,
+    y: 10.4,
+    cities: [1],
+  },
+  {
+    id: 'luxPark',
+    name: 'Luxusauto-Parkplatz',
+    desc: 'Reiche Gäste parken vor der Tür',
+    price: 1800,
+    x: 10.9,
+    y: 10.4,
+    cities: [2],
+  },
+  {
+    id: 'dolmus',
+    name: 'Dolmuş-Haltestelle',
+    desc: 'Der Dolmuş bringt ganze Gruppen',
+    price: 1500,
+    x: 10.9,
+    y: 10.4,
+    cities: [4],
+  },
   {
     id: 'wingWaiter',
     name: 'Flur-Kellner Yusuf',
@@ -519,6 +564,26 @@ export const MSG = {
   wing_school: ['Döner-Kochschule eröffnet!', 'Jeder Kurs braucht vier Döner als Anschauung am Lehrertisch'],
   wing_hamam: ['Hamam eröffnet!', 'Leg am Kessel Holz nach, sonst wird der Stein kalt'],
   wing_tavla: ['Tavla-Ecke eröffnet!', 'Ohne Çay kein Tavla – füll am Samowar nach'],
+  tubePost: [
+    'Rohrpost läuft!',
+    'Döner fliegen von der Theke zur Station im Flur – dort kannst du sie für den Anbau abholen',
+  ],
+  robot: [
+    'Roboter-Kellner im Dienst',
+    'Er bringt Gästen am Tisch einen Nachschlag – und geht manchmal viral',
+  ],
+  drone: [
+    'Döner-Drohne startet!',
+    'Sie liefert 2 Döner per Luft, 60 % Aufschlag – solange keine Möwe dazwischenkommt',
+  ],
+  luxPark: [
+    'Luxusauto-Parkplatz eröffnet',
+    'Reiche Gäste parken vor der Tür, bestellen viel und zahlen doppelt',
+  ],
+  dolmus: [
+    'Dolmuş-Haltestelle vor der Tür',
+    'Der Dolmuş bringt regelmäßig ganze Gruppen, die 20 % mehr zahlen',
+  ],
   wingWaiter: ['Yusuf übernimmt den Anbau', 'Er bringt Döner in alle Räume im Anbau'],
 };
 

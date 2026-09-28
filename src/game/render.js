@@ -64,6 +64,7 @@ import { decoFloor, decoNeon } from './decor.js';
 import { PUMPKINS, drawLeaves, drawPumpkin, evtActive } from './festival.js';
 import { lastDt } from './loop.js';
 import { mechDrawables } from './citymech.js';
+import { stage3Drawables } from './stage3.js';
 import { ROOM_PILES, drawRoomFloors, drawRoomWallDecor, roomDrawables, roomOpen } from './rooms.js';
 
 export let vw = 0,
@@ -485,6 +486,7 @@ export function render() {
     );
   if (G.crate) S.push({ d: G.crate.x + G.crate.y, f: () => drawCrate(G.crate, t) });
   mechDrawables(S, t);
+  stage3Drawables(S, t);
   roomDrawables(S, t);
   G.seats.forEach(s => {
     if (s.lv > G.tablesLv) return;

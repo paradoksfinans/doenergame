@@ -17,6 +17,7 @@ import { t } from './i18n.js';
 import { burst } from './confetti.js';
 import { phaseNow } from './daynight.js';
 import { wingRooms, roomOpen, FL_OUT, FL_IN } from './rooms.js';
+import { TUBE, tubeStock, tubeTake } from './stage3.js';
 
 let H = null;
 /** rooms.js reicht seine Hilfsfunktionen herein (Gäste erzeugen, laufen, zeichnen …). */
@@ -2152,7 +2153,13 @@ function waiterTick(dt) {
     for (const j of w.jobs) if (j.g) j.g.claim = 'yusuf';
     w.need = n;
     const mm = wingRooms().find(r => r.id === 'mama' && roomOpen(r.id));
-    if (mm && ST(mm).pot >= n) {
+    if (tubeStock() >= n) {
+      w.src = 'tube';
+      w.path = [
+        { x: FLX, y: TUBE.y },
+        { x: TUBE.x - 0.5, y: TUBE.y },
+      ];
+    } else if (mm && ST(mm).pot >= n) {
       w.src = mm;
       w.path = [{ x: FLX, y: H.doorOut(mm).y }, H.doorOut(mm), H.doorIn(mm), L(mm, 4.4, 1.6)];
     } else {
@@ -2163,10 +2170,11 @@ function waiterTick(dt) {
     w.wait = 0;
   } else if (w.state === 'fetch') {
     if (!walkW()) return;
-    const stock = w.src ? ST(w.src).pot : G.stock.counter;
+    const stock = w.src === 'tube' ? tubeStock() : w.src ? ST(w.src).pot : G.stock.counter;
     if (stock > 0) {
       const n = Math.min(w.need, stock);
-      if (w.src) ST(w.src).pot -= n;
+      if (w.src === 'tube') tubeTake(n);
+      else if (w.src) ST(w.src).pot -= n;
       else {
         G.stock.counter -= n;
         const tp = stackTop('counter', G.stock.counter);
@@ -2182,7 +2190,8 @@ function waiterTick(dt) {
         if (j.g) j.g.claim = null;
         return false;
       });
-      w.path = [...(w.src ? [] : [FL_OUT, FL_IN]), ...routeTo(w.src, w.jobs[0])];
+      const from = w.src === 'tube' ? null : w.src;
+      w.path = [...(w.src ? [] : [FL_OUT, FL_IN]), ...routeTo(from, w.jobs[0])];
       w.at = w.jobs[0].r;
       w.state = 'go';
     } else {
@@ -2191,7 +2200,12 @@ function waiterTick(dt) {
         for (const j of w.jobs) if (j.g) j.g.claim = null;
         w.jobs = [];
         w.state = 'home';
-        w.path = w.src ? [H.doorIn(w.src), H.doorOut(w.src), home] : [FL_OUT, FL_IN, home];
+        w.path =
+          w.src === 'tube'
+            ? [home]
+            : w.src
+              ? [H.doorIn(w.src), H.doorOut(w.src), home]
+              : [FL_OUT, FL_IN, home];
       }
     }
   } else if (w.state === 'go') {
