@@ -5,6 +5,7 @@ const STAND_COLS = ['#d8342b', '#2f5f93', '#3f7fbf', '#8a2f5a', '#c0392f'];
 
 import {
   BIN,
+  SINK,
   D,
   FRY,
   PILES,
@@ -82,13 +83,13 @@ export function resize() {
 }
 
 export function drawRoad() {
-  poly([P(12.15, -4), P(14.6, -4), P(14.6, D + 6), P(12.15, D + 6)], '#3a3438');
-  poly([P(12, -4), P(12.15, -4), P(12.15, D + 6), P(12, D + 6)], '#8d8590');
+  poly([P(12.15, -4), P(14.6, -4), P(14.6, BD + 3), P(12.15, BD + 3)], '#3a3438');
+  poly([P(12, -4), P(12.15, -4), P(12.15, BD + 3), P(12, BD + 3)], '#8d8590');
   ctx.strokeStyle = 'rgba(255,246,232,.35)';
   ctx.lineWidth = 2;
   ctx.setLineDash([10, 12]);
   let a = P(13.3, -4),
-    b = P(13.3, D + 6);
+    b = P(13.3, BD + 3);
   ctx.beginPath();
   ctx.moveTo(a.x, a.y);
   ctx.lineTo(b.x, b.y);
@@ -233,7 +234,7 @@ export function drawFloor() {
         }
       }
     }
-  poly([P(9.1, D - 0.7), P(11.0, D - 0.7), P(11.0, D), P(9.1, D)], '#5a3b33');
+  poly([P(9.8, D - 0.7), P(11.6, D - 0.7), P(11.6, D), P(9.8, D)], '#5a3b33');
   for (const s of G.spits)
     if (s.on)
       poly(
@@ -316,7 +317,11 @@ export function render() {
   if (G.special.on) {
     S.push({
       d: SP.x + SP.y + 1,
-      f: () => drawSpecStand(t, sp => gfxOn() && sprite('stand' + Math.max(0, STAND_COLS.indexOf(sp.awn)), SP.x, SP.y)),
+      f: () =>
+        drawSpecStand(
+          t,
+          sp => gfxOn() && sprite('stand' + Math.max(0, STAND_COLS.indexOf(sp.awn)), SP.x, SP.y),
+        ),
     });
     S.push({
       d: 2.8 + 4.25 + 0.02,
@@ -347,6 +352,24 @@ export function render() {
     });
   }
   S.push({ d: 3.9 + 4.25 + 0.01, f: () => drawStock('counter') });
+  // Spüle für Geschirr
+  S.push({
+    d: 2.2 + 4.55,
+    f: () => {
+      box(1.45, 3.95, 0.75, 0.6, 30, '#b9c1c5', '#8d969b', '#9fa8ad');
+      const w = P(SINK.x - 0.05, SINK.y, 30);
+      ell(w.x, w.y, 13, 6, '#6fa9c0');
+      ell(w.x - 3, w.y - 1, 4, 1.6, 'rgba(255,255,255,.6)');
+      const q = P(SINK.x - 0.2, SINK.y - 0.2, 30);
+      ctx.fillStyle = '#8d969b';
+      ctx.fillRect(q.x - 1, q.y - 12, 2, 12);
+      ctx.fillRect(q.x - 1, q.y - 12, 7, 2);
+      if (G.player.items.includes('t')) {
+        const c = P(SINK.x, SINK.y, 58);
+        chip(c.x, c.y, T('SPÜLE'), '#2f5f93', '#fff6e8', '9px Bungee, Impact, sans-serif');
+      }
+    },
+  });
   S.push({
     d: 6.9 + 4.22 + 0.01,
     f: () => {
@@ -389,7 +412,8 @@ export function render() {
     S.push({
       d: 11.65 + 2.0,
       f: () => {
-        if (!(gfxOn() && sprite('drivewin', 11.3, 1.2))) box(11.3, 1.2, 0.7, 1.6, 34, '#ece6dc', '#c0392f', '#962a22');
+        if (!(gfxOn() && sprite('drivewin', 11.3, 1.2)))
+          box(11.3, 1.2, 0.7, 1.6, 34, '#ece6dc', '#c0392f', '#962a22');
       },
     });
     S.push({
@@ -405,7 +429,9 @@ export function render() {
   if (G.unlocked.has('delivery')) {
     S.push({
       d: 10.9 + 5.6,
-      f: () => (gfxOn() && sprite('delivshelf', 10.4, 5.3)) || box(10.4, 5.3, 1, 0.6, 30, '#e8e1d6', '#3f7fbf', '#2f5f93'),
+      f: () =>
+        (gfxOn() && sprite('delivshelf', 10.4, 5.3)) ||
+        box(10.4, 5.3, 1, 0.6, 30, '#e8e1d6', '#3f7fbf', '#2f5f93'),
     });
     S.push({
       d: 10.9 + 5.6 + 0.01,
@@ -452,7 +478,10 @@ export function render() {
   if (evtActive()) PUMPKINS.forEach(pp => S.push({ d: pp[0] + pp[1], f: () => drawPumpkin(pp[0], pp[1]) }));
   if (G.unlocked.has('deco'))
     PLANTS.forEach(pp =>
-      S.push({ d: pp[0] + pp[1], f: () => (gfxOn() && sprite('plant', pp[0], pp[1])) || drawPlant(pp[0], pp[1]) }),
+      S.push({
+        d: pp[0] + pp[1],
+        f: () => (gfxOn() && sprite('plant', pp[0], pp[1])) || drawPlant(pp[0], pp[1]),
+      }),
     );
   if (G.crate) S.push({ d: G.crate.x + G.crate.y, f: () => drawCrate(G.crate, t) });
   mechDrawables(S, t);
@@ -480,7 +509,7 @@ export function render() {
     const I = G.inspector;
     S.push({ d: I.x + I.y, f: () => drawPerson(I) });
   }
-  for (const ly of [0, 5, 10, 15]) S.push({ d: 12.05 + ly, f: () => drawLamp(ly) });
+  for (const ly of [0, 5, 10, 15, 20]) S.push({ d: 12.05 + ly, f: () => drawLamp(ly) });
   S.sort((a, b) => a.d - b.d);
   for (const s of S) s.f();
   drawNight();

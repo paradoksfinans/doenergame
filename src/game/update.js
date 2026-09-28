@@ -2,6 +2,7 @@
 
 import {
   BIN,
+  SINK,
   CARCOLS,
   CRATE_SPOTS,
   D,
@@ -223,6 +224,29 @@ export function update(dt) {
     rate(0.03);
     stat('clean', 1);
   }
+  // Geschirr an der Spüle neben der Theke abgeben
+  if (pl.items.includes('t') && G.dropT <= 0 && dist(pl, SINK) < 1.0) {
+    const i = pl.items.lastIndexOf('t');
+    pl.items.splice(i, 1);
+    pl.carry = pl.items.length;
+    G.dropT = 0.06;
+    fly('t', P(pl.x, pl.y, 26 + pl.carry * 5), { x: SINK.x, y: SINK.y }, 20);
+    sfx('stack', 0.5, 1.3) || beep(420, 0.04);
+    rate(0.03);
+    stat('clean', 1);
+  }
+  // Hände frei machen: am Mülleimer kurz stehen bleiben wirft auch Essen weg
+  if (!pl.moving && pl.carry > 0 && dist(pl, BIN) < 0.85) {
+    G.binHold = (G.binHold || 0) + dt;
+    if (G.binHold > 0.9 && G.dropT <= 0) {
+      const it = pl.items.pop();
+      pl.carry = pl.items.length;
+      G.dropT = 0.12;
+      fly(it, P(pl.x, pl.y, 26 + pl.carry * 5), BIN, 26);
+      sfx('trash', 0.5, 1.1) || beep(220, 0.05);
+      if (!pl.carry) floatText(BIN.x, BIN.y, 60, T('Hände frei!'), '#cdbfae');
+    }
+  } else G.binHold = 0;
   if (
     spc.on &&
     spc.stock > 0 &&
@@ -356,9 +380,26 @@ export function update(dt) {
         if (w.carry === 0) {
           w.state = 'toSpit';
           w.src = null;
+          w.stuck = 0;
         } else if (!w.items.some(t => accepts(w.target, t))) {
-          /* feste Station: warten, bis wieder Platz ist */
-        }
+          // Station voll: kurz warten, dann Ware zurück an die Quelle bringen statt ewig herumzustehen
+          w.stuck = (w.stuck || 0) + dt;
+          if (w.stuck > 2.5) {
+            for (const it of w.items) {
+              if (it === 's' && G.special.stock < SP_MAX) G.special.stock++;
+              else if (it === 'f' && G.fryer.stock < FRY_MAX) G.fryer.stock++;
+              else if (it === 'd') {
+                const sp = G.spits.find(x => x.on && x.stock < TRAY_MAX);
+                if (sp) sp.stock++;
+              }
+            }
+            w.items.length = 0;
+            w.carry = 0;
+            w.stuck = 0;
+            w.state = 'toSpit';
+            w.src = pickSource(w);
+          }
+        } else w.stuck = 0;
       }
     }
   });
@@ -701,7 +742,8 @@ export function update(dt) {
       if (G.payFx <= 0) {
         G.payFx = 0.07;
         fly('bill', P(pl.x, pl.y, 40), { x: pad.x, y: pad.y }, 4);
-        sfx('coin', 0.35, 0.9 + Math.random() * 0.25) || beep(900 + Math.random() * 200, 0.04, 'square', 0.015);
+        sfx('coin', 0.35, 0.9 + Math.random() * 0.25) ||
+          beep(900 + Math.random() * 200, 0.04, 'square', 0.015);
       }
       if (G.paid[pad.id] >= pp - 0.001) {
         G.paid[pad.id] = pp;

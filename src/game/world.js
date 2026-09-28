@@ -44,6 +44,7 @@ export function obstacles() {
   if (G.fryer.on) o.push({ x: FRY.x, y: 0, w: 1, d: 1.6 });
   if (G.special.on) o.push({ x: SP.x, y: SP.y, w: 1, d: 1 });
   o.push({ x: 2.4, y: 3.9, w: 5, d: 0.7 });
+  o.push({ x: 1.45, y: 3.95, w: 0.75, d: 0.6 }); // Spüle
   if (G.unlocked.has('drivein')) o.push({ x: 11.3, y: 1.2, w: 0.7, d: 1.6 });
   if (G.unlocked.has('delivery')) o.push({ x: 10.4, y: 5.3, w: 1, d: 0.6 });
   TABLES.forEach(t => {
