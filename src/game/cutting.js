@@ -3,7 +3,7 @@
 import { PICK_Y, TRAY_MAX, dist } from './config.js';
 import { G } from './state.js';
 import { floatText } from './fx.js';
-import { audioInit, beep, chord } from './audio.js';
+import { audioInit, beep, chord, sfx } from './audio.js';
 import { $, showBanner } from './hud.js';
 import { M, closeSheets, openSheet, saveMeta } from './meta.js';
 import { life } from './achievements.js';
@@ -50,11 +50,11 @@ export function doCut() {
   } else if (d < 0.18) {
     n = 3;
     txt = t('Guter Schnitt! +3 Döner');
-    beep(880, 0.1);
+    sfx('ding', 0.6) || beep(880, 0.1);
   } else {
     n = 1;
     txt = t('Daneben … +1 Döner');
-    beep(200, 0.15, 'sawtooth', 0.03);
+    sfx('bad', 0.5, 1.3) || beep(200, 0.15, 'sawtooth', 0.03);
   }
   s.stock = Math.min(TRAY_MAX + 6, s.stock + n);
   s.cut = 25;
@@ -124,7 +124,7 @@ export function renderPets() {
         pet.init = false;
         saveMeta();
         renderPets();
-        beep(880, 0.08);
+        sfx('buy', 0.7) || beep(880, 0.08);
       };
     } else {
       b.textContent = t('{price} Münzen', { price: pt.price });

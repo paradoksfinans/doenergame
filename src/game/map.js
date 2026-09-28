@@ -82,7 +82,7 @@ export function renderMap() {
       g.setAttribute('class', 'city');
       g.setAttribute('role', 'button');
       g.setAttribute('tabindex', '0');
-      g.setAttribute('aria-label', t('{c} auswählen', { c: c.name }));
+      g.setAttribute('aria-label', t('{c} auswählen', { c: t(c.name) }));
       const pick = () => {
         sel = i;
         renderMap();
@@ -105,7 +105,7 @@ export function renderMap() {
         'font-size': 13,
         'font-family': 'Bungee, Impact, sans-serif',
       },
-      c.name,
+      t(c.name),
     );
     const sub = br
       ? '+' + fmt(Math.round(br.rate * 0.25)) + ' €/Min'
@@ -144,7 +144,7 @@ export function renderMap() {
   const tb = $('mapTravel'),
     sb = sel != null ? branchOf(sel) : null;
   tb.hidden = !sb;
-  if (sb) tb.textContent = t('Nach {c} reisen · {m}', { c: cityOf(sel).name, m: mechOf(sel).name() });
+  if (sb) tb.textContent = t('Nach {c} reisen · {m}', { c: t(cityOf(sel).name), m: mechOf(sel).name() });
   const b = $('mapCollect'),
     a = Math.floor(G.branchCash || 0);
   b.disabled = a < 1;

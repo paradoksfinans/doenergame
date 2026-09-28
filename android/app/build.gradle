@@ -9,7 +9,7 @@ android {
         targetSdkVersion rootProject.ext.targetSdkVersion
         // Build-Nummer aus GitHub Actions, damit jede Test-APK die vorige ersetzen kann
         versionCode((System.getenv("GITHUB_RUN_NUMBER") ?: "1").toInteger())
-        versionName "0.17.0"
+        versionName "0.18.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         aaptOptions {
              // Files and dirs to omit from the packaged assets dir, modified to accommodate modern web apps.
@@ -26,12 +26,23 @@ android {
             keyAlias 'test'
             keyPassword 'doenerpalast'
         }
+        // Upload-Schlüssel für den Play Store: kommt nur über GitHub Secrets (ci/build-android.sh),
+        // liegt NIE im Repository.
+        if (System.getenv("ANDROID_KEYSTORE_FILE")) {
+            release {
+                storeFile file(System.getenv("ANDROID_KEYSTORE_FILE"))
+                storePassword System.getenv("ANDROID_KEYSTORE_PASSWORD")
+                keyAlias System.getenv("ANDROID_KEY_ALIAS") ?: "upload"
+                keyPassword System.getenv("ANDROID_KEY_PASSWORD") ?: System.getenv("ANDROID_KEYSTORE_PASSWORD")
+            }
+        }
     }
     buildTypes {
         debug {
             signingConfig signingConfigs.test
         }
         release {
+            if (System.getenv("ANDROID_KEYSTORE_FILE")) signingConfig signingConfigs.release
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }

@@ -60,6 +60,20 @@ export function initI18n() {
   } catch (e) {}
   setLang(id || detectLang());
   translateDom();
+  if (LANG === 'tr') turkishCaps();
+}
+
+// Die Schrift Bungee hat nur Großbuchstaben und kein „ı“. Auf Türkisch deshalb Canvas-Texte in dieser
+// Schrift vorher nach türkischen Regeln groß schreiben (ı→I, i→İ). HTML-Texte regelt styles.css.
+function turkishCaps() {
+  const P = CanvasRenderingContext2D.prototype;
+  for (const fn of ['fillText', 'strokeText', 'measureText']) {
+    const orig = P[fn];
+    P[fn] = function (text, ...rest) {
+      if (typeof text === 'string' && this.font.includes('Bungee')) text = text.toLocaleUpperCase('tr-TR');
+      return orig.call(this, text, ...rest);
+    };
+  }
 }
 export const nextLang = () => LANGS[(LANGS.findIndex(l => l.id === LANG) + 1) % LANGS.length];
 export const langName = () => (LANGS.find(l => l.id === LANG) || LANGS[0]).name;

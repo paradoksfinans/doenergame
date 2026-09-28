@@ -3,7 +3,7 @@
 import { ENTER, EXIT, HAIRS, QSLOTS, SKINS, ctx, rnd } from './config.js';
 import { G, relax } from './state.js';
 import { dirtyCount, moveToward, rate } from './world.js';
-import { actx, audioInit, beep, chord, muted } from './audio.js';
+import { audioInit, beep, chord, playMusic, sfx } from './audio.js';
 import { dpr, vh, vw } from './render.js';
 import { $, bumpMoney, showBanner } from './hud.js';
 import { M, addGems, cashFor, saveMeta } from './meta.js';
@@ -41,7 +41,7 @@ export function spawnCritic() {
   G.customers.push(c);
   G.queue.splice(Math.min(1, G.queue.length), 0, c);
   showBanner(t('Restaurantkritiker!'), t('Bedien ihn in 35 Sekunden – er drängelt nach vorn'));
-  beep(520, 0.15, 'square', 0.03);
+  sfx('ding', 0.7, 0.8) || beep(520, 0.15, 'square', 0.03);
   return true;
 }
 
@@ -61,7 +61,7 @@ export function startInspector() {
     book: true,
   };
   showBanner(t('Hygiene-Kontrolle!'), t('Gleich wird geprüft – alle Tische müssen sauber sein'));
-  beep(300, 0.2, 'square', 0.03);
+  sfx('rush', 0.5, 0.8) || beep(300, 0.2, 'square', 0.03);
 }
 
 export function updateEvents(dt) {
@@ -99,7 +99,7 @@ export function updateEvents(dt) {
               ? t('{d} schmutzige Tische: −{fine} €', { d, fine: fmt(fine) })
               : t('{d} schmutziger Tisch: −{fine} €', { d, fine: fmt(fine) }),
           );
-          beep(140, 0.4, 'sawtooth', 0.04);
+          sfx('bad', 0.8) || beep(140, 0.4, 'sawtooth', 0.04);
         }
         I.state = 'out';
       }
@@ -168,105 +168,13 @@ export function newDayWeather() {
     );
 }
 
-export let musicGain = null,
-  noiseBuf = null,
-  musicTimer = null,
-  nextNoteT = 0,
-  mStep = 0;
-
-export const MEL = [
-  4, -1, 3, 2, 1, -1, 2, -1, 3, 4, 5, 4, 3, -1, -1, -1, 4, -1, 5, 6, 7, -1, 6, 5, 4, 3, 2, 1, 0, -1, -1, -1,
-];
-
-export const HICAZ = [62, 63, 66, 67, 69, 70, 72, 74];
-
-export const midi = n => 440 * Math.pow(2, (n - 69) / 12);
-
-export function mTone(f, t, dur, type, vol) {
-  const o = actx.createOscillator(),
-    g = actx.createGain();
-  o.type = type;
-  o.frequency.setValueAtTime(f, t);
-  g.gain.setValueAtTime(0.0001, t);
-  g.gain.exponentialRampToValueAtTime(vol, t + 0.008);
-  g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
-  o.connect(g).connect(musicGain);
-  o.start(t);
-  o.stop(t + dur + 0.05);
-}
-
-export function mDrum(t, low) {
-  if (low) {
-    const o = actx.createOscillator(),
-      g = actx.createGain();
-    o.frequency.setValueAtTime(140, t);
-    o.frequency.exponentialRampToValueAtTime(48, t + 0.16);
-    g.gain.setValueAtTime(0.35, t);
-    g.gain.exponentialRampToValueAtTime(0.0001, t + 0.2);
-    o.connect(g).connect(musicGain);
-    o.start(t);
-    o.stop(t + 0.22);
-    return;
-  }
-  const s = actx.createBufferSource(),
-    f = actx.createBiquadFilter(),
-    g = actx.createGain();
-  s.buffer = noiseBuf;
-  f.type = 'highpass';
-  f.frequency.value = 2500;
-  g.gain.setValueAtTime(0.18, t);
-  g.gain.exponentialRampToValueAtTime(0.0001, t + 0.06);
-  s.connect(f).connect(g).connect(musicGain);
-  s.start(t);
-  s.stop(t + 0.08);
-}
-
-export function musicTick() {
-  if (!actx || !M.music) return;
-  const dur = 60 / 112 / 2;
-  while (nextNoteT < actx.currentTime + 0.25) {
-    const t = nextNoteT,
-      st = mStep % 32,
-      b = mStep % 8;
-    if (!muted) {
-      if (b === 0) mTone(midi(38), t, 0.34, 'triangle', 0.22);
-      if (b === 4) mTone(midi(45), t, 0.34, 'triangle', 0.18);
-      if (b === 0 || b === 4) mDrum(t, true);
-      if (b === 1 || b === 3 || b === 6) mDrum(t, false);
-      if (MEL[st] >= 0) {
-        mTone(midi(HICAZ[MEL[st]]), t, 0.22, 'sawtooth', 0.045);
-        mTone(midi(HICAZ[MEL[st]] + 12), t, 0.12, 'triangle', 0.03);
-      }
-    }
-    nextNoteT += dur;
-    mStep++;
-  }
-}
-
 export function startMusic() {
   audioInit();
-  if (!actx) return;
-  if (!musicGain) {
-    musicGain = actx.createGain();
-    musicGain.gain.value = 0.35;
-    const lp = actx.createBiquadFilter();
-    lp.type = 'lowpass';
-    lp.frequency.value = 2600;
-    musicGain.connect(lp).connect(actx.destination);
-    noiseBuf = actx.createBuffer(1, actx.sampleRate * 0.2, actx.sampleRate);
-    const d = noiseBuf.getChannelData(0);
-    for (let i = 0; i < d.length; i++) d[i] = Math.random() * 2 - 1;
-  }
-  if (actx.state === 'suspended') actx.resume();
-  nextNoteT = actx.currentTime + 0.05;
-  if (!musicTimer) musicTimer = setInterval(musicTick, 80);
+  playMusic(true);
 }
 
 export function stopMusic() {
-  if (musicTimer) {
-    clearInterval(musicTimer);
-    musicTimer = null;
-  }
+  playMusic(false);
 }
 
 export function musicLabel() {
@@ -289,6 +197,7 @@ export function v8Hud() {
 }
 
 export function initEvents() {
+  if (M.music === undefined) M.music = true; // mit der neuen Musik standardmäßig an
   $music = $('musicBtn');
   $music.onclick = () => {
     M.music = !M.music;

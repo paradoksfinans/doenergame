@@ -1,5 +1,5 @@
-# Baut bei jedem Push auf main eine Android-Test-APK und stellt sie unter
-# „Releases → Test-APK (neueste)“ zum Herunterladen bereit.
+# Baut bei jedem Push auf main die Android-App (Ablauf steht in ci/build-android.sh)
+# und stellt sie unter „Releases → Test-APK (neueste)“ bereit.
 name: Android Test-APK
 
 on:
@@ -31,32 +31,18 @@ jobs:
           java-version: 21
           cache: gradle
 
-      - name: Web-Spiel bauen
-        run: |
-          npm ci
-          npm run build
-          npx cap sync android
-
-      - name: APK bauen
-        working-directory: android
-        run: |
-          # Das Android-SDK ist auf den GitHub-Rechnern vorinstalliert
-          echo "sdk.dir=$ANDROID_HOME" > local.properties
-          yes | "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" --licenses > /dev/null || true
-          chmod +x gradlew
-          ./gradlew assembleDebug --no-daemon
-
-      - name: APK umbenennen
-        run: |
-          VER=$(node -p "require('./package.json').version")
-          mkdir -p out
-          cp android/app/build/outputs/apk/debug/app-debug.apk "out/DoenerPalast-${VER}-build${GITHUB_RUN_NUMBER}.apk"
-          echo "VER=$VER" >> "$GITHUB_ENV"
+      - name: App bauen
+        env:
+          ANDROID_KEYSTORE_BASE64: ${{ secrets.ANDROID_KEYSTORE_BASE64 }}
+          ANDROID_KEYSTORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
+          ANDROID_KEY_ALIAS: ${{ secrets.ANDROID_KEY_ALIAS }}
+          ANDROID_KEY_PASSWORD: ${{ secrets.ANDROID_KEY_PASSWORD }}
+        run: bash ci/build-android.sh
 
       - uses: actions/upload-artifact@v4
         with:
-          name: DoenerPalast-apk
-          path: out/*.apk
+          name: DoenerPalast-android
+          path: out/*
 
       - name: Als „Test-APK (neueste)“ veröffentlichen
         env:
@@ -65,6 +51,6 @@ jobs:
           gh release delete apk-latest --yes --cleanup-tag || true
           gh release create apk-latest out/*.apk \
             --title "Test-APK (neueste) – v${VER} Build ${GITHUB_RUN_NUMBER}" \
-            --notes "Automatisch gebaut aus ${GITHUB_SHA::7}. Auf dem Handy herunterladen und installieren (Installation aus unbekannten Quellen erlauben)." \
+            --notes "Automatisch gebaut aus ${GITHUB_SHA::7}. Auf dem Handy herunterladen und installieren (Installation aus unbekannten Quellen erlauben). Die .aab-Datei für den Play Store liegt unter Actions → Artifacts." \
             --prerelease \
             --target "${GITHUB_SHA}"

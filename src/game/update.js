@@ -65,7 +65,7 @@ import {
   unlock,
 } from './world.js';
 import { floatText, fly, flyers, texts } from './fx.js';
-import { beep, ching, chord } from './audio.js';
+import { beep, ching, chord, sfx, popSfx, sizzleLevel } from './audio.js';
 import { joy, keys } from './input.js';
 import { bumpMoney, showBanner } from './hud.js';
 import { M, addGems } from './meta.js';
@@ -77,7 +77,13 @@ import { evtPoints } from './festival.js';
 import { mechDecorate, mechSale, mechSpawnMul, mechTick } from './citymech.js';
 import { t as T, fmt } from './i18n.js';
 
+let sizT = 0;
 export function update(dt) {
+  sizT -= dt;
+  if (sizT <= 0) {
+    sizT = 1;
+    sizzleLevel(G.spits.filter(s => s.on).length / 3);
+  }
   G.time += dt;
   const pl = G.player,
     PR = price();
@@ -109,7 +115,7 @@ export function update(dt) {
       if (G.rushNext <= 0) {
         G.rush = 20;
         showBanner(T('RUSH HOUR!'), T('20 Sekunden: doppelt so viele Gäste, Preise ×1,5'));
-        beep(880, 0.2, 'sawtooth', 0.03);
+        sfx('rush', 0.7) || beep(880, 0.2, 'sawtooth', 0.03);
       }
     }
   }
@@ -192,7 +198,7 @@ export function update(dt) {
       give(pl, 'd');
       G.pickT = 0.09;
       fly('d', P(s.x + 0.5, 1.27, 22 + s.stock * 5), pl, 24 + pl.carry * 5);
-      beep(480 + pl.carry * 30);
+      popSfx(pl.carry);
     }
   }
   // trash pickup & bin
@@ -203,7 +209,7 @@ export function update(dt) {
       give(pl, 't');
       G.pickT = 0.1;
       fly('t', P(tb.x, tb.y, 28), pl, 24 + pl.carry * 5);
-      beep(300 + pl.carry * 20);
+      sfx('pop', 0.6, 0.75 + pl.carry * 0.04) || beep(300 + pl.carry * 20);
     }
   });
   if (pl.items.includes('t') && G.dropT <= 0 && dist(pl, BIN) < 0.85) {
@@ -212,7 +218,7 @@ export function update(dt) {
     pl.carry = pl.items.length;
     G.dropT = 0.06;
     fly('t', P(pl.x, pl.y, 26 + pl.carry * 5), BIN, 26);
-    beep(220, 0.05);
+    sfx('trash', 0.7, 0.9 + Math.random() * 0.2) || beep(220, 0.05);
     rate(0.03);
     stat('clean', 1);
   }
@@ -228,7 +234,7 @@ export function update(dt) {
     give(pl, 's');
     G.pickT = 0.09;
     fly('s', P(SP.x + 0.5, SP.y + 0.5, 34 + spc.stock * 5), pl, 24 + pl.carry * 5);
-    beep(700 + pl.carry * 30);
+    popSfx(pl.carry + 2);
   }
   if (
     fr.on &&
@@ -242,7 +248,7 @@ export function update(dt) {
     give(pl, 'f');
     G.pickT = 0.09;
     fly('f', P(FRY.x + 0.5, 1.27, 22 + fr.stock * 5), pl, 24 + pl.carry * 5);
-    beep(620 + pl.carry * 30);
+    popSfx(pl.carry + 1);
   }
   for (const k of STATIONS) {
     if (!stationOn(k)) continue;
@@ -250,7 +256,7 @@ export function update(dt) {
     if (pl.carry > 0 && G.dropT <= 0 && dist(pl, s.zone) < s.r) {
       if (dropInto(pl, k)) {
         G.dropT = 0.07;
-        beep(360 + pl.carry * 18);
+        sfx('stack', 0.7, 0.9 + pl.carry * 0.03) || beep(360 + pl.carry * 18);
       }
     }
   }
@@ -434,7 +440,7 @@ export function update(dt) {
           rate(-0.35);
           showBanner(T('Schlechte Kritik!'), T('Der Kritiker ist gegangen – Bewertung sinkt'));
         }
-        beep(160, 0.25, 'sawtooth', 0.03);
+        sfx('bad', 0.7) || beep(160, 0.25, 'sawtooth', 0.03);
         continue;
       }
     } else if (c.state === 'seat') {
@@ -484,7 +490,7 @@ export function update(dt) {
     if (t) {
       G.serveT = 0.2 / staffMul();
       fly(t, P(tp.x, tp.y, tp.z), front, 30);
-      beep(700, 0.05);
+      sfx('serve', 0.35, 0.95 + Math.random() * 0.1) || beep(700, 0.05);
     }
     if (front.gd >= front.wd && front.gf >= front.wf && (front.gs || 0) >= (front.ws || 0)) {
       let amt = front.wd * PR + front.wf * friesPrice() + (front.ws || 0) * specPrice(),
@@ -609,7 +615,7 @@ export function update(dt) {
       G.driveT = 0.18 / staffMul();
       const tp = stackTop('drive', G.stock.drive);
       fly('doner', P(tp.x, tp.y, tp.z), { x: ROAD_CAR, y: fc.y }, 24);
-      beep(760, 0.05);
+      sfx('serve', 0.35, 1.05) || beep(760, 0.05);
       if (fc.got >= fc.want) {
         sale('drive', fc.want * (PR + Math.round(priceMul())), ROAD_CAR, fc.y, T('Drive-In'));
         fc.state = 'out';
@@ -636,7 +642,7 @@ export function update(dt) {
             rainy() ? T('Regen-Lieferung') : T('Lieferung'),
           );
           stat('deliv', 1);
-          beep(620, 0.12, 'sawtooth', 0.02);
+          sfx('moped', 0.6) || beep(620, 0.12, 'sawtooth', 0.02);
         }
       } else m.T = 0.5;
     } else if (m.state === 'out') {
@@ -692,7 +698,7 @@ export function update(dt) {
       if (G.payFx <= 0) {
         G.payFx = 0.07;
         fly('bill', P(pl.x, pl.y, 40), { x: pad.x, y: pad.y }, 4);
-        beep(900 + Math.random() * 200, 0.04, 'square', 0.015);
+        sfx('coin', 0.35, 0.9 + Math.random() * 0.25) || beep(900 + Math.random() * 200, 0.04, 'square', 0.015);
       }
       if (G.paid[pad.id] >= pp - 0.001) {
         G.paid[pad.id] = pp;

@@ -173,14 +173,14 @@ export function drawWalls() {
   ctx.fillText(T('MENÜ'), 9, 12);
   ctx.fillStyle = '#fff6e8';
   ctx.font = '700 9.5px Figtree, system-ui, sans-serif';
-  ctx.fillText(T('Döner Kebap'), 9, 28);
+  ctx.fillText(T('Döner Kebap'), 9, 28, 72);
   ctx.textAlign = 'right';
   ctx.fillText(fmt(price(), 2) + ' €', 123, 28);
   ctx.textAlign = 'left';
   ctx.fillStyle = '#cdbfae';
   if (G.fryer.on) {
     ctx.fillStyle = '#fff6e8';
-    ctx.fillText(G.unlocked.has('chili') ? T('Chili-Cheese-Pommes') : T('Pommes'), 9, 40);
+    ctx.fillText(G.unlocked.has('chili') ? T('Chili-Cheese-Pommes') : T('Pommes'), 9, 40, 72);
     ctx.textAlign = 'right';
     ctx.fillText(fmt(friesPrice(), 2) + ' €', 123, 40);
     ctx.textAlign = 'left';
@@ -189,7 +189,7 @@ export function drawWalls() {
   const ex = [G.unlocked.has('sauce') && T('Soße'), G.unlocked.has('ayran') && T('Ayran')].filter(Boolean);
   if (G.special.on) {
     ctx.fillStyle = '#fff6e8';
-    ctx.fillText(T(specOf().name), 9, 52);
+    ctx.fillText(T(specOf().name), 9, 52, 72);
     ctx.textAlign = 'right';
     ctx.fillText(fmt(specPrice(), 2) + ' €', 123, 52);
     ctx.textAlign = 'left';

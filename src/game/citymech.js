@@ -10,7 +10,7 @@ import { G, patMax, price, relax } from './state.js';
 import { P, box, chip, ell } from './iso.js';
 import { ctx } from './config.js';
 import { fly, floatText } from './fx.js';
-import { beep, chord, ching } from './audio.js';
+import { beep, chord, ching, sfx, popSfx } from './audio.js';
 import { $, bumpMoney, showBanner } from './hud.js';
 import { burst } from './confetti.js';
 import { phaseNow } from './daynight.js';
@@ -167,7 +167,7 @@ export function mechTick(dt) {
     if (ph === 'abend' || ph === 'nacht') {
       queueGuests(3, { party: true, partyHat: '#f2b134', wd: 2 });
       showBanner(t('Partygruppe!'), t('3 Nachtschwärmer – sie zahlen 30 % extra'));
-      beep(660, 0.12, 'square', 0.03);
+      sfx('party', 0.8) || beep(660, 0.12, 'square', 0.03);
       m.t = (50 + Math.random() * 20) * slow;
     } else m.t = 8;
   } else if (id === 'harbor') {
@@ -175,8 +175,10 @@ export function mechTick(dt) {
       const need = Math.min(24, 6 + 2 * G.cityLv);
       m.harbor = { need, have: 0, t: relax() ? 100 : 60, max: relax() ? 100 : 60, dropT: 0 };
       showBanner(t('Hafen-Order!'), t('Bring {n} Döner zur Hafenkiste – doppelter Preis', { n: need }));
-      beep(110, 0.6, 'sawtooth', 0.05);
-      setTimeout(() => beep(98, 0.5, 'sawtooth', 0.05), 700);
+      if (!sfx('shiphorn', 0.9)) {
+        beep(110, 0.6, 'sawtooth', 0.05);
+        setTimeout(() => beep(98, 0.5, 'sawtooth', 0.05), 700);
+      }
     }
     m.t = (110 + Math.random() * 40) * slow;
   } else if (id === 'wiesn') {
@@ -187,7 +189,7 @@ export function mechTick(dt) {
   } else if (id === 'ferry') {
     queueGuests(5, { tourist: true, sunhat: true, wd: 2 });
     showBanner(t('Die Fähre legt an!'), t('5 Touristen auf einmal – sie zahlen 50 % mehr'));
-    beep(130, 0.5, 'sawtooth', 0.05);
+    sfx('shiphorn', 0.8, 1.25) || beep(130, 0.5, 'sawtooth', 0.05);
     m.t = (80 + Math.random() * 30) * slow;
   } else m.t = 30;
 }
@@ -204,7 +206,7 @@ function harborTick(h, dt) {
       h.have++;
       h.dropT = 0.08;
       fly('d', P(pl.x, pl.y, 26 + pl.carry * 5), HARBOR, 26);
-      beep(520 + h.have * 10, 0.04);
+      popSfx(h.have / 2);
     }
   }
   if (h.have >= h.need) {

@@ -1,0 +1,2070 @@
+{
+ " · +10 %": {
+  "en": " · +10%",
+  "tr": " · +%10"
+ },
+ "+1 Goldmünze": {
+  "en": "+1 gold coin",
+  "tr": "+1 altın"
+ },
+ "+2 Goldmünzen": {
+  "en": "+2 gold coins",
+  "tr": "+2 altın"
+ },
+ "+2 Goldmünzen – ab jetzt zeigt dir der Pfeil den Weg": {
+  "en": "+2 gold coins – from now on the arrow shows you the way",
+  "tr": "+2 altın – artık ok sana yolu gösterecek"
+ },
+ "+5 % Umsatz – und ruft „Döner!“": {
+  "en": "+5% sales – and shouts “Döner!”",
+  "tr": "+%5 ciro – ve “Döner!” diye bağırır"
+ },
+ "+{amt} €": {
+  "en": "+{amt} €",
+  "tr": "+{amt} €"
+ },
+ "+{amt} € gefunden": {
+  "en": "+{amt} € found",
+  "tr": "+{amt} € bulundu"
+ },
+ "+{amt} € gefunden und 1 Goldmünze": {
+  "en": "+{amt} € found and 1 gold coin",
+  "tr": "+{amt} € bulundu ve 1 altın"
+ },
+ "+{a} € aus {names}": {
+  "en": "+{a} € from {names}",
+  "tr": "{names}'ten +{a} €"
+ },
+ "+{a} € für die Hafen-Order": {
+  "en": "+{a} € for the harbor order",
+  "tr": "Liman siparişi için +{a} €"
+ },
+ "+{a} € und 2 Goldmünzen": {
+  "en": "+{a} € and 2 gold coins",
+  "tr": "+{a} € ve 2 altın"
+ },
+ "+{g} Goldmünzen · Neu: {list}": {
+  "en": "+{g} gold coins · New: {list}",
+  "tr": "+{g} altın · Yeni: {list}"
+ },
+ "+{g} Münze": {
+  "en": "+{g} coin",
+  "tr": "+{g} altın"
+ },
+ "+{g} Münzen": {
+  "en": "+{g} coins",
+  "tr": "+{g} jeton"
+ },
+ "+{r} € und 1 Goldmünze": {
+  "en": "+{r} € and 1 gold coin",
+  "tr": "+{r} € ve 1 altın"
+ },
+ "1 Min Umsatz": {
+  "en": "1 min sales",
+  "tr": "1 dk ciro"
+ },
+ "1 Münze": {
+  "en": "1 coin",
+  "tr": "1 altın"
+ },
+ "1.000 Döner verkaufen": {
+  "en": "Sell 1,000 Döner",
+  "tr": "1.000 Döner sat"
+ },
+ "1.000.000 € verdienen": {
+  "en": "Earn 1,000,000 €",
+  "tr": "1.000.000 € kazan"
+ },
+ "10 % mehr Gäste": {
+  "en": "10% more guests",
+  "tr": "%10 daha çok müşteri"
+ },
+ "10 Bonus-Kisten finden": {
+  "en": "Find 10 bonus crates",
+  "tr": "10 bonus kutu bul"
+ },
+ "10 Goldmünzen": {
+  "en": "10 gold coins",
+  "tr": "10 altın"
+ },
+ "10.000 Döner verkaufen": {
+  "en": "Sell 10,000 Döner",
+  "tr": "10.000 Döner sat"
+ },
+ "10.000 € verdienen": {
+  "en": "Earn 10,000 €",
+  "tr": "10.000 € kazan"
+ },
+ "100 Döner verkaufen": {
+  "en": "Sell 100 Döner",
+  "tr": "100 Döner sat"
+ },
+ "100 Gäste nachts bedienen": {
+  "en": "Serve 100 guests at night",
+  "tr": "Gece 100 misafire hizmet ver"
+ },
+ "100 Stadt-Spezialitäten verkaufen": {
+  "en": "Sell 100 city specialties",
+  "tr": "100 şehir spesiyali sat"
+ },
+ "2 Goldmünzen": {
+  "en": "2 gold coins",
+  "tr": "2 altın"
+ },
+ "2 Münzen": {
+  "en": "2 coins",
+  "tr": "2 altın"
+ },
+ "2. Dönerspieß": {
+  "en": "2nd Döner Spit",
+  "tr": "2. Döner Şişi"
+ },
+ "20 Sekunden: doppelt so viele Gäste, Preise ×1,5": {
+  "en": "20 seconds: twice as many guests, prices ×1.5",
+  "tr": "20 saniye: iki kat müşteri, fiyatlar ×1,5"
+ },
+ "200 Teller abräumen": {
+  "en": "Clear 200 plates",
+  "tr": "200 tabak topla"
+ },
+ "25 VIP-Gäste bedienen": {
+  "en": "Serve 25 VIP guests",
+  "tr": "25 VIP misafire hizmet ver"
+ },
+ "25 perfekte Schnitte": {
+  "en": "25 perfect cuts",
+  "tr": "25 mükemmel kesim"
+ },
+ "250 Pommes verkaufen": {
+  "en": "Sell 250 fries",
+  "tr": "250 patates sat"
+ },
+ "2× Umsatz": {
+  "en": "2× sales",
+  "tr": "2× ciro"
+ },
+ "2× Umsatz für 3 Minuten": {
+  "en": "2× revenue for 3 minutes",
+  "tr": "3 dakika boyunca 2× ciro"
+ },
+ "2× Umsatz für 60 Sekunden": {
+  "en": "2× sales for 60 seconds",
+  "tr": "60 saniye boyunca 2× ciro"
+ },
+ "2× Umsatz {m} Min": {
+  "en": "2× sales for {m} min",
+  "tr": "{m} dk boyunca 2× ciro"
+ },
+ "3 Min Umsatz": {
+  "en": "3 min sales",
+  "tr": "3 dk ciro"
+ },
+ "3 Nachtschwärmer – sie zahlen 30 % extra": {
+  "en": "3 night owls – they pay 30% extra",
+  "tr": "3 gece kuşu – %30 fazla öderler"
+ },
+ "3 Städte erreichen": {
+  "en": "Reach 3 cities",
+  "tr": "3 şehre ulaş"
+ },
+ "3. Dönerspieß": {
+  "en": "3rd Döner Spit",
+  "tr": "3. Döner Şişi"
+ },
+ "30 Sekunden: mehr Gäste, jeder bestellt mehr, +30 %": {
+  "en": "30 seconds: more guests, bigger orders, +30%",
+  "tr": "30 saniye: daha çok müşteri, daha büyük sipariş, +%30"
+ },
+ "5 Goldmünzen": {
+  "en": "5 gold coins",
+  "tr": "5 altın"
+ },
+ "5 Kontrollen bestehen": {
+  "en": "Pass 5 inspections",
+  "tr": "5 denetimi geç"
+ },
+ "5 Kritiker begeistern": {
+  "en": "Delight 5 critics",
+  "tr": "5 kritiği memnun et"
+ },
+ "5 Touristen auf einmal – sie zahlen 50 % mehr": {
+  "en": "5 tourists at once – they pay 50% more",
+  "tr": "Aynı anda 5 turist – %50 fazla öderler"
+ },
+ "50 Autos bedienen": {
+  "en": "Serve 50 cars",
+  "tr": "50 arabaya hizmet ver"
+ },
+ "50 Lieferungen rausschicken": {
+  "en": "Send out 50 deliveries",
+  "tr": "50 teslimat gönder"
+ },
+ "<b>Bonus-Kiste</b> einsammeln!": {
+  "en": "Collect the <b>bonus crate</b>!",
+  "tr": "<b>Bonus kutuyu</b> topla!"
+ },
+ "<b>Döner Palast komplett!</b> Sammle weiter ein.": {
+  "en": "<b>Döner Palast complete!</b> Keep collecting.",
+  "tr": "<b>Döner Palast tamamlandı!</b> Toplamaya devam et."
+ },
+ "<b>Kontrolle!</b> Schnell Tische abräumen": {
+  "en": "<b>Inspection!</b> Clear tables quickly",
+  "tr": "<b>Denetim!</b> Hızlıca masaları topla"
+ },
+ "<b>Schritt {n}/{total}</b> · ": {
+  "en": "<b>Step {n}/{total}</b> · ",
+  "tr": "<b>Adım {n}/{total}</b> · "
+ },
+ "<b>{a} €</b> einsammeln": {
+  "en": "Collect <b>{a} €</b>",
+  "tr": "<b>{a} €</b> topla"
+ },
+ "<b>{n}</b> freischalten – stell dich aufs Feld": {
+  "en": "Unlock <b>{n}</b> – stand on the field",
+  "tr": "<b>{n}</b>'yi açmak için alana geç"
+ },
+ "Abbrechen": {
+  "en": "Cancel",
+  "tr": "İptal"
+ },
+ "Abend": {
+  "en": "Evening",
+  "tr": "Akşam"
+ },
+ "Abends und nachts kommen Partygruppen. Sie bestellen mehr und zahlen 30 % extra.": {
+  "en": "Party groups show up in the evening and at night. They order more and pay 30% extra.",
+  "tr": "Akşam ve gece parti grupları gelir. Daha çok sipariş verir, %30 fazla öderler."
+ },
+ "Abholen": {
+  "en": "Collect",
+  "tr": "Topla"
+ },
+ "Abräumen": {
+  "en": "Clear tables",
+  "tr": "Masayı topla"
+ },
+ "Aktiv": {
+  "en": "Active",
+  "tr": "Aktif"
+ },
+ "Alaaf": {
+  "en": "Alaaf",
+  "tr": "Alaaf"
+ },
+ "Alaaf ×{k}": {
+  "en": "Alaaf ×{k}",
+  "tr": "Alaaf ×{k}"
+ },
+ "Alaaf-Kette": {
+  "en": "Alaaf Streak",
+  "tr": "Alaaf Serisi"
+ },
+ "Ali trägt Döner": {
+  "en": "Ali carries döner",
+  "tr": "Ali döner taşıyor"
+ },
+ "Alle 20 Minuten gibt es einen Gratis-Dreh.": {
+  "en": "There's a free spin every 20 minutes.",
+  "tr": "Her 20 dakikada bir ücretsiz çevirme var."
+ },
+ "Alle Spieße 50 % schneller": {
+  "en": "All spits 50% faster",
+  "tr": "Tüm şişler %50 daha hızlı"
+ },
+ "Alles sauber: +2 Goldmünzen, bessere Bewertung": {
+  "en": "All clean: +2 gold coins, better rating",
+  "tr": "Her yer tertemiz: +2 altın, daha iyi puan"
+ },
+ "An die <b>Kasse</b> stellen und verkaufen": {
+  "en": "Get to the <b>register</b> and sell",
+  "tr": "<b>Kasaya</b> geç ve sat"
+ },
+ "Anziehen": {
+  "en": "Wear",
+  "tr": "Giy"
+ },
+ "Aufgabe": {
+  "en": "Task",
+  "tr": "Görev"
+ },
+ "Aufgabe erledigt!": {
+  "en": "Task complete!",
+  "tr": "Görev tamamlandı!"
+ },
+ "Aufgabe · Belohnung {r} €": {
+  "en": "Task · Reward {r} €",
+  "tr": "Görev · Ödül {r} €"
+ },
+ "Auto wartet – stell dich ans <b>Drive-In-Fenster</b>": {
+  "en": "Car waiting – head to the <b>drive-in window</b>",
+  "tr": "Araba bekliyor – <b>drive-in penceresine</b> geç"
+ },
+ "Autos bestellen 3–5 Döner, +1 € pro Stück": {
+  "en": "Cars order 3–5 döner, +1 € each",
+  "tr": "Arabalar 3–5 döner ister, tanesi +1 €"
+ },
+ "Autos werden automatisch bedient": {
+  "en": "Cars are served automatically",
+  "tr": "Arabalara otomatik servis yapılır"
+ },
+ "Ayran": {
+  "en": "Ayran",
+  "tr": "Ayran"
+ },
+ "Ayran-Menü": {
+  "en": "Ayran Combo",
+  "tr": "Ayranlı Menü"
+ },
+ "Ayran?": {
+  "en": "Ayran?",
+  "tr": "Ayran?"
+ },
+ "Bedien ihn in 35 Sekunden – er drängelt nach vorn": {
+  "en": "Serve him in 35 seconds – he pushes to the front",
+  "tr": "Onu 35 saniyede ağırla – öne geçiyor"
+ },
+ "Bediene Gäste schnell hintereinander – jede Bestellung in der Kette bringt mehr (bis +60 %).": {
+  "en": "Serve guests quickly one after another – every order in the streak earns more (up to +60%).",
+  "tr": "Müşterilere art arda hızlı servis yap – serideki her sipariş daha çok kazandırır (+%60’a kadar)."
+ },
+ "Bedient Autos": {
+  "en": "Serves cars",
+  "tr": "Arabalara servis yapar"
+ },
+ "Begleiter": {
+  "en": "Companions",
+  "tr": "Dostlar"
+ },
+ "Benutzen": {
+  "en": "Use",
+  "tr": "Kullan"
+ },
+ "Berlin": {
+  "en": "Berlin",
+  "tr": "Berlin"
+ },
+ "Berliner Nächte": {
+  "en": "Berlin Nights",
+  "tr": "Berlin Geceleri"
+ },
+ "Bessere Bewertung": {
+  "en": "Better rating",
+  "tr": "Daha iyi puan"
+ },
+ "Bewertung von 5,0 erreichen": {
+  "en": "Reach a 5.0 rating",
+  "tr": "5,0 puana ulaş"
+ },
+ "Bewertung von {r} Sternen erreichen": {
+  "en": "Reach a {r}-star rating",
+  "tr": "{r} yıldız puana ulaş"
+ },
+ "Bezahlt wird mit Goldmünzen aus Aufgaben, Tagesbonus, Glücksrad, Erfolgen und Bonus-Kisten.": {
+  "en": "Pay with gold coins from tasks, daily bonus, lucky wheel, achievements and bonus crates.",
+  "tr": "Görevlerden, günlük bonustan, şans çarkından, başarılardan ve bonus sandıklarından gelen altınlarla ödenir."
+ },
+ "Bis 14 Uhr kommen deutlich mehr Gäste": {
+  "en": "Until 2pm, a lot more guests arrive",
+  "tr": "14:00'e kadar çok daha fazla misafir gelir"
+ },
+ "Bis Ende November: Jede Bestellung bringt 1 Kürbis, jede Bonus-Kiste 10. Sammle Kürbisse für Belohnungen – auch das exklusive Outfit „Kürbis-Chef“.": {
+  "en": "Until the end of November: every order gives 1 pumpkin, every bonus crate 10. Collect pumpkins for rewards – including the exclusive “Pumpkin Chef” outfit.",
+  "tr": "Kasım sonuna kadar: her sipariş 1 balkabağı, her bonus sandığı 10 balkabağı verir. Ödüller için balkabağı topla – özel “Balkabağı Şef” kıyafeti dahil."
+ },
+ "Bis zum nächsten Mal – O’zapft is!": {
+  "en": "Until next time – O’zapft is!",
+  "tr": "Bir dahaki sefere – O’zapft is!"
+ },
+ "Blitzblank": {
+  "en": "Spotless",
+  "tr": "Tertemiz"
+ },
+ "Boden: {n}": {
+  "en": "Floor: {n}",
+  "tr": "Zemin: {n}"
+ },
+ "Bonus-Kiste!": {
+  "en": "Bonus crate!",
+  "tr": "Bonus kasa!"
+ },
+ "Bosporus-Fähre": {
+  "en": "Bosphorus Ferry",
+  "tr": "Boğaz Vapuru"
+ },
+ "Brezel": {
+  "en": "Pretzel",
+  "tr": "Pretzel"
+ },
+ "Brezel-Stand": {
+  "en": "Pretzel Stand",
+  "tr": "Pretzel Standı"
+ },
+ "Bring die Döner zur <b>Theke</b> – aufs Feld „THEKE“.": {
+  "en": "Bring the Döner to the <b>counter</b> – onto the „COUNTER“ field.",
+  "tr": "Döner'i <b>tezgaha</b> götür – „TEZGAH“ alanına."
+ },
+ "Bring {n} Döner zur Hafenkiste – doppelter Preis": {
+  "en": "Bring {n} döner to the harbor crate – double price",
+  "tr": "Liman sandığına {n} döner getir – iki kat fiyat"
+ },
+ "Bußgeld!": {
+  "en": "Fine!",
+  "tr": "Ceza!"
+ },
+ "Can am Drive-In": {
+  "en": "Can at the drive-in",
+  "tr": "Can arabaya serviste"
+ },
+ "Chefkoch": {
+  "en": "Head Chef",
+  "tr": "Şef"
+ },
+ "Chili-Cheese": {
+  "en": "Chili Cheese",
+  "tr": "Acılı Peynirli"
+ },
+ "Chili-Cheese-Pommes": {
+  "en": "Chili Cheese Fries",
+  "tr": "Acılı Peynirli Patates"
+ },
+ "Currywurst": {
+  "en": "Currywurst",
+  "tr": "Currywurst"
+ },
+ "Currywurst-Stand": {
+  "en": "Currywurst Stand",
+  "tr": "Currywurst Standı"
+ },
+ "DRIVE-IN": {
+  "en": "DRIVE-IN",
+  "tr": "DRIVE-IN"
+ },
+ "Daneben … +1 Döner": {
+  "en": "Missed… +1 Döner",
+  "tr": "Iskaladın… +1 Döner"
+ },
+ "Dein Laden sieht jetzt anders aus": {
+  "en": "Your shop looks different now",
+  "tr": "Dükkanın artık farklı görünüyor"
+ },
+ "Deine Filialen": {
+  "en": "Your Branches",
+  "tr": "Şubelerin"
+ },
+ "Deine anderen Filialen verdienen weiter": {
+  "en": "Your other branches keep earning",
+  "tr": "Diğer şubelerin kazanmaya devam ediyor"
+ },
+ "Deko & Pflanzen": {
+  "en": "Decor & Plants",
+  "tr": "Dekor & Bitkiler"
+ },
+ "Der Kritiker ist gegangen – Bewertung sinkt": {
+  "en": "The critic left – rating drops",
+  "tr": "Eleştirmen gitti – puan düşüyor"
+ },
+ "Der Laden ist voll – Gäste im Minutentakt": {
+  "en": "The shop is packed – guests every minute",
+  "tr": "Dükkân dolu – her dakika müşteri"
+ },
+ "Der Roller liefert 3 Döner pro Fahrt, +2 € pro Stück": {
+  "en": "The scooter delivers 3 döner per trip, +2 € each",
+  "tr": "Motor her seferde 3 döner götürür, tanesi +2 €"
+ },
+ "Der Spieß brutzelt … gleich gibt es Nachschub": {
+  "en": "The skewer is sizzling … more coming soon",
+  "tr": "Şiş kızarıyor … birazdan yeni ürün gelecek"
+ },
+ "Die Abendgäste strömen rein": {
+  "en": "The evening crowd is pouring in",
+  "tr": "Akşam misafirleri akın ediyor"
+ },
+ "Die Fähre bringt ganze Touristengruppen auf einmal. Touristen zahlen 50 % mehr.": {
+  "en": "The ferry brings whole tourist groups at once. Tourists pay 50% more.",
+  "tr": "Vapur tüm turist gruplarını bir kerede getirir. Turistler %50 fazla öder."
+ },
+ "Die Fähre legt an!": {
+  "en": "The ferry is docking!",
+  "tr": "Vapur yanaşıyor!"
+ },
+ "Die Hafen-Order ist verpasst – beim nächsten Horn klappt’s": {
+  "en": "Harbor order missed – you’ll make it at the next horn",
+  "tr": "Liman siparişi kaçtı – bir sonraki kornada olur"
+ },
+ "Doppelt so viel Nachschub": {
+  "en": "Twice the supply",
+  "tr": "İki kat döner"
+ },
+ "Drehen!": {
+  "en": "Spin!",
+  "tr": "Çevir!"
+ },
+ "Dreht …": {
+  "en": "Spinning …",
+  "tr": "Dönüyor …"
+ },
+ "Dritter Spieß läuft": {
+  "en": "Third spit is running",
+  "tr": "Üçüncü şiş dönüyor"
+ },
+ "Drive-In": {
+  "en": "Drive-In",
+  "tr": "Arabaya Servis"
+ },
+ "Drive-In geöffnet!": {
+  "en": "Drive-in open!",
+  "tr": "Arabaya servis açıldı!"
+ },
+ "Drive-In-Held": {
+  "en": "Drive-In Hero",
+  "tr": "Drive-In Kahramanı"
+ },
+ "Drive-In-Kraft": {
+  "en": "Drive-In Staff",
+  "tr": "Arabaya Servis Görevlisi"
+ },
+ "Drive-In-Läufer": {
+  "en": "Drive-In Runner",
+  "tr": "Arabaya Servis Taşıyıcısı"
+ },
+ "Du bist hier": {
+  "en": "You are here",
+  "tr": "Buradasın"
+ },
+ "Du läufst 10 % schneller": {
+  "en": "You walk 10% faster",
+  "tr": "%10 daha hızlı yürürsün"
+ },
+ "Du trägst jetzt 12 Döner": {
+  "en": "You now carry 12 döner",
+  "tr": "Artık 12 döner taşıyorsun"
+ },
+ "Du trägst jetzt 8 Döner": {
+  "en": "You now carry 8 döner",
+  "tr": "Artık 8 döner taşıyorsun"
+ },
+ "DÖNER PALAST": {
+  "en": "DÖNER PALAST",
+  "tr": "DÖNER PALAST"
+ },
+ "Döner + Pommes: +3 € Bonus": {
+  "en": "Döner + fries: +3 € bonus",
+  "tr": "Döner + patates: +3 € bonus"
+ },
+ "Döner Kebap": {
+  "en": "Döner Kebab",
+  "tr": "Döner Kebap"
+ },
+ "Döner Palast komplett – Preis +3 €": {
+  "en": "Döner Palast complete – price +3 €",
+  "tr": "Döner Palast tamamlandı – fiyat +3 €"
+ },
+ "Döner am <b>Spieß</b> abholen": {
+  "en": "Pick up Döner at the <b>skewer</b>",
+  "tr": "Döneri <b>şişten</b> al"
+ },
+ "Döner schneiden": {
+  "en": "Cut the Döner",
+  "tr": "Döner Kes"
+ },
+ "Döner schneiden!": {
+  "en": "Cut the döner!",
+  "tr": "Döneri kes!"
+ },
+ "Döner zum <b>Drive-In</b> bringen": {
+  "en": "Bring Döner to the <b>drive-in</b>",
+  "tr": "Döneri <b>drive-in'e</b> götür"
+ },
+ "Döner zum <b>Lieferregal</b> bringen": {
+  "en": "Bring Döner to the <b>delivery shelf</b>",
+  "tr": "Döneri <b>teslimat rafına</b> götür"
+ },
+ "Döner zur <b>Theke</b> bringen": {
+  "en": "Bring Döner to the <b>counter</b>",
+  "tr": "Döneri <b>tezgaha</b> götür"
+ },
+ "Döner!": {
+  "en": "Döner!",
+  "tr": "Döner!"
+ },
+ "Döner-Legende": {
+  "en": "Döner Legend",
+  "tr": "Döner Efsanesi"
+ },
+ "Döner-Lehrling": {
+  "en": "Döner Apprentice",
+  "tr": "Döner Çırağı"
+ },
+ "Döner-Meister": {
+  "en": "Döner Master",
+  "tr": "Döner Ustası"
+ },
+ "Döner-Millionär": {
+  "en": "Döner Millionaire",
+  "tr": "Döner Milyoneri"
+ },
+ "Edel und hell": {
+  "en": "Elegant and bright",
+  "tr": "Şık ve aydınlık"
+ },
+ "Ein Dreh ist bereit.": {
+  "en": "A spin is ready.",
+  "tr": "Bir çevirme hazır."
+ },
+ "Ein neuer Tag – noch ist es ruhig": {
+  "en": "A new day – still quiet for now",
+  "tr": "Yeni bir gün – şimdilik sakin"
+ },
+ "Elif am Drive-In": {
+  "en": "Elif at the drive-in",
+  "tr": "Elif arabaya serviste"
+ },
+ "Emre fürs Lieferregal": {
+  "en": "Emre for the delivery shelf",
+  "tr": "Paket rafı için Emre"
+ },
+ "Er füllt nur das Lieferregal – der Roller fährt durchgehend": {
+  "en": "He only restocks the delivery shelf – the scooter never stops",
+  "tr": "Sadece paket rafını doldurur – motor hiç durmaz"
+ },
+ "Er kümmert sich nur ums Drive-In – nichts wird mehr vergessen": {
+  "en": "He only handles the drive-in – nothing gets forgotten anymore",
+  "tr": "Sadece arabaya servise bakar – artık hiçbir şey unutulmaz"
+ },
+ "Er versorgt die Theke mit allem, was fehlt": {
+  "en": "He restocks the counter with whatever’s missing",
+  "tr": "Tezgâhta eksik olan her şeyi tamamlar"
+ },
+ "Erfolg: {n}": {
+  "en": "Achievement: {n}",
+  "tr": "Başarı: {n}"
+ },
+ "Erfolge": {
+  "en": "Achievements",
+  "tr": "Başarılar"
+ },
+ "Erfolge ({n})": {
+  "en": "Achievements ({n})",
+  "tr": "Başarılar ({n})"
+ },
+ "Erhalten": {
+  "en": "Claimed",
+  "tr": "Alındı"
+ },
+ "Erledigt": {
+  "en": "Done",
+  "tr": "Tamamlandı"
+ },
+ "Erste Zehntausend": {
+  "en": "First Ten Grand",
+  "tr": "İlk On Bin"
+ },
+ "Expansion": {
+  "en": "Expansion",
+  "tr": "Genişleme"
+ },
+ "FENSTER": {
+  "en": "WINDOW",
+  "tr": "PENCERE"
+ },
+ "Feierabend!": {
+  "en": "Closing time!",
+  "tr": "Mesai sonu!"
+ },
+ "Filial-Einnahmen": {
+  "en": "Branch income",
+  "tr": "Şube geliri"
+ },
+ "Filiale {c}": {
+  "en": "{c} branch",
+  "tr": "{c} şubesi"
+ },
+ "Filialen": {
+  "en": "Branches",
+  "tr": "Şubeler"
+ },
+ "Filialen: {amt} € abholen": {
+  "en": "Branches: collect {amt} €",
+  "tr": "Şubeler: {amt} € topla"
+ },
+ "Fischbrötchen": {
+  "en": "Fish Roll",
+  "tr": "Balık Ekmek"
+ },
+ "Fischbrötchen-Stand": {
+  "en": "Fish Roll Stand",
+  "tr": "Balık Ekmek Standı"
+ },
+ "Fritteuse": {
+  "en": "Fryer",
+  "tr": "Fritöz"
+ },
+ "Fritteuse läuft!": {
+  "en": "Fryer is on!",
+  "tr": "Fritöz çalışıyor!"
+ },
+ "Fähre: {n} Touristen": {
+  "en": "Ferry: {n} tourists",
+  "tr": "Vapur: {n} turist"
+ },
+ "Füllt nur das Drive-In auf": {
+  "en": "Only restocks the drive-in",
+  "tr": "Sadece arabaya servisi doldurur"
+ },
+ "Füllt nur das Lieferregal": {
+  "en": "Only restocks the delivery shelf",
+  "tr": "Sadece paket rafını doldurur"
+ },
+ "Fünf Sterne": {
+  "en": "Five Stars",
+  "tr": "Beş Yıldız"
+ },
+ "Für Level {lv}: alle Ausbauten dieses Levels kaufen und das Level-Ziel erreichen.": {
+  "en": "For level {lv}: buy all upgrades of this level and reach the level goal.",
+  "tr": "Seviye {lv} için: bu seviyenin tüm geliştirmelerini satın al ve seviye hedefine ulaş."
+ },
+ "Gemütlich": {
+  "en": "Relaxed",
+  "tr": "Rahat"
+ },
+ "Gemütlich spielen": {
+  "en": "Play Chill",
+  "tr": "Rahat oyna"
+ },
+ "Gemütlich-Modus": {
+  "en": "Chill Mode",
+  "tr": "Rahat Mod"
+ },
+ "Gemütlich: weniger Gäste, niemand geht wütend, keine Rush Hour, Kritiker oder Kontrollen": {
+  "en": "Chill: fewer guests, nobody leaves angry, no rush hour, critics or inspections",
+  "tr": "Rahat: daha az müşteri, kimse kızgın gitmez, yoğun saat, kriti̇kler veya denetim yok"
+ },
+ "Gespielt {t} · {d} Döner · {f} Pommes · {e} € Umsatz": {
+  "en": "Played {t} · {d} Döner · {f} fries · {e} € revenue",
+  "tr": "Oynanan süre {t} · {d} Döner · {f} patates · {e} € ciro"
+ },
+ "Getragen": {
+  "en": "Equipped",
+  "tr": "Giyildi"
+ },
+ "Gleich wird geprüft – alle Tische müssen sauber sein": {
+  "en": "Inspection incoming – all tables must be clean",
+  "tr": "Kontrol geliyor – tüm masalar temiz olmalı"
+ },
+ "Glücksrad": {
+  "en": "Lucky Wheel",
+  "tr": "Şans Çarkı"
+ },
+ "Gold": {
+  "en": "Gold",
+  "tr": "Altın"
+ },
+ "Goldene Krone": {
+  "en": "Golden crown",
+  "tr": "Altın taç"
+ },
+ "Goldener Chef": {
+  "en": "Golden Chef",
+  "tr": "Altın Şef"
+ },
+ "Goldener Spieß": {
+  "en": "Golden Spit",
+  "tr": "Altın Şiş"
+ },
+ "Goldener Spieß!": {
+  "en": "Golden Spit!",
+  "tr": "Altın Şiş!"
+ },
+ "Goldmünzen": {
+  "en": "Gold coins",
+  "tr": "Altınlar"
+ },
+ "Grafik: Klassisch": {
+  "en": "Graphics: Classic",
+  "tr": "Grafik: Klasik"
+ },
+ "Grafik: Neu": {
+  "en": "Graphics: New",
+  "tr": "Grafik: Yeni"
+ },
+ "Grafik: Neu (Test)": {
+  "en": "Graphics: New",
+  "tr": "Grafik: Yeni"
+ },
+ "Grillmeister": {
+  "en": "Grill Master",
+  "tr": "Izgara Ustası"
+ },
+ "Großes Tablett": {
+  "en": "Big Tray",
+  "tr": "Büyük Tepsi"
+ },
+ "Guten Morgen!": {
+  "en": "Good morning!",
+  "tr": "Günaydın!"
+ },
+ "Guter Schnitt! +3 Döner": {
+  "en": "Nice cut! +3 Döner",
+  "tr": "İyi kesim! +3 Döner"
+ },
+ "Gäste bestellen jetzt auch Pommes": {
+  "en": "Guests now order fries too",
+  "tr": "Müşteriler artık patates de istiyor"
+ },
+ "Gäste fühlen sich wohler – Bewertung steigt": {
+  "en": "Guests feel more at home – rating goes up",
+  "tr": "Müşteriler kendini daha iyi hisseder – puan yükselir"
+ },
+ "Gäste kommen öfter und bestellen mehr": {
+  "en": "Guests come more often and order more",
+  "tr": "Müşteriler daha sık gelir, daha çok sipariş verir"
+ },
+ "Gäste warten 10 % geduldiger": {
+  "en": "Guests wait 10% more patiently",
+  "tr": "Müşteriler %10 daha sabırlı bekler"
+ },
+ "Hafen {h}/{n} · {s} s": {
+  "en": "Harbor {h}/{n} · {s}s",
+  "tr": "Liman {h}/{n} · {s} sn"
+ },
+ "Hafen-Order": {
+  "en": "Harbor Order",
+  "tr": "Liman Siparişi"
+ },
+ "Hafen-Order!": {
+  "en": "Harbor order!",
+  "tr": "Liman siparişi!"
+ },
+ "Hamburg": {
+  "en": "Hamburg",
+  "tr": "Hamburg"
+ },
+ "Hatice räumt auf": {
+  "en": "Hatice cleans up",
+  "tr": "Hatice topluyor"
+ },
+ "Herbstfest": {
+  "en": "Autumn Fest",
+  "tr": "Sonbahar Şenliği"
+ },
+ "Herbstfest · {pts}": {
+  "en": "Autumn Festival · {pts}",
+  "tr": "Sonbahar Festivali · {pts}"
+ },
+ "Herbstfest · {pts} · Belohnung!": {
+  "en": "Autumn Festival · {pts} · Reward!",
+  "tr": "Sonbahar Festivali · {pts} · Ödül!"
+ },
+ "Herbstfest-Belohnung": {
+  "en": "Autumn Festival reward",
+  "tr": "Sonbahar Festivali ödülü"
+ },
+ "Holzdielen": {
+  "en": "Wood Planks",
+  "tr": "Ahşap Döşeme"
+ },
+ "Hund Karabaş": {
+  "en": "Karabaş the Dog",
+  "tr": "Köpek Karabaş"
+ },
+ "Hygiene-Kontrolle!": {
+  "en": "Hygiene inspection!",
+  "tr": "Hijyen kontrolü!"
+ },
+ "Hygiene-Siegel": {
+  "en": "Hygiene Seal",
+  "tr": "Hijyen Mührü"
+ },
+ "Hygiene-Siegel!": {
+  "en": "Hygiene seal!",
+  "tr": "Hijyen mührü!"
+ },
+ "Höchstes Level erreicht. Der Goldene Spieß und die Filiale in {c} sind freigeschaltet – ob und wann du umziehst, entscheidest du. Dieser Laden verdient danach weiter.": {
+  "en": "Max level reached. The Golden Skewer and the branch in {c} are unlocked – it's up to you if and when you move. This shop keeps earning afterward.",
+  "tr": "En yüksek seviyeye ulaşıldı. Altın Şiş ve {c}'deki şube açıldı – taşınıp taşınmayacağına sen karar verirsin. Bu dükkan sonrasında da kazanmaya devam eder."
+ },
+ "Im Erfolge-Menü abholen: {g} Münzen": {
+  "en": "Claim in the achievements menu: {g} coins",
+  "tr": "Başarılar menüsünden al: {g} jeton"
+ },
+ "Immer wieder ist Wiesn: mehr Gäste, jeder will zusätzlich etwas, alles bringt 30 % mehr.": {
+  "en": "Every now and then it’s Oktoberfest: more guests, everyone orders extra, everything earns 30% more.",
+  "tr": "Arada bir Oktoberfest zamanı: daha çok müşteri, herkes fazladan ister, her şey %30 daha çok kazandırır."
+ },
+ "Istanbul": {
+  "en": "Istanbul",
+  "tr": "İstanbul"
+ },
+ "JACKPOT": {
+  "en": "JACKPOT",
+  "tr": "JACKPOT"
+ },
+ "JACKPOT! +{a} € und 3 Münzen": {
+  "en": "JACKPOT! +{a} € and 3 gold coins",
+  "tr": "JACKPOT! +{a} € ve 3 altın"
+ },
+ "Jede Portion Pommes bringt 2 € mehr": {
+  "en": "Every portion of fries earns 2 € more",
+  "tr": "Her porsiyon patates 2 € daha kazandırır"
+ },
+ "Jeder Döner bringt 2 € mehr": {
+  "en": "Every döner earns 2 € more",
+  "tr": "Her döner 2 € daha fazla kazandırır"
+ },
+ "Jeder Döner bringt nochmal 2 € mehr": {
+  "en": "Every döner earns another 2 € more",
+  "tr": "Her döner 2 € daha kazandırır"
+ },
+ "Jeder Döner bringt ×{m} · +5 Goldmünzen": {
+  "en": "Every döner earns ×{m} · +5 gold coins",
+  "tr": "Her döner ×{m} kazandırır · +5 altın"
+ },
+ "KASSE": {
+  "en": "TILL",
+  "tr": "KASA"
+ },
+ "KRITIKER": {
+  "en": "CRITIC",
+  "tr": "ELEŞTİRMEN"
+ },
+ "Kappe": {
+  "en": "Cap",
+  "tr": "Şapka"
+ },
+ "Karte": {
+  "en": "Map",
+  "tr": "Harita"
+ },
+ "Kassiererin": {
+  "en": "Cashier",
+  "tr": "Kasiyer"
+ },
+ "Katze Minka": {
+  "en": "Minka the Cat",
+  "tr": "Kedi Minka"
+ },
+ "Klassik": {
+  "en": "Classic",
+  "tr": "Klasik"
+ },
+ "Klassischer Diner-Look": {
+  "en": "Classic diner look",
+  "tr": "Klasik lokanta görünümü"
+ },
+ "Knoblauchsoße": {
+  "en": "Garlic Sauce",
+  "tr": "Sarımsaklı Sos"
+ },
+ "Knoblauchsoße!": {
+  "en": "Garlic sauce!",
+  "tr": "Sarımsaklı sos!"
+ },
+ "Kontrolle {n} s": {
+  "en": "Inspection {n} s",
+  "tr": "Denetim {n} sn"
+ },
+ "Kontrolle {s} s": {
+  "en": "Inspection {s} s",
+  "tr": "Kontrol {s} sn"
+ },
+ "Kopftuch": {
+  "en": "Bandana",
+  "tr": "Bandana"
+ },
+ "Kritiker {s} s": {
+  "en": "Critic {s} s",
+  "tr": "Eleştirmen {s} sn"
+ },
+ "Köln": {
+  "en": "Cologne",
+  "tr": "Köln"
+ },
+ "Kürbis-Chef": {
+  "en": "Pumpkin Chef",
+  "tr": "Balkabağı Şef"
+ },
+ "Kürbis-Mütze": {
+  "en": "Pumpkin hat",
+  "tr": "Balkabağı şapkası"
+ },
+ "Kürbisse": {
+  "en": "pumpkins",
+  "tr": "balkabağı"
+ },
+ "LIEFERDIENST": {
+  "en": "DELIVERY",
+  "tr": "TESLİMAT"
+ },
+ "Laden neu starten": {
+  "en": "Restart shop",
+  "tr": "Dükkânı sıfırla"
+ },
+ "Laden-Deko": {
+  "en": "Shop Decor",
+  "tr": "Dükkân Dekoru"
+ },
+ "Lahmacun": {
+  "en": "Lahmacun",
+  "tr": "Lahmacun"
+ },
+ "Lahmacun-Ofen": {
+  "en": "Lahmacun Oven",
+  "tr": "Lahmacun Fırını"
+ },
+ "Lauf zum <b>Dönerspieß</b> und nimm Döner auf.": {
+  "en": "Walk to the <b>Döner spit</b> and pick up Döner.",
+  "tr": "<b>Döner şişine</b> git ve Döner al."
+ },
+ "Lauftempo": {
+  "en": "Walking Speed",
+  "tr": "Yürüme Hızı"
+ },
+ "Lecker!": {
+  "en": "Yummy!",
+  "tr": "Nefis!"
+ },
+ "Level": {
+  "en": "Level",
+  "tr": "Seviye"
+ },
+ "Level {lv} bringt: {list} und {g} Goldmünzen.": {
+  "en": "Level {lv} brings: {list} and {g} gold coins.",
+  "tr": "Seviye {lv} şunları getirir: {list} ve {g} altın."
+ },
+ "Level-Ziel: <b>{text}</b> · {cur}/{goal}": {
+  "en": "Level goal: <b>{text}</b> · {cur}/{goal}",
+  "tr": "Seviye hedefi: <b>{text}</b> · {cur}/{goal}"
+ },
+ "Liebling der Kritiker": {
+  "en": "Critics' Darling",
+  "tr": "Kritiklerin Gözdesi"
+ },
+ "Liefer-Läufer": {
+  "en": "Delivery Runner",
+  "tr": "Paket Servis Taşıyıcısı"
+ },
+ "Lieferdienst": {
+  "en": "Delivery",
+  "tr": "Paket Servis"
+ },
+ "Lieferdienst startet!": {
+  "en": "Delivery starts!",
+  "tr": "Paket servis başladı!"
+ },
+ "Lieferkönig": {
+  "en": "Delivery King",
+  "tr": "Teslimat Kralı"
+ },
+ "Lieferregal": {
+  "en": "Delivery shelf",
+  "tr": "Teslimat rafı"
+ },
+ "Lieferung": {
+  "en": "Delivery",
+  "tr": "Teslimat"
+ },
+ "Liegt an der Kasse bereit": {
+  "en": "Waiting for you at the register",
+  "tr": "Kasada seni bekliyor"
+ },
+ "Lila": {
+  "en": "Purple",
+  "tr": "Mor"
+ },
+ "Login-Serie": {
+  "en": "Login streak",
+  "tr": "Giriş serisi"
+ },
+ "Login-Serie: {n} Tag in Folge": {
+  "en": "Login streak: {n} day in a row",
+  "tr": "Giriş serisi: {n} gün üst üste"
+ },
+ "Login-Serie: {n} Tage in Folge": {
+  "en": "Login streak: {n} days in a row",
+  "tr": "Giriş serisi: {n} gün üst üste"
+ },
+ "Lokalheld": {
+  "en": "Local Hero",
+  "tr": "Yerel Kahraman"
+ },
+ "MAX": {
+  "en": "MAX",
+  "tr": "MAKS"
+ },
+ "MENÜ": {
+  "en": "MENU",
+  "tr": "MENÜ"
+ },
+ "Marmor": {
+  "en": "Marble",
+  "tr": "Mermer"
+ },
+ "Maximum": {
+  "en": "Maximum",
+  "tr": "Maksimum"
+ },
+ "Mehmet trägt mit": {
+  "en": "Mehmet helps carry",
+  "tr": "Mehmet de taşıyor"
+ },
+ "Mehr Gäste": {
+  "en": "More guests",
+  "tr": "Daha çok müşteri"
+ },
+ "Mehr Nachschub": {
+  "en": "More supply",
+  "tr": "Daha fazla döner"
+ },
+ "Mehr Nachschub für mehr Gäste": {
+  "en": "More supply for more guests",
+  "tr": "Daha çok müşteri için daha çok döner"
+ },
+ "Meisterschnitt": {
+  "en": "Master Cut",
+  "tr": "Usta Kesim"
+ },
+ "Meisterschnitt! +5 Döner": {
+  "en": "Perfect cut! +5 Döner",
+  "tr": "Mükemmel kesim! +5 Döner"
+ },
+ "Menü": {
+  "en": "Menu",
+  "tr": "Menü"
+ },
+ "Menü-Deal": {
+  "en": "Combo Deal",
+  "tr": "Menü Fırsatı"
+ },
+ "Menü-Deal: +3 € Bonus": {
+  "en": "Menu deal: +3 € bonus",
+  "tr": "Menü fırsatı: +3 € bonus"
+ },
+ "Minze": {
+  "en": "Mint",
+  "tr": "Nane"
+ },
+ "Mit alles!": {
+  "en": "With everything!",
+  "tr": "Herşeyli!"
+ },
+ "Mit bunten Steinchen": {
+  "en": "With colorful flecks",
+  "tr": "Renkli taşçıklarla"
+ },
+ "Mitarbeiter arbeiten 12 % schneller": {
+  "en": "Staff work 12% faster",
+  "tr": "Çalışanlar %12 daha hızlı"
+ },
+ "Mitnehmen": {
+  "en": "Take along",
+  "tr": "Yanına al"
+ },
+ "Mittag": {
+  "en": "Noon",
+  "tr": "Öğle"
+ },
+ "Mittagspause": {
+  "en": "Lunch break",
+  "tr": "Öğle arası"
+ },
+ "Mittagspause!": {
+  "en": "Lunch break!",
+  "tr": "Öğle arası!"
+ },
+ "Morgen": {
+  "en": "Morning",
+  "tr": "Sabah"
+ },
+ "Morgen wiederkommen": {
+  "en": "Come back tomorrow",
+  "tr": "Yarın tekrar gel"
+ },
+ "Musik: an": {
+  "en": "Music: on",
+  "tr": "Müzik: açık"
+ },
+ "Musik: aus": {
+  "en": "Music: off",
+  "tr": "Müzik: kapalı"
+ },
+ "MÜLL": {
+  "en": "TRASH",
+  "tr": "ÇÖP"
+ },
+ "Müll zum <b>Mülleimer</b> bringen": {
+  "en": "Take trash to the <b>bin</b>",
+  "tr": "Çöpü <b>çöp kutusuna</b> at"
+ },
+ "München": {
+  "en": "Munich",
+  "tr": "Münih"
+ },
+ "Nach Hause": {
+  "en": "Send home",
+  "tr": "Eve gönder"
+ },
+ "Nach {c} reisen · {m}": {
+  "en": "Travel to {c} · {m}",
+  "tr": "{c} şubesine git · {m}"
+ },
+ "Nachm.": {
+  "en": "Aft.",
+  "tr": "Ö.S."
+ },
+ "Nachmittag": {
+  "en": "Afternoon",
+  "tr": "Öğleden sonra"
+ },
+ "Nacht": {
+  "en": "Night",
+  "tr": "Gece"
+ },
+ "Nachteule": {
+  "en": "Night Owl",
+  "tr": "Gece Kuşu"
+ },
+ "Nachtschicht": {
+  "en": "Night Shift",
+  "tr": "Gece Vardiyası"
+ },
+ "Nachtschwärmer bestellen 1 Döner mehr": {
+  "en": "Night owls order 1 more Döner",
+  "tr": "Gece kuşları 1 Döner daha sipariş eder"
+ },
+ "Neon: {n}": {
+  "en": "Neon: {n}",
+  "tr": "Neon: {n}"
+ },
+ "Neu: {n}": {
+  "en": "New: {n}",
+  "tr": "Yeni: {n}"
+ },
+ "Neue Filiale": {
+  "en": "New Branch",
+  "tr": "Yeni Şube"
+ },
+ "Neue Station · +1 €/Döner": {
+  "en": "New station · +1 €/döner",
+  "tr": "Yeni istasyon · döner başına +1 €"
+ },
+ "Neue Station · +2 €/Döner": {
+  "en": "New station · +2 €/döner",
+  "tr": "Yeni istasyon · döner başına +2 €"
+ },
+ "Neuer Laden, neues Glück!": {
+  "en": "New shop, new luck!",
+  "tr": "Yeni dükkan, yeni şans!"
+ },
+ "Neues Produkt dieser Stadt": {
+  "en": "New product from this city",
+  "tr": "Bu şehrin yeni ürünü"
+ },
+ "Neues Produkt: Pommes": {
+  "en": "New product: fries",
+  "tr": "Yeni ürün: patates"
+ },
+ "Nichts abzuholen": {
+  "en": "Nothing to collect",
+  "tr": "Toplanacak bir şey yok"
+ },
+ "Noch keine Filialen. Bau den Laden mit dem Goldenen Spieß aus, dann kannst du in die nächste Stadt ziehen – und dieser Laden verdient weiter.": {
+  "en": "No branches yet. Upgrade the shop all the way to the Golden Spit, then you can move to the next city – and this shop keeps earning.",
+  "tr": "Henüz şube yok. Dükkânı Altın Şiş’e kadar geliştir, sonra bir sonraki şehre taşınabilirsin – bu dükkân kazanmaya devam eder."
+ },
+ "Noch mehr Gäste": {
+  "en": "Even more guests",
+  "tr": "Daha da çok müşteri"
+ },
+ "Noch {n}": {
+  "en": "{n} to go",
+  "tr": "{n} kaldı"
+ },
+ "Normal: Rush Hour, Kritiker, Kontrollen und ungeduldige Gäste": {
+  "en": "Normal: rush hour, critics, inspections and impatient guests",
+  "tr": "Normal: yoğun saatler, eleştirmenler, denetimler ve sabırsız müşteriler"
+ },
+ "Normaler Betrieb": {
+  "en": "Normal business",
+  "tr": "Normal işleyiş"
+ },
+ "Normales Tempo": {
+  "en": "Normal Pace",
+  "tr": "Normal Tempo"
+ },
+ "Outfit „Kürbis-Chef“": {
+  "en": "Outfit \"Pumpkin Chef\"",
+  "tr": "Kıyafet \"Balkabağı Şef\""
+ },
+ "Outfits": {
+  "en": "Outfits",
+  "tr": "Kıyafetler"
+ },
+ "POMMES": {
+  "en": "FRIES",
+  "tr": "PATATES"
+ },
+ "Papagei Paşa": {
+  "en": "Paşa the Parrot",
+  "tr": "Papağan Paşa"
+ },
+ "Party": {
+  "en": "Party",
+  "tr": "Parti"
+ },
+ "Party: {n} Gäste": {
+  "en": "Party: {n} guests",
+  "tr": "Parti: {n} misafir"
+ },
+ "Partygruppe!": {
+  "en": "Party group!",
+  "tr": "Parti grubu!"
+ },
+ "Passend zur jeweiligen Stadt": {
+  "en": "Matches the current city",
+  "tr": "Bulunduğun şehre uygun"
+ },
+ "Personal-Training": {
+  "en": "Staff Training",
+  "tr": "Personel Eğitimi"
+ },
+ "Pink": {
+  "en": "Pink",
+  "tr": "Pembe"
+ },
+ "Pommes": {
+  "en": "Fries",
+  "tr": "Patates"
+ },
+ "Pommes +2 €": {
+  "en": "Fries +2 €",
+  "tr": "Patates +2 €"
+ },
+ "Pommes an der <b>Fritteuse</b> abholen": {
+  "en": "Pick up fries at the <b>fryer</b>",
+  "tr": "Patatesi <b>fritözden</b> al"
+ },
+ "Pommes zur <b>Theke</b> bringen": {
+  "en": "Bring fries to the <b>counter</b>",
+  "tr": "Patatesi <b>tezgaha</b> götür"
+ },
+ "Pommes-Profi": {
+  "en": "Fries Pro",
+  "tr": "Patates Ustası"
+ },
+ "Preis +2 €": {
+  "en": "Price +2 €",
+  "tr": "Fiyat +2 €"
+ },
+ "Preis +3 €, noch schneller": {
+  "en": "Price +3 €, even faster",
+  "tr": "Fiyat +3 €, daha da hızlı"
+ },
+ "Preise ×{m} · alte Filiale verdient weiter": {
+  "en": "Prices ×{m} · old branch keeps earning",
+  "tr": "Fiyatlar ×{m} · eski şube kazanmaya devam ediyor"
+ },
+ "Putzkraft Hatice": {
+  "en": "Cleaner Hatice",
+  "tr": "Temizlikçi Hatice"
+ },
+ "REGAL": {
+  "en": "SHELF",
+  "tr": "RAF"
+ },
+ "RUSH HOUR!": {
+  "en": "RUSH HOUR!",
+  "tr": "YOĞUN SAAT!"
+ },
+ "Rad": {
+  "en": "Wheel",
+  "tr": "Çark"
+ },
+ "Regen": {
+  "en": "Rain",
+  "tr": "Yağmur"
+ },
+ "Regen-Lieferung": {
+  "en": "Rain delivery",
+  "tr": "Yağmur teslimatı"
+ },
+ "Regentag": {
+  "en": "Rainy day",
+  "tr": "Yağmurlu gün"
+ },
+ "Reibekuchen": {
+  "en": "Potato Pancakes",
+  "tr": "Patates Mücveri"
+ },
+ "Reibekuchen-Stand": {
+  "en": "Potato Pancake Stand",
+  "tr": "Mücver Standı"
+ },
+ "Reisen": {
+  "en": "Travel",
+  "tr": "Git"
+ },
+ "Restaurantkritiker!": {
+  "en": "Restaurant critic!",
+  "tr": "Restoran eleştirmeni!"
+ },
+ "Route der Döner-Palast-Filialen": {
+  "en": "Route of the Döner Palast branches",
+  "tr": "Döner Palast şubelerinin rotası"
+ },
+ "Rush": {
+  "en": "Rush",
+  "tr": "Yoğunluk"
+ },
+ "Rush {n} s": {
+  "en": "Rush {n} s",
+  "tr": "Yoğunluk {n} sn"
+ },
+ "Räumt Tische ab": {
+  "en": "Clears tables",
+  "tr": "Masaları toplar"
+ },
+ "Sammelt Geld schon aus 2,5 Feldern Abstand": {
+  "en": "Collects money from 2.5 tiles away",
+  "tr": "Parayı 2,5 kare uzaktan toplar"
+ },
+ "Sammle das <b>Geld</b> neben der Kasse ein.": {
+  "en": "Collect the <b>money</b> next to the register.",
+  "tr": "Kasanın yanındaki <b>parayı</b> topla."
+ },
+ "Schachbrett": {
+  "en": "Checkerboard",
+  "tr": "Dama Tahtası"
+ },
+ "Schatzsucher": {
+  "en": "Treasure Hunter",
+  "tr": "Define Avcısı"
+ },
+ "Schiff abgefahren": {
+  "en": "The ship has left",
+  "tr": "Gemi kalktı"
+ },
+ "Schiff beladen!": {
+  "en": "Ship loaded!",
+  "tr": "Gemi yüklendi!"
+ },
+ "Schlechte Kritik!": {
+  "en": "Bad review!",
+  "tr": "Kötü eleştiri!"
+ },
+ "Schließen": {
+  "en": "Close",
+  "tr": "Kapat"
+ },
+ "Schmutzige Tische werden automatisch abgeräumt": {
+  "en": "Dirty tables get cleared automatically",
+  "tr": "Kirli masalar otomatik toplanır"
+ },
+ "Schmutziger Tisch – <b>abräumen</b>": {
+  "en": "Dirty table – <b>clear it</b>",
+  "tr": "Kirli masa – <b>topla</b>"
+ },
+ "Schneiden in {s} s": {
+  "en": "Cutting in {s} s",
+  "tr": "{s} sn sonra kesim"
+ },
+ "Schneiden!": {
+  "en": "Cut!",
+  "tr": "Kes!"
+ },
+ "Shop": {
+  "en": "Shop",
+  "tr": "Mağaza"
+ },
+ "Sitzplätze I": {
+  "en": "Seating I",
+  "tr": "Oturma Yeri I"
+ },
+ "Sitzplätze II": {
+  "en": "Seating II",
+  "tr": "Oturma Yeri II"
+ },
+ "Sitzplätze III": {
+  "en": "Seating III",
+  "tr": "Oturma Yeri III"
+ },
+ "Sitzplätze eröffnet": {
+  "en": "Seating opened",
+  "tr": "Oturma yerleri açıldı"
+ },
+ "Soße": {
+  "en": "Sauce",
+  "tr": "Sos"
+ },
+ "Spezialität": {
+  "en": "Specialty",
+  "tr": "Yöresel Lezzet"
+ },
+ "Spielfeld Döner Palast": {
+  "en": "Döner Palast game board",
+  "tr": "Döner Palast oyun alanı"
+ },
+ "Spieltempo": {
+  "en": "Game pace",
+  "tr": "Oyun temposu"
+ },
+ "Spieße 50 % schneller": {
+  "en": "Spits 50% faster",
+  "tr": "Şişler %50 daha hızlı"
+ },
+ "Sprache": {
+  "en": "Language",
+  "tr": "Dil"
+ },
+ "Sprache: {l}": {
+  "en": "Language: {l}",
+  "tr": "Dil: {l}"
+ },
+ "Später": {
+  "en": "Later",
+  "tr": "Sonra"
+ },
+ "Späti-Zeit": {
+  "en": "Late-night time",
+  "tr": "Gece büfesi zamanı"
+ },
+ "Stadt-Fliesen": {
+  "en": "City Tiles",
+  "tr": "Şehir Fayansları"
+ },
+ "Stadt-Level anzeigen": {
+  "en": "Show city level",
+  "tr": "Şehir seviyesini göster"
+ },
+ "Stadtfarbe": {
+  "en": "City Color",
+  "tr": "Şehir Rengi"
+ },
+ "Statistik": {
+  "en": "Stats",
+  "tr": "İstatistik"
+ },
+ "Steht dir gut": {
+  "en": "Looks good on you",
+  "tr": "Sana çok yakıştı"
+ },
+ "Stell dich an die <b>Kasse</b>, damit der Gast bezahlt.": {
+  "en": "Stand at the <b>register</b> so the guest can pay.",
+  "tr": "Müşteri ödeme yapsın diye <b>kasaya</b> geç."
+ },
+ "Stell dich aufs gelbe Feld <b>2. Dönerspieß</b> und bau aus.": {
+  "en": "Stand on the yellow <b>2nd Döner spit</b> field and build it.",
+  "tr": "Sarı <b>2. Döner şişi</b> alanına geç ve inşa et."
+ },
+ "Streifen in der Farbe der Stadt": {
+  "en": "Stripes in the city's color",
+  "tr": "Şehrin renginde çizgiler"
+ },
+ "THEKE": {
+  "en": "COUNTER",
+  "tr": "TEZGAH"
+ },
+ "Tablett": {
+  "en": "Tray",
+  "tr": "Tepsi"
+ },
+ "Tablett-Upgrade": {
+  "en": "Tray upgrade",
+  "tr": "Tepsi yükseltmesi"
+ },
+ "Tag {d}": {
+  "en": "Day {d}",
+  "tr": "{d}. Gün"
+ },
+ "Tag {d} abholen": {
+  "en": "Claim day {d}",
+  "tr": "{d}. günü al"
+ },
+ "Tagesbonus": {
+  "en": "Daily Bonus",
+  "tr": "Günlük Bonus"
+ },
+ "Tagesbonus abgeholt!": {
+  "en": "Daily bonus claimed!",
+  "tr": "Günlük bonus alındı!"
+ },
+ "Tempo: Gemütlich": {
+  "en": "Pace: Chill",
+  "tr": "Tempo: Rahat"
+ },
+ "Tempo: Normal": {
+  "en": "Pace: Normal",
+  "tr": "Tempo: Normal"
+ },
+ "Terrazzo": {
+  "en": "Terrazzo",
+  "tr": "Terrazzo"
+ },
+ "Theke": {
+  "en": "Counter",
+  "tr": "Tezgâh"
+ },
+ "Tippe auf eine grüne Stadt, um dorthin zu reisen.": {
+  "en": "Tap a green city to travel there.",
+  "tr": "Oraya gitmek için yeşil bir şehre dokun."
+ },
+ "Tippe, wenn der Zeiger im grünen Feld ist!": {
+  "en": "Tap when the marker is in the green zone!",
+  "tr": "İbre yeşil alandayken dokun!"
+ },
+ "Tische schmutzig!": {
+  "en": "Tables are dirty!",
+  "tr": "Masalar kirli!"
+ },
+ "Ton: an": {
+  "en": "Sound: on",
+  "tr": "Ses: açık"
+ },
+ "Ton: aus": {
+  "en": "Sound: off",
+  "tr": "Ses: kapalı"
+ },
+ "Top-Kritik! ★★★★★": {
+  "en": "Top review! ★★★★★",
+  "tr": "Süper eleştiri! ★★★★★"
+ },
+ "Tourist": {
+  "en": "Tourist",
+  "tr": "Turist"
+ },
+ "Trage 12 Döner": {
+  "en": "Carry 12 döner",
+  "tr": "12 döner taşı"
+ },
+ "Trage 8 Döner": {
+  "en": "Carry 8 döner",
+  "tr": "8 döner taşı"
+ },
+ "Träger Ali": {
+  "en": "Runner Ali",
+  "tr": "Taşıyıcı Ali"
+ },
+ "Träger Mehmet": {
+  "en": "Runner Mehmet",
+  "tr": "Taşıyıcı Mehmet"
+ },
+ "Träger tragen 1 Döner mehr": {
+  "en": "Runners carry 1 more döner",
+  "tr": "Taşıyıcılar 1 döner fazla taşır"
+ },
+ "Träger-Kisten": {
+  "en": "Carrier Crates",
+  "tr": "Taşıma Kasaları"
+ },
+ "Trägt automatisch": {
+  "en": "Carries automatically",
+  "tr": "Otomatik taşır"
+ },
+ "Turbo": {
+  "en": "Turbo",
+  "tr": "Turbo"
+ },
+ "Turbo-Grill": {
+  "en": "Turbo Grill",
+  "tr": "Turbo Izgara"
+ },
+ "Turbo-Laufen für 60 Sekunden": {
+  "en": "Turbo running for 60 seconds",
+  "tr": "60 saniye turbo koşu"
+ },
+ "Turbo-Lila": {
+  "en": "Turbo Purple",
+  "tr": "Turbo Mor"
+ },
+ "Tutorial geschafft!": {
+  "en": "Tutorial done!",
+  "tr": "Öğretici tamamlandı!"
+ },
+ "Türkis": {
+  "en": "Turquoise",
+  "tr": "Turkuaz"
+ },
+ "Upgrades": {
+  "en": "Upgrades",
+  "tr": "Geliştirmeler"
+ },
+ "VIP": {
+  "en": "VIP",
+  "tr": "VIP"
+ },
+ "VIP-Service": {
+  "en": "VIP Service",
+  "tr": "VIP Servis"
+ },
+ "Verkauf läuft jetzt ohne dich": {
+  "en": "Sales now run without you",
+  "tr": "Satış artık sensiz de yürüyor"
+ },
+ "Verkauft automatisch": {
+  "en": "Sells automatically",
+  "tr": "Otomatik satar"
+ },
+ "Viel mehr Gäste": {
+  "en": "Lots more guests",
+  "tr": "Çok daha fazla müşteri"
+ },
+ "Volle Action: mehr Gäste, Events und Zeitdruck": {
+  "en": "Full action: more guests, events and time pressure",
+  "tr": "Tam gaz: daha çok müşteri, etkinlik ve zaman baskısı"
+ },
+ "Wandstreifen und Schild-Rahmen": {
+  "en": "Wall stripes and sign frame",
+  "tr": "Duvar çizgileri ve tabela çerçevesi"
+ },
+ "Warm wie im Bistro": {
+  "en": "Warm like a bistro",
+  "tr": "Bistro gibi sıcak"
+ },
+ "Weiße Kochmütze": {
+  "en": "White chef's hat",
+  "tr": "Beyaz aşçı şapkası"
+ },
+ "Weniger Gäste, keine Hektik – nimm dir Zeit": {
+  "en": "Fewer guests, no rush – take your time",
+  "tr": "Daha az müşteri, telaş yok – aceleye gerek yok"
+ },
+ "Weniger Laufkundschaft – Lieferungen bringen 50 % mehr, mehr Autos": {
+  "en": "Fewer walk-ins – deliveries bring 50% more, more cars",
+  "tr": "Daha az yaya müşteri – teslimatlar %50 daha fazla getiriyor, daha çok araba"
+ },
+ "Wenn das Schiffshorn ertönt: Döner zur Hafenkiste bringen, bevor die Zeit abläuft – doppelter Preis.": {
+  "en": "When the ship’s horn sounds: bring döner to the harbor crate before time runs out – double price.",
+  "tr": "Gemi kornası çalınca: süre bitmeden dönerleri liman sandığına getir – iki kat fiyat."
+ },
+ "Wer Döner und Pommes nimmt, zahlt 3 € Bonus": {
+  "en": "Döner plus fries pays a 3 € bonus",
+  "tr": "Döner ve patates alan 3 € bonus öder"
+ },
+ "Werbung": {
+  "en": "Advertising",
+  "tr": "Reklam"
+ },
+ "Wieder in {t}": {
+  "en": "Again in {t}",
+  "tr": "{t} sonra tekrar"
+ },
+ "Wiesn": {
+  "en": "Oktoberfest",
+  "tr": "Oktoberfest"
+ },
+ "Wiesn vorbei": {
+  "en": "Oktoberfest is over",
+  "tr": "Oktoberfest bitti"
+ },
+ "Wiesn · {s} s": {
+  "en": "Oktoberfest · {s}s",
+  "tr": "Oktoberfest · {s} sn"
+ },
+ "Wiesn-Zeit": {
+  "en": "Oktoberfest Time",
+  "tr": "Oktoberfest Zamanı"
+ },
+ "Wiesn-Zeit! O’zapft is!": {
+  "en": "Oktoberfest time! O’zapft is!",
+  "tr": "Oktoberfest zamanı! O’zapft is!"
+ },
+ "Willkommen in {c}!": {
+  "en": "Welcome to {c}!",
+  "tr": "{c} şehrine hoş geldin!"
+ },
+ "Wirklich? Nochmal tippen": {
+  "en": "Really? Tap again",
+  "tr": "Emin misin? Tekrar dokun"
+ },
+ "Während du weg warst: +{a} €": {
+  "en": "While you were away: +{a} €",
+  "tr": "Sen yokken: +{a} €"
+ },
+ "Zeynep übernimmt die Kasse": {
+  "en": "Zeynep takes over the register",
+  "tr": "Kasayı Zeynep devralıyor"
+ },
+ "Zieh irgendwo über den Bildschirm, um zu laufen.": {
+  "en": "Drag anywhere on the screen to walk.",
+  "tr": "Yürümek için ekranın herhangi bir yerine sürükle."
+ },
+ "Ziehen zum Laufen": {
+  "en": "Drag to walk",
+  "tr": "Yürümek için sürükle"
+ },
+ "Ziehen zum Laufen · ": {
+  "en": "Drag to walk · ",
+  "tr": "Yürümek için sürükle · "
+ },
+ "Ziel: {text}": {
+  "en": "Goal: {text}",
+  "tr": "Hedef: {text}"
+ },
+ "Zu lange gewartet!": {
+  "en": "Waited too long!",
+  "tr": "Çok uzun bekledi!"
+ },
+ "Zurück in {c}!": {
+  "en": "Back in {c}!",
+  "tr": "Yeniden {c} şehrindesin!"
+ },
+ "Zurück zu Normal": {
+  "en": "Back to Normal",
+  "tr": "Normale dön"
+ },
+ "Zwei Träger versorgen jetzt die Theke": {
+  "en": "Two runners now restock the counter",
+  "tr": "Artık iki taşıyıcı tezgâhı dolduruyor"
+ },
+ "Zweiter Spieß dreht sich!": {
+  "en": "Second spit is turning!",
+  "tr": "İkinci şiş dönüyor!"
+ },
+ "ab Level 2": {
+  "en": "from level 2",
+  "tr": "seviye 2'den itibaren"
+ },
+ "aktiv": {
+  "en": "active",
+  "tr": "aktif"
+ },
+ "als Nächstes": {
+  "en": "up next",
+  "tr": "sıradaki"
+ },
+ "gekauft": {
+  "en": "bought",
+  "tr": "satın alındı"
+ },
+ "mit Glitzer": {
+  "en": "with sparkle",
+  "tr": "parıltılı"
+ },
+ "mit Tempo-Streifen": {
+  "en": "with speed stripes",
+  "tr": "tempo çizgili"
+ },
+ "mit alles, scharf?": {
+  "en": "with everything, spicy?",
+  "tr": "hepsiyle, acılı mı?"
+ },
+ "{a} € abholen": {
+  "en": "Collect {a} €",
+  "tr": "{a} € topla"
+ },
+ "{cur} / {goal}": {
+  "en": "{cur} / {goal}",
+  "tr": "{cur} / {goal}"
+ },
+ "{c} auswählen": {
+  "en": "Select {c}",
+  "tr": "{c} seç"
+ },
+ "{c} · Level {lv} von {max}": {
+  "en": "{c} · Level {lv} of {max}",
+  "tr": "{c} · Seviye {lv} / {max}"
+ },
+ "{c} · Level {l}/{m}": {
+  "en": "{c} · Level {l}/{m}",
+  "tr": "{c} · Seviye {l}/{m}"
+ },
+ "{c} – Level {lv}!": {
+  "en": "{c} – Level {lv}!",
+  "tr": "{c} – Seviye {lv}!"
+ },
+ "{c}/{g}": {
+  "en": "{c}/{g}",
+  "tr": "{c}/{g}"
+ },
+ "{d} schmutzige Tische: −{fine} €": {
+  "en": "{d} dirty tables: −{fine} €",
+  "tr": "{d} kirli masa: −{fine} €"
+ },
+ "{d} schmutziger Tisch: −{fine} €": {
+  "en": "{d} dirty table: −{fine} €",
+  "tr": "{d} kirli masa: −{fine} €"
+ },
+ "{g} Autos am Drive-In bedienen": {
+  "en": "Serve {g} cars at the drive-in",
+  "tr": "Drive-in'de {g} araca hizmet ver"
+ },
+ "{g} Döner an der Theke verkaufen": {
+  "en": "Sell {g} Döner at the counter",
+  "tr": "Tezgahta {g} Döner sat"
+ },
+ "{g} Lieferungen rausschicken": {
+  "en": "Send out {g} deliveries",
+  "tr": "{g} teslimat gönder"
+ },
+ "{g} Münzen": {
+  "en": "{g} coins",
+  "tr": "{g} jeton"
+ },
+ "{g} Pommes verkaufen": {
+  "en": "Sell {g} fries",
+  "tr": "{g} patates sat"
+ },
+ "{g} Teller abräumen": {
+  "en": "Clear {g} plates",
+  "tr": "{g} tabak topla"
+ },
+ "{g} € verdienen": {
+  "en": "Earn {g} €",
+  "tr": "{g} € kazan"
+ },
+ "{g}× {s} verkaufen": {
+  "en": "Sell {s} {g}×",
+  "tr": "{s}'den {g}× sat"
+ },
+ "{h} Std {m} Min": {
+  "en": "{h}h {m}m",
+  "tr": "{h} sa {m} dk"
+ },
+ "{m} Min": {
+  "en": "{m}m",
+  "tr": "{m} dk"
+ },
+ "{n} Autos am Drive-In bedienen": {
+  "en": "Serve {n} cars at the drive-in",
+  "tr": "Drive-in'de {n} araca hizmet ver"
+ },
+ "{n} Döner verkaufen": {
+  "en": "Sell {n} Döner",
+  "tr": "{n} Döner sat"
+ },
+ "{n} Filiale verdient {a} €/Min – auch wenn du nicht spielst (bis 2 Std).": {
+  "en": "{n} branch earns {a} €/min – even when you’re not playing (up to 2 h).",
+  "tr": "{n} şube {a} €/dk kazanıyor – oynamasan bile (2 saate kadar)."
+ },
+ "{n} Filialen verdienen zusammen {a} €/Min – auch wenn du nicht spielst (bis 2 Std).": {
+  "en": "{n} branches earn {a} €/min together – even when you’re not playing (up to 2 h).",
+  "tr": "{n} şube birlikte {a} €/dk kazanıyor – oynamasan bile (2 saate kadar)."
+ },
+ "{n} Lieferungen rausschicken": {
+  "en": "Send out {n} deliveries",
+  "tr": "{n} teslimat gönder"
+ },
+ "{n} Pommes verkaufen": {
+  "en": "Sell {n} fries",
+  "tr": "{n} patates sat"
+ },
+ "{n} Teller abräumen": {
+  "en": "Clear {n} plates",
+  "tr": "{n} tabak topla"
+ },
+ "{n} eingebaut!": {
+  "en": "{n} installed!",
+  "tr": "{n} takıldı!"
+ },
+ "{n} eröffnet!": {
+  "en": "{n} opens!",
+  "tr": "{n} açıldı!"
+ },
+ "{n} freigeschaltet!": {
+  "en": "{n} unlocked!",
+  "tr": "{n} açıldı!"
+ },
+ "{n} ist dabei!": {
+  "en": "{n} has joined!",
+  "tr": "{n} katıldı!"
+ },
+ "{n} – die Spezialität von {c}. Gäste zahlen {p} € pro Stück": {
+  "en": "{n} – the specialty of {c}. Guests pay {p} € each",
+  "tr": "{n} – {c} şehrinin spesiyali. Müşteriler adet başına {p} € ödüyor"
+ },
+ "{n} € in dieser Stadt verdienen": {
+  "en": "Earn {n} € in this city",
+  "tr": "Bu şehirde {n} € kazan"
+ },
+ "{n} €/Min Umsatz erreichen": {
+  "en": "Reach {n} €/min in revenue",
+  "tr": "Dakikada {n} € ciroya ulaş"
+ },
+ "{n}× {s} verkaufen": {
+  "en": "Sell {s} {n}×",
+  "tr": "{s}'den {n}× sat"
+ },
+ "{price} Münzen": {
+  "en": "{price} coins",
+  "tr": "{price} altın"
+ },
+ "{pts} Kürbisse": {
+  "en": "{pts} pumpkins",
+  "tr": "{pts} balkabağı"
+ },
+ "{p} Münzen": {
+  "en": "{p} coins",
+  "tr": "{p} jeton"
+ },
+ "{p} €": {
+  "en": "{p} €",
+  "tr": "{p} €"
+ },
+ "{s} am <b>{stand}</b> abholen": {
+  "en": "Pick up {s} at the <b>{stand}</b>",
+  "tr": "{s}'i <b>{stand}</b>'dan al"
+ },
+ "{s} zur <b>Theke</b> bringen": {
+  "en": "Bring {s} to the <b>counter</b>",
+  "tr": "{s}'i <b>tezgaha</b> götür"
+ },
+ "– nur beim Herbstfest": {
+  "en": "– autumn fest only",
+  "tr": "– yalnızca sonbahar festivalinde"
+ },
+ "…": {
+  "en": "…",
+  "tr": "…"
+ },
+ "€/Min": {
+  "en": "€/min",
+  "tr": "€/dk"
+ },
+ "Gerade ist kein Video verfügbar – versuch es gleich nochmal": {
+  "en": "No video available right now – try again in a moment",
+  "tr": "Şu anda video yok – birazdan tekrar dene"
+ },
+ "Werbung (Test)": {
+  "en": "Ad (test)",
+  "tr": "Reklam (test)"
+ },
+ "Belohnung in {s} s": {
+  "en": "Reward in {s} s",
+  "tr": "Ödül {s} sn sonra"
+ },
+ "Belohnung erhalten!": {
+  "en": "Reward earned!",
+  "tr": "Ödül kazanıldı!"
+ },
+ "Weiter": {
+  "en": "Continue",
+  "tr": "Devam"
+ },
+ "Doppelter Umsatz!": {
+  "en": "Double earnings!",
+  "tr": "Çifte kazanç!"
+ },
+ "5 Minuten lang zählt jeder Verkauf doppelt": {
+  "en": "Every sale counts double for 5 minutes",
+  "tr": "5 dakika boyunca her satış iki kat sayılır"
+ },
+ "▶ 2× Umsatz": {
+  "en": "▶ 2× earnings",
+  "tr": "▶ 2× kazanç"
+ },
+ "▶ Video ansehen: nochmal drehen": {
+  "en": "▶ Watch a video: spin again",
+  "tr": "▶ Video izle: tekrar çevir"
+ },
+ "Willkommen zurück!": {
+  "en": "Welcome back!",
+  "tr": "Tekrar hoş geldin!"
+ },
+ "Dein Team hat weitergearbeitet, während du weg warst.": {
+  "en": "Your team kept working while you were away.",
+  "tr": "Sen yokken ekibin çalışmaya devam etti."
+ },
+ "▶ Video ansehen: verdoppeln": {
+  "en": "▶ Watch a video: double it",
+  "tr": "▶ Video izle: ikiye katla"
+ }
+}

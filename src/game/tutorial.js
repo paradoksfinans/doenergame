@@ -1,7 +1,7 @@
 // tutorial.js – aus der Einzeldatei extrahiert
 
 import { G } from './state.js';
-import { beep, chord } from './audio.js';
+import { beep, chord, sfx } from './audio.js';
 import { showBanner } from './hud.js';
 import { M, addGems, saveMeta } from './meta.js';
 import { burst } from './confetti.js';
@@ -28,7 +28,7 @@ export function tutTick() {
   if (TUT[M.tut].ok()) {
     M.tut++;
     saveMeta();
-    beep(990, 0.1);
+    sfx('ding', 0.6) || beep(990, 0.1);
     if (M.tut >= TUT.length) {
       addGems(2);
       showBanner(t('Tutorial geschafft!'), t('+2 Goldmünzen – ab jetzt zeigt dir der Pfeil den Weg'));

@@ -37,6 +37,8 @@ import { initTempo } from './game/tempo.js';
 import { initLevels } from './game/levels.js';
 import { initGfx } from './game/gfx.js';
 import { initLoop } from './game/loop.js';
+import { initAds } from './game/ads.js';
+import { initOffers } from './game/offers.js';
 
 // Reihenfolge entspricht dem Original – bitte nicht umsortieren.
 initI18n();
@@ -69,14 +71,18 @@ initFestival();
 initTempo();
 initLevels();
 initGfx();
+initAds();
+initOffers();
 initLoop();
 
 // Test-Hilfe: nur mit ?debug in der Adresse aktiv
 if (new URLSearchParams(location.search).has('debug')) {
-  Promise.all([import('./game/state.js'), import('./game/world.js'), import('./game/meta.js')]).then(
-    ([st, w, m]) => {
+  Promise.all([import('./game/state.js'), import('./game/world.js'), import('./game/meta.js'), import('./game/audio.js')]).then(
+    ([st, w, m, a]) => {
+      window.__audio = () => a.audioLoaded();
       window.__G = () => st.G;
       window.__unlock = id => w.unlock(id);
+      window.__nextCity = () => w.nextCity();
       window.__M = m.M;
     },
   );

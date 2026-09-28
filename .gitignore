@@ -4,3 +4,9 @@ dist
 __pycache__
 # Blender-Zwischenbilder (stecken gepackt in src/game/spritedata.js)
 art/out/*.png
+
+# Schlüssel gehören nie ins Repository (Ausnahme: der öffentliche Test-Schlüssel)
+*.keystore
+!android/app/test.keystore
+*.jks
+/out/

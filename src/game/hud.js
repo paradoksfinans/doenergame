@@ -4,7 +4,7 @@ import { levelProgress, levelsTick, MAX_LEVEL } from './levels.js';
 import { PADS, UPS, UP_MAX, cityOf } from './config.js';
 import { G, MTEXT, __set_G, fresh, friesPrice, price, upCost } from './state.js';
 import { flyers, texts } from './fx.js';
-import { __set_muted, audioInit, chord, muted } from './audio.js';
+import { __set_muted, audioInit, chord, muted, sfx } from './audio.js';
 import { ratePerMin } from './update.js';
 import { cam } from './render.js';
 import { KEY, save } from './save.js';
@@ -74,7 +74,7 @@ export function renderSheet() {
       if (G.lv[u.id] >= UP_MAX || G.money < upCost(u)) return;
       G.money -= upCost(u);
       G.lv[u.id]++;
-      chord();
+      sfx('buy', 0.8) || chord();
       renderSheet();
       save();
     };

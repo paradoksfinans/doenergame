@@ -33,6 +33,7 @@
         <span class="chip rush" id="rushChip" hidden>Rush</span>
         <span class="chip mech" id="mechChip" hidden></span>
         <span class="chip boost" id="boostChip" hidden></span>
+        <button class="chip vidchip" id="vidChip" type="button" hidden><span data-i18n>▶ 2× Umsatz</span></button>
         <button class="chip branch" id="branchBtn" type="button" hidden>Filialen</button>
         <button class="chip evbtn" id="evtBtn" type="button" hidden>Herbstfest</button>
       </div>
@@ -187,6 +188,17 @@
       </div>
       <p class="result" id="wheelResult"></p>
       <button class="bigbtn" id="spinBtn" type="button">Drehen!</button>
+      <button class="bigbtn adbtn" id="spinAdBtn" type="button" hidden data-i18n>▶ Video ansehen: nochmal drehen</button>
+    </div>
+    <div class="sheet" id="offlineSheet" hidden role="dialog" aria-labelledby="offTitle">
+      <div class="sheet-head">
+        <h2 id="offTitle" data-i18n>Willkommen zurück!</h2>
+        <button type="button" data-close data-i18n>Schließen</button>
+      </div>
+      <p class="sub" data-i18n>Dein Team hat weitergearbeitet, während du weg warst.</p>
+      <p class="offamt" id="offAmt">+0 €</p>
+      <button class="bigbtn adbtn" id="offDouble" type="button" data-i18n>▶ Video ansehen: verdoppeln</button>
+      <button class="bigbtn ghost" id="offCollect" type="button" data-i18n>Abholen</button>
     </div>
     <div class="banner" id="banner" hidden></div>
     <button class="cutbtn" id="cutBtn" type="button" hidden>Döner schneiden!</button>

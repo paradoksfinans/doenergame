@@ -3,6 +3,7 @@
 import { update } from './update.js';
 import { render } from './render.js';
 import { hud } from './hud.js';
+import { offersHud } from './offers.js';
 
 export let last;
 
@@ -15,6 +16,7 @@ export function frame(now) {
   update(dt);
   const g = render();
   hud(g, dt);
+  offersHud(dt);
   requestAnimationFrame(frame);
 }
 

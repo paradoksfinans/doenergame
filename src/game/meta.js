@@ -1,7 +1,7 @@
 // meta.js – aus der Einzeldatei extrahiert
 
 import { G, padMul } from './state.js';
-import { audioInit, beep, ching, chord } from './audio.js';
+import { audioInit, beep, ching, chord, sfx } from './audio.js';
 import { ratePerMin } from './update.js';
 import { $, $h, bumpMoney, lastRate, showBanner } from './hud.js';
 import { burst } from './confetti.js';
@@ -163,7 +163,7 @@ export function renderShop() {
         saveMeta();
         applyOutfit();
         renderShop();
-        beep(880, 0.08);
+        sfx('buy', 0.7) || beep(880, 0.08);
       };
     } else {
       b.textContent = t('{p} Münzen', { p: fmt(o.price) });
@@ -507,7 +507,7 @@ export function initMeta() {
       const seg = Math.floor(((wRot % (Math.PI * 2)) + Math.PI * 2) / a);
       if (seg !== lastTick) {
         lastTick = seg;
-        beep(1200, 0.02, 'square', 0.015);
+        sfx('click', 0.5, 1.2) || beep(1200, 0.02, 'square', 0.015);
       }
       if (k < 1) requestAnimationFrame(step);
       else {

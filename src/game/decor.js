@@ -1,6 +1,6 @@
 // decor.js – aus der Einzeldatei extrahiert
 
-import { beep, chord } from './audio.js';
+import { beep, chord, sfx } from './audio.js';
 import { $, showBanner } from './hud.js';
 import { M, saveMeta } from './meta.js';
 import { burst } from './confetti.js';
@@ -109,7 +109,7 @@ export function renderDeco() {
         M.deco[kind] = it.id;
         saveMeta();
         renderDeco();
-        beep(880, 0.08);
+        sfx('buy', 0.7) || beep(880, 0.08);
       };
     } else {
       b.textContent = t('{p} Münzen', { p: it.price });

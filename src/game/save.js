@@ -6,6 +6,7 @@ import { G, __set_G, fresh } from './state.js';
 import { unlock, unstick } from './world.js';
 import { lastRate, showBanner } from './hud.js';
 import { t, fmt } from './i18n.js';
+import { offerOffline } from './offers.js';
 
 export const KEY = 'doener-palast-v11',
   OLDKEY = 'doener-palast-v10';
@@ -132,18 +133,7 @@ export function load() {
   if (G.unlocked.has('cashier') && G.unlocked.has('runner') && s.t && s.rate > 0) {
     const min = Math.min(30, (Date.now() - s.t) / 60000),
       earned = Math.floor(min * s.rate * 0.3);
-    if (earned >= 5) {
-      G.piles.reg.amount += earned;
-      G.piles.reg.count += Math.min(40, Math.round(earned / 6));
-      setTimeout(
-        () =>
-          showBanner(
-            t('Während du weg warst: +{a} €', { a: fmt(earned) }),
-            t('Liegt an der Kasse bereit'),
-          ),
-        400,
-      );
-    }
+    if (earned >= 5) setTimeout(() => offerOffline(earned), 500);
   }
 }
 

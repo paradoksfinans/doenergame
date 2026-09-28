@@ -24,7 +24,7 @@ import { G, STATIONS, __set_G, fresh, newMission, priceMul, specPrice, stat, sta
 import { P } from './iso.js';
 import { stackTop } from './sprites.js';
 import { floatText, fly, flyers, texts } from './fx.js';
-import { chord } from './audio.js';
+import { chord, sfx } from './audio.js';
 import { ratePerMin } from './update.js';
 import { cam } from './render.js';
 import { __set_bestRate, bestRate, lastRate, showBanner } from './hud.js';
@@ -301,7 +301,7 @@ export function unlock(id, silent) {
         : [t(MSG[id][0]), t(MSG[id][1])];
     showBanner(mm[0], mm[1]);
     unstick();
-    chord();
+    sfx('buy', 0.8) || chord();
     save();
     burst(70);
   }
@@ -356,7 +356,7 @@ export function nextCity() {
   lifeMax('cities', G.city + 1);
   burst(140);
   showBanner(
-    t('Willkommen in {c}!', { c: c.name }),
+    t('Willkommen in {c}!', { c: t(c.name) }),
     t('Jeder Döner bringt ×{m} · +5 Goldmünzen', { m: fmt(priceMul(), 1) }),
   );
   chord();
@@ -373,7 +373,7 @@ export function travelTo(i) {
   switchCity(i, target.snap || fullCity(i), branches);
   burst(80);
   showBanner(
-    t('Zurück in {c}!', { c: cityOf(i).name }),
+    t('Zurück in {c}!', { c: t(cityOf(i).name) }),
     t('Deine anderen Filialen verdienen weiter'),
   );
   chord();
