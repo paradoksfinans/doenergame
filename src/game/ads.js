@@ -4,7 +4,7 @@
 // Für echte Einnahmen später nur AD_UNIT und APP_ID (AndroidManifest.xml) durch die eigenen IDs ersetzen
 // und TESTING auf false stellen.
 import { t } from './i18n.js';
-import { audioInit, playMusic } from './audio.js';
+import { audioInit } from './audio.js';
 import { M } from './meta.js';
 
 const TESTING = true;
@@ -45,7 +45,6 @@ function preload() {
 export async function showRewarded() {
   audioInit();
   if (!native()) return simulated();
-  playMusic(false);
   try {
     await preload();
     if (!ready) throw new Error('not loaded');
@@ -56,7 +55,6 @@ export async function showRewarded() {
     toast(t('Gerade ist kein Video verfügbar – versuch es gleich nochmal'));
     return false;
   } finally {
-    if (M.music) playMusic(true);
     setTimeout(preload, 1500);
   }
 }

@@ -3,15 +3,13 @@
 import { ENTER, EXIT, HAIRS, QSLOTS, SKINS, ctx, rnd } from './config.js';
 import { G, relax } from './state.js';
 import { dirtyCount, moveToward, rate } from './world.js';
-import { audioInit, beep, chord, playMusic, sfx } from './audio.js';
+import { audioInit, beep, chord, sfx } from './audio.js';
 import { dpr, vh, vw } from './render.js';
 import { $, bumpMoney, showBanner } from './hud.js';
 import { M, addGems, cashFor, saveMeta } from './meta.js';
 import { life } from './achievements.js';
 import { burst, reduceMotion } from './confetti.js';
 import { t, fmt } from './i18n.js';
-
-export let $music;
 
 export function spawnCritic() {
   if (G.queue.length >= QSLOTS.length) return false;
@@ -163,22 +161,10 @@ export function newDayWeather() {
   G.weather = Math.random() < 0.35 ? 'regen' : 'sonne';
   if (rainy())
     setTimeout(
-      () => showBanner(t('Regentag'), t('Weniger Laufkundschaft – Lieferungen bringen 50 % mehr, mehr Autos')),
+      () =>
+        showBanner(t('Regentag'), t('Weniger Laufkundschaft – Lieferungen bringen 50 % mehr, mehr Autos')),
       2900,
     );
-}
-
-export function startMusic() {
-  audioInit();
-  playMusic(true);
-}
-
-export function stopMusic() {
-  playMusic(false);
-}
-
-export function musicLabel() {
-  $music.textContent = M.music ? t('Musik: an') : t('Musik: aus');
 }
 
 export function v8Hud() {
@@ -196,24 +182,4 @@ export function v8Hud() {
   } else e.hidden = true;
 }
 
-export function initEvents() {
-  if (M.music === undefined) M.music = true; // mit der neuen Musik standardmäßig an
-  $music = $('musicBtn');
-  $music.onclick = () => {
-    M.music = !M.music;
-    saveMeta();
-    musicLabel();
-    if (M.music) startMusic();
-    else stopMusic();
-  };
-  musicLabel();
-  if (M.music) {
-    const kick = () => {
-      startMusic();
-      removeEventListener('pointerdown', kick);
-      removeEventListener('keydown', kick);
-    };
-    addEventListener('pointerdown', kick);
-    addEventListener('keydown', kick);
-  }
-}
+export function initEvents() {}

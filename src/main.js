@@ -80,6 +80,7 @@ if (new URLSearchParams(location.search).has('debug')) {
   Promise.all([import('./game/state.js'), import('./game/world.js'), import('./game/meta.js'), import('./game/audio.js')]).then(
     ([st, w, m, a]) => {
       window.__audio = () => a.audioLoaded();
+      import('./game/fx.js').then(fx => (window.__fx = fx));
       window.__G = () => st.G;
       window.__unlock = id => w.unlock(id);
       window.__nextCity = () => w.nextCity();

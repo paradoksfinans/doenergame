@@ -245,7 +245,7 @@ export function drawFryTray() {
   box(FRY.x + 0.05, 1.0, 0.9, 0.55, 22, '#d9dee0', '#8d969b', '#a8b0b4');
   const p = P(FRY.x + 0.5, 1.27, 22);
   for (let i = 0; i < fr.stock; i++) drawFries(p.x, p.y - i * 5);
-  const f = Math.min(1, fr.T / G.fryTime),
+  const f = Math.min(1, fr.t / G.fryTime),
     q = P(FRY.x + 0.95, 1.3, 42);
   ctx.beginPath();
   ctx.arc(q.x, q.y, 6, 0, Math.PI * 2);
@@ -558,7 +558,7 @@ export function drawTray(s) {
   box(s.x + 0.05, 1.0, 0.9, 0.55, 22, '#d9dee0', '#8d969b', '#a8b0b4');
   const p = P(s.x + 0.5, 1.27, 22);
   for (let i = 0; i < s.stock; i++) drawDoner(p.x, p.y - i * 5);
-  const f = Math.min(1, s.T / G.spitTime),
+  const f = Math.min(1, s.t / G.spitTime),
     q = P(s.x + 0.95, 1.3, 42);
   ctx.beginPath();
   ctx.arc(q.x, q.y, 6, 0, Math.PI * 2);

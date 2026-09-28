@@ -1,12 +1,11 @@
 // audio.js – Ton: vorberechnete Soundeffekte (art/audio/make_audio.py) mit Fallback auf einfache Pieptöne,
-// Hintergrundmusik als Endlosschleife und leises Grill-Brutzeln.
+// leises Grill-Brutzeln im Hintergrund (keine Musik).
 import { SOUNDS } from './sounddata.js';
 
 export let actx = null,
   muted = false;
 
-let sfxGain = null,
-  musicBus = null;
+let sfxGain = null;
 const bufs = {};
 let loading = false;
 
@@ -15,9 +14,6 @@ function bus() {
     sfxGain = actx.createGain();
     sfxGain.gain.value = 0.9;
     sfxGain.connect(actx.destination);
-    musicBus = actx.createGain();
-    musicBus.gain.value = 0.55;
-    musicBus.connect(actx.destination);
   }
 }
 
@@ -35,7 +31,6 @@ async function loadAll() {
     }),
   );
   if (wantSizzle) startSizzle();
-  if (wantMusic) startMusicLoop();
 }
 
 export function audioInit() {
@@ -65,7 +60,11 @@ export function sfx(name, vol = 1, rate = 1) {
   return true;
 }
 
-export const audioLoaded = () => ({ state: actx && actx.state, loaded: Object.keys(bufs), music: !!musicSrc, sizzle: !!sizzleSrc });
+export const audioLoaded = () => ({
+  state: actx && actx.state,
+  loaded: Object.keys(bufs),
+  sizzle: !!sizzleSrc,
+});
 
 export function beep(f, dur = 0.07, type = 'triangle', vol = 0.05) {
   if (muted || !actx) return;
@@ -117,36 +116,10 @@ export function sizzleLevel(v) {
   if (sizzleGain) sizzleGain.gain.setTargetAtTime(muted ? 0 : 0.05 + 0.1 * v, actx.currentTime, 0.3);
 }
 
-// ---------------------------------------------------------------- Musik (Endlosschleife)
-let musicSrc = null,
-  wantMusic = false;
-function startMusicLoop() {
-  if (!actx || musicSrc || !bufs.music) return;
-  musicSrc = actx.createBufferSource();
-  musicSrc.buffer = bufs.music;
-  musicSrc.loop = true;
-  musicSrc.connect(musicBus);
-  musicBus.gain.setValueAtTime(0.0001, actx.currentTime);
-  musicBus.gain.exponentialRampToValueAtTime(muted ? 0.0001 : 0.55, actx.currentTime + 1.5);
-  musicSrc.start();
-}
-export function playMusic(on) {
-  wantMusic = on;
-  if (!actx) return;
-  if (on) startMusicLoop();
-  else if (musicSrc) {
-    try {
-      musicSrc.stop();
-    } catch (e) {}
-    musicSrc = null;
-  }
-}
-
 export function __set_muted(v) {
   muted = v;
   if (!actx) return;
   if (sizzleGain) sizzleGain.gain.value = v ? 0 : 0.12;
-  if (musicBus) musicBus.gain.value = v ? 0 : 0.55;
 }
 
 export function initAudio() {

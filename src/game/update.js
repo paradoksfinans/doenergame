@@ -159,26 +159,26 @@ export function update(dt) {
   for (const s of G.spits) {
     if (!s.on) continue;
     if (s.stock < TRAY_MAX) {
-      s.T += dt * G.prodMul;
-      if (s.T >= G.spitTime) {
-        s.T = 0;
+      s.t += dt * G.prodMul;
+      if (s.t >= G.spitTime) {
+        s.t = 0;
         s.stock++;
       }
     }
   }
   const fr = G.fryer;
   if (fr.on && fr.stock < FRY_MAX) {
-    fr.T += dt * G.prodMul;
-    if (fr.T >= G.fryTime) {
-      fr.T = 0;
+    fr.t += dt * G.prodMul;
+    if (fr.t >= G.fryTime) {
+      fr.t = 0;
       fr.stock++;
     }
   }
   const spc = G.special;
   if (spc.on && spc.stock < SP_MAX) {
-    spc.T += dt * G.prodMul;
-    if (spc.T >= G.specTime) {
-      spc.T = 0;
+    spc.t += dt * G.prodMul;
+    if (spc.t >= G.specTime) {
+      spc.t = 0;
       spc.stock++;
     }
   }
@@ -274,11 +274,11 @@ export function update(dt) {
       w.max = 6 + G.lv.cap;
       if (w.state === 'toBin') {
         if (moveToward(w, BIN.x + 0.45, BIN.y - 0.35, sp, dt)) {
-          w.T -= dt;
-          if (w.T <= 0 && w.carry > 0) {
+          w.t -= dt;
+          if (w.t <= 0 && w.carry > 0) {
             w.items.pop();
             w.carry = w.items.length;
-            w.T = 0.08;
+            w.t = 0.08;
             fly('t', P(w.x, w.y, 26 + w.carry * 5), BIN, 26);
             rate(0.03);
             stat('clean', 1);
@@ -294,11 +294,11 @@ export function update(dt) {
       if (w.ti != null && w.carry < w.max) {
         const tb = TABLES[w.ti];
         if (moveToward(w, tb.x + 0.4, tb.y + 0.45, sp, dt)) {
-          w.T -= dt;
-          if (w.T <= 0 && G.tableTrash[w.ti] > 0) {
+          w.t -= dt;
+          if (w.t <= 0 && G.tableTrash[w.ti] > 0) {
             G.tableTrash[w.ti]--;
             give(w, 't');
-            w.T = 0.12;
+            w.t = 0.12;
             fly('t', P(tb.x, tb.y, 28), w, 24 + w.carry * 5);
           }
           if (G.tableTrash[w.ti] === 0) w.ti = null;
@@ -313,9 +313,9 @@ export function update(dt) {
       if (!w.src || (w.src.kind === 'd' && !w.src.spit.on)) w.src = pickSource(w);
       if (w.src.kind === 'wait') {
         moveToward(w, ST.counter.zone.x + off * 2, ST.counter.zone.y - 0.5, 2.4 * staffMul(), dt);
-        w.T -= dt;
-        if (w.T <= 0) {
-          w.T = 0.8;
+        w.t -= dt;
+        if (w.t <= 0) {
+          w.t = 0.8;
           w.src = pickSource(w);
         }
         return;
@@ -326,11 +326,11 @@ export function update(dt) {
       const px = src.kind === 's' ? SP_PICK.x - 0.1 + off * 0.5 : sx + 0.5 + off,
         py = src.kind === 's' ? SP_PICK.y + off : PICK_Y + 0.15;
       if (moveToward(w, px, py, 3.2 * staffMul(), dt)) {
-        w.T -= dt;
-        if (w.T <= 0 && store.stock > 0 && w.carry < w.max) {
+        w.t -= dt;
+        if (w.t <= 0 && store.stock > 0 && w.carry < w.max) {
           store.stock--;
           give(w, src.kind);
-          w.T = 0.14;
+          w.t = 0.14;
           fly(
             src.kind,
             src.kind === 's'
@@ -351,8 +351,8 @@ export function update(dt) {
         zx = s.zone.x + (w.target === 'counter' ? off : 0),
         zy = s.zone.y + (w.target === 'counter' ? -0.1 : off * 0.6);
       if (moveToward(w, zx, zy, 3.2 * staffMul(), dt)) {
-        w.T -= dt;
-        if (w.T <= 0 && w.carry > 0 && dropInto(w, w.target)) w.T = 0.1;
+        w.t -= dt;
+        if (w.t <= 0 && w.carry > 0 && dropInto(w, w.target)) w.t = 0.1;
         if (w.carry === 0) {
           w.state = 'toSpit';
           w.src = null;
@@ -449,13 +449,13 @@ export function update(dt) {
       if (moveToward(c, c.seat.x, c.seat.y, 2.6, dt)) {
         c.state = 'sit';
         c.sitting = true;
-        c.T = 5 + Math.random() * 4;
+        c.t = 5 + Math.random() * 4;
         c.fx = c.seat.x < c.seat.tx ? 1 : -1;
       }
     } else if (c.state === 'sit') {
       c.moving = false;
-      c.T -= dt;
-      if (c.T <= 0) {
+      c.t -= dt;
+      if (c.t <= 0) {
         c.seat.occ = null;
         c.sitting = false;
         c.state = 'out';
@@ -633,8 +633,8 @@ export function update(dt) {
     if (m.state === 'park') {
       m.y = 5.6;
       if (G.stock.deliv >= 3) {
-        m.T -= dt;
-        if (m.T <= 0) {
+        m.t -= dt;
+        if (m.t <= 0) {
           G.stock.deliv -= 3;
           m.state = 'out';
           sale(
@@ -647,7 +647,7 @@ export function update(dt) {
           stat('deliv', 1);
           sfx('moped', 0.6) || beep(620, 0.12, 'sawtooth', 0.02);
         }
-      } else m.T = 0.5;
+      } else m.t = 0.5;
     } else if (m.state === 'out') {
       m.y -= 5 * dt;
       if (m.y < -5) {
@@ -658,7 +658,7 @@ export function update(dt) {
       m.y -= 5 * dt;
       if (m.y <= 5.6) {
         m.state = 'park';
-        m.T = 0.5;
+        m.t = 0.5;
       }
     }
   }
@@ -711,9 +711,9 @@ export function update(dt) {
     }
   }
 
-  while (G.sales.length && G.sales[0].T < G.time - 30) G.sales.shift();
-  for (const f of flyers) f.T += dt / f.dur;
-  for (let i = flyers.length - 1; i >= 0; i--) if (flyers[i].T >= 1) flyers.splice(i, 1);
+  while (G.sales.length && G.sales[0].t < G.time - 30) G.sales.shift();
+  for (const f of flyers) f.t += dt / f.dur;
+  for (let i = flyers.length - 1; i >= 0; i--) if (flyers[i].t >= 1) flyers.splice(i, 1);
   for (const t of texts) {
     t.life -= dt;
     t.y -= dt * 28;

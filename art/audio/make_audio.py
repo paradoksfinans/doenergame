@@ -221,6 +221,6 @@ def music():
 
 if __name__ == '__main__':
     import sys
-    what = sys.argv[1:] or ['sfx', 'music']
+    what = sys.argv[1:] or ['sfx']  # Musik wird nicht mehr verwendet (python3 make_audio.py music erzeugt sie bei Bedarf)
     if 'sfx' in what: sfx()
     if 'music' in what: music()
